@@ -1,6 +1,6 @@
 # Intro to data visualization
 
-Follow this [link](https://github.com/tpcovino/unit_1_data_visualization){target="_blank"} to download everything you need for this unit. When you get to GitHub click on "Code" (green button) and select "download zip". You will then save this to a local folder where you should do all of your work for this class. You will work through the "_blank.Rmd". Always be sure to read the README.md files in the GitHub repo's.  
+Follow this [link](https://github.com/tpcovino/unit_1_data_visualization){target="_blank"} to download everything you need for this unit. When you get to GitHub click on "Code" (green button) and select "download zip". You will then save this to a local folder where you should do all of your work for this class. You will work through the "_blank.Rmd". Always be sure to read the README.md files in the GitHub repo.  
 
 Once you have this folder saved where you would like it, open RStudio and navigate to the folder. Next, open the project (".Rproj"). Doing so will set the folder as the working directory, make your life easier, and make everything generally work. The use of projects is highly recommended and is the practice we will follow in this class. You will learn more about projects later, for now just know they are useful and make things easier. In this unit we want to start familiarizing ourselves with R by visualizing some hydrological data.
 
