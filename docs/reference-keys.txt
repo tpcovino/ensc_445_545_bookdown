@@ -1,0 +1,15 @@
+introduction
+intro-to-data-visualization
+download-and-install-tidyverse-library
+reading-data
+our-first-ggplot
+change-point-type
+set-colors
+controlling-color-with-a-third-variable-and-other-functions
+plotting-multiple-groups
+facets
+two-variable-faceting
+boxplots
+more-about-color-size-etc
+multiple-geoms
+a-caucus-race-and-a-long-tale

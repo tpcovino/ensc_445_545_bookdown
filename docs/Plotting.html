@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Intro to data visualization: Plotting in R | Watershed Analysis</title>
+  <meta name="description" content="Chapter 2 Intro to data visualization: Plotting in R | Watershed Analysis" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Intro to data visualization: Plotting in R | Watershed Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Intro to data visualization: Plotting in R | Watershed Analysis" />
+  
+  
+  
+
+<meta name="author" content="Tim Covino" />
+
+
+<meta name="date" content="2022-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Watershed Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="Plotting.html"><a href="Plotting.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization: Plotting in R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Plotting.html"><a href="Plotting.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.1</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="2.2" data-path="Plotting.html"><a href="Plotting.html#reading-data"><i class="fa fa-check"></i><b>2.2</b> Reading data</a></li>
+<li class="chapter" data-level="2.3" data-path="Plotting.html"><a href="Plotting.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.3</b> Our first ggplot</a></li>
+<li class="chapter" data-level="2.4" data-path="Plotting.html"><a href="Plotting.html#change-point-type"><i class="fa fa-check"></i><b>2.4</b> Change point type</a></li>
+<li class="chapter" data-level="2.5" data-path="Plotting.html"><a href="Plotting.html#set-colors"><i class="fa fa-check"></i><b>2.5</b> Set colors</a></li>
+<li class="chapter" data-level="2.6" data-path="Plotting.html"><a href="Plotting.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.6</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="2.7" data-path="Plotting.html"><a href="Plotting.html#plotting-multiple-groups"><i class="fa fa-check"></i><b>2.7</b> Plotting multiple groups</a></li>
+<li class="chapter" data-level="2.8" data-path="Plotting.html"><a href="Plotting.html#facets"><i class="fa fa-check"></i><b>2.8</b> Facets</a></li>
+<li class="chapter" data-level="2.9" data-path="Plotting.html"><a href="Plotting.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.9</b> Two variable faceting</a></li>
+<li class="chapter" data-level="2.10" data-path="Plotting.html"><a href="Plotting.html#boxplots"><i class="fa fa-check"></i><b>2.10</b> Boxplots</a></li>
+<li class="chapter" data-level="2.11" data-path="Plotting.html"><a href="Plotting.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.11</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="2.12" data-path="Plotting.html"><a href="Plotting.html#multiple-geoms"><i class="fa fa-check"></i><b>2.12</b> Multiple geoms</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Watershed Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Plotting" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Intro to data visualization: Plotting in R<a href="Plotting.html#Plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="download-and-install-tidyverse-library" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Download and install tidyverse library<a href="Plotting.html#download-and-install-tidyverse-library" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will use the tidyverse a lot this semester. It is a suite of packages that handles plotting and data wrangling efficiently.</p>
+<p>You only have to install the library once. You have to load it using the library() function each time you start an R session.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Plotting.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb1-2"><a href="Plotting.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="reading-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Reading data<a href="Plotting.html#reading-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following lines will read in the data we will use for this exercise. Don’t worry about this right now beyond running it, we will talk more about it later.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Plotting.html#cb2-1" aria-hidden="true" tabindex="-1"></a>Pine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_Jan-Mar_2010.csv&quot;</span>) </span></code></pre></div>
+<pre><code>## Rows: 2160 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): StationID, surrogate
+## dbl  (5): cfs, year, quarter, month, day
+## dttm (1): datetime
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Plotting.html#cb4-1" aria-hidden="true" tabindex="-1"></a>SNP <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_NFDR_Jan-Mar_2010.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 4320 Columns: 8
+## ── Column specification ────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): StationID, surrogate
+## dbl  (5): cfs, year, quarter, month, day
+## dttm (1): datetime
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Plotting.html#cb6-1" aria-hidden="true" tabindex="-1"></a>RBI <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Flashy_Dat_Subset.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 49 Columns: 26
+## ── Column specification ────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (4): STANAME, STATE, CLASS, AGGECOREGION
+## dbl (22): site_no, RBI, RBIrank, DRAIN_SQKM, HUC02, LAT_GAGE, LNG_GAGE, PPTAVG_BASIN, PP...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="figure">
+<img src="images/GGplot%20syntax.png" title="GGplot syntax" alt="" />
+<p class="caption">Basic ggplot syntax</p>
+</div>
+</div>
+<div id="our-first-ggplot" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Our first ggplot<a href="Plotting.html#our-first-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at the Pine data, plotting streamflow (the cfs column) by the date (datetime column). We will show the time series as a line.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Plotting.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Pine, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs))<span class="sc">+</span></span>
+<span id="cb8-2"><a href="Plotting.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="change-point-type" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Change point type<a href="Plotting.html#change-point-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s make the same plot but show the data as points, using the pch parameter in geom_point() we can change the point type to any of the following:</p>
+<div class="figure">
+<img src="images/pch.png" title="pch values and points from R help file" alt="" />
+<p class="caption">pch options from R help file</p>
+</div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Plotting.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Pine, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs))<span class="sc">+</span></span>
+<span id="cb9-2"><a href="Plotting.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="set-colors" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Set colors<a href="Plotting.html#set-colors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also “easily” change the color. Easily is in quotes because this often trips people up. If you put color = “blue” in the aesthetic function, think about what that is telling ggplot. It says “control the color using”blue”“. That doesn’t make a whole lot of sense, so neither does the output… Try it.</p>
+<p>What happens is that if color = “blue” is in the aesthetic, you are telling R that the color used in the geom represents “blue”. This is very useful if you have multiple geoms in your plot, are coloring them differently, and are building a legend. But if you are just trying to color the points, it kind of feels like R is trolling you… doesn’t it?</p>
+<p>Take the color = “blue” out of the aesthetic and you’re golden.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Plotting.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Pine, <span class="fu">aes</span>(datetime, <span class="at">y =</span> cfs, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>))<span class="sc">+</span></span>
+<span id="cb10-2"><a href="Plotting.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Plotting.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Pine, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs))<span class="sc">+</span></span>
+<span id="cb11-2"><a href="Plotting.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+</div>
+<div id="controlling-color-with-a-third-variable-and-other-functions" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Controlling color with a third variable and other functions<a href="Plotting.html#controlling-color-with-a-third-variable-and-other-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s plot the data as a line again, but play with it a bit.</p>
+<p>First: make the line blue</p>
+<p>Second: change the theme</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">See ggplot themes here</a></p>
+<p>Third: change the axis labels</p>
+<p>Fourth: color by discharge</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/labs.html">See here for changing axis labels and coloring by a variable (in this case discharge)</a></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Plotting.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Pine, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs, <span class="at">color =</span> cfs))<span class="sc">+</span></span>
+<span id="cb12-2"><a href="Plotting.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb12-3"><a href="Plotting.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Discharge (cfs)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-4"><a href="Plotting.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb12-5"><a href="Plotting.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="plotting-multiple-groups" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Plotting multiple groups<a href="Plotting.html#plotting-multiple-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The SNP dataset has two different streams: Pine and NFDR</p>
+<p>We can look at the two of those a couple of different ways</p>
+<p>First, make two lines, colored by the stream by adding color = to your aesthetic.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Plotting.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SNP, <span class="fu">aes</span>(<span class="at">x =</span> datetime,<span class="at">y =</span> cfs, <span class="at">color =</span> StationID)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="Plotting.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="facets" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Facets<a href="Plotting.html#facets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also use facets.</p>
+<p>You must tell the facet_wrap what variable to use to make the separate panels (facet =). It’ll decide how to orient them or you can tell it how. We want them to be on top of each other so we are going to tell it we want 2 rows by setting nrow = 2. Note that we have to put the column used to make the facets in quotes after facets =</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Plotting.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SNP, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="Plotting.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="Plotting.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="st">&quot;StationID&quot;</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="two-variable-faceting" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Two variable faceting<a href="Plotting.html#two-variable-faceting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can also use facet_grid() to break your plots up into panels based on two variables. Below we will create a panel for each month in each watershed. Adding scales = “free” allows facet_grid to change the axes. By default, all axes will be the same. This is often what we want, so we can more easily compare magnitudes, but sometimes we are looking for patterns more, so we may want to let the axes have whatever range works for the individual plots.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Plotting.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SNP, <span class="fu">aes</span>(<span class="at">x =</span> datetime, <span class="at">y =</span> cfs)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="Plotting.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-3"><a href="Plotting.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(StationID <span class="sc">~</span> month, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="boxplots" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> Boxplots<a href="Plotting.html#boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can look at these data in other ways as well. A very useful way to look at the variation of two groups is to use a boxplot.</p>
+<p>Because the data span several orders of magnitude, we will have to log the y axis to see the differences between the two streams. We do that by adding scale_y_log10()</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Plotting.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> SNP, <span class="fu">aes</span>(<span class="at">x =</span> StationID, <span class="at">y =</span> cfs)) <span class="sc">+</span> </span>
+<span id="cb16-2"><a href="Plotting.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb16-3"><a href="Plotting.html#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="more-about-color-size-etc" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> More about color, size, etc<a href="Plotting.html#more-about-color-size-etc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s play around a bit with controlling color, point size, etc with other data.</p>
+<p>We can control the size of points by putting size = in the aes() and color by putting color =</p>
+<p>If you use a point type that has a background, like #21, you can also set the background color using bg =</p>
+<p>If points are too close together to see them all you can use a hollow point type or set the alpha lower so the points are transparent (alpha = )</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="Plotting.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(RBI, <span class="fu">aes</span>(RBI, DRAIN_SQKM, <span class="at">size =</span> T_AVG_SITE, <span class="at">bg =</span> STATE))<span class="sc">+</span></span>
+<span id="cb17-2"><a href="Plotting.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="multiple-geoms" class="section level2 hasAnchor" number="2.12">
+<h2><span class="header-section-number">2.12</span> Multiple geoms<a href="Plotting.html#multiple-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally: You can add multiple geoms to the same plot. Examples of when you might want to do this are when you are showing a line fit and want to show the points as well, or maybe showing a boxplot and want to show the data behind it. You simply add additional geom_… lines to add additional geoms.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Plotting.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(RBI, <span class="fu">aes</span>(RBI, DRAIN_SQKM, <span class="at">color =</span> AGGECOREGION))<span class="sc">+</span></span>
+<span id="cb18-2"><a href="Plotting.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb18-3"><a href="Plotting.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/02_data_visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/02_data_visualization.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
