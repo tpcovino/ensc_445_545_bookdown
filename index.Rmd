@@ -14,6 +14,8 @@ Class times: T 14:00 – 15:15; Th 14:00 – 15:15\
 Office hours: W 14:00 - 15:15; or by appointment\
 Website: https://tpcovino.github.io/ensc_445_545_bookdown
 
+![](images/big-hole-river-lead.jpeg)
+
 **Course overview and objectives**: (1) provide theoretical understanding and practical experience with the most common analysis and modeling techniques relevant to watershed hydrology; and (2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
 
 **Approach**: This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will follow a typical weekly format of Tuesday in-class lecture and activities, Thursday hands-on computational work, and time spent working through online modules outside of class. The online modules are required and are intended to prepare students for the in-class work during lab on Thursday. Accordingly, this class will follow a semi-flipped format that includes in-class lecture, online modules, and in-class work sessions.
