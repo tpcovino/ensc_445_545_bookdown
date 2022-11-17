@@ -1,4 +1,8 @@
 introduction
+course-overview-and-objectives
+structure
+philosophical-approach-and-books-resources-we-will-utilize
+tentative-schedule-subject-to-change
 intro-to-data-visualization
 download-and-install-tidyverse-library
 reading-data
@@ -12,4 +16,4 @@ two-variable-faceting
 boxplots
 more-about-color-size-etc
 multiple-geoms
-a-caucus-race-and-a-long-tale
+data-wrangling-using-tidyverse

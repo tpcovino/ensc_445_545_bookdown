@@ -16,10 +16,41 @@ Website: https://tpcovino.github.io/ensc_445_545_bookdown
 
 ![](images/big-hole-river-lead.jpeg)
 
-**Course overview and objectives**: (1) provide theoretical understanding and practical experience with the most common analysis and modeling techniques relevant to watershed hydrology; and (2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
+## Course overview and objectives: 
+(1) provide theoretical understanding and practical experience with the most common analysis and modeling techniques relevant to watershed hydrology; \
 
-**Approach**: This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will follow a typical weekly format of Tuesday in-class lecture and activities, Thursday hands-on computational work, and time spent working through online modules outside of class. The online modules are required and are intended to prepare students for the in-class work during lab on Thursday. Accordingly, this class will follow a semi-flipped format that includes in-class lecture, online modules, and in-class work sessions.
+(2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
 
-**Course structure**: Tuesday lectures will provide theoretical understanding and Thursday computing labs will be focused on skill development in watershed analysis and modeling.
+## Structure: 
+This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will follow a typical weekly format of Tuesday in-class lecture and activities, Thursday hands-on computational work, and time spent working through online modules outside of class. The online modules are required and are intended to prepare students for the in-class work during lab on Thursday. Accordingly, this class will follow a semi-flipped format that includes in-class lecture, online modules, and in-class work sessions.
+
+## Philosophical approach and books & resources we will utilize: 
+This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source [R](https://cran.rstudio.com/) and [RStudio](https://posit.co/download/rstudio-desktop/) software. Books and readings will include [R for Data Science](https://r4ds.had.co.nz/index.html) and [Statistical Methods in Water Resources](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf), but other readings will be made available on this bookdown page as needed. *We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis*.  
  
-**Tentative schedule, subject to change**:
+## Tentative schedule, subject to change:
+
+**Week 1 (Unit 1)**: Introduction, overview, and technical skills.\
+*Reading* [Chapters 1, 2, & 3](https://r4ds.had.co.nz/introduction.html) 1-Welcome, 2-Introduction, & 3-Data visualization in R for Data Science (RDS).
+
+**Week 2 (Units 1 & 2)**: Technical skills continued. Data visualization, data wrangling, and programming.\
+*Reading* [Chapter 2.1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf): Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).\
+*AND* [Chapters 4 & 5](https://r4ds.had.co.nz/workflow-basics.html) 4-Workflow: Basics & 5-Data transformation in RDS. 
+
+**Week 3 (Unit 3)**: Statistics in hydrology.\
+*Reading* [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf): 1-Summarizing Univariate Data in SMWR 
+
+**Week 4 (Unit 4)**: Hydrologic processes, climate and water balance. Trend detection and analysis, non-parametric approaches.\
+*Reading* [Chapters 12.1 & 12.2](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf) 12.1-General Structure of Trend Tests & 12.2-Trend Tests with No Exogenous Variables in SMWR. 
+
+**Week 5**: Term project overview and **Exam 1**.\
+*Term project*: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project.
+
+**Week 6 (Unit 5)**: Surface water: Rating curves, hydrographs, and exceedence analysis.\
+*Reading* [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf) 4-Hypothesis Tests in SMWR. 
+
+Week 7: Low flow analysis
+
+Week 8: Flood frequency analysis
+
+**Week 9: Spring break** - no class!
+

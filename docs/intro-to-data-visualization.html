@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="next" href="data-wrangling-using-tidyverse.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -136,7 +136,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives:</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#philosophical-approach-and-books-resources-we-will-utilize"><i class="fa fa-check"></i><b>1.3</b> Philosophical approach and books &amp; resources we will utilize:</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.4</b> Tentative schedule, subject to change:</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.1</b> Download and install tidyverse library</a></li>
@@ -152,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.11</b> More about color, size, etc</a></li>
 <li class="chapter" data-level="2.12" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#multiple-geoms"><i class="fa fa-check"></i><b>2.12</b> Multiple geoms</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Data wrangling using tidyverse</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -189,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The following lines will read in the data we will use for this exercise. Don’t worry about this right now beyond running it, we will talk more about it later.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intro-to-data-visualization.html#cb2-1" aria-hidden="true" tabindex="-1"></a>Pine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_Jan-Mar_2010.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## Rows: 2160 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (2): StationID, surrogate
 ## dbl  (5): cfs, year, quarter, month, day
@@ -199,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro-to-data-visualization.html#cb4-1" aria-hidden="true" tabindex="-1"></a>SNP <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_NFDR_Jan-Mar_2010.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 4320 Columns: 8
-## ── Column specification ────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (2): StationID, surrogate
 ## dbl  (5): cfs, year, quarter, month, day
@@ -209,10 +215,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro-to-data-visualization.html#cb6-1" aria-hidden="true" tabindex="-1"></a>RBI <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Flashy_Dat_Subset.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 49 Columns: 26
-## ── Column specification ────────────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (4): STANAME, STATE, CLASS, AGGECOREGION
-## dbl (22): site_no, RBI, RBIrank, DRAIN_SQKM, HUC02, LAT_GAGE, LNG_GAGE, PPTAVG_BASIN, PP...
+## dbl (22): site_no, RBI, RBIrank, DRAIN_SQKM, HUC02, LAT_GAGE, LNG_GAGE, PPTAVG_BASIN, PPTAVG_SITE, T_AVG_BAS...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -329,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-wrangling-using-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

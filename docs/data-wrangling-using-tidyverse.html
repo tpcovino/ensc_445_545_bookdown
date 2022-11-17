@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Watershed Analysis</title>
-  <meta name="description" content="Watershed Analysis" />
+  <title>Chapter 3 Data wrangling using tidyverse | Watershed Analysis</title>
+  <meta name="description" content="Chapter 3 Data wrangling using tidyverse | Watershed Analysis" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Watershed Analysis" />
+  <meta property="og:title" content="Chapter 3 Data wrangling using tidyverse | Watershed Analysis" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Watershed Analysis" />
+  <meta name="twitter:title" content="Chapter 3 Data wrangling using tidyverse | Watershed Analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="intro-to-data-visualization.html"/>
 
-<link rel="next" href="intro-to-data-visualization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -178,63 +178,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Watershed Analysis</h1>
-<p class="author"><em>Tim Covino</em></p>
-<p class="date"><em>2022-11-17</em></p>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book provides the materials that we will use in Watershed Analysis (ENSC 445/545). In this class we will be learning the fundamentals of watershed analysis in R.</p>
-<p>Instructor: Dr. Tim Covino<br />
-Class times: T 14:00 – 15:15; Th 14:00 – 15:15<br />
-Office hours: W 14:00 - 15:15; or by appointment<br />
-Website: <a href="https://tpcovino.github.io/ensc_445_545_bookdown" class="uri">https://tpcovino.github.io/ensc_445_545_bookdown</a></p>
-<p><img src="images/big-hole-river-lead.jpeg" /></p>
-<div id="course-overview-and-objectives" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Course overview and objectives:<a href="index.html#course-overview-and-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>provide theoretical understanding and practical experience with the most common analysis and modeling techniques relevant to watershed hydrology;<br />
-</p></li>
-<li><p>provide training in analyzing, simulating, and presenting scientific data in written and oral formats.</p></li>
-</ol>
-</div>
-<div id="structure" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Structure:<a href="index.html#structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will follow a typical weekly format of Tuesday in-class lecture and activities, Thursday hands-on computational work, and time spent working through online modules outside of class. The online modules are required and are intended to prepare students for the in-class work during lab on Thursday. Accordingly, this class will follow a semi-flipped format that includes in-class lecture, online modules, and in-class work sessions.</p>
-</div>
-<div id="philosophical-approach-and-books-resources-we-will-utilize" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Philosophical approach and books &amp; resources we will utilize:<a href="index.html#philosophical-approach-and-books-resources-we-will-utilize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source <a href="https://cran.rstudio.com/">R</a> and <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> software. Books and readings will include <a href="https://r4ds.had.co.nz/index.html">R for Data Science</a> and <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf">Statistical Methods in Water Resources</a>, but other readings will be made available on this bookdown page as needed. <em>We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis</em>.</p>
-</div>
-<div id="tentative-schedule-subject-to-change" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Tentative schedule, subject to change:<a href="index.html#tentative-schedule-subject-to-change" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Week 1 (Unit 1)</strong>: Introduction, overview, and technical skills.<br />
-<em>Reading</em> <a href="https://r4ds.had.co.nz/introduction.html">Chapters 1, 2, &amp; 3</a> 1-Welcome, 2-Introduction, &amp; 3-Data visualization in R for Data Science (RDS).</p>
-<p><strong>Week 2 (Units 1 &amp; 2)</strong>: Technical skills continued. Data visualization, data wrangling, and programming.<br />
-<em>Reading</em> <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf">Chapter 2.1</a>: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).<br />
-<em>AND</em> <a href="https://r4ds.had.co.nz/workflow-basics.html">Chapters 4 &amp; 5</a> 4-Workflow: Basics &amp; 5-Data transformation in RDS.</p>
-<p><strong>Week 3 (Unit 3)</strong>: Statistics in hydrology.<br />
-<em>Reading</em> <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf">Chapter 1</a>: 1-Summarizing Univariate Data in SMWR</p>
-<p><strong>Week 4 (Unit 4)</strong>: Hydrologic processes, climate and water balance. Trend detection and analysis, non-parametric approaches.<br />
-<em>Reading</em> <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf">Chapters 12.1 &amp; 12.2</a> 12.1-General Structure of Trend Tests &amp; 12.2-Trend Tests with No Exogenous Variables in SMWR.</p>
-<p><strong>Week 5</strong>: Term project overview and <strong>Exam 1</strong>.<br />
-<em>Term project</em>: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project.</p>
-<p><strong>Week 6 (Unit 5)</strong>: Surface water: Rating curves, hydrographs, and exceedence analysis.<br />
-<em>Reading</em> <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf">Chapter 4</a> 4-Hypothesis Tests in SMWR.</p>
-<p>Week 7: Low flow analysis</p>
-<p>Week 8: Flood frequency analysis</p>
-<p><strong>Week 9: Spring break</strong> - no class!</p>
+<div id="data-wrangling-using-tidyverse" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Data wrangling using tidyverse<a href="data-wrangling-using-tidyverse.html#data-wrangling-using-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="intro-to-data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="intro-to-data-visualization.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -265,7 +219,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/index.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/03_data_wrang.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -273,7 +227,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/index.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/03_data_wrang.Rmd",
 "text": null
 },
 "download": null,
