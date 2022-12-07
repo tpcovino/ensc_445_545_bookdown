@@ -1,6 +1,6 @@
 # Activity 1: Practice skills learned in Units 1 and 2 {#introactivity}
 
-You can find the repo for this lab here: https://github.com/tpcovino/activity_1
+You can find the repo for this lab here: https://github.com/tpcovino/activity_1 {target="_blank"}
 
 As we have done previously, go to the green Code button on GitHub, download the zip and put the folder on your computer. Open the project fromt that folder and then open the .Rmd. Remember that opening the project from that folder will set that folder as the "working directory". Doing so means that when you read in your data, R will "look" in the right place to find it. 
 
