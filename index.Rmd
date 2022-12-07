@@ -10,8 +10,8 @@ site: bookdown::bookdown_site
 This book provides the materials that we will use in Watershed Analysis (ENSC 445/545). In this class we will be learning the fundamentals of watershed analysis in R. 
 
 Instructor: Dr. Tim Covino\
-Class times: T 14:00 – 15:15; Th 14:00 – 15:15\
-Office hours: W 14:00 - 15:15; or by appointment\
+Class times: T 10:50 – 12:05; Th 10:50 – 12:05\
+Office hours: By appointment\
 Website: https://tpcovino.github.io/ensc_445_545_bookdown
 
 ![](images/big-hole-river-lead.jpeg)
