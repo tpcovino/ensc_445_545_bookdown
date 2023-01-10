@@ -75,13 +75,13 @@ First: make the line blue
 
 Second: change the theme
 
-[See ggplot themes here](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+[See ggplot themes here](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}
 
 Third: change the axis labels
 
 Fourth: color by discharge
 
-[See here for changing axis labels and coloring by a variable (in this case discharge)](https://ggplot2.tidyverse.org/reference/labs.html)
+[See here for changing axis labels and coloring by a variable (in this case discharge)](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}
 
 ```{r}
 
