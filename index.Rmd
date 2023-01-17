@@ -23,7 +23,7 @@ Website: https://tpcovino.github.io/ensc_445_545_bookdown
 (2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
 
 ## Structure 
-This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. 
+This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. We will generally have "lecture" on Tuesday, where we will talk about and work through various types of hydrological analyses. On Thursday's you will then put the content from Tuesday to work in a lab where you will complete a variety of hydrological analyses in R. 
 
 
 ## Philosophical approach and books & resources we will utilize 
@@ -31,54 +31,79 @@ This course will use all online and open-source resources and will follow FAIR (
  
 ## Tentative schedule, subject to change
 
-**Week 1 (Unit 1)**: Introduction, overview, and technical skills.\
-*Reading* [Chapters 1, 2, & 3](https://r4ds.had.co.nz/introduction.html){target="_blank"} 1-Welcome, 2-Introduction, & 3-Data visualization in R for Data Science (RDS).
+**Week 1 (Unit 1)**: <br> 
+- *Lecture (1/19)*: Introduction, overview, and technical skills.\
+- *Reading*: [Chapters 1, 2, & 3](https://r4ds.had.co.nz/introduction.html){target="_blank"} 1-Welcome, 2-Introduction, & 3-Data visualization in R for Data Science (RDS).
 
-**Week 2 (Units 1 & 2)**: Technical skills continued. Data visualization, data wrangling, and programming.\
-*Reading* [Chapter 2.1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).\
-*AND* [Chapters 4 & 5](https://r4ds.had.co.nz/workflow-basics.html){target="_blank"} 4-Workflow: Basics & 5-Data transformation in RDS. 
+**Week 2 (Units 1 & 2)**: <br>
+- *Lecture (1/24)*: Technical skills continued. Data visualization, data wrangling, and programming. <br>
+- *Lab 1 (1/26)*: Data visualization, data wrangling, and programming. <br>
+- *Reading*: [Chapter 2.1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).
+*AND* [Chapters 4 & 5](https://r4ds.had.co.nz/workflow-basics.html){target="_blank"} 4-Workflow: Basics & 5-Data transformation in RDS. <br>
 
-**Week 3 (Unit 3)**: Statistics in hydrology.\
-*Reading* [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf): 1-Summarizing Univariate Data in SMWR 
+**Week 3 (Unit 3)**: <br>
+- *Lecture (1/31)*: Statistics in hydrology. <br>
+- *Lab 2 (2/2)*: Statistics in hydrology. <br>
+- *Reading*: [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: 1-Summarizing Univariate Data in SMWR 
 
-**Week 4 (Unit 4)**: Downloading and shaping data frames.\
-*Reading* [The Experimental Forest Network](https://www.fs.usda.gov/research/forestsandranges), [the Tenderfoot Creek Experimental Forest](https://www.fs.usda.gov/rmrs/experimental-forests-and-ranges/tenderfoot-creek-experimental-forest/)
-*AND* [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html)
-*AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html)
+**Week 4 (Unit 4)**: <br> 
+- *Lecture (2/7)*: Downloading and shaping data frames.<br>
+- *Lab 3 (2/9)*: Downloading and shaping data frames. <br>
+- *Reading*: [The Experimental Forest Network](https://www.fs.usda.gov/research/forestsandranges), [the Tenderfoot Creek Experimental Forest](https://www.fs.usda.gov/rmrs/experimental-forests-and-ranges/tenderfoot-creek-experimental-forest/)
+*AND* [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"}
+*AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
 
-**Week 5**: Term project overview and **Exam 1**.\
-*Term project*: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project.
+**Week 5 (Units 1 - 4)**: <br> 
+- *Lecture (2/14)*: Term project overview and assign take home **Exam 1**. <br>
+- *Term project work session*: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project. <br>
+- *Exam 1 part II (2/16)*: In class work and Exam 1 resubmission.
 
-**Week 6 (Unit 5)**: Surface water: Rating curves and hydrographs.\
-*Reading* [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf) 4-Hypothesis Tests in SMWR. 
+**Week 6 (Unit 5)**: <br>
+- *Lecture (2/21)*: Surface water: Rating curves and hydrographs. <br>
+- *Lab 4 (2/23)*: Rating curves and hydrographs <br>
+- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 4-Hypothesis Tests in SMWR. 
 
-**Week 7 (Unit 6)**: Low flow analysis\
-*Reading* [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10) in EPA Environmental Modeling Community of Practice
+**Week 7 (Unit 6)**: <br>
+- *Lecture (2/28)*: Flow frequency analysis (high and low flows) <br>
+- *Lab 5 (3/2)*: Flow frequency analysis <br>
+- *Reading*: [PeakFlow Frequency Estiamtes for USGS Streamflow-Gaging Stations in Connecticut](https://pubs.usgs.gov/wri/wri034196/wrir03-4196.pdf){target="_blank"}
+*AND* [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10){target="_blank"} in EPA Environmental Modeling Community of Practice
 
-**Week 8 (Unit 6 contd)**: Flood frequency analysis and term project work session\
-*Reading* [PeakFlow Frequency Estiamtes for USGS Streamflow-Gaging Stations in Connecticut](https://pubs.usgs.gov/wri/wri034196/wrir03-4196.pdf)
+**Week 8 (Unit 6 contd)**: <br>
+- *Lecture (3/7)*: Precipitation data acquisition and analysis <br>
+- *Lab 6 (3/9)*: Precipitation analysis <br>
+- *Reading*: [Frequency analysis of rainfall data](https://indico.ictp.it/event/a12165/session/21/contribution/16/material/0/0.pdf){target="_blank"} Up to page 32. 
 
-**Week 9: Spring break** - no class!
+**Week 9: Spring break (3/14 & 3/16)** - no class!
 
-**Week 10 (Unit 7)**: Hydrologic processes, climate and water balance. Trend detection and analysis, non-parametric approaches.\
-*Reading* [Chapters 12.1 & 12.2](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf) 12.1-General Structure of Trend Tests & 12.2-Trend Tests with No Exogenous Variables in SMWR. 
+**Week 10 (Unit 7)**: <br> 
+- *Lecture (3/21)*: Hydrologic processes, climate and water balance. Trend detection and analysis, non-parametric approaches.<br>
+- *Lab 7 (3/23)*: Trend analysis <br>
+- *Reading*: [Chapters 12.1 & 12.2](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 12.1-General Structure of Trend Tests & 12.2-Trend Tests with No Exogenous Variables in SMWR. 
 
-**Week 11 (Unit 8)**: Geospatial data in R\
-*Reading* [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html)
-*AND* [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html)
+**Week 11 (Unit 8)**: <br>
+- *Lecture (3/28)*: Geospatial data in R <br>
+- *Lab work (3/30)*: Term project work session and assign **Exam 2**
+- *Reading*: [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html){target="_blank"}
+*AND* [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html){target="_blank"}
 
-**Week 12**: Term project work session and **Exam 2**
+**Week 12 (Units 5 - 8)**: <br>
+- *Lecture (4/4)*: In class work and Exam 1 resubmission. <br>
+- *Lab 8 (4/6)*: Geospatial hydrology in R
 
-**Week 13 (Unit 9)**: Watershed delineation in R
+**Week 13 (Unit 9)**: <br>
+- Watershed delineation in R
 
-**Week 14 (Unit 10)**: Hydrological moadeling part 1\
-*Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL)
+**Week 14 (Unit 10)**: <br>
+- Hydrological moadeling part 1 <br>
+- *Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL){target="_blank"}
 
-**Week 15 (Unit 10 contd)**: Hydrological modeling part 2
+**Week 15 (Unit 10 contd)**: <br>
+- Hydrological modeling part 2
 
-**Week 16**: Final presentations
+**Week 16**: Term project presentations
 
-**Week 17 (finals week)**: Final exam
+**Week 17 (finals week)**: Final exam (Units 1 - 10)
 
 
 

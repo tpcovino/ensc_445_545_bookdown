@@ -38,11 +38,3 @@ when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function
 save-your-results-to-a-new-tibble
 what-about-nas
 what-are-some-things-you-think-ill-ask-you-to-do-for-the-activity-next-class
-introactivity
-problem-1
-problem-2
-problem-3
-problem-4
-problem-5
-problem-6
-deliverable
