@@ -83,27 +83,31 @@ This course will use all online and open-source resources and will follow FAIR (
 
 **Week 11 (Unit 8)**: <br>
 - *Lecture (3/28)*: Geospatial data in R <br>
-- *Lab work (3/30)*: Term project work session and assign **Exam 2**
+- *Lab (3/30)*: Term project work session and assign **Exam 2**
+
+
+**Week 12 (Units 5 - 8)**: <br>
+- *Lecture (4/4)*: Geospatial hydrology in R <br>
+- *Lab (4/6)*: In class work and Exam 1 resubmission. <br> 
 - *Reading*: [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html){target="_blank"}
 *AND* [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html){target="_blank"}
 
-**Week 12 (Units 5 - 8)**: <br>
-- *Lecture (4/4)*: In class work and Exam 1 resubmission. <br>
-- *Lab 8 (4/6)*: Geospatial hydrology in R
-
 **Week 13 (Unit 9)**: <br>
-- Watershed delineation in R
+- *Lecture (4/11)*: Watershed delineation in R <br>
+- *Lab (4/13)*: Term project update presentations
 
 **Week 14 (Unit 10)**: <br>
-- Hydrological moadeling part 1 <br>
+- *Lecture (4/18)*: Hydrological modeling part 1 <br>
+- *Lab (4/20)*: Lab or term project work session (TBD) <br>
 - *Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL){target="_blank"}
 
 **Week 15 (Unit 10 contd)**: <br>
-- Hydrological modeling part 2
+- *Lecture (4/25)*: Hydrological modeling part 2 <br>
+- *Lab (4/27)*: Lab or term project work session (TBD)
 
-**Week 16**: Term project presentations
+**Week 16**: Term project presentations (5/2 and 5/4)
 
-**Week 17 (finals week)**: Final exam (Units 1 - 10)
+**Week 17 (finals week)**: Final exam 5/9 10 - 11:50 AM (Units 1 - 10)
 
 
 
