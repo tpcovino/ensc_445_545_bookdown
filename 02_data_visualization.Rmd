@@ -3,12 +3,12 @@
 ## Learning Objectives
 - The learning objectives for today are to begin getting comfortable navigating RStudio. A great way to do this is through data visualization. At the end of todays activities students will be able to:
 
-1. Load data to RStudio
-2. Visualize data by making plots/figures
-3. Install and load packages
-4. Begin coding using tidyverse
-5. Have an understanding of projects and folder management
-6. Knit .Rmd to .html
+  - Load data to RStudio
+  - Visualize data by making plots/figures
+  - Install and load packages
+  - Begin coding using tidyverse
+  - Have an understanding of projects and folder management
+  - Knit .Rmd to .html
 
 Follow this [link](https://github.com/tpcovino/unit_1_data_visualization){target="_blank"} to download everything you need for this unit. When you get to GitHub click on "Code" (green button) and select "download zip". You will then save this to a local folder where you should do all of your work for this class. You will work through the "_blank.Rmd". Always be sure to read the README.md files in the GitHub repo.  
 
