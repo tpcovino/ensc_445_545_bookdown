@@ -290,10 +290,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb49-2"><a href="data-wrangling-using-tidyverse.html#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="data-wrangling-using-tidyverse.html#cb49-3" aria-hidden="true" tabindex="-1"></a>rbi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;Flashy_Dat_Subset.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 49 Columns: 26
-## ── Column specification ──────────────────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr  (4): STANAME, STATE, CLASS, AGGECOREGION
-## dbl (22): site_no, RBI, RBIrank, DRAIN_SQKM, HUC02, LAT_GAGE, LNG_GAGE, PPTAVG_BASIN, PPTAVG_S...
+## dbl (22): site_no, RBI, RBIrank, DRAIN_SQKM, HUC02, LAT_GAGE, LNG_GAGE, PPTAVG_BASIN, PPTAVG_SITE, T_AVG_BASIN...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -304,82 +304,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Good question. It’s a fancy way to store data that works well with tidyverse functions. Let’s look at the rbi tibble.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-wrangling-using-tidyverse.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rbi)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 26
-##   site_no    RBI RBIrank STANAME DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶
-##     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 1013500 0.0584      35 Fish R…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5
-## 2 1021480 0.208      300 Old St…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117. 
-## 3 1022500 0.198      286 Narrag…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130. 
-## 4 1029200 0.132      183 Seboei…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103. 
-## 5 1030500 0.114      147 Mattaw…  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113. 
-## 6 1031300 0.297      489 Piscat…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120.    121. 
-## # … with 13 more variables: T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;,
-## #   T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
-## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE</code></pre>
+##   site_no    RBI RBIrank STANAME DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1013500 0.0584      35 Fish R…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3        3  
+## 2 1021480 0.208      300 Old St…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71     5.8
+## 3 1022500 0.198      286 Narrag…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95     6.3
+## 4 1029200 0.132      183 Seboei…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61     4  
+## 5 1030500 0.114      147 Mattaw…  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82     5.4
+## 6 1031300 0.297      489 Piscat…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6      4.2
+## # … with 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
+## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
+## #   ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-wrangling-using-tidyverse.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(test_df)</span></code></pre></div>
-<pre><code>##   site_no        RBI RBIrank                                     STANAME DRAIN_SQKM HUC02
-## 1 1013500 0.05837454      35            Fish River near Fort Kent, Maine     2252.7     1
-## 2 1021480 0.20797008     300               Old Stream near Wesley, Maine       76.7     1
-## 3 1022500 0.19805382     286     Narraguagus River at Cherryfield, Maine      573.6     1
-## 4 1029200 0.13151299     183         Seboeis River near Shin Pond, Maine      444.9     1
-## 5 1030500 0.11350485     147 Mattawamkeag River near Mattawamkeag, Maine     3676.2     1
-## 6 1031300 0.29718786     489       Piscataquis River at Blanchard, Maine      304.4     1
-##   LAT_GAGE  LNG_GAGE STATE CLASS AGGECOREGION PPTAVG_BASIN PPTAVG_SITE T_AVG_BASIN T_AVG_SITE
-## 1 47.23739 -68.58264    ME   Ref    NorthEast        97.42       93.53        3.00        3.0
-## 2 44.93694 -67.73611    ME   Ref    NorthEast       115.39      117.13        5.71        5.8
-## 3 44.60797 -67.93524    ME   Ref    NorthEast       120.07      129.56        5.95        6.3
-## 4 46.14306 -68.63361    ME   Ref    NorthEast       102.19      103.24        3.61        4.0
-## 5 45.50097 -68.30596    ME   Ref    NorthEast       108.19      113.13        4.82        5.4
-## 6 45.26722 -69.58389    ME   Ref    NorthEast       119.83      120.93        3.60        4.2
-##   T_MAX_BASIN T_MAXSTD_BASIN T_MAX_SITE T_MIN_BASIN T_MINSTD_BASIN T_MIN_SITE   PET
-## 1        9.67          0.202       10.0       -2.49          0.269       -2.7 504.7
-## 2       11.70          0.131       11.9       -0.85          0.123       -0.6 554.2
-## 3       11.90          0.344       12.2        0.06          0.873        1.4 553.1
-## 4        9.88          0.231       10.4       -2.13          0.216       -1.5 513.0
-## 5       10.75          0.554       11.7       -1.49          0.251       -1.2 540.8
-## 6        9.57          0.431       11.0       -2.46          0.268       -1.7 495.8
-##   SNOW_PCT_PRECIP PRECIP_SEAS_IND FLOWYRS_1990_2009 wy00_09
-## 1            36.9           0.102                20      10
-## 2            39.5           0.046                11      10
-## 3            38.2           0.047                20      10
-## 4            36.4           0.070                11      10
-## 5            37.2           0.033                20      10
-## 6            40.2           0.030                13      10</code></pre>
+<pre><code>##   site_no        RBI RBIrank                                     STANAME DRAIN_SQKM HUC02 LAT_GAGE  LNG_GAGE
+## 1 1013500 0.05837454      35            Fish River near Fort Kent, Maine     2252.7     1 47.23739 -68.58264
+## 2 1021480 0.20797008     300               Old Stream near Wesley, Maine       76.7     1 44.93694 -67.73611
+## 3 1022500 0.19805382     286     Narraguagus River at Cherryfield, Maine      573.6     1 44.60797 -67.93524
+## 4 1029200 0.13151299     183         Seboeis River near Shin Pond, Maine      444.9     1 46.14306 -68.63361
+## 5 1030500 0.11350485     147 Mattawamkeag River near Mattawamkeag, Maine     3676.2     1 45.50097 -68.30596
+## 6 1031300 0.29718786     489       Piscataquis River at Blanchard, Maine      304.4     1 45.26722 -69.58389
+##   STATE CLASS AGGECOREGION PPTAVG_BASIN PPTAVG_SITE T_AVG_BASIN T_AVG_SITE T_MAX_BASIN T_MAXSTD_BASIN T_MAX_SITE
+## 1    ME   Ref    NorthEast        97.42       93.53        3.00        3.0        9.67          0.202       10.0
+## 2    ME   Ref    NorthEast       115.39      117.13        5.71        5.8       11.70          0.131       11.9
+## 3    ME   Ref    NorthEast       120.07      129.56        5.95        6.3       11.90          0.344       12.2
+## 4    ME   Ref    NorthEast       102.19      103.24        3.61        4.0        9.88          0.231       10.4
+## 5    ME   Ref    NorthEast       108.19      113.13        4.82        5.4       10.75          0.554       11.7
+## 6    ME   Ref    NorthEast       119.83      120.93        3.60        4.2        9.57          0.431       11.0
+##   T_MIN_BASIN T_MINSTD_BASIN T_MIN_SITE   PET SNOW_PCT_PRECIP PRECIP_SEAS_IND FLOWYRS_1990_2009 wy00_09
+## 1       -2.49          0.269       -2.7 504.7            36.9           0.102                20      10
+## 2       -0.85          0.123       -0.6 554.2            39.5           0.046                11      10
+## 3        0.06          0.873        1.4 553.1            38.2           0.047                20      10
+## 4       -2.13          0.216       -1.5 513.0            36.4           0.070                11      10
+## 5       -1.49          0.251       -1.2 540.8            37.2           0.033                20      10
+## 6       -2.46          0.268       -1.7 495.8            40.2           0.030                13      10</code></pre>
 <p>Now read in the same data with read.csv() which will NOT read the data as a tibble. How is it different? Output each one in the Console.</p>
 <p>Knowing the data type for each column is super helpful for a few reasons…. let’s talk about them.</p>
 <p>Types: int, dbl, fctr, char, logical</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-wrangling-using-tidyverse.html#cb56-1" aria-hidden="true" tabindex="-1"></a>rbi_NT <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Flashy_Dat_Subset.csv&quot;</span>)</span>
 <span id="cb56-2"><a href="data-wrangling-using-tidyverse.html#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="data-wrangling-using-tidyverse.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rbi_NT)</span></code></pre></div>
-<pre><code>##   site_no        RBI RBIrank                                     STANAME DRAIN_SQKM HUC02
-## 1 1013500 0.05837454      35            Fish River near Fort Kent, Maine     2252.7     1
-## 2 1021480 0.20797008     300               Old Stream near Wesley, Maine       76.7     1
-## 3 1022500 0.19805382     286     Narraguagus River at Cherryfield, Maine      573.6     1
-## 4 1029200 0.13151299     183         Seboeis River near Shin Pond, Maine      444.9     1
-## 5 1030500 0.11350485     147 Mattawamkeag River near Mattawamkeag, Maine     3676.2     1
-## 6 1031300 0.29718786     489       Piscataquis River at Blanchard, Maine      304.4     1
-##   LAT_GAGE  LNG_GAGE STATE CLASS AGGECOREGION PPTAVG_BASIN PPTAVG_SITE T_AVG_BASIN T_AVG_SITE
-## 1 47.23739 -68.58264    ME   Ref    NorthEast        97.42       93.53        3.00        3.0
-## 2 44.93694 -67.73611    ME   Ref    NorthEast       115.39      117.13        5.71        5.8
-## 3 44.60797 -67.93524    ME   Ref    NorthEast       120.07      129.56        5.95        6.3
-## 4 46.14306 -68.63361    ME   Ref    NorthEast       102.19      103.24        3.61        4.0
-## 5 45.50097 -68.30596    ME   Ref    NorthEast       108.19      113.13        4.82        5.4
-## 6 45.26722 -69.58389    ME   Ref    NorthEast       119.83      120.93        3.60        4.2
-##   T_MAX_BASIN T_MAXSTD_BASIN T_MAX_SITE T_MIN_BASIN T_MINSTD_BASIN T_MIN_SITE   PET
-## 1        9.67          0.202       10.0       -2.49          0.269       -2.7 504.7
-## 2       11.70          0.131       11.9       -0.85          0.123       -0.6 554.2
-## 3       11.90          0.344       12.2        0.06          0.873        1.4 553.1
-## 4        9.88          0.231       10.4       -2.13          0.216       -1.5 513.0
-## 5       10.75          0.554       11.7       -1.49          0.251       -1.2 540.8
-## 6        9.57          0.431       11.0       -2.46          0.268       -1.7 495.8
-##   SNOW_PCT_PRECIP PRECIP_SEAS_IND FLOWYRS_1990_2009 wy00_09
-## 1            36.9           0.102                20      10
-## 2            39.5           0.046                11      10
-## 3            38.2           0.047                20      10
-## 4            36.4           0.070                11      10
-## 5            37.2           0.033                20      10
-## 6            40.2           0.030                13      10</code></pre>
+<pre><code>##   site_no        RBI RBIrank                                     STANAME DRAIN_SQKM HUC02 LAT_GAGE  LNG_GAGE
+## 1 1013500 0.05837454      35            Fish River near Fort Kent, Maine     2252.7     1 47.23739 -68.58264
+## 2 1021480 0.20797008     300               Old Stream near Wesley, Maine       76.7     1 44.93694 -67.73611
+## 3 1022500 0.19805382     286     Narraguagus River at Cherryfield, Maine      573.6     1 44.60797 -67.93524
+## 4 1029200 0.13151299     183         Seboeis River near Shin Pond, Maine      444.9     1 46.14306 -68.63361
+## 5 1030500 0.11350485     147 Mattawamkeag River near Mattawamkeag, Maine     3676.2     1 45.50097 -68.30596
+## 6 1031300 0.29718786     489       Piscataquis River at Blanchard, Maine      304.4     1 45.26722 -69.58389
+##   STATE CLASS AGGECOREGION PPTAVG_BASIN PPTAVG_SITE T_AVG_BASIN T_AVG_SITE T_MAX_BASIN T_MAXSTD_BASIN T_MAX_SITE
+## 1    ME   Ref    NorthEast        97.42       93.53        3.00        3.0        9.67          0.202       10.0
+## 2    ME   Ref    NorthEast       115.39      117.13        5.71        5.8       11.70          0.131       11.9
+## 3    ME   Ref    NorthEast       120.07      129.56        5.95        6.3       11.90          0.344       12.2
+## 4    ME   Ref    NorthEast       102.19      103.24        3.61        4.0        9.88          0.231       10.4
+## 5    ME   Ref    NorthEast       108.19      113.13        4.82        5.4       10.75          0.554       11.7
+## 6    ME   Ref    NorthEast       119.83      120.93        3.60        4.2        9.57          0.431       11.0
+##   T_MIN_BASIN T_MINSTD_BASIN T_MIN_SITE   PET SNOW_PCT_PRECIP PRECIP_SEAS_IND FLOWYRS_1990_2009 wy00_09
+## 1       -2.49          0.269       -2.7 504.7            36.9           0.102                20      10
+## 2       -0.85          0.123       -0.6 554.2            39.5           0.046                11      10
+## 3        0.06          0.873        1.4 553.1            38.2           0.047                20      10
+## 4       -2.13          0.216       -1.5 513.0            36.4           0.070                11      10
+## 5       -1.49          0.251       -1.2 540.8            37.2           0.033                20      10
+## 6       -2.46          0.268       -1.7 495.8            40.2           0.030                13      10</code></pre>
 </div>
 <div id="data-wrangling-in-dplyr" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Data wrangling in dplyr<a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -408,45 +393,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 | or</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="data-wrangling-using-tidyverse.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;ME&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 13 × 26
-##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4
-##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115. 
-##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120. 
-##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102. 
-##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108. 
-##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120. 
-##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118  
-##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122. 
-##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110. 
-## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119. 
-## 11 1054200 0.492      805 Wild River at…   181       1    44.4   -71.0 ME    Ref   NorthE…   136. 
-## 12 1055000 0.450      762 Swift River n…   251.      1    44.6   -70.6 ME    Ref   NorthE…   135. 
-## 13 1057000 0.326      561 Little Andros…   191.      1    44.3   -70.5 ME    Ref   NorthE…   108. 
-## # … with 14 more variables: PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;,
-## #   T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
-## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names
-## #   ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN</code></pre>
+##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3   
+##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71
+##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95
+##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61
+##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82
+##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6 
+##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118     114.     4.14
+##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122.    123.     7.22
+##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110.    102.     2.54
+## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119.    106.     3.99
+## 11 1054200 0.492      805 Wild River at…   181       1    44.4   -71.0 ME    Ref   NorthE…   136.    106.     4.81
+## 12 1055000 0.450      762 Swift River n…   251.      1    44.6   -70.6 ME    Ref   NorthE…   135.    119.     3.81
+## 13 1057000 0.326      561 Little Andros…   191.      1    44.3   -70.5 ME    Ref   NorthE…   108.    105.     5.88
+## # … with 12 more variables: T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
+## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN</code></pre>
 <div id="multiple-conditions" class="section level3 hasAnchor" number="3.8.1">
 <h3><span class="header-section-number">3.8.1</span> Multiple conditions<a href="data-wrangling-using-tidyverse.html#multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>How many gages are there in Maine with an rbi greater than 0.25</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="data-wrangling-using-tidyverse.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;ME&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 26
-##   site_no   RBI RBIrank STANAME  DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶
-##     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 1031300 0.297     489 Piscata…    304.     1    45.3   -69.6 ME    Ref   NorthE…    120.    121.
-## 2 1031500 0.320     545 Piscata…    769      1    45.2   -69.3 ME    Ref   NorthE…    118     114.
-## 3 1037380 0.318     537 Ducktra…     39      1    44.3   -69.1 ME    Ref   NorthE…    122.    123.
-## 4 1047000 0.344     608 Carraba…    909.     1    44.9   -70.0 ME    Ref   NorthE…    119.    106.
-## 5 1054200 0.492     805 Wild Ri…    181      1    44.4   -71.0 ME    Ref   NorthE…    136.    106.
-## 6 1055000 0.450     762 Swift R…    251.     1    44.6   -70.6 ME    Ref   NorthE…    135.    119.
-## 7 1057000 0.326     561 Little …    191.     1    44.3   -70.5 ME    Ref   NorthE…    108.    105.
-## # … with 13 more variables: T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;,
-## #   T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
-## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE</code></pre>
+##   site_no   RBI RBIrank STANAME  DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1031300 0.297     489 Piscata…    304.     1    45.3   -69.6 ME    Ref   NorthE…    120.    121.    3.6      4.2
+## 2 1031500 0.320     545 Piscata…    769      1    45.2   -69.3 ME    Ref   NorthE…    118     114.    4.14     4.9
+## 3 1037380 0.318     537 Ducktra…     39      1    44.3   -69.1 ME    Ref   NorthE…    122.    123.    7.22     7.1
+## 4 1047000 0.344     608 Carraba…    909.     1    44.9   -70.0 ME    Ref   NorthE…    119.    106.    3.99     5.6
+## 5 1054200 0.492     805 Wild Ri…    181      1    44.4   -71.0 ME    Ref   NorthE…    136.    106.    4.81     5.4
+## 6 1055000 0.450     762 Swift R…    251.     1    44.6   -70.6 ME    Ref   NorthE…    135.    119.    3.81     4.9
+## 7 1057000 0.326     561 Little …    191.     1    44.3   -70.5 ME    Ref   NorthE…    108.    105.    5.88     6.1
+## # … with 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
+## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
+## #   ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 </div>
 </div>
 <div id="arrange" class="section level2 hasAnchor" number="3.9">
@@ -455,42 +438,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sort the rbi data by the RBI column in ascending and then descending order</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="data-wrangling-using-tidyverse.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span></code></pre></div>
 <pre><code>## # A tibble: 49 × 26
-##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1 1305500 0.0464      18 SWAN RIVER AT…    21.3     2    40.8   -73.0 NY    Non-… SECstP…   125. 
-##  2 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4
-##  3 1306460 0.0587      37 CONNETQUOT BK…    55.7     2    40.8   -73.2 NY    Non-… SECstP…   122. 
-##  4 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108. 
-##  5 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102. 
-##  6 1117468 0.172      244 BEAVER RIVER …    25.3     1    41.5   -71.6 RI    Ref   NorthE…   128. 
-##  7 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120. 
-##  8 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115. 
-##  9 1162500 0.213      311 PRIEST BROOK …    49.7     1    42.7   -72.1 MA    Ref   NorthE…   121. 
-## 10 1117370 0.230      338 QUEEN R AT LI…    50.5     1    41.5   -71.6 RI    Ref   NorthE…   127. 
-## # … with 39 more rows, 14 more variables: PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;,
-## #   T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
-## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names
-## #   ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN</code></pre>
+##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1305500 0.0464      18 SWAN RIVER AT…    21.3     2    40.8   -73.0 NY    Non-… SECstP…   125.    125.    10.9 
+##  2 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3   
+##  3 1306460 0.0587      37 CONNETQUOT BK…    55.7     2    40.8   -73.2 NY    Non-… SECstP…   122.    123.    11.0 
+##  4 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82
+##  5 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61
+##  6 1117468 0.172      244 BEAVER RIVER …    25.3     1    41.5   -71.6 RI    Ref   NorthE…   128.    129.     9.73
+##  7 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95
+##  8 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71
+##  9 1162500 0.213      311 PRIEST BROOK …    49.7     1    42.7   -72.1 MA    Ref   NorthE…   121.    118.     6.68
+## 10 1117370 0.230      338 QUEEN R AT LI…    50.5     1    41.5   -71.6 RI    Ref   NorthE…   127.    129.     9.78
+## # … with 39 more rows, 12 more variables: T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
+## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
+## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="data-wrangling-using-tidyverse.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
 <pre><code>## # A tibble: 49 × 26
-##    site_no   RBI RBIrank STANAME DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶
-##      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-##  1 1311500 0.856    1017 VALLEY…    18.1     2    40.7   -73.7 NY    Non-… SECstP…    124.    124.
-##  2 1054200 0.492     805 Wild R…   181       1    44.4   -71.0 ME    Ref   NorthE…    136.    106.
-##  3 1187300 0.487     800 HUBBAR…    53.9     1    42.0   -72.9 MA    Ref   NorthE…    135.    131.
-##  4 1105600 0.484     797 OLD SW…    12.7     1    42.2   -70.9 MA    Non-… NorthE…    119.    120.
-##  5 1055000 0.450     762 Swift …   251.      1    44.6   -70.6 ME    Ref   NorthE…    135.    119.
-##  6 1195100 0.430     744 INDIAN…    14.8     1    41.3   -72.5 CT    Ref   NorthE…    128.    127.
-##  7 1181000 0.420     732 WEST B…   244.      1    42.2   -72.9 MA    Ref   NorthE…    144.    129.
-##  8 1350000 0.414     721 SCHOHA…   612.      2    42.3   -74.4 NY    Ref   NorthE…    119.    101.
-##  9 1121000 0.404     710 MOUNT …    70.3     1    41.8   -72.2 CT    Ref   NorthE…    128.    130.
-## 10 1169000 0.395     688 NORTH …   231.      1    42.6   -72.7 MA    Ref   NorthE…    131.    125.
-## # … with 39 more rows, 13 more variables: T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;,
-## #   T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
-## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE</code></pre>
+##    site_no   RBI RBIrank STANAME DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1311500 0.856    1017 VALLEY…    18.1     2    40.7   -73.7 NY    Non-… SECstP…    124.    124.   11.8     11.8
+##  2 1054200 0.492     805 Wild R…   181       1    44.4   -71.0 ME    Ref   NorthE…    136.    106.    4.81     5.4
+##  3 1187300 0.487     800 HUBBAR…    53.9     1    42.0   -72.9 MA    Ref   NorthE…    135.    131.    7.14     7.6
+##  4 1105600 0.484     797 OLD SW…    12.7     1    42.2   -70.9 MA    Non-… NorthE…    119.    120.    9.61     9.6
+##  5 1055000 0.450     762 Swift …   251.      1    44.6   -70.6 ME    Ref   NorthE…    135.    119.    3.81     4.9
+##  6 1195100 0.430     744 INDIAN…    14.8     1    41.3   -72.5 CT    Ref   NorthE…    128.    127.    9.95     9.9
+##  7 1181000 0.420     732 WEST B…   244.      1    42.2   -72.9 MA    Ref   NorthE…    144.    129.    7.33     7.5
+##  8 1350000 0.414     721 SCHOHA…   612.      2    42.3   -74.4 NY    Ref   NorthE…    119.    101.    5.66     6  
+##  9 1121000 0.404     710 MOUNT …    70.3     1    41.8   -72.2 CT    Ref   NorthE…    128.    130.    8.52     8.8
+## 10 1169000 0.395     688 NORTH …   231.      1    42.6   -72.7 MA    Ref   NorthE…    131.    125.    6.6      7.3
+## # … with 39 more rows, 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
+## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 </div>
 <div id="select" class="section level2 hasAnchor" number="3.10">
 <h2><span class="header-section-number">3.10</span> Select<a href="data-wrangling-using-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -535,43 +516,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create a new column in rbi called T_RANGE by subtracting T_MIN_SITE from T_MAX_SITE</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="data-wrangling-using-tidyverse.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
 <pre><code>## # A tibble: 49 × 27
-##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4
-##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115. 
-##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120. 
-##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102. 
-##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108. 
-##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120. 
-##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118  
-##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122. 
-##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110. 
-## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119. 
-## # … with 39 more rows, 15 more variables: PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;,
-## #   T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
-## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, T_RANGE &lt;dbl&gt;, and abbreviated
-## #   variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN</code></pre>
+##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3   
+##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71
+##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95
+##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61
+##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82
+##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6 
+##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118     114.     4.14
+##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122.    123.     7.22
+##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110.    102.     2.54
+## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119.    106.     3.99
+## # … with 39 more rows, 13 more variables: T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
+## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
+## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, T_RANGE &lt;dbl&gt;, and
+## #   abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE,
+## #   ⁷​T_AVG_BASIN</code></pre>
 <p>When downloading data from the USGS through R, you have to enter the gage ID as a character, even though they are all made up of numbers. So to practice doing this, update the site_no column to be a character datatype</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="data-wrangling-using-tidyverse.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
 <pre><code>## # A tibble: 49 × 26
-##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵
-##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4
-##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115. 
-##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120. 
-##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102. 
-##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108. 
-##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120. 
-##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118  
-##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122. 
-##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110. 
-## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119. 
-## # … with 39 more rows, 14 more variables: PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;,
-## #   T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
-## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names
-## #   ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN</code></pre>
+##    site_no    RBI RBIrank STANAME        DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1013500 0.0584      35 Fish River ne…  2253.      1    47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3   
+##  2 1021480 0.208      300 Old Stream ne…    76.7     1    44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71
+##  3 1022500 0.198      286 Narraguagus R…   574.      1    44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95
+##  4 1029200 0.132      183 Seboeis River…   445.      1    46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61
+##  5 1030500 0.114      147 Mattawamkeag …  3676.      1    45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82
+##  6 1031300 0.297      489 Piscataquis R…   304.      1    45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6 
+##  7 1031500 0.320      545 Piscataquis R…   769       1    45.2   -69.3 ME    Ref   NorthE…   118     114.     4.14
+##  8 1037380 0.318      537 Ducktrap Rive…    39       1    44.3   -69.1 ME    Ref   NorthE…   122.    123.     7.22
+##  9 1044550 0.242      360 Spencer Strea…   500.      1    45.3   -70.2 ME    Ref   NorthE…   110.    102.     2.54
+## 10 1047000 0.344      608 Carrabassett …   909.      1    44.9   -70.0 ME    Ref   NorthE…   119.    106.     3.99
+## # … with 39 more rows, 12 more variables: T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
+## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
+## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated
+## #   variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN</code></pre>
 </div>
 <div id="summarize" class="section level2 hasAnchor" number="3.12">
 <h2><span class="header-section-number">3.12</span> Summarize<a href="data-wrangling-using-tidyverse.html#summarize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
