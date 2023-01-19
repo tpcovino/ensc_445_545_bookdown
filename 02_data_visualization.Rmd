@@ -1,5 +1,4 @@
-
-# Intro to data visualization
+# Intro to data visualization {#Plotting}
 
 ## Learning Objectives
 - The learning objectives for today are to begin getting comfortable navigating RStudio. A great way to do this is through data visualization. At the end of todays activities students will be able to:

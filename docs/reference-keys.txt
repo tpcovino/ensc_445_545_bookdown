@@ -3,7 +3,7 @@ course-overview-and-objectives
 structure
 philosophical-approach-and-books-resources-we-will-utilize
 tentative-schedule-subject-to-change
-intro-to-data-visualization
+Plotting
 learning-objectives
 download-and-install-tidyverse-library
 reading-data
