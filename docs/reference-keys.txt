@@ -24,7 +24,7 @@ you-can-use-r-as-a-calculator
 you-can-create-new-objects-using--
 using-functions
 read-in-some-data.
-wait-hold-up.-what-is-a-tibble
+what-is-a-tibble
 data-wrangling-in-dplyr
 filter
 multiple-conditions
@@ -33,10 +33,7 @@ select
 mutate
 summarize
 multiple-operations-with-pipes
-lets-say-we-want-to-tell-r-to-make-a-pbj-sandwich-by-using-the-pbbread-jbread-and-joinslices-functions-and-the-data-ingredients.-if-we-do-this-saving-each-step-if-would-look-like-this
-if-we-nest-the-functions-together-we-get-this
-using-the-pipe-it-would-look-like-this
 when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function-and-puts-it-into-the-data-argument-for-the-next-one
-save-your-results-to-a-new-tibble
-what-about-nas
-what-are-some-things-you-think-ill-ask-you-to-do-for-the-activity-next-class
+a-final-comment-on-nas
+thats-it-for-today
+exit-ticket-1
