@@ -33,7 +33,6 @@ select
 mutate
 summarize
 multiple-operations-with-pipes
-when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function-and-puts-it-into-the-data-argument-for-the-next-one
 a-final-comment-on-nas
 thats-it-for-today
 exit-ticket-1

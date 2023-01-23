@@ -292,9 +292,13 @@ You will note that your environment is filling up with objects. We can eliminate
 The pipe operator %>% allows you to perform multiple operations in a sequence without saving intermediate steps. Not only is this more efficient, but structuring operations with pipes is also more intuitive than nesting functions within functions (the other way you can do multiple operations).
 
 
-### When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one
+When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one, so: 
 
-**so rbi %>% group_by(STATE) is the same as group_by(rbi, STATE)**
+rbi %>% group_by(STATE) 
+
+**is the same as** 
+
+group_by(rbi, STATE)
 
 Take the groupby and summarize code from above and perform the operation using the pipe
 

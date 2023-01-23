@@ -184,10 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.10</b> Select</a></li>
 <li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.11</b> Mutate</a></li>
 <li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.12</b> Summarize</a></li>
-<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.13</b> Multiple operations with pipes</a>
-<ul>
-<li class="chapter" data-level="3.13.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function-and-puts-it-into-the-data-argument-for-the-next-one"><i class="fa fa-check"></i><b>3.13.1</b> When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one</a></li>
-</ul></li>
+<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.13</b> Multiple operations with pipes</a></li>
 <li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.14</b> A final comment on NAs</a></li>
 <li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.15</b> That’s it for today</a></li>
 <li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.16</b> Exit ticket</a></li>
@@ -372,14 +369,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.13</span> Multiple operations with pipes<a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will note that your environment is filling up with objects. We can eliminate many of those by using pipes.</p>
 <p>The pipe operator %&gt;% allows you to perform multiple operations in a sequence without saving intermediate steps. Not only is this more efficient, but structuring operations with pipes is also more intuitive than nesting functions within functions (the other way you can do multiple operations).</p>
-<div id="when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function-and-puts-it-into-the-data-argument-for-the-next-one" class="section level3 hasAnchor" number="3.13.1">
-<h3><span class="header-section-number">3.13.1</span> When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one<a href="data-wrangling-using-tidyverse.html#when-you-use-the-pipe-it-basically-takes-whatever-came-out-of-the-first-function-and-puts-it-into-the-data-argument-for-the-next-one" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><strong>so rbi %&gt;% group_by(STATE) is the same as group_by(rbi, STATE)</strong></p>
+<p>When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one, so:</p>
+<p>rbi %&gt;% group_by(STATE)</p>
+<p><strong>is the same as</strong></p>
+<p>group_by(rbi, STATE)</p>
 <p>Take the groupby and summarize code from above and perform the operation using the pipe</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-wrangling-using-tidyverse.html#cb46-1" aria-hidden="true" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> rbi <span class="sc">%&gt;%</span></span>
 <span id="cb46-2"><a href="data-wrangling-using-tidyverse.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(STATE) <span class="sc">%&gt;%</span></span>
 <span id="cb46-3"><a href="data-wrangling-using-tidyverse.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
-</div>
 </div>
 <div id="a-final-comment-on-nas" class="section level2 hasAnchor" number="3.14">
 <h2><span class="header-section-number">3.14</span> A final comment on NAs<a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
