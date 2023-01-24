@@ -2,7 +2,7 @@
 
 ```{r}
 
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = TRUE)
 
 ```
 
@@ -176,7 +176,7 @@ rm(flow_NT)
 
 ## Data wrangling in dplyr
 
-If you forget syntax or what the following functions do, here is an excellent cheat sheet: <https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>
+If you forget syntax or what the following functions do, here is a cheat sheet: <https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>{target="_blank"}
 
 We will demo five functions below (these are tidyverse/dplyr functions):
 
@@ -221,6 +221,11 @@ filter(rbi, STATE == "MT" & RBI > 0.05)
 ```
 
 Challenge: Filter for flow less than 100 cfs just for the NFDR gauge in "flow".
+
+```{r}
+
+```
+
 
 ## Arrange
 

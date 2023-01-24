@@ -1,6 +1,6 @@
 ```{r}
 
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = TRUE)
 
 ```
 
@@ -202,7 +202,8 @@ ggplot(data = SNP, aes(x = StationID, y = cfs)) +
 ```
 
 
-To investigate the boxplot more closely we can use "plotly". 
+To investigate the boxplot more closely we can use "plotly", which generates interactive plots.
+
 ```{r echo=TRUE}
 #install.packages("plotly")
 library(plotly)
