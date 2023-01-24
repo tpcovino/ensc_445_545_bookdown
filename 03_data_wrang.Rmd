@@ -1,8 +1,11 @@
-# Data wrangling using tidyverse
 
 ```{r}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
 ```
+
+
+# Data wrangling using tidyverse
+
 
 
 Follow this [link](https://github.com/tpcovino/unit_2_data_wrangling){target="_blank"} to download everything you need for this unit. When you get to GitHub click on "Code" (green button) and select "download zip". You will then save this to a local folder where you should do all of your work for this class. You will work through the "_blank.Rmd". Always be sure to read the README.md files in the GitHub repo.  
