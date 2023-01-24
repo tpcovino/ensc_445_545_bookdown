@@ -3,7 +3,7 @@ course-overview-and-objectives
 structure
 philosophical-approach-and-books-resources-we-will-utilize
 tentative-schedule-subject-to-change
-Plotting
+intro-to-data-visualization
 learning-objectives
 download-and-install-tidyverse-library
 reading-data
@@ -20,10 +20,11 @@ multiple-geoms
 exit-ticket
 data-wrangling-using-tidyverse
 introduction-1
+learning-objectives-1
 you-can-use-r-as-a-calculator
 you-can-create-new-objects-using--
 using-functions
-read-in-some-data.
+read-in-some-data
 what-is-a-tibble
 data-wrangling-in-dplyr
 filter

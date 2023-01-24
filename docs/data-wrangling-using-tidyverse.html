@@ -23,14 +23,14 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2023-01-23" />
+<meta name="date" content="2023-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Plotting.html"/>
+<link rel="prev" href="intro-to-data-visualization.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,13 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -150,44 +143,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#philosophical-approach-and-books-resources-we-will-utilize"><i class="fa fa-check"></i><b>1.3</b> Philosophical approach and books &amp; resources we will utilize</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.4</b> Tentative schedule, subject to change</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Plotting.html"><a href="Plotting.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
+<li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="Plotting.html"><a href="Plotting.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="Plotting.html"><a href="Plotting.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.2</b> Download and install tidyverse library</a></li>
-<li class="chapter" data-level="2.3" data-path="Plotting.html"><a href="Plotting.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a></li>
-<li class="chapter" data-level="2.4" data-path="Plotting.html"><a href="Plotting.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.4</b> Our first ggplot</a></li>
-<li class="chapter" data-level="2.5" data-path="Plotting.html"><a href="Plotting.html#change-point-type"><i class="fa fa-check"></i><b>2.5</b> Change point type</a></li>
-<li class="chapter" data-level="2.6" data-path="Plotting.html"><a href="Plotting.html#set-colors"><i class="fa fa-check"></i><b>2.6</b> Set colors</a></li>
-<li class="chapter" data-level="2.7" data-path="Plotting.html"><a href="Plotting.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.7</b> Controlling color with a third variable and other functions</a></li>
-<li class="chapter" data-level="2.8" data-path="Plotting.html"><a href="Plotting.html#plotting-multiple-groups-adding-a-third-variable"><i class="fa fa-check"></i><b>2.8</b> Plotting multiple groups (adding a third variable)</a></li>
-<li class="chapter" data-level="2.9" data-path="Plotting.html"><a href="Plotting.html#facets"><i class="fa fa-check"></i><b>2.9</b> Facets</a></li>
-<li class="chapter" data-level="2.10" data-path="Plotting.html"><a href="Plotting.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.10</b> Two variable faceting</a></li>
-<li class="chapter" data-level="2.11" data-path="Plotting.html"><a href="Plotting.html#boxplots"><i class="fa fa-check"></i><b>2.11</b> Boxplots</a></li>
-<li class="chapter" data-level="2.12" data-path="Plotting.html"><a href="Plotting.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.12</b> More about color, size, etc</a></li>
-<li class="chapter" data-level="2.13" data-path="Plotting.html"><a href="Plotting.html#multiple-geoms"><i class="fa fa-check"></i><b>2.13</b> Multiple geoms</a></li>
-<li class="chapter" data-level="2.14" data-path="Plotting.html"><a href="Plotting.html#exit-ticket"><i class="fa fa-check"></i><b>2.14</b> Exit ticket</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#change-point-type"><i class="fa fa-check"></i><b>2.5</b> Change point type</a></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#set-colors"><i class="fa fa-check"></i><b>2.6</b> Set colors</a></li>
+<li class="chapter" data-level="2.7" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="2.8" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#plotting-multiple-groups-adding-a-third-variable"><i class="fa fa-check"></i><b>2.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="2.9" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#facets"><i class="fa fa-check"></i><b>2.9</b> Facets</a></li>
+<li class="chapter" data-level="2.10" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="2.11" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#boxplots"><i class="fa fa-check"></i><b>2.11</b> Boxplots</a></li>
+<li class="chapter" data-level="2.12" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="2.13" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#multiple-geoms"><i class="fa fa-check"></i><b>2.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="2.14" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#exit-ticket"><i class="fa fa-check"></i><b>2.14</b> Exit ticket</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Data wrangling using tidyverse</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator"><i class="fa fa-check"></i><b>3.2</b> You can use R as a calculator</a></li>
-<li class="chapter" data-level="3.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--"><i class="fa fa-check"></i><b>3.3</b> You can create new objects using &lt;-</a></li>
-<li class="chapter" data-level="3.4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#using-functions"><i class="fa fa-check"></i><b>3.4</b> Using functions</a></li>
-<li class="chapter" data-level="3.5" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#read-in-some-data."><i class="fa fa-check"></i><b>3.5</b> Read in some data.</a></li>
-<li class="chapter" data-level="3.6" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#what-is-a-tibble"><i class="fa fa-check"></i><b>3.6</b> What is a tibble?</a></li>
-<li class="chapter" data-level="3.7" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr"><i class="fa fa-check"></i><b>3.7</b> Data wrangling in dplyr</a></li>
-<li class="chapter" data-level="3.8" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#filter"><i class="fa fa-check"></i><b>3.8</b> Filter</a>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator"><i class="fa fa-check"></i><b>3.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--"><i class="fa fa-check"></i><b>3.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#using-functions"><i class="fa fa-check"></i><b>3.5</b> Using functions</a></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#read-in-some-data"><i class="fa fa-check"></i><b>3.6</b> Read in some data</a></li>
+<li class="chapter" data-level="3.7" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#what-is-a-tibble"><i class="fa fa-check"></i><b>3.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="3.8" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr"><i class="fa fa-check"></i><b>3.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="3.9" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#filter"><i class="fa fa-check"></i><b>3.9</b> Filter</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-conditions"><i class="fa fa-check"></i><b>3.8.1</b> Multiple conditions</a></li>
+<li class="chapter" data-level="3.9.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-conditions"><i class="fa fa-check"></i><b>3.9.1</b> Multiple conditions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#arrange"><i class="fa fa-check"></i><b>3.9</b> Arrange</a></li>
-<li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.10</b> Select</a></li>
-<li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.11</b> Mutate</a></li>
-<li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.12</b> Summarize</a></li>
-<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.13</b> Multiple operations with pipes</a></li>
-<li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.14</b> A final comment on NAs</a></li>
-<li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.15</b> That’s it for today</a></li>
-<li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.16</b> Exit ticket</a></li>
+<li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#arrange"><i class="fa fa-check"></i><b>3.10</b> Arrange</a></li>
+<li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.11</b> Select</a></li>
+<li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.12</b> Mutate</a></li>
+<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.13</b> Summarize</a></li>
+<li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="3.17" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.17</b> Exit ticket</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -215,22 +209,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-1" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Introduction<a href="data-wrangling-using-tidyverse.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have messed around with plotting a bit and you’ve seen a little of what R can do. So now let’s review or introduce you to some basics. Even if you have worked in R before, it is good to be remind of/practice with this stuff, so stay tuned in!</p>
-<p>This exercise covers most of the same principles as two chapters in R for Data Science</p>
+<p>Reading for this week:</p>
+<p><a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 2.1: Graphical analysis of single datasets</a> in SMWR</p>
 <p><a href="https://r4ds.had.co.nz/workflow-basics.html" target="_blank">Workflow: basics</a></p>
 <p><a href="https://r4ds.had.co.nz/transform.html" target="_blank">Data transformation</a></p>
 </div>
-<div id="you-can-use-r-as-a-calculator" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> You can use R as a calculator<a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-objectives-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Learning objectives:<a href="data-wrangling-using-tidyverse.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Working through this exercise will help students: <br>
+- become more familiar with the RStudio IDE <br>
+- get in the habit of running single lines of code <br>
+- know what a tibble is <br>
+- know what the assignment operator is <br>
+- begin using base and dplyr functions <br></p>
+</div>
+<div id="you-can-use-r-as-a-calculator" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> You can use R as a calculator<a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you just type numbers and operators in, R will spit out the results.</p>
 <p>It is generally good to run one line of code at a time. In mac you do that by putting your cursor on the line and hitting command + enter. On windows/PC that is ctrl + enter.</p>
 <p><a href="https://support.posit.co/hc/en-us/articles/200484448-Editing-and-Executing-Code-in-the-RStudio-IDE" target="_blank">Here is a link to info on Editing and Executing code in RStudio</a></p>
 <p><a href="https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts" target="_blank">Very handy link to all keyboard shortcuts Windows, Linux and Mac</a></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-wrangling-using-tidyverse.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb28-2"><a href="data-wrangling-using-tidyverse.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="data-wrangling-using-tidyverse.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-wrangling-using-tidyverse.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb23-2"><a href="data-wrangling-using-tidyverse.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="data-wrangling-using-tidyverse.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 </div>
-<div id="you-can-create-new-objects-using--" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> You can create new objects using &lt;-<a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="you-can-create-new-objects-using--" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> You can create new objects using &lt;-<a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Yes, = does the same thing. But use &lt;-. We will call &lt;- assignment or assignment operator. When we are coding in R we use &lt;- to assign values to objects and = to set values for parameters in functions/equations/etc. Using &lt;- helps us differentiate between the two. Norms for formatting are important because they help us understand what code is doing, especially when stuff gets complex.</p>
 <p>Oh, one more thing: Surround operators with spaces.</p>
 <p>x &lt;- 1 is easier to read than x&lt;-1</p>
@@ -239,67 +243,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>my_new_data &lt;- my_data</p>
 <p>You can then recall/print the values in an object by just typing the name by itself.</p>
 <p>In the code chunk below, assign a 3 to the object “y” and then print it out.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling-using-tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a code chunk. </span></span>
-<span id="cb29-2"><a href="data-wrangling-using-tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting a hash mark in here allows me to type text that is not code.</span></span>
-<span id="cb29-3"><a href="data-wrangling-using-tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The stuff below is code. Not text. </span></span>
-<span id="cb29-4"><a href="data-wrangling-using-tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="data-wrangling-using-tidyverse.html#cb29-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb29-6"><a href="data-wrangling-using-tidyverse.html#cb29-6" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-wrangling-using-tidyverse.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a code chunk. </span></span>
+<span id="cb24-2"><a href="data-wrangling-using-tidyverse.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting a pound sign in here allows me to type text that is not code.</span></span>
+<span id="cb24-3"><a href="data-wrangling-using-tidyverse.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The stuff below is code. Not text. </span></span>
+<span id="cb24-4"><a href="data-wrangling-using-tidyverse.html#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="data-wrangling-using-tidyverse.html#cb24-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb24-6"><a href="data-wrangling-using-tidyverse.html#cb24-6" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
 <p>If you want to assign multiple values, you have to put them in the function c() c means combine. R doesn’t know what to do if you just give it a bunch of values with space or commas, but if you put them as arguments in the combine function, it’ll make them into a vector.</p>
 <p>Any time you need to use several values, even passing as an argument to a function, you have to put them in c() or it won’t work.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-wrangling-using-tidyverse.html#cb30-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb30-2"><a href="data-wrangling-using-tidyverse.html#cb30-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-wrangling-using-tidyverse.html#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb25-2"><a href="data-wrangling-using-tidyverse.html#cb25-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <p>When you are creating objects, try to give them meaningful names so you can remember what they are. You can’t have spaces or operators that mean something else as part of a name. And remember, everything is case sensitive.</p>
 <p>Assign the value 5.4 to water_pH and then try to recall it by typing “water_ph”</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-wrangling-using-tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a>water_pH <span class="ot">&lt;-</span> <span class="fl">5.4</span></span>
-<span id="cb31-2"><a href="data-wrangling-using-tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="data-wrangling-using-tidyverse.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#water_ph</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-wrangling-using-tidyverse.html#cb26-1" aria-hidden="true" tabindex="-1"></a>water_pH <span class="ot">&lt;-</span> <span class="fl">5.4</span></span>
+<span id="cb26-2"><a href="data-wrangling-using-tidyverse.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="data-wrangling-using-tidyverse.html#cb26-3" aria-hidden="true" tabindex="-1"></a>water_pH</span></code></pre></div>
 <p>If we want to remove something from the environment we can use rm(). Try to remove water_pH.</p>
 <p>You can also set objects equal to strings, or values that have letters in them. To do this you just have to put the value in quotes, otherwise R will think it is an object name and tell you it doesn’t exist.</p>
 <p>Try: name &lt;- “your name” and then name &lt;- your name</p>
 <p>What happens if you forget the ending parenthesis?</p>
 <p>R can be cryptic with it’s error messages or other responses, but once you get used to them, you know exactly what is wrong when they pop up.</p>
 <p>As a note - when you go to the internet for example code it will often say things like df &lt;- your_data, this is similar to what I’ve written above: name &lt;- “your name”. It means enter you name (or your data). As you progress you will get better at understanding example code and understanding error messages.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-wrangling-using-tidyverse.html#cb32-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Tim&quot;</span></span>
-<span id="cb32-2"><a href="data-wrangling-using-tidyverse.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#name &lt;- Tim</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-wrangling-using-tidyverse.html#cb27-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Tim&quot;</span></span>
+<span id="cb27-2"><a href="data-wrangling-using-tidyverse.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#name &lt;- Tim</span></span></code></pre></div>
 </div>
-<div id="using-functions" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Using functions<a href="data-wrangling-using-tidyverse.html#using-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-functions" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Using functions<a href="data-wrangling-using-tidyverse.html#using-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As an example, let’s try the seq() function, which creates a sequence of numbers.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-wrangling-using-tidyverse.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb33-2"><a href="data-wrangling-using-tidyverse.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="data-wrangling-using-tidyverse.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
-<span id="cb33-4"><a href="data-wrangling-using-tidyverse.html#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="data-wrangling-using-tidyverse.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
-<span id="cb33-6"><a href="data-wrangling-using-tidyverse.html#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="data-wrangling-using-tidyverse.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
-<span id="cb33-8"><a href="data-wrangling-using-tidyverse.html#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="data-wrangling-using-tidyverse.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
-<span id="cb33-10"><a href="data-wrangling-using-tidyverse.html#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="data-wrangling-using-tidyverse.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co">#what does this do</span></span>
-<span id="cb33-12"><a href="data-wrangling-using-tidyverse.html#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-wrangling-using-tidyverse.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># these are base R functions</span></span>
+<span id="cb28-2"><a href="data-wrangling-using-tidyverse.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="data-wrangling-using-tidyverse.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb28-4"><a href="data-wrangling-using-tidyverse.html#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="data-wrangling-using-tidyverse.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb28-6"><a href="data-wrangling-using-tidyverse.html#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="data-wrangling-using-tidyverse.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb28-8"><a href="data-wrangling-using-tidyverse.html#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="data-wrangling-using-tidyverse.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb28-10"><a href="data-wrangling-using-tidyverse.html#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="data-wrangling-using-tidyverse.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict what this does</span></span>
+<span id="cb28-12"><a href="data-wrangling-using-tidyverse.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="read-in-some-data." class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Read in some data.<a href="data-wrangling-using-tidyverse.html#read-in-some-data." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First we will load the tidyverse library, everything we have done so far today is in base R. Next, let’s load a few dataframes and have a look at them. We will load the “PINE_NFDR_Jan-Mar_2010.csv” and ““flashy_dat_all.csv” files.</p>
+<div id="read-in-some-data" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Read in some data<a href="data-wrangling-using-tidyverse.html#read-in-some-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First we will load the tidyverse library, everything we have done so far today is in base R. Next, let’s load a few dataframes and have a look at them. We will load the “PINE_NFDR_Jan-Mar_2010.csv” and “flashy_dat_all.csv” files.</p>
 <p>Important: read_csv() is the tidyverse csv reading function, the base R function is read.csv(). read.csv() will not read your data in as a tibble, which is the format used by tidyverse functions. You should get in the habit of using the tidyverse versions such as read_csv().</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-wrangling-using-tidyverse.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-2"><a href="data-wrangling-using-tidyverse.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="data-wrangling-using-tidyverse.html#cb34-3" aria-hidden="true" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_NFDR_Jan-Mar_2010.csv&quot;</span>)</span>
-<span id="cb34-4"><a href="data-wrangling-using-tidyverse.html#cb34-4" aria-hidden="true" tabindex="-1"></a>rbi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;flashy_dat_all.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling-using-tidyverse.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb29-2"><a href="data-wrangling-using-tidyverse.html#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="data-wrangling-using-tidyverse.html#cb29-3" aria-hidden="true" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>)</span>
+<span id="cb29-4"><a href="data-wrangling-using-tidyverse.html#cb29-4" aria-hidden="true" tabindex="-1"></a>rbi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;flashy_dat_all.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="what-is-a-tibble" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> What is a tibble?<a href="data-wrangling-using-tidyverse.html#what-is-a-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-a-tibble" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> What is a tibble?<a href="data-wrangling-using-tidyverse.html#what-is-a-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Good question. It’s a fancy way to store data that works well with tidyverse functions. Let’s look at the flow tibble with “head” and “str”</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-wrangling-using-tidyverse.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flow)</span>
-<span id="cb35-2"><a href="data-wrangling-using-tidyverse.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(flow)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-wrangling-using-tidyverse.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flow)</span>
+<span id="cb30-2"><a href="data-wrangling-using-tidyverse.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(flow)</span></code></pre></div>
 <p>Now read in the same data with read.csv() which will NOT read the data as a tibble. How is it different? Output each one in the Console.</p>
 <p>Knowing the data type for each column is super helpful for a few reasons…. let’s talk about them.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-wrangling-using-tidyverse.html#cb31-1" aria-hidden="true" tabindex="-1"></a>flow_NT <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>) <span class="co"># this is base R</span></span>
+<span id="cb31-2"><a href="data-wrangling-using-tidyverse.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="data-wrangling-using-tidyverse.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flow_NT)</span>
+<span id="cb31-4"><a href="data-wrangling-using-tidyverse.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flow)</span>
+<span id="cb31-5"><a href="data-wrangling-using-tidyverse.html#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="data-wrangling-using-tidyverse.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># We can remove the flow_NT dataframe from the enviroment with rm(flow_NT)</span></span>
+<span id="cb31-7"><a href="data-wrangling-using-tidyverse.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(flow_NT)</span></code></pre></div>
 </div>
-<div id="data-wrangling-in-dplyr" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Data wrangling in dplyr<a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-wrangling-in-dplyr" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Data wrangling in dplyr<a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you forget syntax or what the following functions do, here is an excellent cheat sheet: <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
-<p>We will demo five functions below:</p>
+<p>We will demo five functions below (these are tidyverse/dplyr functions):</p>
 <ul>
 <li><strong>filter()</strong> - returns rows that meet specified conditions</li>
 <li><strong>arrange()</strong> - reorders rows</li>
@@ -308,64 +319,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>summarize()</strong> - collapse groups of values into summary stats</li>
 </ul>
 </div>
-<div id="filter" class="section level2 hasAnchor" number="3.8">
-<h2><span class="header-section-number">3.8</span> Filter<a href="data-wrangling-using-tidyverse.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="filter" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Filter<a href="data-wrangling-using-tidyverse.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Write an expression that returns data in rbi for the state of Montana (MT)</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-wrangling-using-tidyverse.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-wrangling-using-tidyverse.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
 <p>And one that keeps flows less than 100 cfs in the “flow” dataframe.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-wrangling-using-tidyverse.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-wrangling-using-tidyverse.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Above we just executed the operation, but didn’t save it. Let’s save that work using the assignment operator.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-wrangling-using-tidyverse.html#cb38-1" aria-hidden="true" tabindex="-1"></a>rbi_mt <span class="ot">&lt;-</span> <span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span>
-<span id="cb38-2"><a href="data-wrangling-using-tidyverse.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="data-wrangling-using-tidyverse.html#cb38-3" aria-hidden="true" tabindex="-1"></a>low_flows <span class="ot">&lt;-</span> <span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
-<div id="multiple-conditions" class="section level3 hasAnchor" number="3.8.1">
-<h3><span class="header-section-number">3.8.1</span> Multiple conditions<a href="data-wrangling-using-tidyverse.html#multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-wrangling-using-tidyverse.html#cb34-1" aria-hidden="true" tabindex="-1"></a>rbi_mt <span class="ot">&lt;-</span> <span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span>
+<span id="cb34-2"><a href="data-wrangling-using-tidyverse.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="data-wrangling-using-tidyverse.html#cb34-3" aria-hidden="true" tabindex="-1"></a>low_flows <span class="ot">&lt;-</span> <span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div id="multiple-conditions" class="section level3 hasAnchor" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> Multiple conditions<a href="data-wrangling-using-tidyverse.html#multiple-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>How many gages are there in Montana with an rbi greater than 0.05</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-wrangling-using-tidyverse.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-wrangling-using-tidyverse.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <p>Challenge: Filter for flow less than 100 cfs just for the NFDR gauge in “flow”.</p>
 </div>
 </div>
-<div id="arrange" class="section level2 hasAnchor" number="3.9">
-<h2><span class="header-section-number">3.9</span> Arrange<a href="data-wrangling-using-tidyverse.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="arrange" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> Arrange<a href="data-wrangling-using-tidyverse.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Arrange sorts by a column in your dataset.</p>
 <p>Sort the rbi data by the RBI column in ascending and then descending order</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-wrangling-using-tidyverse.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span>
-<span id="cb40-2"><a href="data-wrangling-using-tidyverse.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="data-wrangling-using-tidyverse.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="data-wrangling-using-tidyverse.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="data-wrangling-using-tidyverse.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span>
+<span id="cb36-2"><a href="data-wrangling-using-tidyverse.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="data-wrangling-using-tidyverse.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="data-wrangling-using-tidyverse.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
 </div>
-<div id="select" class="section level2 hasAnchor" number="3.10">
-<h2><span class="header-section-number">3.10</span> Select<a href="data-wrangling-using-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="select" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> Select<a href="data-wrangling-using-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Look at the RBI dataframe. There are too many columns! You will often want to get rid of some columns and clean up the dataframe (df) for analysis.</p>
 <p>Select Site name, state, and RBI from the rbi data</p>
 <p>Note they come back in the order you put them in in the function, not the order they were in in the original data.</p>
 <p>You can do a lot more with select, especially when you need to select a bunch of columns but don’t want to type them all out. For example, if you want to select a group of columns you can specify the first and last with a colon in between (first:last) and it’ll return all of them. Select the rbi columns from site_no to DRAIN_SQKM. You can also remove one column with select(-column). Remove the “surrogate” column from flow.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-wrangling-using-tidyverse.html#cb41-1" aria-hidden="true" tabindex="-1"></a>rbi_mt_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, STANAME, STATE, RBI)</span>
-<span id="cb41-2"><a href="data-wrangling-using-tidyverse.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="data-wrangling-using-tidyverse.html#cb41-3" aria-hidden="true" tabindex="-1"></a>rbi_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, site_no<span class="sc">:</span>DRAIN_SQKM)</span>
-<span id="cb41-4"><a href="data-wrangling-using-tidyverse.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="data-wrangling-using-tidyverse.html#cb41-5" aria-hidden="true" tabindex="-1"></a>flow_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(flow, <span class="sc">-</span>surrogate)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-wrangling-using-tidyverse.html#cb37-1" aria-hidden="true" tabindex="-1"></a>rbi_mt_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, STANAME, STATE, RBI)</span>
+<span id="cb37-2"><a href="data-wrangling-using-tidyverse.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="data-wrangling-using-tidyverse.html#cb37-3" aria-hidden="true" tabindex="-1"></a>rbi_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, site_no<span class="sc">:</span>DRAIN_SQKM)</span>
+<span id="cb37-4"><a href="data-wrangling-using-tidyverse.html#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="data-wrangling-using-tidyverse.html#cb37-5" aria-hidden="true" tabindex="-1"></a>flow_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(flow, <span class="sc">-</span>surrogate)</span></code></pre></div>
 </div>
-<div id="mutate" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Mutate<a href="data-wrangling-using-tidyverse.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mutate" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> Mutate<a href="data-wrangling-using-tidyverse.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use mutate to add new columns based on additional ones. Common uses are to create a column of data in different units, or to calculate something based on two columns. You can also use it to just update a column, by naming the new column the same as the original one (but be careful because you’ll lose the original one!).</p>
 <p>Create a new column in rbi called T_RANGE by subtracting T_MIN_SITE from T_MAX_SITE</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-wrangling-using-tidyverse.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="data-wrangling-using-tidyverse.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
 <p>When downloading data from the USGS through R, you have to enter the gage ID as a character, even though they are all made up of numbers. So to practice doing this, update the site_no column to be a character datatype</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-wrangling-using-tidyverse.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-wrangling-using-tidyverse.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
 </div>
-<div id="summarize" class="section level2 hasAnchor" number="3.12">
-<h2><span class="header-section-number">3.12</span> Summarize<a href="data-wrangling-using-tidyverse.html#summarize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarize" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> Summarize<a href="data-wrangling-using-tidyverse.html#summarize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Summarize will perform an operation on all of your data, or groups if you assign groups.</p>
 <p>Use summarize to compute the mean, min, and max rbi</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-wrangling-using-tidyverse.html#cb44-1" aria-hidden="true" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="data-wrangling-using-tidyverse.html#cb40-1" aria-hidden="true" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
 <p>Now use the group function to group rbi by state and then summarize in the same way as above, but for the full r</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-wrangling-using-tidyverse.html#cb45-1" aria-hidden="true" tabindex="-1"></a>rbi_state <span class="ot">&lt;-</span> <span class="fu">group_by</span>(rbi, STATE)</span>
-<span id="cb45-2"><a href="data-wrangling-using-tidyverse.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="data-wrangling-using-tidyverse.html#cb45-3" aria-hidden="true" tabindex="-1"></a>rbi_state <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi_state, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-wrangling-using-tidyverse.html#cb41-1" aria-hidden="true" tabindex="-1"></a>rbi_state <span class="ot">&lt;-</span> <span class="fu">group_by</span>(rbi, STATE)</span>
+<span id="cb41-2"><a href="data-wrangling-using-tidyverse.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="data-wrangling-using-tidyverse.html#cb41-3" aria-hidden="true" tabindex="-1"></a>rbi_state <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi_state, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
 </div>
-<div id="multiple-operations-with-pipes" class="section level2 hasAnchor" number="3.13">
-<h2><span class="header-section-number">3.13</span> Multiple operations with pipes<a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="multiple-operations-with-pipes" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> Multiple operations with pipes<a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will note that your environment is filling up with objects. We can eliminate many of those by using pipes.</p>
 <p>The pipe operator %&gt;% allows you to perform multiple operations in a sequence without saving intermediate steps. Not only is this more efficient, but structuring operations with pipes is also more intuitive than nesting functions within functions (the other way you can do multiple operations).</p>
 <p>When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one, so:</p>
@@ -373,26 +384,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>is the same as</strong></p>
 <p>group_by(rbi, STATE)</p>
 <p>Take the groupby and summarize code from above and perform the operation using the pipe</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-wrangling-using-tidyverse.html#cb46-1" aria-hidden="true" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> rbi <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="data-wrangling-using-tidyverse.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(STATE) <span class="sc">%&gt;%</span></span>
-<span id="cb46-3"><a href="data-wrangling-using-tidyverse.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-wrangling-using-tidyverse.html#cb42-1" aria-hidden="true" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> rbi <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="data-wrangling-using-tidyverse.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(STATE) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="data-wrangling-using-tidyverse.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
 </div>
-<div id="a-final-comment-on-nas" class="section level2 hasAnchor" number="3.14">
-<h2><span class="header-section-number">3.14</span> A final comment on NAs<a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-final-comment-on-nas" class="section level2 hasAnchor" number="3.15">
+<h2><span class="header-section-number">3.15</span> A final comment on NAs<a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will talk more about this when we discuss stats, but some operations will fail if there are NA’s in the data. If appropriate, you can tell functions like mean() to ignore NAs by using na.rm = TRUE. You can also use drop_na() if you’re working with a tibble. But be aware if you use that and save the result, drop_na() gets rid of the whole row, not just the NA. Because what would you replace it with…. an NA?</p>
 <p>First, lets create a small data frame called x that includes: 1, 2, 3, 4, NA. How do we do that?</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-wrangling-using-tidyverse.html#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-wrangling-using-tidyverse.html#cb43-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="cn">NA</span>)</span></code></pre></div>
 <p>Next, lets take the mean of x.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-wrangling-using-tidyverse.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-wrangling-using-tidyverse.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
 <p>How do you think we can fix this problem?</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-wrangling-using-tidyverse.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-wrangling-using-tidyverse.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="thats-it-for-today" class="section level2 hasAnchor" number="3.15">
-<h2><span class="header-section-number">3.15</span> That’s it for today<a href="data-wrangling-using-tidyverse.html#thats-it-for-today" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="thats-it-for-today" class="section level2 hasAnchor" number="3.16">
+<h2><span class="header-section-number">3.16</span> That’s it for today<a href="data-wrangling-using-tidyverse.html#thats-it-for-today" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Can you run all of the code in this unit? Do you get errors? If you are working on a lab computer have you gotten your folder management set up?</p>
 </div>
-<div id="exit-ticket-1" class="section level2 hasAnchor" number="3.16">
-<h2><span class="header-section-number">3.16</span> Exit ticket<a href="data-wrangling-using-tidyverse.html#exit-ticket-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exit-ticket-1" class="section level2 hasAnchor" number="3.17">
+<h2><span class="header-section-number">3.17</span> Exit ticket<a href="data-wrangling-using-tidyverse.html#exit-ticket-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you have an error or problem we need to manage - let me know. If not write NA!</p>
 
 </div>
@@ -402,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="Plotting.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-to-data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

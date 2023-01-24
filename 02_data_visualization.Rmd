@@ -1,4 +1,11 @@
-# Intro to data visualization {#Plotting}
+```{r}
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
+
+```
+
+
+# Intro to data visualization
 
 ## Learning Objectives
 - The learning objectives for today are to begin getting comfortable navigating RStudio. A great way to do this is through data visualization. At the end of todays activities students will be able to:
