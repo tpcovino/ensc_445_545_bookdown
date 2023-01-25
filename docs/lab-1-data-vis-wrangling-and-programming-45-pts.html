@@ -250,21 +250,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="problem-5-5-pts" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Problem 5 (5 pts)<a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-5-5-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Create a new tibble called “flashy_west_thin” that contains the min, max, and mean PET for each state in flashy_west. Sort/arrange the tibble by mean PET from high to low. Give your columns meaningful names within the summarize function or using rename(). <em>You haven’t seen rename yet</em>. Use ?rename in the console or search for examples. When searching you need to indicate that you are looking for “tidyverse rename”. Rename is part of dplyr, which is part of tidyverse.</p>
-<p>Be sure your code outputs the tibble.</p>
+<p>Create a new tibble called “flashy_west_sum” that contains the min, max, and mean PET for each state in flashy_west. Sort/arrange the tibble by mean PET from high to low. Give your columns meaningful names within the summarize function or using rename(). <em>You haven’t seen rename yet</em>. Use ?rename in the console or search for examples. When searching you need to indicate that you are looking for “tidyverse rename”. Rename is part of dplyr, which is part of tidyverse.</p>
+<p>Create a barplot from flashy_west_sum with max_pet on the y and state on the x.</p>
 </div>
 <div id="problem-6-5-pts" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Problem 6 (5 pts)<a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-6-5-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take the tibble from problem 5 and create a new df by first creating a new column that is the Range of the PET (max PET - min PET). Then get rid of the max PET and min PET columns so the tibble just has columns for State, mean_PET, and PET_range.</p>
-<p>Be sure your code outputs the tibble.</p>
-<p>Save new_tib_thin as .csv files to your folder for this lab using the write_csv function. To get help on this function type “?write_csv” into the console.</p>
+<p>Take the tibble from problem 5 and create a new df “flashy_west_new” by first creating a new column that is the Range of the PET (max PET - min PET). Then get rid of the max PET and min PET columns so the tibble just has columns for State, mean_PET, and PET_range.</p>
+<p>Using flashy_west_new make an interactive ggplotly with mean_pet on the x and range_pet on the y. Color by state and label axes.</p>
+<p>Save flashy_west_new as .csv files to your folder for this lab using the write_csv function. To get help on this function type “?write_csv” into the console.</p>
 </div>
 <div id="summary" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Summary<a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>How long did this lab take you?</li>
-<li>Is there anything in particular you would like more practice with?</li>
-<li>Knit this .Rmd as an .html and submit your lab_1_your_name.html on D2L.</li>
+<li><p>Using the figues from problems 5 &amp; 6 comment on the pattern in max PET across the western states. What climatological variable is likely driving this pattern? Do you think the values actual evapotranspiration (AET) would be the same or different from the values of potential evapotranspiration (PET)? In which state would AET and PET potentially be most different and why?</p></li>
+<li><p>How long did this lab take you?</p></li>
+<li><p>Is there anything in particular you would like more practice with?</p></li>
+<li><p>Knit this .Rmd as an .html and submit your lab_1_your_name.html on D2L.</p></li>
 </ul>
 
 </div>
