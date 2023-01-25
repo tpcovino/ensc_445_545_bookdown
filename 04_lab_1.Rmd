@@ -154,7 +154,6 @@ Save flashy_west_new as .csv files to your folder for this lab using the write_c
 ```
 
 
-
 ## Summary
 
 - Using the figues from problems 5 & 6 comment on the pattern in max PET across the western states. What climatological variable is likely driving this pattern? Do you think the values actual evapotranspiration (AET) would be the same or different from the values of potential evapotranspiration (PET)? In which state would AET and PET potentially be most different and why? 
