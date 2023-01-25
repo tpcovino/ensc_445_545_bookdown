@@ -10,7 +10,7 @@ output:
 
 You can find the repo for this lab here:
 
-https://github.com/tpcovino/lab_1
+<https://github.com/tpcovino/lab_1>{target="_blank"}
 
 As we have done previously, go to Code, download zip and put folder on your computer. Open the project in that folder and then open the .Rmd. Remember that opening the project from that folder will set that folder as the "working directory". Doing so means that when you read in your data, R will "look" in the right place to find it. Remember to rename the .Rmd file with your name in the file name.  
 
