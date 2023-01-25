@@ -37,3 +37,11 @@ multiple-operations-with-pipes
 a-final-comment-on-nas
 thats-it-for-today
 exit-ticket-1
+lab-1-data-vis-wrangling-and-programming-45-pts
+problem-1-5-pts
+problem-2-10-pts
+problem-3-10-pts
+problem-4-10-pts
+problem-5-5-pts
+problem-6-5-pts
+summary
