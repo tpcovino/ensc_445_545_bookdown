@@ -129,5 +129,5 @@ Save new_tib_thin as .csv files to your folder for this lab using the write_csv 
 
 - How long did this lab take you?
 - Is there anything in particular you would like more practice with?
-- Knit this .Rmd as an .html and submit your .html on D2L. 
+- Knit this .Rmd as an .html and submit your lab_1_your_name.html on D2L. 
 
