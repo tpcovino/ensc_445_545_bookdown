@@ -162,7 +162,7 @@ PET Reading:
 
 [From NOAA](https://www.ncei.noaa.gov/access/monitoring/dyk/potential-evapotranspiration){target="_blank"}
 
-[Vargas Zepetello et al. 2019b](images/VargasZeppetello_etal_2019b.pdf){target="_blank"}
+[Vargas Zepetello et al. 2019b](images/VargasZeppetello_etal_2019b.pdf){target="_blank"} read Abstract and Introduction sections
 
 - How long did this lab take you?
 - Is there anything in particular you would like more practice with?
