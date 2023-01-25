@@ -16,7 +16,7 @@ This lab covers workflow and functions that you have seen and a few things that 
 
 ## Problem 1 (5 pts)
 
-Load the tidyverse and lubridate libraries.
+Load the tidyverse library.
 ```{r}
 
 ```
