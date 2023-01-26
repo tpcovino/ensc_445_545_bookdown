@@ -152,7 +152,7 @@ Using flashy_west_new make an interactive ggplotly with mean_pet on the x and ra
 ```
 
 
-Save flashy_west_new as .csv files to your folder for this lab using the write_csv function. To get help on this function type "?write_csv" into the console. 
+Save flashy_west_new as "flashy_west_new.csv" to your folder for this lab using the write_csv function. To get help on this function type "?write_csv" into the console. 
 
 ```{r}
 
