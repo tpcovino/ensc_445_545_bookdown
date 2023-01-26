@@ -75,6 +75,13 @@ Using flashy_west: Plot PET (Potential Evapotranspiration) on the X axis and RBI
 ```
 
 
+Using flashy_west make a facet wrap with PET on the x and RBI on the y. Facet by state.
+
+```{r}
+
+```
+
+
 ## Problem 4 (5 pts)
 
 We want to look at the amount of snow for each site in the flashy_west df. Problem is, we are only given the average amount of total precip (PPTAVG_BASIN) and the percentage of snow (SNOW_PCT_PRECIP).
@@ -171,5 +178,7 @@ PET Reading:
 
 ## Deliverables
 - Knit this .Rmd as an .html and submit your lab_1_your_name.Rmd and lab_1_your_name.html on D2L. 
+
+
 
 

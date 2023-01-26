@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ StationID: chr [1:4320] &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; ...
 ##  $ cfs      : num [1:4320] 11.6 11.6 11.2 11.2 11.2 ...
 ##  $ surrogate: chr [1:4320] &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot; ...
-##  $ datetime : POSIXct[1:4320], format: &quot;2010-01-01 00:00:00&quot; &quot;2010-01-01 01:00:00&quot; ...
+##  $ datetime : POSIXct[1:4320], format: &quot;2010-01-01 00:00:00&quot; &quot;2010-01-01 01:00:00&quot; &quot;2010-01-01 02:00:00&quot; &quot;2010-01-01 03:00:00&quot; ...
 ##  $ year     : num [1:4320] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
 ##  $ quarter  : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ month    : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
@@ -393,31 +393,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Write an expression that returns data in rbi for the state of Montana (MT)</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-wrangling-using-tidyverse.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 17 × 26
-##     site_no    RBI RBIrank STANAME    DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1  6037500 0.0338       8 Madison R…  1126.  10U      44.7   -111. MT    Ref   WestMn…
-##  2  6043500 0.0724      61 Gallatin …  2120.  10U      45.5   -111. MT    Ref   WestMn…
-##  3  6073500 0.104      123 Dearborn …   835.  10U      47.2   -112. MT    Ref   WestMn…
-##  4  6154410 0.118      157 Little Pe…    33.4 10U      48.0   -109. MT    Ref   WestMn…
-##  5  6187915 0.110      143 Soda Butt…    73.1 10U      45.0   -110. MT    Ref   WestMn…
-##  6  6191000 0.0627      46 Gardner R…   514.  10U      45.0   -111. MT    Ref   WestMn…
-##  7  6191500 0.0649      49 Yellowsto…  6784.  10U      45.1   -111. MT    Ref   WestMn…
-##  8  6289000 0.0652      50 Little Bi…   471.  10U      45.0   -108. MT    Ref   WestMn…
-##  9  6291500 0.0923      94 Lodge Gra…   218   10U      45.1   -108. MT    Ref   WestPl…
-## 10 12358500 0.0922      93 Middle Fo…  2939.  17       48.5   -114. MT    Ref   WestMn…
-## 11 12374250 0.0848      77 Mill Cr a…    50.8 17       47.8   -115. MT    Ref   WestMn…
-## 12 12375900 0.0985     113 South Cro…    19.7 17       47.5   -114. MT    Ref   WestMn…
-## 13 12377150 0.118      153 Mission C…    32.2 17       47.3   -114. MT    Ref   WestMn…
-## 14 12381400 0.0698      55 South For…   151.  17       47.2   -114. MT    Ref   WestMn…
-## 15 12383500 0.0470      19 Big Knife…    17.7 17       47.1   -114. MT    Ref   WestMn…
-## 16 12388400 0.100      117 Revais Cr…    60.8 17       47.3   -114. MT    Ref   WestMn…
-## 17 12390700 0.0738      64 Prospect …   470.  17       47.6   -115. MT    Ref   WestMn…
-## # … with 15 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;,
-## #   T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
-## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
-## #   ⁴​AGGECOREGION</code></pre>
+##     site_no    RBI RBIrank STANAME  DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  6037500 0.0338       8 Madison…  1126.  10U      44.7   -111. MT    Ref   WestMn…    94.8    61.5    0.29     1.6
+##  2  6043500 0.0724      61 Gallati…  2120.  10U      45.5   -111. MT    Ref   WestMn…    87.6    52.9    2.09     5.9
+##  3  6073500 0.104      123 Dearbor…   835.  10U      47.2   -112. MT    Ref   WestMn…    59.3    36.3    5.38     7.6
+##  4  6154410 0.118      157 Little …    33.4 10U      48.0   -109. MT    Ref   WestMn…    50.4    46.2    5.84     6.1
+##  5  6187915 0.110      143 Soda Bu…    73.1 10U      45.0   -110. MT    Ref   WestMn…    98.0    66.4    0.15     0.6
+##  6  6191000 0.0627      46 Gardner…   514.  10U      45.0   -111. MT    Ref   WestMn…    82.6    35.0    1.69     5.2
+##  7  6191500 0.0649      49 Yellows…  6784.  10U      45.1   -111. MT    Ref   WestMn…    80.6    30.4    0.71     5.5
+##  8  6289000 0.0652      50 Little …   471.  10U      45.0   -108. MT    Ref   WestMn…    67.5    48.0    1.79     6  
+##  9  6291500 0.0923      94 Lodge G…   218   10U      45.1   -108. MT    Ref   WestPl…    58.6    46.5    4.95     7.1
+## 10 12358500 0.0922      93 Middle …  2939.  17       48.5   -114. MT    Ref   WestMn…   127.     71.2    2.59     5.9
+## 11 12374250 0.0848      77 Mill Cr…    50.8 17       47.8   -115. MT    Ref   WestMn…    58.0    40.8    3.95     6.1
+## 12 12375900 0.0985     113 South C…    19.7 17       47.5   -114. MT    Ref   WestMn…   133.     44.7    2.61     6.3
+## 13 12377150 0.118      153 Mission…    32.2 17       47.3   -114. MT    Ref   WestMn…   154.     58.7    1.87     5.1
+## 14 12381400 0.0698      55 South F…   151.  17       47.2   -114. MT    Ref   WestMn…   133.     89.2    3.38     3.7
+## 15 12383500 0.0470      19 Big Kni…    17.7 17       47.1   -114. MT    Ref   WestMn…   117.     51.6    3.22     5.2
+## 16 12388400 0.100      117 Revais …    60.8 17       47.3   -114. MT    Ref   WestMn…    79.5    60.2    4.38     6  
+## 17 12390700 0.0738      64 Prospec…   470.  17       47.6   -115. MT    Ref   WestMn…   104.     59.2    5.63     8.1
+## # … with 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
+## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
+## #   ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 <p>And one that keeps flows less than 100 cfs in the “flow” dataframe.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-wrangling-using-tidyverse.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4,169 × 8
@@ -443,29 +441,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How many gages are there in Montana with an rbi greater than 0.05</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="data-wrangling-using-tidyverse.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 26
-##     site_no    RBI RBIrank STANAME    DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1  6043500 0.0724      61 Gallatin …  2120.  10U      45.5   -111. MT    Ref   WestMn…
-##  2  6073500 0.104      123 Dearborn …   835.  10U      47.2   -112. MT    Ref   WestMn…
-##  3  6154410 0.118      157 Little Pe…    33.4 10U      48.0   -109. MT    Ref   WestMn…
-##  4  6187915 0.110      143 Soda Butt…    73.1 10U      45.0   -110. MT    Ref   WestMn…
-##  5  6191000 0.0627      46 Gardner R…   514.  10U      45.0   -111. MT    Ref   WestMn…
-##  6  6191500 0.0649      49 Yellowsto…  6784.  10U      45.1   -111. MT    Ref   WestMn…
-##  7  6289000 0.0652      50 Little Bi…   471.  10U      45.0   -108. MT    Ref   WestMn…
-##  8  6291500 0.0923      94 Lodge Gra…   218   10U      45.1   -108. MT    Ref   WestPl…
-##  9 12358500 0.0922      93 Middle Fo…  2939.  17       48.5   -114. MT    Ref   WestMn…
-## 10 12374250 0.0848      77 Mill Cr a…    50.8 17       47.8   -115. MT    Ref   WestMn…
-## 11 12375900 0.0985     113 South Cro…    19.7 17       47.5   -114. MT    Ref   WestMn…
-## 12 12377150 0.118      153 Mission C…    32.2 17       47.3   -114. MT    Ref   WestMn…
-## 13 12381400 0.0698      55 South For…   151.  17       47.2   -114. MT    Ref   WestMn…
-## 14 12388400 0.100      117 Revais Cr…    60.8 17       47.3   -114. MT    Ref   WestMn…
-## 15 12390700 0.0738      64 Prospect …   470.  17       47.6   -115. MT    Ref   WestMn…
-## # … with 15 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;,
-## #   T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
-## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
-## #   ⁴​AGGECOREGION</code></pre>
+##     site_no    RBI RBIrank STANAME  DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  6043500 0.0724      61 Gallati…  2120.  10U      45.5   -111. MT    Ref   WestMn…    87.6    52.9    2.09     5.9
+##  2  6073500 0.104      123 Dearbor…   835.  10U      47.2   -112. MT    Ref   WestMn…    59.3    36.3    5.38     7.6
+##  3  6154410 0.118      157 Little …    33.4 10U      48.0   -109. MT    Ref   WestMn…    50.4    46.2    5.84     6.1
+##  4  6187915 0.110      143 Soda Bu…    73.1 10U      45.0   -110. MT    Ref   WestMn…    98.0    66.4    0.15     0.6
+##  5  6191000 0.0627      46 Gardner…   514.  10U      45.0   -111. MT    Ref   WestMn…    82.6    35.0    1.69     5.2
+##  6  6191500 0.0649      49 Yellows…  6784.  10U      45.1   -111. MT    Ref   WestMn…    80.6    30.4    0.71     5.5
+##  7  6289000 0.0652      50 Little …   471.  10U      45.0   -108. MT    Ref   WestMn…    67.5    48.0    1.79     6  
+##  8  6291500 0.0923      94 Lodge G…   218   10U      45.1   -108. MT    Ref   WestPl…    58.6    46.5    4.95     7.1
+##  9 12358500 0.0922      93 Middle …  2939.  17       48.5   -114. MT    Ref   WestMn…   127.     71.2    2.59     5.9
+## 10 12374250 0.0848      77 Mill Cr…    50.8 17       47.8   -115. MT    Ref   WestMn…    58.0    40.8    3.95     6.1
+## 11 12375900 0.0985     113 South C…    19.7 17       47.5   -114. MT    Ref   WestMn…   133.     44.7    2.61     6.3
+## 12 12377150 0.118      153 Mission…    32.2 17       47.3   -114. MT    Ref   WestMn…   154.     58.7    1.87     5.1
+## 13 12381400 0.0698      55 South F…   151.  17       47.2   -114. MT    Ref   WestMn…   133.     89.2    3.38     3.7
+## 14 12388400 0.100      117 Revais …    60.8 17       47.3   -114. MT    Ref   WestMn…    79.5    60.2    4.38     6  
+## 15 12390700 0.0738      64 Prospec…   470.  17       47.6   -115. MT    Ref   WestMn…   104.     59.2    5.63     8.1
+## # … with 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
+## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
+## #   ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 <p>Challenge: Filter for flow less than 100 cfs just for the NFDR gauge in “flow”.</p>
 </div>
 </div>
@@ -475,44 +471,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sort the rbi data by the RBI column in ascending and then descending order</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="data-wrangling-using-tidyverse.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##     site_no    RBI RBIrank STANAME    DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1  6408700 0.0108       1 RHOADS FO…    20.8 10U      44.1  -104.  SD    Ref   WestMn…
-##  2  6430850 0.0192       2 LITTLE SP…    71.8 10U      44.3  -104.  SD    Ref   WestMn…
-##  3 10244950 0.0230       3 STEPTOE C…    28.2 16       39.2  -115.  NV    Ref   WestXe…
-##  4  2267000 0.0286       4 CATFISH C…   169.  3        28.0   -81.5 FL    Non-… SECstP…
-##  5  6775500 0.0300       5 MIDDLE LO…  5460.  10L      41.8  -100.  NE    Ref   WestPl…
-##  6  6430532 0.0303       6 CROW CREE…   106.  10U      44.6  -104.  SD    Ref   WestMn…
-##  7 14158500 0.0306       7 MCKENZIE …   237.  17       44.4  -122.  OR    Ref   WestMn…
-##  8  6037500 0.0338       8 Madison R…  1126.  10U      44.7  -111.  MT    Ref   WestMn…
-##  9 10109001 0.0382       9 COM F LOG…   556.  16       41.7  -112.  UT    Ref   WestMn…
-## 10 10243700 0.0391      10 CLEVE C N…    83.5 16       39.2  -115.  NV    Ref   WestXe…
-## # … with 1,134 more rows, 15 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
-## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;,
-## #   PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
-## #   ⁴​AGGECOREGION</code></pre>
+##     site_no    RBI RBIrank STANAME  DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  6408700 0.0108       1 RHOADS …    20.8 10U      44.1  -104.  SD    Ref   WestMn…    65.0    63.7    2.72     3.1
+##  2  6430850 0.0192       2 LITTLE …    71.8 10U      44.3  -104.  SD    Ref   WestMn…    69.2    68.9    5.07     5.9
+##  3 10244950 0.0230       3 STEPTOE…    28.2 16       39.2  -115.  NV    Ref   WestXe…    54.2    39.8    3.43     3.9
+##  4  2267000 0.0286       4 CATFISH…   169.  3        28.0   -81.5 FL    Non-… SECstP…   128.    128.    22.4     22.4
+##  5  6775500 0.0300       5 MIDDLE …  5460.  10L      41.8  -100.  NE    Ref   WestPl…    51.0    58.4    8.53     8.6
+##  6  6430532 0.0303       6 CROW CR…   106.  10U      44.6  -104.  SD    Ref   WestMn…    60.0    46.8    6.91     7.9
+##  7 14158500 0.0306       7 MCKENZI…   237.  17       44.4  -122.  OR    Ref   WestMn…   218.    204.     6.9      8.2
+##  8  6037500 0.0338       8 Madison…  1126.  10U      44.7  -111.  MT    Ref   WestMn…    94.8    61.5    0.29     1.6
+##  9 10109001 0.0382       9 COM F L…   556.  16       41.7  -112.  UT    Ref   WestMn…    93.6    57.4    4.62     7.5
+## 10 10243700 0.0391      10 CLEVE C…    83.5 16       39.2  -115.  NV    Ref   WestXe…    51.0    25.7    3.52     8.1
+## # … with 1,134 more rows, 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
+## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="data-wrangling-using-tidyverse.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##     site_no   RBI RBIrank STANAME     DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1  9486350  1.76    1144 CANADA DEL…   675.  15       32.3  -111.  AZ    Non-… WestXe…
-##  2  9513860  1.75    1143 SKUNK CREE…   170.  15       33.7  -112.  AZ    Non-… WestXe…
-##  3  8401200  1.62    1142 SOUTH SEVE…   534   13       32.6  -104.  NM    Ref   WestXe…
-##  4  9487000  1.58    1141 BRAWLEY WA…  2028.  15       32.1  -111.  AZ    Ref   WestXe…
-##  5  9535100  1.57    1140 SAN SIMON …  1483.  15       32.0  -112.  AZ    Ref   WestXe…
-##  6  8202700  1.56    1139 Seco Ck at…   435.  12       29.4   -99.3 TX    Ref   WestPl…
-##  7 11065000  1.55    1138 Lytle Cree…   365.  18       34.1  -117.  CA    Non-… WestXe…
-##  8  7019120  1.51    1137 Fishpot Cr…    24.9 7        38.6   -90.5 MO    Non-… SEPlai…
-##  9  7233500  1.50    1136 Palo Duro …  2909.  11       36.2  -101.  TX    Ref   WestPl…
-## 10  6846500  1.40    1135 BEAVER C A…  4358.  10L      40.0  -101.  KS    Ref   WestPl…
-## # … with 1,134 more rows, 15 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
-## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;,
-## #   PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
-## #   ⁴​AGGECOREGION</code></pre>
+##     site_no   RBI RBIrank STANAME   DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  9486350  1.76    1144 CANADA D…   675.  15       32.3  -111.  AZ    Non-… WestXe…    47.7    27.6    17.2    20.3
+##  2  9513860  1.75    1143 SKUNK CR…   170.  15       33.7  -112.  AZ    Non-… WestXe…    35.2    25.5    20.5    21.1
+##  3  8401200  1.62    1142 SOUTH SE…   534   13       32.6  -104.  NM    Ref   WestXe…    41.2    33.4    14.8    16.1
+##  4  9487000  1.58    1141 BRAWLEY …  2028.  15       32.1  -111.  AZ    Ref   WestXe…    44.3    29.7    17.5    19.2
+##  5  9535100  1.57    1140 SAN SIMO…  1483.  15       32.0  -112.  AZ    Ref   WestXe…    26.0    23.5    20.4    20.9
+##  6  8202700  1.56    1139 Seco Ck …   435.  12       29.4   -99.3 TX    Ref   WestPl…    81.1    73.7    19.0    19.9
+##  7 11065000  1.55    1138 Lytle Cr…   365.  18       34.1  -117.  CA    Non-… WestXe…    81.4    35.8    13.3    18.3
+##  8  7019120  1.51    1137 Fishpot …    24.9 7        38.6   -90.5 MO    Non-… SEPlai…   105.    106.     12.5    12.6
+##  9  7233500  1.50    1136 Palo Dur…  2909.  11       36.2  -101.  TX    Ref   WestPl…    45.9    50.7    13.7    13.9
+## 10  6846500  1.40    1135 BEAVER C…  4358.  10L      40.0  -101.  KS    Ref   WestPl…    49.8    55.0    10.3    10.7
+## # … with 1,134 more rows, 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
+## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 </div>
 <div id="select" class="section level2 hasAnchor" number="3.11">
 <h2><span class="header-section-number">3.11</span> Select<a href="data-wrangling-using-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -532,45 +524,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create a new column in rbi called T_RANGE by subtracting T_MIN_SITE from T_MAX_SITE</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="data-wrangling-using-tidyverse.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 27
-##    site_no    RBI RBIrank STANAME     DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1 1013500 0.0584      35 Fish River…  2253.  1        47.2   -68.6 ME    Ref   NorthE…
-##  2 1021480 0.208      300 Old Stream…    76.7 1        44.9   -67.7 ME    Ref   NorthE…
-##  3 1022500 0.198      286 Narraguagu…   574.  1        44.6   -67.9 ME    Ref   NorthE…
-##  4 1029200 0.132      183 Seboeis Ri…   445.  1        46.1   -68.6 ME    Ref   NorthE…
-##  5 1030500 0.114      147 Mattawamke…  3676.  1        45.5   -68.3 ME    Ref   NorthE…
-##  6 1031300 0.297      489 Piscataqui…   304.  1        45.3   -69.6 ME    Ref   NorthE…
-##  7 1031500 0.320      545 Piscataqui…   769   1        45.2   -69.3 ME    Ref   NorthE…
-##  8 1037380 0.318      537 Ducktrap R…    39   1        44.3   -69.1 ME    Ref   NorthE…
-##  9 1044550 0.242      360 Spencer St…   500.  1        45.3   -70.2 ME    Ref   NorthE…
-## 10 1047000 0.344      608 Carrabasse…   909.  1        44.9   -70.0 ME    Ref   NorthE…
-## # … with 1,134 more rows, 16 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
-## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;,
-## #   PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, T_RANGE &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
-## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION</code></pre>
+##    site_no    RBI RBIrank STANAME   DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1013500 0.0584      35 Fish Riv…  2253.  1        47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3        3  
+##  2 1021480 0.208      300 Old Stre…    76.7 1        44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71     5.8
+##  3 1022500 0.198      286 Narragua…   574.  1        44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95     6.3
+##  4 1029200 0.132      183 Seboeis …   445.  1        46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61     4  
+##  5 1030500 0.114      147 Mattawam…  3676.  1        45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82     5.4
+##  6 1031300 0.297      489 Piscataq…   304.  1        45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6      4.2
+##  7 1031500 0.320      545 Piscataq…   769   1        45.2   -69.3 ME    Ref   NorthE…   118     114.     4.14     4.9
+##  8 1037380 0.318      537 Ducktrap…    39   1        44.3   -69.1 ME    Ref   NorthE…   122.    123.     7.22     7.1
+##  9 1044550 0.242      360 Spencer …   500.  1        45.3   -70.2 ME    Ref   NorthE…   110.    102.     2.54     3.5
+## 10 1047000 0.344      608 Carrabas…   909.  1        44.9   -70.0 ME    Ref   NorthE…   119.    106.     3.99     5.6
+## # … with 1,134 more rows, 12 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, T_RANGE &lt;dbl&gt;, and abbreviated variable names
+## #   ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 <p>When downloading data from the USGS through R, you have to enter the gage ID as a character, even though they are all made up of numbers. So to practice doing this, update the site_no column to be a character datatype</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="data-wrangling-using-tidyverse.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##    site_no    RBI RBIrank STANAME     DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴
-##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1 1013500 0.0584      35 Fish River…  2253.  1        47.2   -68.6 ME    Ref   NorthE…
-##  2 1021480 0.208      300 Old Stream…    76.7 1        44.9   -67.7 ME    Ref   NorthE…
-##  3 1022500 0.198      286 Narraguagu…   574.  1        44.6   -67.9 ME    Ref   NorthE…
-##  4 1029200 0.132      183 Seboeis Ri…   445.  1        46.1   -68.6 ME    Ref   NorthE…
-##  5 1030500 0.114      147 Mattawamke…  3676.  1        45.5   -68.3 ME    Ref   NorthE…
-##  6 1031300 0.297      489 Piscataqui…   304.  1        45.3   -69.6 ME    Ref   NorthE…
-##  7 1031500 0.320      545 Piscataqui…   769   1        45.2   -69.3 ME    Ref   NorthE…
-##  8 1037380 0.318      537 Ducktrap R…    39   1        44.3   -69.1 ME    Ref   NorthE…
-##  9 1044550 0.242      360 Spencer St…   500.  1        45.3   -70.2 ME    Ref   NorthE…
-## 10 1047000 0.344      608 Carrabasse…   909.  1        44.9   -70.0 ME    Ref   NorthE…
-## # … with 1,134 more rows, 15 more variables: PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;,
-## #   T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;,
-## #   PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;,
-## #   wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM, ²​LAT_GAGE, ³​LNG_GAGE,
-## #   ⁴​AGGECOREGION</code></pre>
+##    site_no    RBI RBIrank STANAME   DRAIN…¹ HUC02 LAT_G…² LNG_G…³ STATE CLASS AGGEC…⁴ PPTAV…⁵ PPTAV…⁶ T_AVG…⁷ T_AVG…⁸
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1013500 0.0584      35 Fish Riv…  2253.  1        47.2   -68.6 ME    Ref   NorthE…    97.4    93.5    3        3  
+##  2 1021480 0.208      300 Old Stre…    76.7 1        44.9   -67.7 ME    Ref   NorthE…   115.    117.     5.71     5.8
+##  3 1022500 0.198      286 Narragua…   574.  1        44.6   -67.9 ME    Ref   NorthE…   120.    130.     5.95     6.3
+##  4 1029200 0.132      183 Seboeis …   445.  1        46.1   -68.6 ME    Ref   NorthE…   102.    103.     3.61     4  
+##  5 1030500 0.114      147 Mattawam…  3676.  1        45.5   -68.3 ME    Ref   NorthE…   108.    113.     4.82     5.4
+##  6 1031300 0.297      489 Piscataq…   304.  1        45.3   -69.6 ME    Ref   NorthE…   120.    121.     3.6      4.2
+##  7 1031500 0.320      545 Piscataq…   769   1        45.2   -69.3 ME    Ref   NorthE…   118     114.     4.14     4.9
+##  8 1037380 0.318      537 Ducktrap…    39   1        44.3   -69.1 ME    Ref   NorthE…   122.    123.     7.22     7.1
+##  9 1044550 0.242      360 Spencer …   500.  1        45.3   -70.2 ME    Ref   NorthE…   110.    102.     2.54     3.5
+## 10 1047000 0.344      608 Carrabas…   909.  1        44.9   -70.0 ME    Ref   NorthE…   119.    106.     3.99     5.6
+## # … with 1,134 more rows, 11 more variables: T_MAX_BASIN &lt;dbl&gt;, T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;,
+## #   T_MIN_BASIN &lt;dbl&gt;, T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;, and abbreviated variable names ¹​DRAIN_SQKM,
+## #   ²​LAT_GAGE, ³​LNG_GAGE, ⁴​AGGECOREGION, ⁵​PPTAVG_BASIN, ⁶​PPTAVG_SITE, ⁷​T_AVG_BASIN, ⁸​T_AVG_SITE</code></pre>
 </div>
 <div id="summarize" class="section level2 hasAnchor" number="3.13">
 <h2><span class="header-section-number">3.13</span> Summarize<a href="data-wrangling-using-tidyverse.html#summarize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
