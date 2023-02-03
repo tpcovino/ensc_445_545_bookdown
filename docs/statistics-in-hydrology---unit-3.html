@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2023-02-02" />
+<meta name="date" content="2023-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,7 +293,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb80-9"><a href="statistics-in-hydrology---unit-3.html#cb80-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span>
 <span id="cb80-10"><a href="statistics-in-hydrology---unit-3.html#cb80-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb80-11"><a href="statistics-in-hydrology---unit-3.html#cb80-11" aria-hidden="true" tabindex="-1"></a><span class="co"># put the plots side by side with + or on top of each other with /</span></span>
-<span id="cb80-12"><a href="statistics-in-hydrology---unit-3.html#cb80-12" aria-hidden="true" tabindex="-1"></a>exhist<span class="sc">/</span>expdf</span></code></pre></div>
+<span id="cb80-12"><a href="statistics-in-hydrology---unit-3.html#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="co"># I&#39;ve also shown how to put a caption into a patchwork figure that has multiple panels. </span></span>
+<span id="cb80-13"><a href="statistics-in-hydrology---unit-3.html#cb80-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-14"><a href="statistics-in-hydrology---unit-3.html#cb80-14" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> exhist<span class="sc">/</span>expdf</span>
+<span id="cb80-15"><a href="statistics-in-hydrology---unit-3.html#cb80-15" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">&quot;Figure 1. Comparison of histogram (top) and probability density function (bottom) of a synthetic data set generated with</span><span class="sc">\n</span><span class="st"> the rnorm function, 1000 samples, and a mean of 5.&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 </div>
 <div id="homework-q1-2-pts" class="section level2 hasAnchor" number="5.2">
@@ -462,7 +465,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-2"><a href="statistics-in-hydrology---unit-3.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="statistics-in-hydrology---unit-3.html#cb98-3" aria-hidden="true" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -2.115215</code></pre>
+## -2.026474</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="5.9">
@@ -504,8 +507,30 @@ Create a normal data set and play with the number of values (n, samples). Invest
 <div id="homework-q5-2-pts" class="section level2 hasAnchor" number="5.11">
 <h2><span class="header-section-number">5.11</span> Homework Q5 (2 pts)<a href="statistics-in-hydrology---unit-3.html#homework-q5-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Test your all_the_water, ExNorm, and sample_of_water data frames for normality using shapiro test and qqnorm.</p>
+<p><strong>Note</strong>: <em>The shapiro.test will only accept 5000 values so the all_the_water data frame is too large. The reason for this is that in many fields (e.g., social science) an n of 5000 would be VERY large and would result in a normal distribution. In hydrology and the earth and environmental sciences in genreal we routinely have data sets that are MUCH larger than n = 5000 and the are STILL non-normal. To manage this situation we can use a different test, the Kolmogorov-Smirnov normality test which is in the “nortest” package and the test is called lillie.test. Lillie is short for Lilliefors test which is based on the Koolmogorv-Smirnov test. See below</em></p>
+<p><a href="https://cran.r-project.org/web/packages/nortest/nortest.pdf" target="_blank"><strong>See here for documentation of tests contained in the nortest package</strong></a></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="statistics-in-hydrology---unit-3.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shapiro.test(all_the_water$value) # won&#39;t work. n is too big. </span></span>
+<span id="cb104-2"><a href="statistics-in-hydrology---unit-3.html#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="statistics-in-hydrology---unit-3.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="co"># but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.</span></span>
+<span id="cb104-4"><a href="statistics-in-hydrology---unit-3.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;nortest&quot;)</span></span>
+<span id="cb104-5"><a href="statistics-in-hydrology---unit-3.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb104-6"><a href="statistics-in-hydrology---unit-3.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  all_the_water$value
+## D = 0.0055473, p-value = 0.6428</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="statistics-in-hydrology---unit-3.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
+<span id="cb106-2"><a href="statistics-in-hydrology---unit-3.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="statistics-in-hydrology---unit-3.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  all_the_water$value
+## A = 0.36062, p-value = 0.4471</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="statistics-in-hydrology---unit-3.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 <ul>
-<li>Which are and which are not normal?</li>
+<li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>
 </ul>
 </div>
 <div id="deliverable-10-pts-due-thursday-22-by-1159-pm" class="section level2 hasAnchor" number="5.12">
