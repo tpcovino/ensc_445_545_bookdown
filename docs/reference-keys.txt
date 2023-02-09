@@ -80,3 +80,6 @@ first-lets-map-the-sites.
 joins
 join-practice-example
 now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.
+lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts
+summary-20-pts
+deliverable-1

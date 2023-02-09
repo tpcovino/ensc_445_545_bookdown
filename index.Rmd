@@ -54,9 +54,10 @@ This course will use all online and open-source resources and will follow FAIR (
 *AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
 
 **Week 5 (Units 1 - 4)**: <br> 
-- *Lecture (2/14)*: Term project overview and assign take home **Exam 1**. <br>
+- *Lecture (2/14)*: StreamStats. Wrap up dataRetrieval. Wrap up sections 1 - 4.\
+- *Exam 1 (2/16)*: Term project overview and assign take home **Exam 1**. <br>
 - *Term project work session*: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project. <br>
-- *Exam 1 part II (2/16)*: In class work and Exam 1 resubmission.
+- Undergraduate students identify partner for term project by 2/16. 
 
 **Week 6 (Unit 5)**: <br>
 - *Lecture (2/21)*: Surface water: Rating curves and hydrographs. <br>

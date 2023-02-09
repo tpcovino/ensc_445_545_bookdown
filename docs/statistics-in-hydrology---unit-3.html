@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2023-02-07" />
+<meta name="date" content="2023-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
@@ -246,6 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#joins"><i class="fa fa-check"></i><b>7.4</b> Joins</a></li>
 <li class="chapter" data-level="7.5" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#join-practice-example"><i class="fa fa-check"></i><b>7.5</b> Join practice example</a></li>
 <li class="chapter" data-level="7.6" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>7.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#summary-20-pts"><i class="fa fa-check"></i><b>8.1</b> Summary (20 pts)</a></li>
+<li class="chapter" data-level="8.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#deliverable-1"><i class="fa fa-check"></i><b>8.2</b> Deliverable</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -485,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-2"><a href="statistics-in-hydrology---unit-3.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="statistics-in-hydrology---unit-3.html#cb98-3" aria-hidden="true" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -1.931093</code></pre>
+## -2.466165</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="5.9">
@@ -539,7 +544,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Lilliefors (Kolmogorov-Smirnov) normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0050928, p-value = 0.7657</code></pre>
+## D = 0.0056107, p-value = 0.6252</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="statistics-in-hydrology---unit-3.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb106-2"><a href="statistics-in-hydrology---unit-3.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb106-3"><a href="statistics-in-hydrology---unit-3.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -547,7 +552,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.26269, p-value = 0.7023</code></pre>
+## A = 0.30883, p-value = 0.5586</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="statistics-in-hydrology---unit-3.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 <ul>
 <li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>

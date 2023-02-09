@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Watershed Analysis</title>
-  <meta name="description" content="Watershed Analysis" />
+  <title>Chapter 8 Lab 3 - dataRetrieval and area normalized annual flows (20 pts) | Watershed Analysis</title>
+  <meta name="description" content="Chapter 8 Lab 3 - dataRetrieval and area normalized annual flows (20 pts) | Watershed Analysis" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Watershed Analysis" />
+  <meta property="og:title" content="Chapter 8 Lab 3 - dataRetrieval and area normalized annual flows (20 pts) | Watershed Analysis" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Watershed Analysis" />
+  <meta name="twitter:title" content="Chapter 8 Lab 3 - dataRetrieval and area normalized annual flows (20 pts) | Watershed Analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="usgs-dataretrieval-part-1.html"/>
 
-<link rel="next" href="intro-to-data-visualization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,24 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
-<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
-<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -271,99 +253,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Watershed Analysis</h1>
-<p class="author"><em>Tim Covino</em></p>
-<p class="date"><em>2023-02-09</em></p>
+<div id="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)<a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://github.com/tpcovino/lab_3" target="_blank"><strong>Lab 3 repo here</strong></a></p>
+<p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, leaflet, lubridate) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
+<p>Load the necessary packages.</p>
+<p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022. Call this df “stream_gauges”</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb1-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb1-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then load the data. </span></span>
+<span id="cb1-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb1-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
+<p>Map the gauges.</p>
+<p>Download the Q data for the gauges using dataRetrieval. Call the dataframe you create “flows”</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
+<span id="cb2-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb2-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<p>Make a facet wrap to look at the flows for each gauge.</p>
+<p>Filter your data frame of streamflow data to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this df “flows_filt”</p>
+<p>Make another facet wrap of flow at those 4 guages.</p>
+<p>For the 4 gauges you have kept convert flow from cfs to mm/day. You will need to know the area of each watershed, which you can get from readNWISsite. Remember that your Q data are currently in cfs so there are multiple conversions you will need to do in order to get to mm/day. To add drainage area to you df you are going to need to use join(). You might need some intermediate dfs but in the end you will have a df that has flow in mm/day. Call this df “flow_mm”.</p>
+<p>Make a facet wrap of flow for each gauge in mm/day.</p>
+<p>Compute and plot total annual flow for each gauge. You will need lubridate and year(). Call this df “flow_mm_an”</p>
+<p>Make a facet wrap of total annual flow in mm per year for each gauge.</p>
+<p>Plot total annual flow from each gauge in mm/year all on the same graph. Make a map of the gauges to aid in interpretation of patterns in total annual flows.</p>
+<div id="summary-20-pts" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Summary (20 pts)<a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#summary-20-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using mm/year allows us to compare across gauges with very different volumetric (e.g., cfs or cms) flow rates. Use your plots of mm/year to comment on:<br />
+1. Does one gauge produce consistently less flow year to year?<br />
+2. Does one gauge produce consistently more flow year to year?<br />
+3. Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be.<br />
+4. For any gauges that seem different than the others, provide a plausible explanation for why that might be.</p>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book provides the materials that we will use in Watershed Analysis (ENSC 445/545). In this class we will be learning the fundamentals of watershed analysis in R.</p>
-<p>Instructor: Dr. Tim Covino<br />
-Class times: T 10:50 – 12:05; Th 10:50 – 12:05<br />
-Office hours: By appointment<br />
-Website: <a href="https://tpcovino.github.io/ensc_445_545_bookdown" class="uri">https://tpcovino.github.io/ensc_445_545_bookdown</a></p>
-<p><img src="images/big-hole-river-lead.jpeg" /></p>
-<div id="course-overview-and-objectives" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Course overview and objectives<a href="index.html#course-overview-and-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>provide theoretical understanding and practical experience with common analysis and modeling techniques relevant to watershed hydrology.</p></li>
-<li><p>provide training in analyzing, simulating, and presenting scientific data in written and oral formats.</p></li>
-</ol>
-</div>
-<div id="structure" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Structure<a href="index.html#structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. We will generally have “lecture” on Tuesday, where we will talk about and work through various types of hydrological analyses. On Thursday’s you will then put the content from Tuesday to work in a lab where you will complete a variety of hydrological analyses in R.</p>
-</div>
-<div id="philosophical-approach-and-books-resources-we-will-utilize" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Philosophical approach and books &amp; resources we will utilize<a href="index.html#philosophical-approach-and-books-resources-we-will-utilize" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source <a href="https://cran.rstudio.com/" target="_blank">R</a> and <a href="https://posit.co/download/rstudio-desktop/" target="_blank">RStudio</a> software. Books and readings will include <a href="https://r4ds.had.co.nz/index.html" target="_blank">R for Data Science</a> and <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Statistical Methods in Water Resources</a>, but other readings will be made available on this bookdown page as needed. <em>We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis</em>.</p>
-</div>
-<div id="tentative-schedule-subject-to-change" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Tentative schedule, subject to change<a href="index.html#tentative-schedule-subject-to-change" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Week 1 (Unit 1)</strong>: <br>
-- <em>Lecture (1/19)</em>: Introduction, overview, and technical skills.<br />
-- <em>Reading</em>: <a href="https://r4ds.had.co.nz/introduction.html" target="_blank">Chapters 1, 2, &amp; 3</a> 1-Welcome, 2-Introduction, &amp; 3-Data visualization in R for Data Science (RDS).</p>
-<p><strong>Week 2 (Units 1 &amp; 2)</strong>: <br>
-- <em>Lecture (1/24)</em>: Technical skills continued. Data visualization, data wrangling, and programming. <br>
-- <em>Lab 1 (1/26)</em>: Data visualization, data wrangling, and programming. <br>
-- <em>Reading</em>: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 2.1</a>: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).
-<em>AND</em> <a href="https://r4ds.had.co.nz/workflow-basics.html" target="_blank">Chapters 4 &amp; 5</a> 4-Workflow: Basics &amp; 5-Data transformation in RDS. <br></p>
-<p><strong>Week 3 (Unit 3)</strong>: <br>
-- <em>Lecture (1/31)</em>: Statistics in hydrology. <br>
-- <em>Lab 2 (2/2)</em>: Statistics in hydrology. <br>
-- <em>Reading</em>: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 1</a>: 1-Summarizing Univariate Data in SMWR</p>
-<p><strong>Week 4 (Unit 4)</strong>: <br>
-- <em>Lecture (2/7)</em>: Downloading and shaping data frames.<br>
-- <em>Lab 3 (2/9)</em>: Downloading and shaping data frames. <br>
-- <em>Reading</em>: <a href="https://www.fs.usda.gov/research/forestsandranges">The Experimental Forest Network</a>, <a href="https://www.fs.usda.gov/rmrs/experimental-forests-and-ranges/tenderfoot-creek-experimental-forest/">the Tenderfoot Creek Experimental Forest</a>
-<em>AND</em> <a href="https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html" target="_blank">Introduction to the dataRetrieval package</a>
-<em>AND</em> <a href="https://r4ds.had.co.nz/tidy-data.html" target="_blank">Chapter 12 &amp; 13 of R for Data Science</a></p>
-<p><strong>Week 5 (Units 1 - 4)</strong>: <br>
-- <em>Lecture (2/14)</em>: StreamStats. Wrap up dataRetrieval. Wrap up sections 1 - 4.<br />
-- <em>Exam 1 (2/16)</em>: Term project overview and assign take home <strong>Exam 1</strong>. <br>
-- <em>Term project work session</em>: project brainstorm, identify data, analysis, and models (if applicable) necessary to complete project. <br>
-- Undergraduate students identify partner for term project by 2/16.</p>
-<p><strong>Week 6 (Unit 5)</strong>: <br>
-- <em>Lecture (2/21)</em>: Surface water: Rating curves and hydrographs. <br>
-- <em>Lab 4 (2/23)</em>: Rating curves and hydrographs <br>
-- <em>Reading</em>: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 4</a> 4-Hypothesis Tests in SMWR.</p>
-<p><strong>Week 7 (Unit 6)</strong>: <br>
-- <em>Lecture (2/28)</em>: Flow frequency analysis (high and low flows) <br>
-- <em>Lab 5 (3/2)</em>: Flow frequency analysis <br>
-- <em>Reading</em>: <a href="https://pubs.usgs.gov/wri/wri034196/wrir03-4196.pdf" target="_blank">PeakFlow Frequency Estiamtes for USGS Streamflow-Gaging Stations in Connecticut</a>
-<em>AND</em> <a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10" target="_blank">Definitions and characteristics of low flows</a> in EPA Environmental Modeling Community of Practice</p>
-<p><strong>Week 8 (Unit 6 contd)</strong>: <br>
-- <em>Lecture (3/7)</em>: Precipitation data acquisition and analysis <br>
-- <em>Lab 6 (3/9)</em>: Precipitation analysis <br>
-- <em>Reading</em>: <a href="https://indico.ictp.it/event/a12165/session/21/contribution/16/material/0/0.pdf" target="_blank">Frequency analysis of rainfall data</a> Up to page 32.</p>
-<p><strong>Week 9: Spring break (3/14 &amp; 3/16)</strong> - no class!</p>
-<p><strong>Week 10 (Unit 7)</strong>: <br>
-- <em>Lecture (3/21)</em>: Hydrologic processes, climate and water balance. Trend detection and analysis, non-parametric approaches.<br>
-- <em>Lab 7 (3/23)</em>: Trend analysis <br>
-- <em>Reading</em>: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapters 12.1 &amp; 12.2</a> 12.1-General Structure of Trend Tests &amp; 12.2-Trend Tests with No Exogenous Variables in SMWR.</p>
-<p><strong>Week 11 (Unit 8)</strong>: <br>
-- <em>Lecture (3/28)</em>: Geospatial data in R <br>
-- <em>Lab (3/30)</em>: Term project work session and assign <strong>Exam 2</strong></p>
-<p><strong>Week 12 (Units 5 - 8)</strong>: <br>
-- <em>Lecture (4/4)</em>: Geospatial hydrology in R <br>
-- <em>Lab (4/6)</em>: In class work and Exam 1 resubmission. <br>
-- <em>Reading</em>: <a href="https://geocompr.robinlovelace.net/intro.html" target="_blank">Geocomputation with R</a>
-<em>AND</em> <a href="https://pjbartlein.github.io/REarthSysSci/geospatial.html" target="_blank">Geospatial analysis in R</a></p>
-<p><strong>Week 13 (Unit 9)</strong>: <br>
-- <em>Lecture (4/11)</em>: Watershed delineation in R <br>
-- <em>Lab (4/13)</em>: Term project update presentations</p>
-<p><strong>Week 14 (Unit 10)</strong>: <br>
-- <em>Lecture (4/18)</em>: Hydrological modeling part 1 <br>
-- <em>Lab (4/20)</em>: Lab or term project work session (TBD) <br>
-- <em>Reading</em> <a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&amp;Lab=NERL" target="_blank">An Overview of Rainfall-Runoff Model Types</a></p>
-<p><strong>Week 15 (Unit 10 contd)</strong>: <br>
-- <em>Lecture (4/25)</em>: Hydrological modeling part 2 <br>
-- <em>Lab (4/27)</em>: Lab or term project work session (TBD)</p>
-<p><strong>Week 16</strong>: Term project presentations (5/2 and 5/4)</p>
-<p><strong>Week 17 (finals week)</strong>: Final exam 5/9 10 - 11:50 AM (Units 1 - 10)</p>
+<div id="deliverable-1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Deliverable<a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#deliverable-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Knit this .Rmd to .html and upload both on D2L.</p>
+<p>To get this to knit you will need to save objects as csv (write_csv) then load the csv (read_csv) so that you can comment out the whatNWISsites, readNWISdata, etc lines of code. If those lines are not commented out, this will likely not knit.</p>
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
             </section>
@@ -371,8 +297,8 @@ Website: <a href="https://tpcovino.github.io/ensc_445_545_bookdown" class="uri">
           </div>
         </div>
       </div>
+<a href="usgs-dataretrieval-part-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="intro-to-data-visualization.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -403,7 +329,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/index.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/08_lab_3.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -411,7 +337,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/index.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/08_lab_3.Rmd",
 "text": null
 },
 "download": null,
