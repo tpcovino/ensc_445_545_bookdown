@@ -23,7 +23,7 @@ library(lubridate)
 library(leaflet)
 ```
 
-## Exploring what dataRetrieval can do.
+## Exploring what dataRetrieval can do
 
 Think about the dataRetrieval as a way to interact with same public data you can access through waterdata.usgs.gov but without having to click on buttons and search around. It makes getting data or doing analyses with USGS data much more reproducible and fast!
 
@@ -80,14 +80,21 @@ mt_gauge_map <- leaflet() %>%
 
 **Challenge**: change the code that generates the "stream_gauges" object to generate an object called "gallatin" that only include the gauges within Gallatin County and map them. Investigate the map and pay particular attention to 06048650 and 06048700. What is going on there? 
 ```{r}
+gallatin <- whatNWISsites(parameterCd = param_cd, service = service_cd, stateCd = state_cd, startDate = start, endDate = end, countyCd = "Gallatin") %>% 
+  select(site_no, station_nm, dec_lat_va, dec_long_va)
 
+gallatin_map <- leaflet() %>% 
+  addProviderTiles("Stamen.Terrain") %>% 
+  addAwesomeMarkers(data = gallatin, lat = ~dec_lat_va, lng = ~dec_long_va, label = ~station_nm, 
+                    popup = ~paste("Site", site_no)) 
 
+gallatin_map
 ```
 
 
-Let's explore some of dataRetrieval capabilities using two local gauging sites. If you map the gauges in the gallatin object you created above you will see these two gauges on the map. Let's work with 1. A USGS gauge on the Gallatin River near Gallatin Gateway. The gague number is 06043500. And another gauge near the reservoir at Hyalite, gauge number 06050000.
+Let's explore some of dataRetrieval capabilities using two local gauging sites. Let's work with 1. A USGS gauge on the Gallatin River near Gallatin Gateway. The gague number is 06043500. And another gauge near the reservoir at Hyalite, gauge number 06050000.
 
-## First, let's map the sites.
+## First, let's map these sites.
 
 ```{r}
 
@@ -269,24 +276,69 @@ That looks better!
 **Challenge** follow the steps from above to download and plot temperature data for the Gallatin River site (06043500) from begin_date to end_date. call the data frame gal_t.
 
 ```{r}
+gal_t_site <- data_avail_clean$site_no[1]
+gal_t_param <- data_avail_clean$parm_cd[1]
+gal_t_start <- data_avail_clean$begin_date[1]
+gal_t_end <- data_avail_clean$end_date[1]
 
 
+gal_t <- readNWISdata(sites = gal_t_site, parameterCd = gal_t_param, service ="dv", startDate = gal_t_start, endDate = gal_t_end) %>% 
+  renameNWISColumns() %>% 
+  select(site_no, dateTime, Wtemp_Max, Wtemp_Min, Wtemp)
+
+view(gal_t)
+
+gal_t %>% 
+  ggplot(aes(x = dateTime, y = Wtemp)) +
+  geom_point()
 
 ```
 
 **Challenge** use join to create a dataframe called gal_t_q that joins gal_t and gal_q and keeps only Q data when there is T data. Then plot both Q and T and stack the plots.
 
 ```{r}
+gal_t_q <- left_join(gal_t, gal_q, by = "dateTime")
 
+view(gal_t_q)
 
+#let's clean that up!
 
+head(gal_t_q)
+
+gal_t_q <- gal_t_q %>% 
+  select(site_no.x, dateTime, Wtemp, Flow) %>% 
+  rename(site_no = 1)
+
+view(gal_t_q)
+head(gal_t_q)
+tail(gal_t_q)
+
+p1 <-gal_t_q %>% 
+  ggplot(aes(x = dateTime, y = Flow)) +
+  geom_point(color = "blue") +
+  labs(x = "Date", y = "Q (cfs)") +
+  theme_linedraw()
+  
+p2 <- gal_t_q %>% 
+  ggplot(aes(x = dateTime, y = Wtemp)) +
+  geom_point(color = "red") +
+  labs(x = "", y = "T (degrees C)") +
+  theme_linedraw()
+
+library(patchwork)
+
+p2 / p1
 ```
 
 **Challenge** Using gal_t_q, plot Q in cubic meters per second on x and T in Celsius on Y, color by date, add labels to axes, and select a theme.
 
 ```{r}
-
-
+gal_t_q %>% 
+  mutate(q_cms = Flow * 0.0283) %>% 
+  ggplot(aes(x = q_cms, y = Wtemp, color = dateTime)) +
+  geom_point() +
+  labs(x = "Q (cms)", y = "T (degrees C)", color = "Date") +
+  theme_linedraw(base_size = 16)
 
 ```
 
@@ -332,13 +384,24 @@ hy_gal_names %>%
 **Challenge** Download Q data for all of the sites in the gallatin df. Rename columns using renameNWIScolumns and call this df gallatin_q. Join gallatin and gallatin_q so that you have a df that includes the station names. Plot Q and color by station name. 
 
 ```{r}
+gallatin_sites <- gallatin$site_no
 
+gallatin_q <- readNWISdata(sites = gallatin_sites, parameterCd = param_cd, service = "dv", startDate = start, endDate = end)
 
+gallatin_q <- gallatin_q %>% 
+  renameNWISColumns() %>% 
+  select(site_no, date_time = dateTime, flow = Flow)
+
+gallatin_q_names <- left_join(gallatin_q, gallatin, by = "site_no") %>% 
+  rename(flow_cfs = flow)
 ```
 
 
 ```{r}
-
+gallatin_q_names %>% 
+  ggplot(aes(x = date_time, y = flow_cfs, color = station_nm)) +
+           geom_point() +
+  facet_wrap(facets = "station_nm")
 
 ```
 

@@ -52,6 +52,24 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -223,8 +241,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html"><i class="fa fa-check"></i><b>7</b> USGS dataRetrieval: Part 1</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#goals"><i class="fa fa-check"></i><b>7.1</b> Goals</a></li>
-<li class="chapter" data-level="7.2" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#exploring-what-dataretrieval-can-do."><i class="fa fa-check"></i><b>7.2</b> Exploring what dataRetrieval can do.</a></li>
-<li class="chapter" data-level="7.3" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#first-lets-map-the-sites."><i class="fa fa-check"></i><b>7.3</b> First, let’s map the sites.</a></li>
+<li class="chapter" data-level="7.2" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>7.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="7.3" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>7.3</b> First, let’s map these sites.</a></li>
 <li class="chapter" data-level="7.4" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#joins"><i class="fa fa-check"></i><b>7.4</b> Joins</a></li>
 <li class="chapter" data-level="7.5" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#join-practice-example"><i class="fa fa-check"></i><b>7.5</b> Join practice example</a></li>
 <li class="chapter" data-level="7.6" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>7.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
@@ -259,16 +277,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, leaflet, lubridate) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
 <p>Load the necessary packages.</p>
 <p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022. Call this df “stream_gauges”</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
-<span id="cb1-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb1-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then load the data. </span></span>
-<span id="cb1-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb1-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb149-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb149-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then load the data. </span></span>
+<span id="cb149-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb149-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
 <p>Map the gauges.</p>
 <p>Download the Q data for the gauges using dataRetrieval. Call the dataframe you create “flows”</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
-<span id="cb2-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
-<span id="cb2-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
+<span id="cb150-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb150-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
 <p>Make a facet wrap to look at the flows for each gauge.</p>
 <p>Filter your data frame of streamflow data to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this df “flows_filt”</p>
 <p>Make another facet wrap of flow at those 4 guages.</p>

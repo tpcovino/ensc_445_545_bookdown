@@ -75,8 +75,8 @@ problem-6-5-pts-1
 deliverable
 usgs-dataretrieval-part-1
 goals
-exploring-what-dataretrieval-can-do.
-first-lets-map-the-sites.
+exploring-what-dataretrieval-can-do
+first-lets-map-these-sites.
 joins
 join-practice-example
 now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.
