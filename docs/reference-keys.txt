@@ -83,3 +83,11 @@ now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-
 lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts
 summary-20-pts
 deliverable-1
+demo-dataretrieval-and-streamstats
+load-some-standard-packages.
+define-parameters-for-dataretrieval.
+we-can-look-for-sites-based-on-state-county-huc-site-number-etc.
+we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data.
+streamstats
+delineate-one-watershed-in-streamstats
+lab-3-demo

@@ -80,7 +80,7 @@ mt_gauge_map <- leaflet() %>%
 
 **Challenge**: change the code that generates the "stream_gauges" object to generate an object called "gallatin" that only include the gauges within Gallatin County and map them. Investigate the map and pay particular attention to 06048650 and 06048700. What is going on there? 
 ```{r}
-gallatin <- whatNWISsites(parameterCd = param_cd, service = service_cd, stateCd = state_cd, startDate = start, endDate = end, countyCd = "Gallatin") %>% 
+gallatin <- whatNWISdata(parameterCd = param_cd, service = service_cd, stateCd = state_cd, startDate = start, endDate = end, countyCd = "Gallatin") %>% 
   select(site_no, station_nm, dec_lat_va, dec_long_va)
 
 gallatin_map <- leaflet() %>% 

@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2023-02-09" />
+<meta name="date" content="2023-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -251,6 +251,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#summary-20-pts"><i class="fa fa-check"></i><b>8.1</b> Summary (20 pts)</a></li>
 <li class="chapter" data-level="8.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#deliverable-1"><i class="fa fa-check"></i><b>8.2</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html"><i class="fa fa-check"></i><b>9</b> Demo: dataRetrieval and StreamStats</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#load-some-standard-packages."><i class="fa fa-check"></i><b>9.1</b> Load some standard packages.</a></li>
+<li class="chapter" data-level="9.2" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#define-parameters-for-dataretrieval."><i class="fa fa-check"></i><b>9.2</b> Define parameters for dataRetrieval.</a></li>
+<li class="chapter" data-level="9.3" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-look-for-sites-based-on-state-county-huc-site-number-etc."><i class="fa fa-check"></i><b>9.3</b> We can look for sites based on state, county, huc, site number, etc.</a></li>
+<li class="chapter" data-level="9.4" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data."><i class="fa fa-check"></i><b>9.4</b> We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data.</a></li>
+<li class="chapter" data-level="9.5" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#streamstats"><i class="fa fa-check"></i><b>9.5</b> StreamStats</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#delineate-one-watershed-in-streamstats"><i class="fa fa-check"></i><b>9.5.1</b> Delineate one watershed in StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#lab-3-demo"><i class="fa fa-check"></i><b>9.6</b> Lab 3 Demo</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -490,7 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-2"><a href="statistics-in-hydrology---unit-3.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="statistics-in-hydrology---unit-3.html#cb98-3" aria-hidden="true" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -2.282838</code></pre>
+## -2.325717</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="5.9">
@@ -544,7 +556,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Lilliefors (Kolmogorov-Smirnov) normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0041381, p-value = 0.9469</code></pre>
+## D = 0.0062046, p-value = 0.4622</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="statistics-in-hydrology---unit-3.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb106-2"><a href="statistics-in-hydrology---unit-3.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb106-3"><a href="statistics-in-hydrology---unit-3.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -552,7 +564,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.23778, p-value = 0.7836</code></pre>
+## A = 0.35593, p-value = 0.4583</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="statistics-in-hydrology---unit-3.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 <ul>
 <li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>
