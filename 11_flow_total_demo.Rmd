@@ -1,0 +1,70 @@
+---
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+---
+
+# Demo on calculation flow totals in mm.
+
+```{r}
+library(dataRetrieval)
+library(tidyverse)
+```
+
+```{r}
+site <- "06187915"
+parm_cd <- "00060"
+service_cd <- "dv"
+start <- as.Date("2022-05-01")
+end <- as.Date("2022-10-01")
+```
+
+```{r}
+gauge_info <- readNWISsite(site) %>% 
+  select(site_no, station_nm, drain_area_va)
+```
+
+```{r}
+flow <- readNWISdata(sites = site, parameterCd = parm_cd, service = service_cd, startDate = start, endDate = end) %>% 
+  renameNWISColumns() %>% 
+  select(site_no, date = dateTime, flow_cfs = Flow)
+```
+
+```{r}
+flow <- left_join(flow, gauge_info, by = "site_no")
+```
+
+```{r}
+flow_mm <- flow %>% 
+  mutate(cfd = flow_cfs * 86400) %>% 
+  mutate(cmd = cfd * 0.0283168) %>% 
+  mutate(drain_sq_me = drain_area_va * 2.59e+6) %>% 
+  mutate(m_d = cmd/drain_sq_me) %>% 
+  mutate(mm_d = m_d * 1000) %>% 
+  select(site_no, station_nm, date, mm_d)
+```
+
+```{r}
+flow_mm %>% 
+  ggplot(aes(x = date, y = mm_d)) +
+  geom_point()
+```
+
+```{r}
+library(lubridate)
+
+flow_tot_an <- flow_mm %>%
+  group_by(site_no, station_nm) %>% 
+  summarize(tot_an = sum(mm_d, na.rm = TRUE))
+
+```
+
+
+
+
+
+
+
+

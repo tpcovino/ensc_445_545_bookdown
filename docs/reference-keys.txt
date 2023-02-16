@@ -90,3 +90,4 @@ streamstats
 delineate-one-watershed-in-streamstats
 lab-3-demo
 exam-1-units-1---4
+demo-on-calculation-flow-totals-in-mm.
