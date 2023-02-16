@@ -42,11 +42,12 @@ huc_gauges <- whatNWISsites(parameterCd = param_cd, service = service_cd, huc = 
 
 ## We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data. 
 ```{r}
-wq_sites <- whatWQPsites(huc = huc_cd, startDate = start, endDate = end, characteristicName = "Nitrate")
 
-wq_sites <- whatWQPsites(paste0("USGS-", site = "06043500"), startDate = start, endDate = end, characteristicName = "Nitrate")
+#wq_sites <- whatWQPsites(huc = huc_cd, startDate = start, endDate = end, characteristicName = "Nitrate")
 
-gw_sites <- whatNWISdata(parameterCd = "72019", stateCd = state_cd, countyCd = county_cd)
+#wq_sites <- whatWQPsites(paste0("USGS-", site = "06043500"), startDate = start, endDate = end, characteristicName = "Nitrate")
+
+#gw_sites <- whatNWISdata(parameterCd = "72019", stateCd = state_cd, countyCd = county_cd)
 
 ```
 
@@ -57,8 +58,8 @@ StreamStats isn't available through the Comprehensive R Archive Network (CRAN), 
 #install.packages("devtools")
 #devvtool::install_github("markwh/streamstats")
 #install.packages("sf")
-library(sf)
-library(streamstats)
+#library(sf)
+#library(streamstats)
 
 ```
 
@@ -89,24 +90,24 @@ gall_y <-  gallatin_gauge_loc$dec_lat_va
 The delineateWatershed function will do the work. 
 ```{r}
 
-gallatin_gauge_map <- delineateWatershed(xlocation = gall_x, ylocation = gall_y, crs = 4326, includeparameters = "true", includeflowtypes = "true")
+#gallatin_gauge_map <- delineateWatershed(xlocation = gall_x, ylocation = gall_y, crs = 4326, includeparameters = "true", includeflowtypes = "true")
 
-leafletWatershed(gallatin_gauge_map)
+#leafletWatershed(gallatin_gauge_map)
 ```
 
 Other statistics can be found using the computeChars (for watershed characteristics such as basin area and land-use) and computeFlowStats (for statistics such as flow percentiles)
 ```{r}
 
-chars <- computeChars(workspaceID = gallatin_gauge_map$workspaceID, rcode = "MT")
+#chars <- computeChars(workspaceID = gallatin_gauge_map$workspaceID, rcode = "MT")
 
 # chars is a list so we can make that easier to work with by grabbing some information from that list and putting it into a tibble (i.e., a dataframe)
 
-basin_chars <- chars$parameters %>% 
-  as_tibble()
+#basin_chars <- chars$parameters %>% 
+  #as_tibble()
 
 # stats gives us flow statistics for the site. 
 
-stats <- computeFlowStats(workspaceID = gallatin_gauge_map$workspaceID, rcode = "MT", simplify = TRUE)
+#stats <- computeFlowStats(workspaceID = gallatin_gauge_map$workspaceID, rcode = "MT", simplify = TRUE)
 ```
 
 ## Lab 3 Demo
