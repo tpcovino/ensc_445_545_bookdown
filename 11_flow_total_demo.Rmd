@@ -6,7 +6,7 @@ output:
     toc_float: true
 ---
 
-# Demo on calculation flow totals in mm.
+# Demo on calculating flow totals in mm.
 
 ```{r}
 library(dataRetrieval)
@@ -56,7 +56,8 @@ flow_mm %>%
 library(lubridate)
 
 flow_tot_an <- flow_mm %>%
-  group_by(site_no, station_nm) %>% 
+  mutate(year = year(date)) %>% 
+  group_by(year, site_no, station_nm) %>% 
   summarize(tot_an = sum(mm_d, na.rm = TRUE))
 
 ```
