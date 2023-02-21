@@ -57,7 +57,7 @@ Physical properties of a stream such as water depth, channel cross sectional are
 ![](images/eq_1.jpg)
 
 
-Finally, discharge is calculated by multiplying V by the channel cross-sectional area, A (L^3^). This is particularly useful when estimating streamflow at bankfull depth or during a flood event when it isn’t safe to conduct direct measurements (i.e., wade across the stream to perform a velocity-area measurement).
+Finally, discharge is calculated by multiplying V by the channel cross-sectional area, A (L^2^). This is particularly useful when estimating streamflow at bankfull depth or during a flood event when it isn’t safe to conduct direct measurements (i.e., wade across the stream to perform a velocity-area measurement).
 
 Manning’s roughness coefficient (n) is commonly determined in the field by the comparative and analytical methods.
 
