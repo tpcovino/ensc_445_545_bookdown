@@ -91,3 +91,11 @@ delineate-one-watershed-in-streamstats
 lab-3-demo
 exam-1-units-1---4
 demo-on-calculating-flow-totals-in-mm.
+supplemental-chapter-on-field-methods-in-fluvial-geomorphology
+overall-learning-objectives
+lecture
+stream-cross-section-and-gradient
+wolman-pebble-count
+mannings-roughness-coefficient
+rosgen-stream-classification
+relative-bed-stability-rbs
