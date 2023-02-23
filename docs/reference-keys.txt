@@ -99,3 +99,4 @@ wolman-pebble-count
 mannings-roughness-coefficient
 rosgen-stream-classification
 relative-bed-stability-rbs
+lab-4---rating-curve-analysis
