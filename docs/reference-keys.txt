@@ -110,3 +110,13 @@ making-stage-measurements
 applications-of-streamflow-and-stream-gage
 optional-activity-to-gain-deeper-understanding-of-rating-curve
 summary-questions
+flow-duration-curves
+get-data
+review-describe-the-distribution
+ecdfs
+calculate-flow-exceedence-probabilities
+plot-a-flow-duration-curve-using-the-probabilities
+example-use-of-an-fdc
+compare-to-a-boxplot-of-the-same-data
+challenge-examining-flow-regime-change-at-the-grand-canyon
+thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.

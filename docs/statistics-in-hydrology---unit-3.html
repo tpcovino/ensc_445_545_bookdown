@@ -288,6 +288,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>14.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
 <li class="chapter" data-level="14.5" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#summary-questions"><i class="fa fa-check"></i><b>14.5</b> Summary questions</a></li>
 </ul></li>
+<li class="chapter" data-level="15" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html"><i class="fa fa-check"></i><b>15</b> Flow Duration Curves</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#get-data"><i class="fa fa-check"></i><b>15.1</b> Get data</a></li>
+<li class="chapter" data-level="15.2" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>15.2</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="15.3" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#ecdfs"><i class="fa fa-check"></i><b>15.3</b> ECDFs</a></li>
+<li class="chapter" data-level="15.4" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>15.4</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="15.5" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>15.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="15.6" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>15.6</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="15.7" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>15.7</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="15.8" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#challenge-examining-flow-regime-change-at-the-grand-canyon"><i class="fa fa-check"></i><b>15.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
+<li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -526,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-2"><a href="statistics-in-hydrology---unit-3.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb98-3"><a href="statistics-in-hydrology---unit-3.html#cb98-3" aria-hidden="true" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -2.268443</code></pre>
+## -2.564643</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="5.9">
@@ -580,7 +592,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Lilliefors (Kolmogorov-Smirnov) normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0051954, p-value = 0.7389</code></pre>
+## D = 0.0072833, p-value = 0.2237</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="statistics-in-hydrology---unit-3.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb106-2"><a href="statistics-in-hydrology---unit-3.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb106-3"><a href="statistics-in-hydrology---unit-3.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -588,7 +600,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.29986, p-value = 0.5829</code></pre>
+## A = 0.4125, p-value = 0.3388</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="statistics-in-hydrology---unit-3.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 <ul>
 <li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>
@@ -662,6 +674,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
