@@ -120,3 +120,4 @@ example-use-of-an-fdc
 compare-to-a-boxplot-of-the-same-data
 challenge-examining-flow-regime-change-at-the-grand-canyon
 thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.
+lab-5---low-flow-analysis
