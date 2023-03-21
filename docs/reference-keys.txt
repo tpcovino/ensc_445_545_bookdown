@@ -1,8 +1,4 @@
 introduction
-course-overview-and-objectives
-structure
-philosophical-approach-and-books-resources-we-will-utilize
-tentative-schedule-subject-to-change
 intro-to-data-visualization
 learning-objectives
 download-and-install-tidyverse-library
