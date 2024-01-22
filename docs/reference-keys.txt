@@ -236,3 +236,5 @@ compare-to-a-boxplot-of-the-same-data-1
 challenge-examining-flow-regime-change-at-the-grand-canyon-1
 thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.-1
 lab-5---low-flow-analysis-1
+course-overview-and-objectives
+tentative-schedule-subject-to-change
