@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 21 Statistics in hydrology - Unit 3 | Hydrographs &amp; Rating Curves</title>
+  <meta name="description" content="Chapter 21 Statistics in hydrology - Unit 3 | Hydrographs &amp; Rating Curves" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 21 Statistics in hydrology - Unit 3 | Hydrographs &amp; Rating Curves" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 21 Statistics in hydrology - Unit 3 | Hydrographs &amp; Rating Curves" />
+  
+  
+  
+
+<meta name="author" content="" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"/>
+<link rel="next" href="lab-2-statistics-in-hydrology-30-pts-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Watershed Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#change-point-type"><i class="fa fa-check"></i><b>2.5</b> Change point type</a></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#set-colors"><i class="fa fa-check"></i><b>2.6</b> Set colors</a></li>
+<li class="chapter" data-level="2.7" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="2.8" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#plotting-multiple-groups-adding-a-third-variable"><i class="fa fa-check"></i><b>2.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="2.9" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#facets"><i class="fa fa-check"></i><b>2.9</b> Facets</a></li>
+<li class="chapter" data-level="2.10" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="2.11" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#boxplots"><i class="fa fa-check"></i><b>2.11</b> Boxplots</a></li>
+<li class="chapter" data-level="2.12" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="2.13" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#multiple-geoms"><i class="fa fa-check"></i><b>2.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="2.14" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#exit-ticket"><i class="fa fa-check"></i><b>2.14</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Data wrangling using tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator"><i class="fa fa-check"></i><b>3.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--"><i class="fa fa-check"></i><b>3.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#using-functions"><i class="fa fa-check"></i><b>3.5</b> Using functions</a></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#read-in-some-data"><i class="fa fa-check"></i><b>3.6</b> Read in some data</a></li>
+<li class="chapter" data-level="3.7" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#what-is-a-tibble"><i class="fa fa-check"></i><b>3.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="3.8" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr"><i class="fa fa-check"></i><b>3.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="3.9" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#filter"><i class="fa fa-check"></i><b>3.9</b> Filter</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-conditions"><i class="fa fa-check"></i><b>3.9.1</b> Multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#arrange"><i class="fa fa-check"></i><b>3.10</b> Arrange</a></li>
+<li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.11</b> Select</a></li>
+<li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.12</b> Mutate</a></li>
+<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.13</b> Summarize</a></li>
+<li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="3.17" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.17</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html"><i class="fa fa-check"></i><b>4</b> Lab 1: Data vis, wrangling, and programming (45 pts)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-1-5-pts"><i class="fa fa-check"></i><b>4.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="4.2" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-2-10-pts"><i class="fa fa-check"></i><b>4.2</b> Problem 2 (10 pts)</a></li>
+<li class="chapter" data-level="4.3" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-3-10-pts"><i class="fa fa-check"></i><b>4.3</b> Problem 3 (10 pts)</a></li>
+<li class="chapter" data-level="4.4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-4-10-pts"><i class="fa fa-check"></i><b>4.4</b> Problem 4 (10 pts)</a></li>
+<li class="chapter" data-level="4.5" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-5-5-pts"><i class="fa fa-check"></i><b>4.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="4.6" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-6-5-pts"><i class="fa fa-check"></i><b>4.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="4.7" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#summary"><i class="fa fa-check"></i><b>4.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html"><i class="fa fa-check"></i><b>5</b> Statistics in hydrology - Unit 3</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q1-2-pts"><i class="fa fa-check"></i><b>5.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="5.3" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#what-is-the-difference-between-a-sample-and-a-population"><i class="fa fa-check"></i><b>5.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="5.4" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q2-2-pts"><i class="fa fa-check"></i><b>5.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="5.5" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#measuring-our-sample-distribution-central-tendency"><i class="fa fa-check"></i><b>5.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="5.6" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#so-whats-a-weighted-average"><i class="fa fa-check"></i><b>5.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="5.7" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#measures-of-variability"><i class="fa fa-check"></i><b>5.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="5.8" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q3-2-pts"><i class="fa fa-check"></i><b>5.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="5.9" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one"><i class="fa fa-check"></i><b>5.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="5.10" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q4-2-pts"><i class="fa fa-check"></i><b>5.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="5.11" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q5-2-pts"><i class="fa fa-check"></i><b>5.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="5.12" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#deliverable-10-pts-due-thursday-22-by-1159-pm"><i class="fa fa-check"></i><b>5.12</b> Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html"><i class="fa fa-check"></i><b>6</b> Lab 2: Statistics in hydrology (30 pts)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-1-5-pts-1"><i class="fa fa-check"></i><b>6.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="6.2" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-2-5-pts"><i class="fa fa-check"></i><b>6.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="6.3" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-3-5-pts"><i class="fa fa-check"></i><b>6.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="6.4" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-4-5-pts"><i class="fa fa-check"></i><b>6.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="6.5" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-5-5-pts-1"><i class="fa fa-check"></i><b>6.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="6.6" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-6-5-pts-1"><i class="fa fa-check"></i><b>6.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="6.7" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#deliverable"><i class="fa fa-check"></i><b>6.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html"><i class="fa fa-check"></i><b>7</b> USGS dataRetrieval: Part 1</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#goals"><i class="fa fa-check"></i><b>7.1</b> Goals</a></li>
+<li class="chapter" data-level="7.2" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>7.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="7.3" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>7.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="7.4" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#joins"><i class="fa fa-check"></i><b>7.4</b> Joins</a></li>
+<li class="chapter" data-level="7.5" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#join-practice-example"><i class="fa fa-check"></i><b>7.5</b> Join practice example</a></li>
+<li class="chapter" data-level="7.6" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>7.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#summary-20-pts"><i class="fa fa-check"></i><b>8.1</b> Summary (20 pts)</a></li>
+<li class="chapter" data-level="8.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#deliverable-1"><i class="fa fa-check"></i><b>8.2</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html"><i class="fa fa-check"></i><b>9</b> Demo: dataRetrieval and StreamStats</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#load-some-standard-packages."><i class="fa fa-check"></i><b>9.1</b> Load some standard packages.</a></li>
+<li class="chapter" data-level="9.2" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#define-parameters-for-dataretrieval."><i class="fa fa-check"></i><b>9.2</b> Define parameters for dataRetrieval.</a></li>
+<li class="chapter" data-level="9.3" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-look-for-sites-based-on-state-county-huc-site-number-etc."><i class="fa fa-check"></i><b>9.3</b> We can look for sites based on state, county, huc, site number, etc.</a></li>
+<li class="chapter" data-level="9.4" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data."><i class="fa fa-check"></i><b>9.4</b> We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data.</a></li>
+<li class="chapter" data-level="9.5" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#streamstats"><i class="fa fa-check"></i><b>9.5</b> StreamStats</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#delineate-one-watershed-in-streamstats"><i class="fa fa-check"></i><b>9.5.1</b> Delineate one watershed in StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#lab-3-demo"><i class="fa fa-check"></i><b>9.6</b> Lab 3 Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="exam-1-units-1---4.html"><a href="exam-1-units-1---4.html"><i class="fa fa-check"></i><b>10</b> Exam 1: Units 1 - 4</a></li>
+<li class="chapter" data-level="11" data-path="demo-on-calculating-flow-totals-in-mm..html"><a href="demo-on-calculating-flow-totals-in-mm..html"><i class="fa fa-check"></i><b>11</b> Demo on calculating flow totals in mm.</a></li>
+<li class="chapter" data-level="12" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><i class="fa fa-check"></i><b>12</b> Supplemental chapter on field methods in fluvial geomorphology</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#overall-learning-objectives"><i class="fa fa-check"></i><b>12.1</b> Overall Learning Objectives:</a></li>
+<li class="chapter" data-level="12.2" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#lecture"><i class="fa fa-check"></i><b>12.2</b> Lecture</a></li>
+<li class="chapter" data-level="12.3" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#stream-cross-section-and-gradient"><i class="fa fa-check"></i><b>12.3</b> Stream Cross Section and Gradient</a></li>
+<li class="chapter" data-level="12.4" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#wolman-pebble-count"><i class="fa fa-check"></i><b>12.4</b> Wolman Pebble Count</a></li>
+<li class="chapter" data-level="12.5" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#mannings-roughness-coefficient"><i class="fa fa-check"></i><b>12.5</b> Manning’s Roughness Coefficient</a></li>
+<li class="chapter" data-level="12.6" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#rosgen-stream-classification"><i class="fa fa-check"></i><b>12.6</b> Rosgen Stream Classification</a></li>
+<li class="chapter" data-level="12.7" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#relative-bed-stability-rbs"><i class="fa fa-check"></i><b>12.7</b> Relative Bed Stability (RBS)</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="lab-4---rating-curve-analysis.html"><a href="lab-4---rating-curve-analysis.html"><i class="fa fa-check"></i><b>13</b> Lab 4 - Rating curve analysis</a></li>
+<li class="chapter" data-level="14" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html"><i class="fa fa-check"></i><b>14</b> Hydrographs and rating curves</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#overall-learning-objectives-1"><i class="fa fa-check"></i><b>14.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="14.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#reading"><i class="fa fa-check"></i><b>14.2</b> Reading</a></li>
+<li class="chapter" data-level="14.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#lecture-1"><i class="fa fa-check"></i><b>14.3</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#hydrographs-and-rating-curves-1"><i class="fa fa-check"></i><b>14.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>14.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="14.3.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#making-stage-measurements"><i class="fa fa-check"></i><b>14.3.3</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="14.3.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>14.3.4</b> Applications of streamflow and stream gage</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>14.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="14.5" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#summary-questions"><i class="fa fa-check"></i><b>14.5</b> Summary questions</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html"><i class="fa fa-check"></i><b>15</b> Flow Duration Curves</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#get-data"><i class="fa fa-check"></i><b>15.1</b> Get data</a></li>
+<li class="chapter" data-level="15.2" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>15.2</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="15.3" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#ecdfs"><i class="fa fa-check"></i><b>15.3</b> ECDFs</a></li>
+<li class="chapter" data-level="15.4" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>15.4</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="15.5" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>15.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="15.6" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>15.6</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="15.7" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>15.7</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="15.8" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#challenge-examining-flow-regime-change-at-the-grand-canyon"><i class="fa fa-check"></i><b>15.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
+<li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="18.2" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#download-and-install-tidyverse-library-1"><i class="fa fa-check"></i><b>18.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#reading-data-1"><i class="fa fa-check"></i><b>18.3</b> Reading data</a></li>
+<li class="chapter" data-level="18.4" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#our-first-ggplot-1"><i class="fa fa-check"></i><b>18.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="18.5" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#change-point-type-1"><i class="fa fa-check"></i><b>18.5</b> Change point type</a></li>
+<li class="chapter" data-level="18.6" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#set-colors-1"><i class="fa fa-check"></i><b>18.6</b> Set colors</a></li>
+<li class="chapter" data-level="18.7" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#controlling-color-with-a-third-variable-and-other-functions-1"><i class="fa fa-check"></i><b>18.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="18.8" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#plotting-multiple-groups-adding-a-third-variable-1"><i class="fa fa-check"></i><b>18.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="18.9" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#facets-1"><i class="fa fa-check"></i><b>18.9</b> Facets</a></li>
+<li class="chapter" data-level="18.10" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#two-variable-faceting-1"><i class="fa fa-check"></i><b>18.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="18.11" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#boxplots-1"><i class="fa fa-check"></i><b>18.11</b> Boxplots</a></li>
+<li class="chapter" data-level="18.12" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#more-about-color-size-etc-1"><i class="fa fa-check"></i><b>18.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="18.13" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#multiple-geoms-1"><i class="fa fa-check"></i><b>18.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="18.14" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#exit-ticket-2"><i class="fa fa-check"></i><b>18.14</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html"><i class="fa fa-check"></i><b>19</b> Data wrangling using tidyverse</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#introduction-3"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
+<li class="chapter" data-level="19.2" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#learning-objectives-4"><i class="fa fa-check"></i><b>19.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="19.3" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-use-r-as-a-calculator-1"><i class="fa fa-check"></i><b>19.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="19.4" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-create-new-objects-using---1"><i class="fa fa-check"></i><b>19.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="19.5" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#using-functions-1"><i class="fa fa-check"></i><b>19.5</b> Using functions</a></li>
+<li class="chapter" data-level="19.6" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#read-in-some-data-1"><i class="fa fa-check"></i><b>19.6</b> Read in some data</a></li>
+<li class="chapter" data-level="19.7" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#what-is-a-tibble-1"><i class="fa fa-check"></i><b>19.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="19.8" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#data-wrangling-in-dplyr-1"><i class="fa fa-check"></i><b>19.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="19.9" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#filter-1"><i class="fa fa-check"></i><b>19.9</b> Filter</a>
+<ul>
+<li class="chapter" data-level="19.9.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-conditions-1"><i class="fa fa-check"></i><b>19.9.1</b> Multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="19.10" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#arrange-1"><i class="fa fa-check"></i><b>19.10</b> Arrange</a></li>
+<li class="chapter" data-level="19.11" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#select-1"><i class="fa fa-check"></i><b>19.11</b> Select</a></li>
+<li class="chapter" data-level="19.12" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#mutate-1"><i class="fa fa-check"></i><b>19.12</b> Mutate</a></li>
+<li class="chapter" data-level="19.13" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#summarize-1"><i class="fa fa-check"></i><b>19.13</b> Summarize</a></li>
+<li class="chapter" data-level="19.14" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-operations-with-pipes-1"><i class="fa fa-check"></i><b>19.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="19.15" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#a-final-comment-on-nas-1"><i class="fa fa-check"></i><b>19.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="19.16" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#thats-it-for-today-1"><i class="fa fa-check"></i><b>19.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="19.17" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#exit-ticket-3"><i class="fa fa-check"></i><b>19.17</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><i class="fa fa-check"></i><b>20</b> Lab 1: Data vis, wrangling, and programming (45 pts)</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-1-5-pts-2"><i class="fa fa-check"></i><b>20.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="20.2" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-2-10-pts-1"><i class="fa fa-check"></i><b>20.2</b> Problem 2 (10 pts)</a></li>
+<li class="chapter" data-level="20.3" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-3-10-pts-1"><i class="fa fa-check"></i><b>20.3</b> Problem 3 (10 pts)</a></li>
+<li class="chapter" data-level="20.4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-4-10-pts-1"><i class="fa fa-check"></i><b>20.4</b> Problem 4 (10 pts)</a></li>
+<li class="chapter" data-level="20.5" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-5-5-pts-2"><i class="fa fa-check"></i><b>20.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="20.6" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-6-5-pts-2"><i class="fa fa-check"></i><b>20.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="20.7" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#summary-1"><i class="fa fa-check"></i><b>20.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html"><i class="fa fa-check"></i><b>21</b> Statistics in hydrology - Unit 3</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#learning-objectives-5"><i class="fa fa-check"></i><b>21.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="21.2" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q1-2-pts-1"><i class="fa fa-check"></i><b>21.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="21.3" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#what-is-the-difference-between-a-sample-and-a-population-1"><i class="fa fa-check"></i><b>21.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="21.4" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q2-2-pts-1"><i class="fa fa-check"></i><b>21.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="21.5" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#measuring-our-sample-distribution-central-tendency-1"><i class="fa fa-check"></i><b>21.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="21.6" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#so-whats-a-weighted-average-1"><i class="fa fa-check"></i><b>21.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="21.7" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#measures-of-variability-1"><i class="fa fa-check"></i><b>21.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="21.8" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q3-2-pts-1"><i class="fa fa-check"></i><b>21.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="21.9" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1"><i class="fa fa-check"></i><b>21.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="21.10" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q4-2-pts-1"><i class="fa fa-check"></i><b>21.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="21.11" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q5-2-pts-1"><i class="fa fa-check"></i><b>21.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="21.12" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#deliverable-10-pts-due-thursday-22-by-1159-pm-1"><i class="fa fa-check"></i><b>21.12</b> Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html"><i class="fa fa-check"></i><b>22</b> Lab 2: Statistics in hydrology (30 pts)</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-1-5-pts-3"><i class="fa fa-check"></i><b>22.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="22.2" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-2-5-pts-1"><i class="fa fa-check"></i><b>22.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="22.3" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-3-5-pts-1"><i class="fa fa-check"></i><b>22.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="22.4" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-4-5-pts-1"><i class="fa fa-check"></i><b>22.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="22.5" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-5-5-pts-3"><i class="fa fa-check"></i><b>22.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="22.6" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-6-5-pts-3"><i class="fa fa-check"></i><b>22.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="22.7" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#deliverable-2"><i class="fa fa-check"></i><b>22.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html"><i class="fa fa-check"></i><b>23</b> USGS dataRetrieval: Part 1</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#goals-1"><i class="fa fa-check"></i><b>23.1</b> Goals</a></li>
+<li class="chapter" data-level="23.2" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#exploring-what-dataretrieval-can-do-1"><i class="fa fa-check"></i><b>23.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="23.3" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#first-lets-map-these-sites.-1"><i class="fa fa-check"></i><b>23.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="23.4" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#joins-1"><i class="fa fa-check"></i><b>23.4</b> Joins</a></li>
+<li class="chapter" data-level="23.5" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#join-practice-example-1"><i class="fa fa-check"></i><b>23.5</b> Join practice example</a></li>
+<li class="chapter" data-level="23.6" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.-1"><i class="fa fa-check"></i><b>23.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><i class="fa fa-check"></i><b>24</b> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#summary-20-pts-1"><i class="fa fa-check"></i><b>24.1</b> Summary (20 pts)</a></li>
+<li class="chapter" data-level="24.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#deliverable-3"><i class="fa fa-check"></i><b>24.2</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html"><i class="fa fa-check"></i><b>25</b> Demo: dataRetrieval and StreamStats</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#load-some-standard-packages.-1"><i class="fa fa-check"></i><b>25.1</b> Load some standard packages.</a></li>
+<li class="chapter" data-level="25.2" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#define-parameters-for-dataretrieval.-1"><i class="fa fa-check"></i><b>25.2</b> Define parameters for dataRetrieval.</a></li>
+<li class="chapter" data-level="25.3" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#we-can-look-for-sites-based-on-state-county-huc-site-number-etc.-1"><i class="fa fa-check"></i><b>25.3</b> We can look for sites based on state, county, huc, site number, etc.</a></li>
+<li class="chapter" data-level="25.4" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data.-1"><i class="fa fa-check"></i><b>25.4</b> We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data.</a></li>
+<li class="chapter" data-level="25.5" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#streamstats-1"><i class="fa fa-check"></i><b>25.5</b> StreamStats</a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#delineate-one-watershed-in-streamstats-1"><i class="fa fa-check"></i><b>25.5.1</b> Delineate one watershed in StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="25.6" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#lab-3-demo-1"><i class="fa fa-check"></i><b>25.6</b> Lab 3 Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="exam-1-units-1---4-1.html"><a href="exam-1-units-1---4-1.html"><i class="fa fa-check"></i><b>26</b> Exam 1: Units 1 - 4</a></li>
+<li class="chapter" data-level="27" data-path="demo-on-calculating-flow-totals-in-mm.-1.html"><a href="demo-on-calculating-flow-totals-in-mm.-1.html"><i class="fa fa-check"></i><b>27</b> Demo on calculating flow totals in mm.</a></li>
+<li class="chapter" data-level="28" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><i class="fa fa-check"></i><b>28</b> Supplemental chapter on field methods in fluvial geomorphology</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#overall-learning-objectives-2"><i class="fa fa-check"></i><b>28.1</b> Overall Learning Objectives:</a></li>
+<li class="chapter" data-level="28.2" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#lecture-2"><i class="fa fa-check"></i><b>28.2</b> Lecture</a></li>
+<li class="chapter" data-level="28.3" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#stream-cross-section-and-gradient-1"><i class="fa fa-check"></i><b>28.3</b> Stream Cross Section and Gradient</a></li>
+<li class="chapter" data-level="28.4" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#wolman-pebble-count-1"><i class="fa fa-check"></i><b>28.4</b> Wolman Pebble Count</a></li>
+<li class="chapter" data-level="28.5" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#mannings-roughness-coefficient-1"><i class="fa fa-check"></i><b>28.5</b> Manning’s Roughness Coefficient</a></li>
+<li class="chapter" data-level="28.6" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#rosgen-stream-classification-1"><i class="fa fa-check"></i><b>28.6</b> Rosgen Stream Classification</a></li>
+<li class="chapter" data-level="28.7" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#relative-bed-stability-rbs-1"><i class="fa fa-check"></i><b>28.7</b> Relative Bed Stability (RBS)</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="lab-4---rating-curve-analysis-1.html"><a href="lab-4---rating-curve-analysis-1.html"><i class="fa fa-check"></i><b>29</b> Lab 4 - Rating curve analysis</a></li>
+<li class="chapter" data-level="30" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html"><i class="fa fa-check"></i><b>30</b> Hydrographs and rating curves</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#overall-learning-objectives-3"><i class="fa fa-check"></i><b>30.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="30.2" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#reading-1"><i class="fa fa-check"></i><b>30.2</b> Reading</a></li>
+<li class="chapter" data-level="30.3" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#lecture-3"><i class="fa fa-check"></i><b>30.3</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="30.3.1" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#hydrographs-and-rating-curves-3"><i class="fa fa-check"></i><b>30.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="30.3.2" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#rain-versus-snow-dominated-systems-1"><i class="fa fa-check"></i><b>30.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="30.3.3" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#making-stage-measurements-1"><i class="fa fa-check"></i><b>30.3.3</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="30.3.4" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#applications-of-streamflow-and-stream-gage-1"><i class="fa fa-check"></i><b>30.3.4</b> Applications of streamflow and stream gage</a></li>
+</ul></li>
+<li class="chapter" data-level="30.4" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#optional-activity-to-gain-deeper-understanding-of-rating-curve-1"><i class="fa fa-check"></i><b>30.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="30.5" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#summary-questions-1"><i class="fa fa-check"></i><b>30.5</b> Summary questions</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html"><i class="fa fa-check"></i><b>31</b> Flow Duration Curves</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#get-data-1"><i class="fa fa-check"></i><b>31.1</b> Get data</a></li>
+<li class="chapter" data-level="31.2" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#review-describe-the-distribution-1"><i class="fa fa-check"></i><b>31.2</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="31.3" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#ecdfs-1"><i class="fa fa-check"></i><b>31.3</b> ECDFs</a></li>
+<li class="chapter" data-level="31.4" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#calculate-flow-exceedence-probabilities-1"><i class="fa fa-check"></i><b>31.4</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="31.5" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#plot-a-flow-duration-curve-using-the-probabilities-1"><i class="fa fa-check"></i><b>31.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="31.6" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#example-use-of-an-fdc-1"><i class="fa fa-check"></i><b>31.6</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="31.7" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#compare-to-a-boxplot-of-the-same-data-1"><i class="fa fa-check"></i><b>31.7</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="31.8" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#challenge-examining-flow-regime-change-at-the-grand-canyon-1"><i class="fa fa-check"></i><b>31.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
+<li class="chapter" data-level="31.9" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.-1"><i class="fa fa-check"></i><b>31.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="lab-5---low-flow-analysis-1.html"><a href="lab-5---low-flow-analysis-1.html"><i class="fa fa-check"></i><b>32</b> Lab 5 - Low Flow Analysis</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hydrographs &amp; Rating Curves</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistics-in-hydrology---unit-3-1" class="section level1 hasAnchor" number="21">
+<h1><span class="header-section-number">Chapter 21</span> Statistics in hydrology - Unit 3<a href="statistics-in-hydrology---unit-3-1.html#statistics-in-hydrology---unit-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>You can find the repo for this activity <a href="https://github.com/tpcovino/unit_3_stats" target="_blank">here</a></p>
+<div id="learning-objectives-5" class="section level2 hasAnchor" number="21.1">
+<h2><span class="header-section-number">21.1</span> Learning objectives<a href="statistics-in-hydrology---unit-3-1.html#learning-objectives-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Describe the characteristics of normal and non-normal distributions</li>
+<li>Understand the difference between a sample and a population</li>
+<li>Quantitatively describe data distributions</li>
+<li>Test data sets for normality</li>
+</ul>
+<p>Reading for this section</p>
+<p><a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Statistical Methods in Water Resources: Chapter 1</a></p>
+<p>Today will use a new package called patchwork that is an extension to ggplot. See <a href="https://exts.ggplot2.tidyverse.org/gallery/" target="_blank">here</a> for ggplot extensions including patchwork.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="statistics-in-hydrology---unit-3-1.html#cb254-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb254-2"><a href="statistics-in-hydrology---unit-3-1.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<p>First let’s generate some synthetic data and talk about how to visualize it.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="statistics-in-hydrology---unit-3-1.html#cb255-1" tabindex="-1"></a><span class="co"># generate a normal distribution</span></span>
+<span id="cb255-2"><a href="statistics-in-hydrology---unit-3-1.html#cb255-2" tabindex="-1"></a>ExNorm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb255-3"><a href="statistics-in-hydrology---unit-3-1.html#cb255-3" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb255-4"><a href="statistics-in-hydrology---unit-3-1.html#cb255-4" tabindex="-1"></a></span>
+<span id="cb255-5"><a href="statistics-in-hydrology---unit-3-1.html#cb255-5" tabindex="-1"></a><span class="co"># look at distributions</span></span>
+<span id="cb255-6"><a href="statistics-in-hydrology---unit-3-1.html#cb255-6" tabindex="-1"></a><span class="co"># first using a histogram</span></span>
+<span id="cb255-7"><a href="statistics-in-hydrology---unit-3-1.html#cb255-7" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb255-8"><a href="statistics-in-hydrology---unit-3-1.html#cb255-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb255-9"><a href="statistics-in-hydrology---unit-3-1.html#cb255-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="statistics-in-hydrology---unit-3-1.html#cb256-1" tabindex="-1"></a><span class="co"># next using the pdf</span></span>
+<span id="cb256-2"><a href="statistics-in-hydrology---unit-3-1.html#cb256-2" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb256-3"><a href="statistics-in-hydrology---unit-3-1.html#cb256-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb256-4"><a href="statistics-in-hydrology---unit-3-1.html#cb256-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-196-2.png" width="672" /></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="statistics-in-hydrology---unit-3-1.html#cb257-1" tabindex="-1"></a><span class="co">#Let&#39;s generate a plot that makes comparing these two easier</span></span></code></pre></div>
+<p>Stack plots to compare histogram and pdf</p>
+<p>We will save each plot as “ggplot object” and then output them using the patchwork package (loaded in the setup chunk).</p>
+<p>We have made other objects, like data frames or values, how do you think you would make a ggplot object?</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="statistics-in-hydrology---unit-3-1.html#cb258-1" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb258-2"><a href="statistics-in-hydrology---unit-3-1.html#cb258-2" tabindex="-1"></a>exhist <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
+<span id="cb258-3"><a href="statistics-in-hydrology---unit-3-1.html#cb258-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb258-4"><a href="statistics-in-hydrology---unit-3-1.html#cb258-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb258-5"><a href="statistics-in-hydrology---unit-3-1.html#cb258-5" tabindex="-1"></a></span>
+<span id="cb258-6"><a href="statistics-in-hydrology---unit-3-1.html#cb258-6" tabindex="-1"></a><span class="co"># pdf</span></span>
+<span id="cb258-7"><a href="statistics-in-hydrology---unit-3-1.html#cb258-7" tabindex="-1"></a>expdf <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb258-8"><a href="statistics-in-hydrology---unit-3-1.html#cb258-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb258-9"><a href="statistics-in-hydrology---unit-3-1.html#cb258-9" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span>
+<span id="cb258-10"><a href="statistics-in-hydrology---unit-3-1.html#cb258-10" tabindex="-1"></a></span>
+<span id="cb258-11"><a href="statistics-in-hydrology---unit-3-1.html#cb258-11" tabindex="-1"></a><span class="co"># put the plots side by side with + or on top of each other with /</span></span>
+<span id="cb258-12"><a href="statistics-in-hydrology---unit-3-1.html#cb258-12" tabindex="-1"></a><span class="co"># I&#39;ve also shown how to put a caption into a patchwork figure that has multiple panels. </span></span>
+<span id="cb258-13"><a href="statistics-in-hydrology---unit-3-1.html#cb258-13" tabindex="-1"></a></span>
+<span id="cb258-14"><a href="statistics-in-hydrology---unit-3-1.html#cb258-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> exhist<span class="sc">/</span>expdf</span>
+<span id="cb258-15"><a href="statistics-in-hydrology---unit-3-1.html#cb258-15" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">&quot;Figure 1. Comparison of histogram (top) and probability density function (bottom) of a synthetic data set generated with</span><span class="sc">\n</span><span class="st"> the rnorm function, 1000 samples, and a mean of 5.&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+</div>
+<div id="homework-q1-2-pts-1" class="section level2 hasAnchor" number="21.2">
+<h2><span class="header-section-number">21.2</span> Homework Q1 (2 pts)<a href="statistics-in-hydrology---unit-3-1.html#homework-q1-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>What is the difference between a histogram and a pdf?<br />
+</li>
+<li>What features of the histogram are preserved? Which are lost?</li>
+</ul>
+</div>
+<div id="what-is-the-difference-between-a-sample-and-a-population-1" class="section level2 hasAnchor" number="21.3">
+<h2><span class="header-section-number">21.3</span> What is the difference between a sample and a population?<a href="statistics-in-hydrology---unit-3-1.html#what-is-the-difference-between-a-sample-and-a-population-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Simply put: a population is the thing you are trying to measure. A sample is the data you measure in an effort to measure the population. A sample is a subset of a population.</p>
+<p>Let’s write some code for an example:</p>
+<p>We will create a POPULATION that is a large set of numbers. Think of this is as the concentration of Calcium in every bit of water in a lake. Then we will create a SAMPLE by randomly grabbing values from the POPULATION. This simulates us going around in a boat and taking grab samples in an effort to figure out the concentration of calcium in the lake.</p>
+<p>We can then run this code a bunch of times, you’ll get a different sample each time. You can also take a smaller or larger number of samples by changing “size” in the sample() function.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="statistics-in-hydrology---unit-3-1.html#cb259-1" tabindex="-1"></a>all_the_water <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-2"><a href="statistics-in-hydrology---unit-3-1.html#cb259-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb259-3"><a href="statistics-in-hydrology---unit-3-1.html#cb259-3" tabindex="-1"></a></span>
+<span id="cb259-4"><a href="statistics-in-hydrology---unit-3-1.html#cb259-4" tabindex="-1"></a>sample_of_water <span class="ot">&lt;-</span> <span class="fu">sample</span>(all_the_water<span class="sc">$</span>value, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-5"><a href="statistics-in-hydrology---unit-3-1.html#cb259-5" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb259-6"><a href="statistics-in-hydrology---unit-3-1.html#cb259-6" tabindex="-1"></a></span>
+<span id="cb259-7"><a href="statistics-in-hydrology---unit-3-1.html#cb259-7" tabindex="-1"></a>population_hist <span class="ot">&lt;-</span> all_the_water <span class="sc">%&gt;%</span></span>
+<span id="cb259-8"><a href="statistics-in-hydrology---unit-3-1.html#cb259-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb259-9"><a href="statistics-in-hydrology---unit-3-1.html#cb259-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb259-10"><a href="statistics-in-hydrology---unit-3-1.html#cb259-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Population: </span><span class="sc">\n</span><span class="st"> All water in lake&quot;</span>)</span>
+<span id="cb259-11"><a href="statistics-in-hydrology---unit-3-1.html#cb259-11" tabindex="-1"></a></span>
+<span id="cb259-12"><a href="statistics-in-hydrology---unit-3-1.html#cb259-12" tabindex="-1"></a>sample_hist <span class="ot">&lt;-</span> sample_of_water <span class="sc">%&gt;%</span></span>
+<span id="cb259-13"><a href="statistics-in-hydrology---unit-3-1.html#cb259-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb259-14"><a href="statistics-in-hydrology---unit-3-1.html#cb259-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb259-15"><a href="statistics-in-hydrology---unit-3-1.html#cb259-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Your sample </span><span class="sc">\n</span><span class="st"> of the lake&quot;</span>)</span>
+<span id="cb259-16"><a href="statistics-in-hydrology---unit-3-1.html#cb259-16" tabindex="-1"></a></span>
+<span id="cb259-17"><a href="statistics-in-hydrology---unit-3-1.html#cb259-17" tabindex="-1"></a>population_hist <span class="sc">+</span> sample_hist</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="statistics-in-hydrology---unit-3-1.html#cb260-1" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb260-2"><a href="statistics-in-hydrology---unit-3-1.html#cb260-2" tabindex="-1"></a></span>
+<span id="cb260-3"><a href="statistics-in-hydrology---unit-3-1.html#cb260-3" tabindex="-1"></a>sample_hist<span class="sc">/</span>population_hist</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-198-2.png" width="672" /></p>
+</div>
+<div id="homework-q2-2-pts-1" class="section level2 hasAnchor" number="21.4">
+<h2><span class="header-section-number">21.4</span> Homework Q2 (2 pts)<a href="statistics-in-hydrology---unit-3-1.html#homework-q2-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>How does your sample distribution look similar or different from the population?<br />
+</li>
+<li>Why does the sample change every time you run it?<br />
+</li>
+<li>What happens as you increase or decrease the number of samples?<br />
+</li>
+<li>What happens if you set the number of samples to the size of the population?</li>
+</ul>
+</div>
+<div id="measuring-our-sample-distribution-central-tendency-1" class="section level2 hasAnchor" number="21.5">
+<h2><span class="header-section-number">21.5</span> Measuring our sample distribution: central tendency<a href="statistics-in-hydrology---unit-3-1.html#measuring-our-sample-distribution-central-tendency-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we take a sample of a population, there are a few things we will want to measure about the distribution of values: where is the middle, how variable is it, and is it skewed to one side or another?</p>
+<p>The first of these, “where is the middle?” is addressed with measures of central tendency. We will discuss three possible ways to measure this. The mean, median, and weighted mean.</p>
+<p>To explain the importance of choosing between the mean and median, we will first import some discharge data. Read in the PINE discharge data.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="statistics-in-hydrology---unit-3-1.html#cb261-1" tabindex="-1"></a>pineQ <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_Jan-Mar_2010.csv&quot;</span>)</span></code></pre></div>
+<p>To find the mean (average), you just sum up all the values in your sample and divide by the number of values.</p>
+<p>To find the median, you put the values IN ORDER, and choose the middle value. The middle value is the one where there are the same number of values higher than that value as there are values lower than it.</p>
+<p>Because it uses the order of the values rather than just the values themselves, the median is resistant to skewed distributions. This means it is less effected by very large or very small values compared to most values in the sample data.</p>
+<p>Let’s look at our normal distribution from earlier (ExNorm) compared to the Pine watershed discharge (pineQ)</p>
+<p>Note that distributions like pineQ, that are positively skewed, are very common in environmental data.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="statistics-in-hydrology---unit-3-1.html#cb262-1" tabindex="-1"></a><span class="co"># Calculate mean and median for &quot;cfs&quot; in pineQ and &quot;values&quot; in ExNorm</span></span>
+<span id="cb262-2"><a href="statistics-in-hydrology---unit-3-1.html#cb262-2" tabindex="-1"></a>pineMean <span class="ot">&lt;-</span> <span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb262-3"><a href="statistics-in-hydrology---unit-3-1.html#cb262-3" tabindex="-1"></a>pineMedian <span class="ot">&lt;-</span> <span class="fu">median</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb262-4"><a href="statistics-in-hydrology---unit-3-1.html#cb262-4" tabindex="-1"></a></span>
+<span id="cb262-5"><a href="statistics-in-hydrology---unit-3-1.html#cb262-5" tabindex="-1"></a>xmean <span class="ot">&lt;-</span> <span class="fu">mean</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb262-6"><a href="statistics-in-hydrology---unit-3-1.html#cb262-6" tabindex="-1"></a>xmedian <span class="ot">&lt;-</span> <span class="fu">median</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb262-7"><a href="statistics-in-hydrology---unit-3-1.html#cb262-7" tabindex="-1"></a></span>
+<span id="cb262-8"><a href="statistics-in-hydrology---unit-3-1.html#cb262-8" tabindex="-1"></a><span class="co"># plot mean and median on the ExNorm distribution</span></span>
+<span id="cb262-9"><a href="statistics-in-hydrology---unit-3-1.html#cb262-9" tabindex="-1"></a>Ex <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
+<span id="cb262-10"><a href="statistics-in-hydrology---unit-3-1.html#cb262-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb262-11"><a href="statistics-in-hydrology---unit-3-1.html#cb262-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb262-12"><a href="statistics-in-hydrology---unit-3-1.html#cb262-12" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb262-13"><a href="statistics-in-hydrology---unit-3-1.html#cb262-13" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb262-14"><a href="statistics-in-hydrology---unit-3-1.html#cb262-14" tabindex="-1"></a></span>
+<span id="cb262-15"><a href="statistics-in-hydrology---unit-3-1.html#cb262-15" tabindex="-1"></a><span class="co">#plot mean and median on the pineQ discharge histogram</span></span>
+<span id="cb262-16"><a href="statistics-in-hydrology---unit-3-1.html#cb262-16" tabindex="-1"></a>PineP <span class="ot">&lt;-</span> pineQ <span class="sc">%&gt;%</span> </span>
+<span id="cb262-17"><a href="statistics-in-hydrology---unit-3-1.html#cb262-17" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cfs)) <span class="sc">+</span></span>
+<span id="cb262-18"><a href="statistics-in-hydrology---unit-3-1.html#cb262-18" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb262-19"><a href="statistics-in-hydrology---unit-3-1.html#cb262-19" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb262-20"><a href="statistics-in-hydrology---unit-3-1.html#cb262-20" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb262-21"><a href="statistics-in-hydrology---unit-3-1.html#cb262-21" tabindex="-1"></a></span>
+<span id="cb262-22"><a href="statistics-in-hydrology---unit-3-1.html#cb262-22" tabindex="-1"></a>Ex <span class="sc">/</span> PineP  </span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+</div>
+<div id="so-whats-a-weighted-average-1" class="section level2 hasAnchor" number="21.6">
+<h2><span class="header-section-number">21.6</span> So what’s a weighted average?<a href="statistics-in-hydrology---unit-3-1.html#so-whats-a-weighted-average-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you compute a standard mean or median, you are giving equal weight to each measurement. Adding up all the values in a sample and dividing by the number of samples is the same as multiplying each value by 1/# of samples. For instance if you had ten samples, to calculate the mean you would add them up and divide by 10. This is the same as multiplying each value by 1/10 and then adding them up. Each value is equally weighted at 1/10.</p>
+<p>There are certain situations in which this is not the ideal way to calculate an average. A common one in hydrology is that you have samples that are supposed to represent different portions of an area. One sample may be taken to measure a forest type that takes up 100 ha of a watershed while another sample represents a forest type that only takes up 4 ha. You may not want to simply average those values!</p>
+<p>Another example is precipitation gages. In the image below, you see there are 5 rain gages. To get a precipitation number for the watershed, we could just average them, or we could assume they represent an area of the watershed and then weight their values by the area they represent. One method of designating the areas is by using Theissen polygons (the middle watershed). Another method of weighting is isohyetal contours, but we won’t worry about that for now!</p>
+<p>In the weighted situation, we find the average by multiplying each precipitation values by the proportion of the watershed it represents, shown by the Thiessen polygons, and then add them all together. Let’s do an example.</p>
+<p><img src="images/theissen.png" title="Different types of area averaging" alt="Different types of area averaging" />source: <a href="https://edx.hydrolearn.org/assets/courseware/v1/e5dc65098f1e8c5faacae0e171e28ccf/asset-v1:HydroLearn+HydroLearn401+2019_S2+type@asset+block/l2_image004.png" class="uri">https://edx.hydrolearn.org/assets/courseware/v1/e5dc65098f1e8c5faacae0e171e28ccf/asset-v1:HydroLearn+HydroLearn401+2019_S2+type@asset+block/l2_image004.png</a></p>
+<p>The precip values for the watershed above are 4.5, 5.5, 5.8, 4.7, and 3.0</p>
+<p>We will assume the proportions of the watershed that each gauge represents are 0.20, 0.15, 0.40, 0.15, 0.10, respectively (or 20%, 15%, 40%, 15%, 10%)</p>
+<p><strong>Challenge</strong>: Write some code to compute the regular mean precip from the values, and then the weighted mean.</p>
+</div>
+<div id="measures-of-variability-1" class="section level2 hasAnchor" number="21.7">
+<h2><span class="header-section-number">21.7</span> Measures of variability<a href="statistics-in-hydrology---unit-3-1.html#measures-of-variability-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Measures of variability allow us to measure the width of our sample data histogram or pdf. If all the values in our sample are close together, we would have small measures of variability, and a pointy pdf/histogram. If they vary more, we would have larger measures of variability and a broad pdf/histogram.</p>
+<p>We will explore four measures of variability:</p>
+<div id="variance-1" class="section level4 hasAnchor" number="21.7.0.1">
+<h4><span class="header-section-number">21.7.0.1</span> Variance:<a href="statistics-in-hydrology---unit-3-1.html#variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sum of the squared difference of each value from the mean divided by the number of samples minus 1. In R code “var()”</p>
+<p><img src="images/Screen%20Shot%202021-01-25%20at%2010.29.45%20AM.png" alt="Formula for variance (from USGS statistics book linked)" />(<a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" class="uri">https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf</a>) source: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" class="uri">https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf</a></p>
+</div>
+<div id="standard-deviation-1" class="section level4 hasAnchor" number="21.7.0.2">
+<h4><span class="header-section-number">21.7.0.2</span> Standard deviation:<a href="statistics-in-hydrology---unit-3-1.html#standard-deviation-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The square root of the variance. In R code “sd()”</p>
+<p>**Both variance and standard deviation are sensitive to outliers.</p>
+</div>
+<div id="cv-coefficient-of-variation-1" class="section level4 hasAnchor" number="21.7.0.3">
+<h4><span class="header-section-number">21.7.0.3</span> CV: Coefficient of Variation<a href="statistics-in-hydrology---unit-3-1.html#cv-coefficient-of-variation-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>CV is simply the standard deviation divided by the mean of the data. Because you divide by the mean, CV is dimensionless. This allows you to use it to compare the variation across distributions with very different magnitudes (e.g., discharge at different gauges).</p>
+</div>
+<div id="iqr-interquartile-range-1" class="section level4 hasAnchor" number="21.7.0.4">
+<h4><span class="header-section-number">21.7.0.4</span> IQR: Interquartile Range<a href="statistics-in-hydrology---unit-3-1.html#iqr-interquartile-range-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>IQR is resistant to outliers because it works like a median. It measures the range of the middle 50% of the data in your distribution. So the IQR is the difference between the 75th and 25th percentiles of your data, where the 75th percentile means 75% of the data is BELOW that value and the 25th percentile means 25% is below that value. Using the same vocabulary, the median is the same as the 50th percentile of the data.</p>
+<p>If you ask R for the QUANTILES of your sample data, it will give you the values at which 0%, 25%, 50%, 75%, and 100% of the data are below. These are the 1,2,3,4, and 5th quantiles. Therefore, the IQR is the difference between the 4th and 2nd quantile.</p>
+<p>Okay, code time.</p>
+<p>First, let’s explore how changing the variability of a distribution changes the shape of it’s distribution. Create a plot a random normal distribution using rnorm() and set sd to different numbers. Make the mean of the distribution 0, the sample size 300, and the standard deviation 1 to start. Then increase the standard deviation incrementally to 10 and see what happens. Make the limits of the x axis on the plot -30 to 30.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="statistics-in-hydrology---unit-3-1.html#cb263-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb263-2"><a href="statistics-in-hydrology---unit-3-1.html#cb263-2" tabindex="-1"></a>  as_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb263-3"><a href="statistics-in-hydrology---unit-3-1.html#cb263-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb263-4"><a href="statistics-in-hydrology---unit-3-1.html#cb263-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb263-5"><a href="statistics-in-hydrology---unit-3-1.html#cb263-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">30</span>,<span class="dv">30</span>))</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+</div>
+</div>
+<div id="homework-q3-2-pts-1" class="section level2 hasAnchor" number="21.8">
+<h2><span class="header-section-number">21.8</span> Homework Q3 (2 pts)<a href="statistics-in-hydrology---unit-3-1.html#homework-q3-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>What happens to the shape of the distribution as the SD increases?</li>
+<li>If you were to plot the pdf of two hydrographs, one that is flashy, one that isn’t - predict what those distributions would look like.</li>
+</ul>
+<p>Now let’s calculate the standard deviation, variance, coefficient of variation, and IQR of the Pine discharge data.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="statistics-in-hydrology---unit-3-1.html#cb264-1" tabindex="-1"></a><span class="co"># standard deviation</span></span>
+<span id="cb264-2"><a href="statistics-in-hydrology---unit-3-1.html#cb264-2" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 84.47625</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="statistics-in-hydrology---unit-3-1.html#cb266-1" tabindex="-1"></a><span class="co"># variance</span></span>
+<span id="cb266-2"><a href="statistics-in-hydrology---unit-3-1.html#cb266-2" tabindex="-1"></a><span class="fu">var</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 7136.237</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="statistics-in-hydrology---unit-3-1.html#cb268-1" tabindex="-1"></a><span class="co"># coefficient of variation</span></span>
+<span id="cb268-2"><a href="statistics-in-hydrology---unit-3-1.html#cb268-2" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)<span class="sc">/</span><span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 2.800221</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="statistics-in-hydrology---unit-3-1.html#cb270-1" tabindex="-1"></a><span class="co"># IQR using the IQR funciton</span></span>
+<span id="cb270-2"><a href="statistics-in-hydrology---unit-3-1.html#cb270-2" tabindex="-1"></a><span class="fu">IQR</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 8.1325</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="statistics-in-hydrology---unit-3-1.html#cb272-1" tabindex="-1"></a><span class="co"># IQR using the quantile function</span></span>
+<span id="cb272-2"><a href="statistics-in-hydrology---unit-3-1.html#cb272-2" tabindex="-1"></a>quants <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb272-3"><a href="statistics-in-hydrology---unit-3-1.html#cb272-3" tabindex="-1"></a>quants[<span class="dv">4</span>] <span class="sc">-</span> quants[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##    75% 
+## 8.1325</code></pre>
+<div id="what-about-how-lopsided-the-distribution-is-1" class="section level4 hasAnchor" number="21.8.0.1">
+<h4><span class="header-section-number">21.8.0.1</span> What about how lopsided the distribution is?<a href="statistics-in-hydrology---unit-3-1.html#what-about-how-lopsided-the-distribution-is-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are several ways to measure this as well, but we are just going to look at one: The Quartile skew. The quartile skew is the difference between the upper quartiles (50th-75th) and the lower quartiles (25th-50th) divided by the IQR (75th-25th).</p>
+<p><img src="images/Screen%20Shot%202021-01-25%20at%2011.27.14%20AM.png" alt="Quartile skew from USGS Stats Book linked above" /> source: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" class="uri">https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf</a></p>
+<p>Let’s look at the quartile skew of the two distributions we’ve been measuring. Calculate it for the pineQ discharge data and the random normal distribution we generated.</p>
+<p>Which one is more skewed?</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="statistics-in-hydrology---unit-3-1.html#cb274-1" tabindex="-1"></a>quantsP <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb274-2"><a href="statistics-in-hydrology---unit-3-1.html#cb274-2" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="statistics-in-hydrology---unit-3-1.html#cb274-3" tabindex="-1"></a>((quantsP[<span class="dv">3</span>]<span class="sc">-</span>quantsP[<span class="dv">2</span>]) <span class="sc">-</span> (quantsP[<span class="dv">2</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>])) <span class="sc">/</span> quantsP[<span class="dv">3</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##       50% 
+## -4.837233</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="statistics-in-hydrology---unit-3-1.html#cb276-1" tabindex="-1"></a>quantsX <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb276-2"><a href="statistics-in-hydrology---unit-3-1.html#cb276-2" tabindex="-1"></a></span>
+<span id="cb276-3"><a href="statistics-in-hydrology---unit-3-1.html#cb276-3" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##       50% 
+## -2.061049</code></pre>
+</div>
+</div>
+<div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1" class="section level2 hasAnchor" number="21.9">
+<h2><span class="header-section-number">21.9</span> What is a normal distribution and how can we determine if we have one?<a href="statistics-in-hydrology---unit-3-1.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The distribution we generated with rnorm() is a normal distribution. The distribution of pineQ discharge is not normal. Now that we’ve looked at different ways to characterize distributions, we have the vocabulary to describe why.</p>
+<p><strong>Normal distributions:</strong></p>
+<ul>
+<li>mean = median, half values to the right, half to the left</li>
+<li>symmetric (not skewed)</li>
+<li>single peak</li>
+</ul>
+<p>Many statistical tests require that the distribution of the data you put into them is normally distributed. BE CAREFUL! There are also tests that use ranked data. Similar to how the median is resistant to outliers, these rank-based tests are resistant to non-normal data. Two popular ones are Kruskal-Wallis and Wilcoxon rank-sum.</p>
+<p>But how far off can you be before you don’t consider a distribution normal? Seems like a judgement call!</p>
+<p>R to the rescue! There is a built in test for normality called shapiro.test(), which performs the Shapiro-Wilk test of normality. The hypothesis this test tests is “The distribution is normal.” So if this function returns a p-value less than 0.05, you reject that hypothesis and your distribution is NOT normal.</p>
+<p>You can also make a quantile-quantile plot. A straight line on this plot indicates a normal distribution, a non-straight line indicates it is not normal.</p>
+<p>Let’s test Pine discharge data for normality with the Shapiro test and the Q-Q test.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="statistics-in-hydrology---unit-3-1.html#cb278-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  pineQ$cfs
+## W = 0.27155, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="statistics-in-hydrology---unit-3-1.html#cb280-1" tabindex="-1"></a><span class="fu">qqnorm</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<p>Let’s also look at the Q-Q plot with some synthetic data. 
+Create a normal data set and play with the number of values (n, samples). Investigate how changing the number of samples influences the linearity of the Q-Q plot. Also run this code multiple times with the same n and see if/how the results change.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="statistics-in-hydrology---unit-3-1.html#cb281-1" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb281-2"><a href="statistics-in-hydrology---unit-3-1.html#cb281-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb281-3"><a href="statistics-in-hydrology---unit-3-1.html#cb281-3" tabindex="-1"></a></span>
+<span id="cb281-4"><a href="statistics-in-hydrology---unit-3-1.html#cb281-4" tabindex="-1"></a><span class="fu">qqnorm</span>(norm<span class="sc">$</span>value)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+</div>
+<div id="homework-q4-2-pts-1" class="section level2 hasAnchor" number="21.10">
+<h2><span class="header-section-number">21.10</span> Homework Q4 (2 pts)<a href="statistics-in-hydrology---unit-3-1.html#homework-q4-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Do the results change more from run to run when the n is high or low and why?</li>
+</ul>
+</div>
+<div id="homework-q5-2-pts-1" class="section level2 hasAnchor" number="21.11">
+<h2><span class="header-section-number">21.11</span> Homework Q5 (2 pts)<a href="statistics-in-hydrology---unit-3-1.html#homework-q5-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Test your all_the_water, ExNorm, and sample_of_water data frames for normality using shapiro test and qqnorm.</p>
+<p><strong>Note</strong>: <em>The shapiro.test will only accept 5000 values so the all_the_water data frame is too large. The reason for this is that in many fields (e.g., social science) an n of 5000 would be VERY large and would result in a normal distribution. In hydrology and the earth and environmental sciences in genreal we routinely have data sets that are MUCH larger than n = 5000 and the are STILL non-normal. To manage this situation we can use a different test, the Kolmogorov-Smirnov normality test which is in the “nortest” package and the test is called lillie.test. Lillie is short for Lilliefors test which is based on the Koolmogorv-Smirnov test. See below</em></p>
+<p><a href="https://cran.r-project.org/web/packages/nortest/nortest.pdf" target="_blank"><strong>See here for documentation of tests contained in the nortest package</strong></a></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="statistics-in-hydrology---unit-3-1.html#cb282-1" tabindex="-1"></a><span class="co"># shapiro.test(all_the_water$value) # won&#39;t work. n is too big. </span></span>
+<span id="cb282-2"><a href="statistics-in-hydrology---unit-3-1.html#cb282-2" tabindex="-1"></a></span>
+<span id="cb282-3"><a href="statistics-in-hydrology---unit-3-1.html#cb282-3" tabindex="-1"></a><span class="co"># but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.</span></span>
+<span id="cb282-4"><a href="statistics-in-hydrology---unit-3-1.html#cb282-4" tabindex="-1"></a><span class="co"># install.packages(&quot;nortest&quot;)</span></span>
+<span id="cb282-5"><a href="statistics-in-hydrology---unit-3-1.html#cb282-5" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb282-6"><a href="statistics-in-hydrology---unit-3-1.html#cb282-6" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Lilliefors (Kolmogorov-Smirnov) normality test
+## 
+## data:  all_the_water$value
+## D = 0.005684, p-value = 0.6047</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="statistics-in-hydrology---unit-3-1.html#cb284-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
+<span id="cb284-2"><a href="statistics-in-hydrology---unit-3-1.html#cb284-2" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="statistics-in-hydrology---unit-3-1.html#cb284-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  all_the_water$value
+## A = 0.25338, p-value = 0.7335</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="statistics-in-hydrology---unit-3-1.html#cb286-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
+<ul>
+<li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>
+</ul>
+</div>
+<div id="deliverable-10-pts-due-thursday-22-by-1159-pm-1" class="section level2 hasAnchor" number="21.12">
+<h2><span class="header-section-number">21.12</span> Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)<a href="statistics-in-hydrology---unit-3-1.html#deliverable-10-pts-due-thursday-22-by-1159-pm-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Write up your answers to HW questions 1 - 5 in a word doc and submit on D2L.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab-2-statistics-in-hydrology-30-pts-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/05_stats.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/05_stats.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
