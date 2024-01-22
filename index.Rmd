@@ -53,7 +53,7 @@ This course will use all online and open-source resources and will follow FAIR (
 **Week 5**: <br> 
 - *Lecture (2/13)*: Downloading and shaping data frames.<br>
 - *Lab 3 (2/15)*: Downloading and shaping data frames. <br>
-- **Submit term project ideas**
+- **Submit term project ideas** <br>
 - *Reading*: [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"}
 *AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
 
