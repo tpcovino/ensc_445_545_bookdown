@@ -4,25 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Hydrographs &amp; Rating Curves</title>
-  <meta name="description" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Hydrographs &amp; Rating Curves" />
+  <title>Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Hydrographs &amp; Rating Curves" />
+  <meta property="og:title" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Hydrographs &amp; Rating Curves" />
+  <meta name="twitter:title" content="Chapter 6 Lab 2: Statistics in hydrology (30 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
 
-<meta name="author" content="" />
+<meta name="author" content="Tim Covino" />
 
 
+<meta name="date" content="2024-01-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,7 +158,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -310,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hydrographs &amp; Rating Curves</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Watershed Analysis: ENSC 445/LRES 545</a>
           </h1>
         </div>
 
@@ -326,8 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Problem 1 (5 pts)<a href="lab-2-statistics-in-hydrology-30-pts.html#problem-1-5-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the tidyverse and patchwork libraries and read in the flashy and pine_nfdr datasets.</p>
 <p>Using the flashy dataset, generate two new dataframes. One for the “WestMnts” and one for the “NorthEast” AGGECOREGION. Name these flashy_west and flasy_ne. Next make pdfs of the average basin rainfall (PPTAVG_BASIN) for the WestMnts (flashy_west) and NorthEast (flashy_ne) agricultural ecoregions. On each pdf add vertical lines showing the mean and median. Label the x axis “Average precipitation (mm)” and the y “Density”. Set the x scale limits to 0 - 500 using xlim(c(0, 500)). Save each ggplot as an object and stack them on top of each other. Provide a caption below the figure that states which is on top, which is on bottom, and which color is the mean and which is the median.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="lab-2-statistics-in-hydrology-30-pts.html#cb111-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="lab-2-statistics-in-hydrology-30-pts.html#cb112-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="lab-2-statistics-in-hydrology-30-pts.html#cb109-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="lab-2-statistics-in-hydrology-30-pts.html#cb110-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
 <p>Use patchwork to stack the NE and West ggplots.</p>
 </div>
 <div id="problem-2-5-pts" class="section level2 hasAnchor" number="6.2">

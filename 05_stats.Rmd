@@ -336,7 +336,7 @@ Test your all_the_water, ExNorm, and sample_of_water data frames for normality u
 # shapiro.test(all_the_water$value) # won't work. n is too big. 
 
 # but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.
-install.packages("nortest")
+#install.packages("nortest")
 library(nortest)
 lillie.test(all_the_water$value)
 

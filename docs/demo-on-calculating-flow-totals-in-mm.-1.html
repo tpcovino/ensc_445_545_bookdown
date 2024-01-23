@@ -157,7 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -299,7 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
+<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
@@ -462,36 +472,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="demo-on-calculating-flow-totals-in-mm.-1" class="section level1 hasAnchor" number="27">
 <h1><span class="header-section-number">Chapter 27</span> Demo on calculating flow totals in mm.<a href="demo-on-calculating-flow-totals-in-mm.-1.html#demo-on-calculating-flow-totals-in-mm.-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb338-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
-<span id="cb338-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb338-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb339-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;06187915&quot;</span></span>
-<span id="cb339-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb339-2" tabindex="-1"></a>parm_cd <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
-<span id="cb339-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb339-3" tabindex="-1"></a>service_cd <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span></span>
-<span id="cb339-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb339-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-05-01&quot;</span>)</span>
-<span id="cb339-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb339-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb340-1" tabindex="-1"></a>gauge_info <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(site) <span class="sc">%&gt;%</span> </span>
-<span id="cb340-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb340-2" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, drain_area_va)</span></code></pre></div>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-1" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> site, <span class="at">parameterCd =</span> parm_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb341-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-2" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb341-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-3" tabindex="-1"></a>  <span class="fu">select</span>(site_no, <span class="at">date =</span> dateTime, <span class="at">flow_cfs =</span> Flow)</span></code></pre></div>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb342-1" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">left_join</span>(flow, gauge_info, <span class="at">by =</span> <span class="st">&quot;site_no&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-1" tabindex="-1"></a>flow_mm <span class="ot">&lt;-</span> flow <span class="sc">%&gt;%</span> </span>
-<span id="cb343-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cfd =</span> flow_cfs <span class="sc">*</span> <span class="dv">86400</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmd =</span> cfd <span class="sc">*</span> <span class="fl">0.0283168</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">drain_sq_me =</span> drain_area_va <span class="sc">*</span> <span class="fl">2.59e+6</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_d =</span> cmd<span class="sc">/</span>drain_sq_me) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-6"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mm_d =</span> m_d <span class="sc">*</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb343-7"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-7" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, date, mm_d)</span></code></pre></div>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb344-1" tabindex="-1"></a>flow_mm <span class="sc">%&gt;%</span> </span>
-<span id="cb344-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb344-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> mm_d)) <span class="sc">+</span></span>
-<span id="cb344-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb344-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb340-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb340-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb340-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;06187915&quot;</span></span>
+<span id="cb341-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-2" tabindex="-1"></a>parm_cd <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb341-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-3" tabindex="-1"></a>service_cd <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span></span>
+<span id="cb341-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-05-01&quot;</span>)</span>
+<span id="cb341-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb341-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb342-1" tabindex="-1"></a>gauge_info <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(site) <span class="sc">%&gt;%</span> </span>
+<span id="cb342-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb342-2" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, drain_area_va)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-1" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> site, <span class="at">parameterCd =</span> parm_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb343-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-2" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb343-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb343-3" tabindex="-1"></a>  <span class="fu">select</span>(site_no, <span class="at">date =</span> dateTime, <span class="at">flow_cfs =</span> Flow)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb344-1" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">left_join</span>(flow, gauge_info, <span class="at">by =</span> <span class="st">&quot;site_no&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-1" tabindex="-1"></a>flow_mm <span class="ot">&lt;-</span> flow <span class="sc">%&gt;%</span> </span>
+<span id="cb345-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cfd =</span> flow_cfs <span class="sc">*</span> <span class="dv">86400</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cmd =</span> cfd <span class="sc">*</span> <span class="fl">0.0283168</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">drain_sq_me =</span> drain_area_va <span class="sc">*</span> <span class="fl">2.59e+6</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">m_d =</span> cmd<span class="sc">/</span>drain_sq_me) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-6"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mm_d =</span> m_d <span class="sc">*</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb345-7"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-7" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, date, mm_d)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb346-1" tabindex="-1"></a>flow_mm <span class="sc">%&gt;%</span> </span>
+<span id="cb346-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb346-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> mm_d)) <span class="sc">+</span></span>
+<span id="cb346-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb346-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb345-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-2" tabindex="-1"></a></span>
-<span id="cb345-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-3" tabindex="-1"></a>flow_tot_an <span class="ot">&lt;-</span> flow_mm <span class="sc">%&gt;%</span></span>
-<span id="cb345-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">%&gt;%</span> </span>
-<span id="cb345-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-5" tabindex="-1"></a>  <span class="fu">group_by</span>(year, site_no, station_nm) <span class="sc">%&gt;%</span> </span>
-<span id="cb345-6"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb345-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">tot_an =</span> <span class="fu">sum</span>(mm_d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb347-2"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-2" tabindex="-1"></a></span>
+<span id="cb347-3"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-3" tabindex="-1"></a>flow_tot_an <span class="ot">&lt;-</span> flow_mm <span class="sc">%&gt;%</span></span>
+<span id="cb347-4"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb347-5"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-5" tabindex="-1"></a>  <span class="fu">group_by</span>(year, site_no, station_nm) <span class="sc">%&gt;%</span> </span>
+<span id="cb347-6"><a href="demo-on-calculating-flow-totals-in-mm.-1.html#cb347-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">tot_an =</span> <span class="fu">sum</span>(mm_d, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 
 </div>
             </section>

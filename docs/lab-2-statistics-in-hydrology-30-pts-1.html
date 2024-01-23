@@ -157,7 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -299,7 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
+<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
@@ -468,8 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">22.1</span> Problem 1 (5 pts)<a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-1-5-pts-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the tidyverse and patchwork libraries and read in the flashy and pine_nfdr datasets.</p>
 <p>Using the flashy dataset, generate two new dataframes. One for the “WestMnts” and one for the “NorthEast” AGGECOREGION. Name these flashy_west and flasy_ne. Next make pdfs of the average basin rainfall (PPTAVG_BASIN) for the WestMnts (flashy_west) and NorthEast (flashy_ne) agricultural ecoregions. On each pdf add vertical lines showing the mean and median. Label the x axis “Average precipitation (mm)” and the y “Density”. Set the x scale limits to 0 - 500 using xlim(c(0, 500)). Save each ggplot as an object and stack them on top of each other. Provide a caption below the figure that states which is on top, which is on bottom, and which color is the mean and which is the median.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#cb287-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#cb288-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#cb289-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#cb290-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
 <p>Use patchwork to stack the NE and West ggplots.</p>
 </div>
 <div id="problem-2-5-pts-1" class="section level2 hasAnchor" number="22.2">

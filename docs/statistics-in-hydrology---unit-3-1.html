@@ -157,7 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -299,7 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
+<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
@@ -679,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb276-2"><a href="statistics-in-hydrology---unit-3-1.html#cb276-2" tabindex="-1"></a></span>
 <span id="cb276-3"><a href="statistics-in-hydrology---unit-3-1.html#cb276-3" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -2.061049</code></pre>
+## -2.063534</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1" class="section level2 hasAnchor" number="21.9">
@@ -726,23 +736,24 @@ Create a normal data set and play with the number of values (n, samples). Invest
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="statistics-in-hydrology---unit-3-1.html#cb282-1" tabindex="-1"></a><span class="co"># shapiro.test(all_the_water$value) # won&#39;t work. n is too big. </span></span>
 <span id="cb282-2"><a href="statistics-in-hydrology---unit-3-1.html#cb282-2" tabindex="-1"></a></span>
 <span id="cb282-3"><a href="statistics-in-hydrology---unit-3-1.html#cb282-3" tabindex="-1"></a><span class="co"># but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.</span></span>
-<span id="cb282-4"><a href="statistics-in-hydrology---unit-3-1.html#cb282-4" tabindex="-1"></a><span class="co"># install.packages(&quot;nortest&quot;)</span></span>
-<span id="cb282-5"><a href="statistics-in-hydrology---unit-3-1.html#cb282-5" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
-<span id="cb282-6"><a href="statistics-in-hydrology---unit-3-1.html#cb282-6" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<span id="cb282-4"><a href="statistics-in-hydrology---unit-3-1.html#cb282-4" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;nortest&quot;</span>)</span></code></pre></div>
+<pre><code>## Error in install.packages : Updating loaded packages</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="statistics-in-hydrology---unit-3-1.html#cb284-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb284-2"><a href="statistics-in-hydrology---unit-3-1.html#cb284-2" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
 <pre><code>## 
 ##  Lilliefors (Kolmogorov-Smirnov) normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.005684, p-value = 0.6047</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="statistics-in-hydrology---unit-3-1.html#cb284-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
-<span id="cb284-2"><a href="statistics-in-hydrology---unit-3-1.html#cb284-2" tabindex="-1"></a></span>
-<span id="cb284-3"><a href="statistics-in-hydrology---unit-3-1.html#cb284-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+## D = 0.0064364, p-value = 0.4029</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="statistics-in-hydrology---unit-3-1.html#cb286-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
+<span id="cb286-2"><a href="statistics-in-hydrology---unit-3-1.html#cb286-2" tabindex="-1"></a></span>
+<span id="cb286-3"><a href="statistics-in-hydrology---unit-3-1.html#cb286-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.25338, p-value = 0.7335</code></pre>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="statistics-in-hydrology---unit-3-1.html#cb286-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
+## A = 0.34966, p-value = 0.4736</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="statistics-in-hydrology---unit-3-1.html#cb288-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 <ul>
 <li>According to the tests you’ve just performed, which datasets ARE and which datesets are NOT normal?</li>
 </ul>

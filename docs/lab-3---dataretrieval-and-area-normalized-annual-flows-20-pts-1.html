@@ -157,7 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -299,7 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
+<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
@@ -466,16 +476,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, leaflet, lubridate) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
 <p>Load the necessary packages.</p>
 <p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022. Call this df “stream_gauges”</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb327-1" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
-<span id="cb327-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb327-2" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb327-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb327-3" tabindex="-1"></a><span class="co"># then load the data. </span></span>
-<span id="cb327-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb327-4" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb327-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb327-5" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb329-1" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb329-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb329-2" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb329-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb329-3" tabindex="-1"></a><span class="co"># then load the data. </span></span>
+<span id="cb329-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb329-4" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb329-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb329-5" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
 <p>Map the gauges.</p>
 <p>Download the Q data for the gauges using dataRetrieval. Call the dataframe you create “flows”</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb328-1" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
-<span id="cb328-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb328-2" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
-<span id="cb328-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb328-3" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb330-1" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
+<span id="cb330-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb330-2" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb330-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#cb330-3" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
 <p>Make a facet wrap to look at the flows for each gauge.</p>
 <p>Filter your data frame of streamflow data to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this df “flows_filt”</p>
 <p>Make another facet wrap of flow at those 4 guages.</p>

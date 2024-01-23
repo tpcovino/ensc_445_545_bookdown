@@ -157,7 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Watershed Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
@@ -299,7 +304,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a></li>
+<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
+<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
 <li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
 <ul>
 <li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
@@ -466,29 +476,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are on our way to doing analyses of extreme discharge events: low flow statistics and floods. But in order to do that, we need to understand a common way to look at data distributions in hydrology: the flow duration curve. As you’ll see below, this is basically just a different way of looking at a pdf, and it can take some getting used to. But it is also a very useful tool!</p>
 <p>As always let’s load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.</p>
 <p>We will also use theme_set() in this chunk so we don’t have to change the ggplot theme every time we make a plot.</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="flow-duration-curves-1.html#cb346-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb346-2"><a href="flow-duration-curves-1.html#cb346-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
-<span id="cb346-3"><a href="flow-duration-curves-1.html#cb346-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb346-4"><a href="flow-duration-curves-1.html#cb346-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb346-5"><a href="flow-duration-curves-1.html#cb346-5" tabindex="-1"></a></span>
-<span id="cb346-6"><a href="flow-duration-curves-1.html#cb346-6" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
-<span id="cb346-7"><a href="flow-duration-curves-1.html#cb346-7" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
-<span id="cb346-8"><a href="flow-duration-curves-1.html#cb346-8" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="flow-duration-curves-1.html#cb348-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb348-2"><a href="flow-duration-curves-1.html#cb348-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb348-3"><a href="flow-duration-curves-1.html#cb348-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb348-4"><a href="flow-duration-curves-1.html#cb348-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb348-5"><a href="flow-duration-curves-1.html#cb348-5" tabindex="-1"></a></span>
+<span id="cb348-6"><a href="flow-duration-curves-1.html#cb348-6" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
+<span id="cb348-7"><a href="flow-duration-curves-1.html#cb348-7" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
+<span id="cb348-8"><a href="flow-duration-curves-1.html#cb348-8" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 <div id="get-data-1" class="section level2 hasAnchor" number="31.1">
 <h2><span class="header-section-number">31.1</span> Get data<a href="flow-duration-curves-1.html#get-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To start, let’s grab the USGS discharge data for the gage in Linville NC from 1960 to 2020.</p>
 <p>We will download the data using USGS dataRetrieval and look at a line plot.</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="flow-duration-curves-1.html#cb347-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
-<span id="cb347-2"><a href="flow-duration-curves-1.html#cb347-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
-<span id="cb347-3"><a href="flow-duration-curves-1.html#cb347-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
-<span id="cb347-4"><a href="flow-duration-curves-1.html#cb347-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
-<span id="cb347-5"><a href="flow-duration-curves-1.html#cb347-5" tabindex="-1"></a></span>
-<span id="cb347-6"><a href="flow-duration-curves-1.html#cb347-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
-<span id="cb347-7"><a href="flow-duration-curves-1.html#cb347-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb347-8"><a href="flow-duration-curves-1.html#cb347-8" tabindex="-1"></a></span>
-<span id="cb347-9"><a href="flow-duration-curves-1.html#cb347-9" tabindex="-1"></a><span class="co">#Look at the data</span></span>
-<span id="cb347-10"><a href="flow-duration-curves-1.html#cb347-10" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
-<span id="cb347-11"><a href="flow-duration-curves-1.html#cb347-11" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="flow-duration-curves-1.html#cb349-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
+<span id="cb349-2"><a href="flow-duration-curves-1.html#cb349-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
+<span id="cb349-3"><a href="flow-duration-curves-1.html#cb349-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb349-4"><a href="flow-duration-curves-1.html#cb349-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb349-5"><a href="flow-duration-curves-1.html#cb349-5" tabindex="-1"></a></span>
+<span id="cb349-6"><a href="flow-duration-curves-1.html#cb349-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
+<span id="cb349-7"><a href="flow-duration-curves-1.html#cb349-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb349-8"><a href="flow-duration-curves-1.html#cb349-8" tabindex="-1"></a></span>
+<span id="cb349-9"><a href="flow-duration-curves-1.html#cb349-9" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb349-10"><a href="flow-duration-curves-1.html#cb349-10" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb349-11"><a href="flow-duration-curves-1.html#cb349-11" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
 </div>
 <div id="review-describe-the-distribution-1" class="section level2 hasAnchor" number="31.2">
@@ -501,10 +511,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Could you pick that number off the plot?</li>
 <li>What about the flow the river is at or above only 5% of the time?</li>
 </ul>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="flow-duration-curves-1.html#cb348-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
-<span id="cb348-2"><a href="flow-duration-curves-1.html#cb348-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
-<span id="cb348-3"><a href="flow-duration-curves-1.html#cb348-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb348-4"><a href="flow-duration-curves-1.html#cb348-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="flow-duration-curves-1.html#cb350-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb350-2"><a href="flow-duration-curves-1.html#cb350-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb350-3"><a href="flow-duration-curves-1.html#cb350-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb350-4"><a href="flow-duration-curves-1.html#cb350-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
 </div>
 <div id="ecdfs-1" class="section level2 hasAnchor" number="31.3">
@@ -513,11 +523,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Look at this carefully, what does it show? How is it different from the pdf of the data?</p>
 <p>Plot the median again. Without the line on the plot, how would you tell where the median is?</p>
 <p>Given your answer to the question above, can you determine the flow the river is at or above only 25% of the time? Think carefully about what the y axis of the ECDF means.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="flow-duration-curves-1.html#cb349-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
-<span id="cb349-2"><a href="flow-duration-curves-1.html#cb349-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
-<span id="cb349-3"><a href="flow-duration-curves-1.html#cb349-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb349-4"><a href="flow-duration-curves-1.html#cb349-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb349-5"><a href="flow-duration-curves-1.html#cb349-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="flow-duration-curves-1.html#cb351-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb351-2"><a href="flow-duration-curves-1.html#cb351-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
+<span id="cb351-3"><a href="flow-duration-curves-1.html#cb351-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb351-4"><a href="flow-duration-curves-1.html#cb351-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb351-5"><a href="flow-duration-curves-1.html#cb351-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 </div>
 <div id="calculate-flow-exceedence-probabilities-1" class="section level2 hasAnchor" number="31.4">
@@ -532,11 +542,11 @@ n = total number of observations in data record</p>
 <p>Here’s a description of what we will do:
 &gt; Pass our Qdat data to mutate and create a new column that is equal to the ranks of the discharge column.
 &gt; Then pass that result to mutate again and create another column equal exceedence probability (P) * 100, which will give us %.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="flow-duration-curves-1.html#cb350-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
-<span id="cb350-2"><a href="flow-duration-curves-1.html#cb350-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
-<span id="cb350-3"><a href="flow-duration-curves-1.html#cb350-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb350-4"><a href="flow-duration-curves-1.html#cb350-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
-<span id="cb350-5"><a href="flow-duration-curves-1.html#cb350-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="flow-duration-curves-1.html#cb352-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
+<span id="cb352-2"><a href="flow-duration-curves-1.html#cb352-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
+<span id="cb352-3"><a href="flow-duration-curves-1.html#cb352-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb352-4"><a href="flow-duration-curves-1.html#cb352-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
+<span id="cb352-5"><a href="flow-duration-curves-1.html#cb352-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
 </div>
 <div id="plot-a-flow-duration-curve-using-the-probabilities-1" class="section level2 hasAnchor" number="31.5">
 <h2><span class="header-section-number">31.5</span> Plot a Flow Duration Curve using the probabilities<a href="flow-duration-curves-1.html#plot-a-flow-duration-curve-using-the-probabilities-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -546,11 +556,11 @@ n = total number of observations in data record</p>
 * How often is a flow of 100 cfs exceeded at this gage?
 * Is flow more variable for flows exceeded 0-25% or of the time or 75-100% * of the time?
 * How can you tell?</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="flow-duration-curves-1.html#cb351-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
-<span id="cb351-2"><a href="flow-duration-curves-1.html#cb351-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb351-3"><a href="flow-duration-curves-1.html#cb351-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb351-4"><a href="flow-duration-curves-1.html#cb351-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
-<span id="cb351-5"><a href="flow-duration-curves-1.html#cb351-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="flow-duration-curves-1.html#cb353-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb353-2"><a href="flow-duration-curves-1.html#cb353-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb353-3"><a href="flow-duration-curves-1.html#cb353-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb353-4"><a href="flow-duration-curves-1.html#cb353-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb353-5"><a href="flow-duration-curves-1.html#cb353-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 </div>
 <div id="example-use-of-an-fdc-1" class="section level2 hasAnchor" number="31.6">
@@ -560,41 +570,41 @@ n = total number of observations in data record</p>
 <p>We are introducing a new function here called case_when(). This allows you to assign values to a new column based on values in another column. In our case, we are going to name different time periods in our data.</p>
 <p>We will then group the data by these periods and calculate exceedence probabilities for each. The procedure works the same, except we add a group_by statement to group by our time period column before we create the rank and P columns. Then, when we plot, we can just tell ggplot to create different colored lines based on the time period names and it will plot a separate flow duration curve for each. Tidyverse FOR THE WIN!</p>
 <p>Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="flow-duration-curves-1.html#cb352-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb352-2"><a href="flow-duration-curves-1.html#cb352-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
-<span id="cb352-3"><a href="flow-duration-curves-1.html#cb352-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
-<span id="cb352-4"><a href="flow-duration-curves-1.html#cb352-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
-<span id="cb352-5"><a href="flow-duration-curves-1.html#cb352-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
-<span id="cb352-6"><a href="flow-duration-curves-1.html#cb352-6" tabindex="-1"></a></span>
-<span id="cb352-7"><a href="flow-duration-curves-1.html#cb352-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb352-8"><a href="flow-duration-curves-1.html#cb352-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
-<span id="cb352-9"><a href="flow-duration-curves-1.html#cb352-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
-<span id="cb352-10"><a href="flow-duration-curves-1.html#cb352-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
-<span id="cb352-11"><a href="flow-duration-curves-1.html#cb352-11" tabindex="-1"></a></span>
-<span id="cb352-12"><a href="flow-duration-curves-1.html#cb352-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
-<span id="cb352-13"><a href="flow-duration-curves-1.html#cb352-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb352-14"><a href="flow-duration-curves-1.html#cb352-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb352-15"><a href="flow-duration-curves-1.html#cb352-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
-<span id="cb352-16"><a href="flow-duration-curves-1.html#cb352-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="flow-duration-curves-1.html#cb354-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb354-2"><a href="flow-duration-curves-1.html#cb354-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb354-3"><a href="flow-duration-curves-1.html#cb354-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
+<span id="cb354-4"><a href="flow-duration-curves-1.html#cb354-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
+<span id="cb354-5"><a href="flow-duration-curves-1.html#cb354-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
+<span id="cb354-6"><a href="flow-duration-curves-1.html#cb354-6" tabindex="-1"></a></span>
+<span id="cb354-7"><a href="flow-duration-curves-1.html#cb354-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb354-8"><a href="flow-duration-curves-1.html#cb354-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb354-9"><a href="flow-duration-curves-1.html#cb354-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
+<span id="cb354-10"><a href="flow-duration-curves-1.html#cb354-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
+<span id="cb354-11"><a href="flow-duration-curves-1.html#cb354-11" tabindex="-1"></a></span>
+<span id="cb354-12"><a href="flow-duration-curves-1.html#cb354-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
+<span id="cb354-13"><a href="flow-duration-curves-1.html#cb354-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb354-14"><a href="flow-duration-curves-1.html#cb354-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb354-15"><a href="flow-duration-curves-1.html#cb354-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb354-16"><a href="flow-duration-curves-1.html#cb354-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 </div>
 <div id="compare-to-a-boxplot-of-the-same-data-1" class="section level2 hasAnchor" number="31.7">
 <h2><span class="header-section-number">31.7</span> Compare to a boxplot of the same data<a href="flow-duration-curves-1.html#compare-to-a-boxplot-of-the-same-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are really just looking at the data distribution here. Remember another good way to compare distributions is a boxplot. Let’s create a boxplot showing flows from these time periods. (we will also mess with the dimensions of the plot so the boxes aren’t so wide using fig.width and fig.height in the ``` header above the code chunk)</p>
 <p>What are the advantages/disadvantages of the flow duration curves vs. boxplots?</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="flow-duration-curves-1.html#cb353-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
-<span id="cb353-2"><a href="flow-duration-curves-1.html#cb353-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb353-3"><a href="flow-duration-curves-1.html#cb353-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="flow-duration-curves-1.html#cb355-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
+<span id="cb355-2"><a href="flow-duration-curves-1.html#cb355-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb355-3"><a href="flow-duration-curves-1.html#cb355-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-271-1.png" width="480" /></p>
 </div>
 <div id="challenge-examining-flow-regime-change-at-the-grand-canyon-1" class="section level2 hasAnchor" number="31.8">
 <h2><span class="header-section-number">31.8</span> Challenge: Examining flow regime change at the Grand Canyon<a href="flow-duration-curves-1.html#challenge-examining-flow-regime-change-at-the-grand-canyon-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The USGS Gage “Colorado River at Yuma, AZ” is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side.</p>
 <p>How does the FDC show the differences you observed in the line plot?</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="flow-duration-curves-1.html#cb354-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
-<span id="cb354-2"><a href="flow-duration-curves-1.html#cb354-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
-<span id="cb354-3"><a href="flow-duration-curves-1.html#cb354-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
-<span id="cb354-4"><a href="flow-duration-curves-1.html#cb354-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="flow-duration-curves-1.html#cb356-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
+<span id="cb356-2"><a href="flow-duration-curves-1.html#cb356-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
+<span id="cb356-3"><a href="flow-duration-curves-1.html#cb356-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
+<span id="cb356-4"><a href="flow-duration-curves-1.html#cb356-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
 </div>
 <div id="thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.-1" class="section level2 hasAnchor" number="31.9">
 <h2><span class="header-section-number">31.9</span> That’s it! Next we will apply some of these principles to look at low-flow statistics.<a href="flow-duration-curves-1.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>

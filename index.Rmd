@@ -16,20 +16,20 @@ Website: https://tpcovino.github.io/ensc_445_545_bookdown
 
 ![](images/big-hole-river-lead.jpeg)
 
-Course overview and objectives 
+## Course overview and objectives 
 
 (1) provide theoretical understanding and practical experience with common analysis and modeling techniques relevant to watershed hydrology. 
 
 (2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
 
-Structure 
+## Structure 
 This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. We will generally have "lecture" on Tuesday, where we will talk about and work through various types of hydrological analyses. On Thursday's you will then put the content from Tuesday to work in a lab where you will complete a variety of hydrological analyses in R. 
 
 
 Philosophical approach and books & resources we will utilize 
-This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source [R](https://cran.rstudio.com/){target="_blank"} and [RStudio](https://posit.co/download/rstudio-desktop/){target="_blank"} software. Books and readings will include [R for Data Science](https://r4ds.hadley.nz/){target="_blank"} and [Statistical Methods in Water Resources](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}, but other readings will be made available on this bookdown page as needed. *We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis*.  
+This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source [R](https://cran.rstudio.com/){target="_blank"} and [RStudio](https://posit.co/download/rstudio-desktop/){target="_blank"} software. Books and readings will include [R for Data Science](https://r4ds.hadley.nz/){target="_blank"} and [Statistical Methods in Water Resources](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}, but other readings will be made available on this bookdown page as needed. *We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis*.
  
-Tentative schedule, subject to change
+## Tentative schedule, subject to change
 
 **Week 1**: <br> 
 - *Lecture (1/18)*: Introduction, review.\

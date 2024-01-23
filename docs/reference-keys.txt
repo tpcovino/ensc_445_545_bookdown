@@ -1,4 +1,7 @@
 introduction
+course-overview-and-objectives
+structure
+tentative-schedule-subject-to-change
 intro-to-data-visualization
 learning-objectives
 download-and-install-tidyverse-library
