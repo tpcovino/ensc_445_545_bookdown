@@ -60,12 +60,12 @@ This course will use all online and open-source resources and will follow FAIR (
 **Week 6**: <br> 
 - *Lecture (2/20)*: Surface water: Rating curves and hydrographs. \
 - *Lab 4 (2/22)*: Rating curves and hydrographs. <br>
+- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 4-Hypothesis Tests in SMWR.
 
 **Week 7**: <br>
-- *Lecture (2/27)*: Surface water: Rating curves and hydrographs. <br>
-- *Lab 4 (2/29)*: Rating curves and hydrographs <br>
-- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 4-Hypothesis Tests in SMWR. 
-
+- *Lecture (2/27)*: Term project work session. <br>
+- *Lab 4 (2/29)*: Term project work session <br>
+ 
 **Week 8**: <br>
 - *Lab 5 (3/5)*: Flow frequency analysis (low flows) <br>
 - *Work session (3/7)*: Term project work session/guest lecture <br>
