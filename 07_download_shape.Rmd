@@ -140,7 +140,6 @@ Now we have looked at where the sites are located. Now let' see what data are av
 # service = dv means give us the daily averages. 
 data_available <- whatNWISdata(siteNumber = site, service = "dv", statCd = "00003")
 
-view(data_available)
 
 ```
 
@@ -199,7 +198,6 @@ In the chunk below write code to add information about the parameters in data_av
 ```{r}
 data_available_cd <- left_join(data_available, parameterCdFile, by = c("parm_cd" = "parameter_cd"))
 
-view(data_available_cd)
 
 # that made a lot of columns, write code to clean that up and keep only relevant columns.
 data_avail_clean <- data_available_cd %>% select(site_no, 
@@ -210,7 +208,7 @@ data_avail_clean <- data_available_cd %>% select(site_no,
                                            begin_date, 
                                            end_date)
 
-view(data_avail_clean)
+
 ```
 
 **Question**: in data_avail_clean why are there two rows for 06043500?
@@ -228,15 +226,12 @@ gal_q_end <- data_avail_clean$end_date[2]
 
 gal_q <- readNWISdata(sites = gal_q_site, parameterCd = gal_q_param, service ="dv", startDate = gal_q_start, endDate = gal_q_end) 
 
-view(gal_q)
+
 
 # Those column names are awful. Let's try that again and pipe into "renameNWISColumns()"
 gal_q <- readNWISdata(sites = gal_q_site, parameterCd = gal_q_param, service ="dv", startDate = gal_q_start, endDate = gal_q_end) %>% 
   renameNWISColumns()
 
-view(gal_q)
-tail(gal_q)
-head(gal_q)
 ```
 
 But is the Q data continuous for the entire period? The easiest way to find out is to make a plot. Make a ggplot with Q on the y and date on the x.
@@ -259,7 +254,6 @@ gal_q %>%
 gal_q <- gal_q %>% 
   filter(dateTime > "1990-09-30")
 
-view(gal_q)
 ```
 
 Let's now plot that more recent (1990 - now) data.
@@ -286,7 +280,6 @@ gal_t <- readNWISdata(sites = gal_t_site, parameterCd = gal_t_param, service ="d
   renameNWISColumns() %>% 
   select(site_no, dateTime, Wtemp_Max, Wtemp_Min, Wtemp)
 
-view(gal_t)
 
 gal_t %>% 
   ggplot(aes(x = dateTime, y = Wtemp)) +
@@ -299,19 +292,15 @@ gal_t %>%
 ```{r}
 gal_t_q <- left_join(gal_t, gal_q, by = "dateTime")
 
-view(gal_t_q)
+
 
 #let's clean that up!
 
-head(gal_t_q)
 
 gal_t_q <- gal_t_q %>% 
   select(site_no.x, dateTime, Wtemp, Flow) %>% 
   rename(site_no = 1)
 
-view(gal_t_q)
-head(gal_t_q)
-tail(gal_t_q)
 
 p1 <-gal_t_q %>% 
   ggplot(aes(x = dateTime, y = Flow)) +
@@ -351,15 +340,12 @@ hy_gal <- readNWISdata(site = site, service = service_cd, parameterCd = param_cd
   renameNWISColumns() %>% 
   select(site_no, date = dateTime, flow = Flow)
 
-head(hy_gal)
-tail(hy_gal)
 
 # now let's do a join so that we have both the site number (site_no) and the station name in the df.
 hy_gal_names <- left_join(hy_gal, data_avail_clean, by = "site_no") %>% 
   select(station = station_nm, site_no, date, flow)
 
-head(hy_gal_names)
-tail(hy_gal_names)
+
 ```
 
 Now let's make a plot of Q at the Gallatin and Hyalite gauges to do an assessment (EDA) of the data. What is your observation? 

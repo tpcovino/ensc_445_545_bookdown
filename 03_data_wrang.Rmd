@@ -20,9 +20,9 @@ Reading for this week:
 
 [Chapter 2.1: Graphical analysis of single datasets](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} in SMWR
 
-[Workflow: basics](https://r4ds.had.co.nz/workflow-basics.html){target="_blank"}
+[Workflow: basics](https://r4ds.hadley.nz/workflow-basics.html){target="_blank"}
 
-[Data transformation](https://r4ds.had.co.nz/transform.html){target="_blank"}
+[Data transformation](https://r4ds.hadley.nz/data-transform.html){target="_blank"}
 
 ## Learning objectives:
 

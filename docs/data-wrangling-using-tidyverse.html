@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2024-01-22" />
+<meta name="date" content="2024-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,7 +53,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
@@ -333,8 +333,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have messed around with plotting a bit and you’ve seen a little of what R can do. So now let’s review or introduce you to some basics. Even if you have worked in R before, it is good to be remind of/practice with this stuff, so stay tuned in!</p>
 <p>Reading for this week:</p>
 <p><a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 2.1: Graphical analysis of single datasets</a> in SMWR</p>
-<p><a href="https://r4ds.had.co.nz/workflow-basics.html" target="_blank">Workflow: basics</a></p>
-<p><a href="https://r4ds.had.co.nz/transform.html" target="_blank">Data transformation</a></p>
+<p><a href="https://r4ds.hadley.nz/workflow-basics.html" target="_blank">Workflow: basics</a></p>
+<p><a href="https://r4ds.hadley.nz/data-transform.html" target="_blank">Data transformation</a></p>
 </div>
 <div id="learning-objectives-1" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Learning objectives:<a href="data-wrangling-using-tidyverse.html#learning-objectives-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -424,21 +424,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Good question. It’s a fancy way to store data that works well with tidyverse functions. Let’s look at the flow tibble with “head” and “str”</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-wrangling-using-tidyverse.html#cb43-1" tabindex="-1"></a><span class="fu">head</span>(flow)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
-##   StationID   cfs surrogate datetime             year quarter month
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1
-## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1
-## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1
-## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1
-## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1
-## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1
-## # ℹ 1 more variable: day &lt;dbl&gt;</code></pre>
+##   StationID   cfs surrogate datetime             year quarter month   day
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1     1
+## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1     1
+## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1     1
+## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1     1
+## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1     1
+## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1     1</code></pre>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-wrangling-using-tidyverse.html#cb45-1" tabindex="-1"></a><span class="fu">str</span>(flow)</span></code></pre></div>
 <pre><code>## spc_tbl_ [4,320 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ StationID: chr [1:4320] &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; ...
 ##  $ cfs      : num [1:4320] 11.6 11.6 11.2 11.2 11.2 ...
 ##  $ surrogate: chr [1:4320] &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot; ...
-##  $ datetime : POSIXct[1:4320], format: &quot;2010-01-01 00:00:00&quot; ...
+##  $ datetime : POSIXct[1:4320], format: &quot;2010-01-01 00:00:00&quot; &quot;2010-01-01 01:00:00&quot; ...
 ##  $ year     : num [1:4320] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
 ##  $ quarter  : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ month    : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
@@ -460,31 +459,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-wrangling-using-tidyverse.html#cb47-1" tabindex="-1"></a>flow_NT <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>) <span class="co"># this is base R</span></span>
 <span id="cb47-2"><a href="data-wrangling-using-tidyverse.html#cb47-2" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="data-wrangling-using-tidyverse.html#cb47-3" tabindex="-1"></a><span class="fu">head</span>(flow_NT)</span></code></pre></div>
-<pre><code>##   StationID   cfs surrogate             datetime year quarter
-## 1      PINE 11.58         N 2010-01-01T00:00:00Z 2010       1
-## 2      PINE 11.58         N 2010-01-01T01:00:00Z 2010       1
-## 3      PINE 11.24         N 2010-01-01T02:00:00Z 2010       1
-## 4      PINE 11.24         N 2010-01-01T03:00:00Z 2010       1
-## 5      PINE 11.24         N 2010-01-01T04:00:00Z 2010       1
-## 6      PINE 11.24         N 2010-01-01T05:00:00Z 2010       1
-##   month day
-## 1     1   1
-## 2     1   1
-## 3     1   1
-## 4     1   1
-## 5     1   1
-## 6     1   1</code></pre>
+<pre><code>##   StationID   cfs surrogate             datetime year quarter month day
+## 1      PINE 11.58         N 2010-01-01T00:00:00Z 2010       1     1   1
+## 2      PINE 11.58         N 2010-01-01T01:00:00Z 2010       1     1   1
+## 3      PINE 11.24         N 2010-01-01T02:00:00Z 2010       1     1   1
+## 4      PINE 11.24         N 2010-01-01T03:00:00Z 2010       1     1   1
+## 5      PINE 11.24         N 2010-01-01T04:00:00Z 2010       1     1   1
+## 6      PINE 11.24         N 2010-01-01T05:00:00Z 2010       1     1   1</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-wrangling-using-tidyverse.html#cb49-1" tabindex="-1"></a><span class="fu">head</span>(flow)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
-##   StationID   cfs surrogate datetime             year quarter month
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1
-## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1
-## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1
-## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1
-## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1
-## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1
-## # ℹ 1 more variable: day &lt;dbl&gt;</code></pre>
+##   StationID   cfs surrogate datetime             year quarter month   day
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1     1
+## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1     1
+## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1     1
+## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1     1
+## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1     1
+## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1     1</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-wrangling-using-tidyverse.html#cb51-1" tabindex="-1"></a><span class="co"># We can remove the flow_NT dataframe from the enviroment with rm(flow_NT)</span></span>
 <span id="cb51-2"><a href="data-wrangling-using-tidyverse.html#cb51-2" tabindex="-1"></a><span class="fu">rm</span>(flow_NT)</span></code></pre></div>
 </div>
@@ -505,49 +496,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Write an expression that returns data in rbi for the state of Montana (MT)</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="data-wrangling-using-tidyverse.html#cb52-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 17 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6037500 0.0338       8 Madison River…     1126.  10U       44.7
-##  2  6043500 0.0724      61 Gallatin Rive…     2120.  10U       45.5
-##  3  6073500 0.104      123 Dearborn Rive…      835.  10U       47.2
-##  4  6154410 0.118      157 Little People…       33.4 10U       48.0
-##  5  6187915 0.110      143 Soda Butte Cr…       73.1 10U       45.0
-##  6  6191000 0.0627      46 Gardner River…      514.  10U       45.0
-##  7  6191500 0.0649      49 Yellowstone R…     6784.  10U       45.1
-##  8  6289000 0.0652      50 Little Bighor…      471.  10U       45.0
-##  9  6291500 0.0923      94 Lodge Grass C…      218   10U       45.1
-## 10 12358500 0.0922      93 Middle Fork F…     2939.  17        48.5
-## 11 12374250 0.0848      77 Mill Cr ab Ba…       50.8 17        47.8
-## 12 12375900 0.0985     113 South Crow Cr…       19.7 17        47.5
-## 13 12377150 0.118      153 Mission Cr ab…       32.2 17        47.3
-## 14 12381400 0.0698      55 South Fork Jo…      151.  17        47.2
-## 15 12383500 0.0470      19 Big Knife Cre…       17.7 17        47.1
-## 16 12388400 0.100      117 Revais Cr bl …       60.8 17        47.3
-## 17 12390700 0.0738      64 Prospect Cree…      470.  17        47.6
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+##     site_no    RBI RBIrank STANAME     DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+##  1  6037500 0.0338       8 Madison Ri…     1126.  10U       44.7    -111. MT   
+##  2  6043500 0.0724      61 Gallatin R…     2120.  10U       45.5    -111. MT   
+##  3  6073500 0.104      123 Dearborn R…      835.  10U       47.2    -112. MT   
+##  4  6154410 0.118      157 Little Peo…       33.4 10U       48.0    -109. MT   
+##  5  6187915 0.110      143 Soda Butte…       73.1 10U       45.0    -110. MT   
+##  6  6191000 0.0627      46 Gardner Ri…      514.  10U       45.0    -111. MT   
+##  7  6191500 0.0649      49 Yellowston…     6784.  10U       45.1    -111. MT   
+##  8  6289000 0.0652      50 Little Big…      471.  10U       45.0    -108. MT   
+##  9  6291500 0.0923      94 Lodge Gras…      218   10U       45.1    -108. MT   
+## 10 12358500 0.0922      93 Middle For…     2939.  17        48.5    -114. MT   
+## 11 12374250 0.0848      77 Mill Cr ab…       50.8 17        47.8    -115. MT   
+## 12 12375900 0.0985     113 South Crow…       19.7 17        47.5    -114. MT   
+## 13 12377150 0.118      153 Mission Cr…       32.2 17        47.3    -114. MT   
+## 14 12381400 0.0698      55 South Fork…      151.  17        47.2    -114. MT   
+## 15 12383500 0.0470      19 Big Knife …       17.7 17        47.1    -114. MT   
+## 16 12388400 0.100      117 Revais Cr …       60.8 17        47.3    -114. MT   
+## 17 12390700 0.0738      64 Prospect C…      470.  17        47.6    -115. MT   
+## # ℹ 17 more variables: CLASS &lt;chr&gt;, AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
 <p>And one that keeps flows less than 100 cfs in the “flow” dataframe.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="data-wrangling-using-tidyverse.html#cb54-1" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4,169 × 8
-##    StationID   cfs surrogate datetime             year quarter
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
-##  1 PINE       11.6 N         2010-01-01 00:00:00  2010       1
-##  2 PINE       11.6 N         2010-01-01 01:00:00  2010       1
-##  3 PINE       11.2 N         2010-01-01 02:00:00  2010       1
-##  4 PINE       11.2 N         2010-01-01 03:00:00  2010       1
-##  5 PINE       11.2 N         2010-01-01 04:00:00  2010       1
-##  6 PINE       11.2 N         2010-01-01 05:00:00  2010       1
-##  7 PINE       11.2 N         2010-01-01 06:00:00  2010       1
-##  8 PINE       11.2 N         2010-01-01 07:00:00  2010       1
-##  9 PINE       10.9 N         2010-01-01 08:00:00  2010       1
-## 10 PINE       10.9 N         2010-01-01 09:00:00  2010       1
-## # ℹ 4,159 more rows
-## # ℹ 2 more variables: month &lt;dbl&gt;, day &lt;dbl&gt;</code></pre>
+##    StationID   cfs surrogate datetime             year quarter month   day
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1     1
+##  2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1     1
+##  3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1     1
+##  4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1     1
+##  5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1     1
+##  6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1     1
+##  7 PINE       11.2 N         2010-01-01 06:00:00  2010       1     1     1
+##  8 PINE       11.2 N         2010-01-01 07:00:00  2010       1     1     1
+##  9 PINE       10.9 N         2010-01-01 08:00:00  2010       1     1     1
+## 10 PINE       10.9 N         2010-01-01 09:00:00  2010       1     1     1
+## # ℹ 4,159 more rows</code></pre>
 <p>Above we just executed the operation, but didn’t save it. Let’s save that work using the assignment operator.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="data-wrangling-using-tidyverse.html#cb56-1" tabindex="-1"></a>rbi_mt <span class="ot">&lt;-</span> <span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span>
 <span id="cb56-2"><a href="data-wrangling-using-tidyverse.html#cb56-2" tabindex="-1"></a></span>
@@ -557,30 +545,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>How many gages are there in Montana with an rbi greater than 0.05</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="data-wrangling-using-tidyverse.html#cb57-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6043500 0.0724      61 Gallatin Rive…     2120.  10U       45.5
-##  2  6073500 0.104      123 Dearborn Rive…      835.  10U       47.2
-##  3  6154410 0.118      157 Little People…       33.4 10U       48.0
-##  4  6187915 0.110      143 Soda Butte Cr…       73.1 10U       45.0
-##  5  6191000 0.0627      46 Gardner River…      514.  10U       45.0
-##  6  6191500 0.0649      49 Yellowstone R…     6784.  10U       45.1
-##  7  6289000 0.0652      50 Little Bighor…      471.  10U       45.0
-##  8  6291500 0.0923      94 Lodge Grass C…      218   10U       45.1
-##  9 12358500 0.0922      93 Middle Fork F…     2939.  17        48.5
-## 10 12374250 0.0848      77 Mill Cr ab Ba…       50.8 17        47.8
-## 11 12375900 0.0985     113 South Crow Cr…       19.7 17        47.5
-## 12 12377150 0.118      153 Mission Cr ab…       32.2 17        47.3
-## 13 12381400 0.0698      55 South Fork Jo…      151.  17        47.2
-## 14 12388400 0.100      117 Revais Cr bl …       60.8 17        47.3
-## 15 12390700 0.0738      64 Prospect Cree…      470.  17        47.6
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+##     site_no    RBI RBIrank STANAME     DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+##  1  6043500 0.0724      61 Gallatin R…     2120.  10U       45.5    -111. MT   
+##  2  6073500 0.104      123 Dearborn R…      835.  10U       47.2    -112. MT   
+##  3  6154410 0.118      157 Little Peo…       33.4 10U       48.0    -109. MT   
+##  4  6187915 0.110      143 Soda Butte…       73.1 10U       45.0    -110. MT   
+##  5  6191000 0.0627      46 Gardner Ri…      514.  10U       45.0    -111. MT   
+##  6  6191500 0.0649      49 Yellowston…     6784.  10U       45.1    -111. MT   
+##  7  6289000 0.0652      50 Little Big…      471.  10U       45.0    -108. MT   
+##  8  6291500 0.0923      94 Lodge Gras…      218   10U       45.1    -108. MT   
+##  9 12358500 0.0922      93 Middle For…     2939.  17        48.5    -114. MT   
+## 10 12374250 0.0848      77 Mill Cr ab…       50.8 17        47.8    -115. MT   
+## 11 12375900 0.0985     113 South Crow…       19.7 17        47.5    -114. MT   
+## 12 12377150 0.118      153 Mission Cr…       32.2 17        47.3    -114. MT   
+## 13 12381400 0.0698      55 South Fork…      151.  17        47.2    -114. MT   
+## 14 12388400 0.100      117 Revais Cr …       60.8 17        47.3    -114. MT   
+## 15 12390700 0.0738      64 Prospect C…      470.  17        47.6    -115. MT   
+## # ℹ 17 more variables: CLASS &lt;chr&gt;, AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
 <p>Challenge: Filter for flow less than 100 cfs just for the NFDR gauge in “flow”.</p>
 </div>
 </div>
@@ -590,46 +576,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sort the rbi data by the RBI column in ascending and then descending order</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="data-wrangling-using-tidyverse.html#cb59-1" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6408700 0.0108       1 RHOADS FORK N…       20.8 10U       44.1
-##  2  6430850 0.0192       2 LITTLE SPEARF…       71.8 10U       44.3
-##  3 10244950 0.0230       3 STEPTOE C NR …       28.2 16        39.2
-##  4  2267000 0.0286       4 CATFISH CREEK…      169.  3         28.0
-##  5  6775500 0.0300       5 MIDDLE LOUP R…     5460.  10L       41.8
-##  6  6430532 0.0303       6 CROW CREEK NE…      106.  10U       44.6
-##  7 14158500 0.0306       7 MCKENZIE RIVE…      237.  17        44.4
-##  8  6037500 0.0338       8 Madison River…     1126.  10U       44.7
-##  9 10109001 0.0382       9 COM F LOGAN R…      556.  16        41.7
-## 10 10243700 0.0391      10 CLEVE C NR EL…       83.5 16        39.2
+##     site_no    RBI RBIrank STANAME     DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE
+##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+##  1  6408700 0.0108       1 RHOADS FOR…       20.8 10U       44.1   -104.  SD   
+##  2  6430850 0.0192       2 LITTLE SPE…       71.8 10U       44.3   -104.  SD   
+##  3 10244950 0.0230       3 STEPTOE C …       28.2 16        39.2   -115.  NV   
+##  4  2267000 0.0286       4 CATFISH CR…      169.  3         28.0    -81.5 FL   
+##  5  6775500 0.0300       5 MIDDLE LOU…     5460.  10L       41.8   -100.  NE   
+##  6  6430532 0.0303       6 CROW CREEK…      106.  10U       44.6   -104.  SD   
+##  7 14158500 0.0306       7 MCKENZIE R…      237.  17        44.4   -122.  OR   
+##  8  6037500 0.0338       8 Madison Ri…     1126.  10U       44.7   -111.  MT   
+##  9 10109001 0.0382       9 COM F LOGA…      556.  16        41.7   -112.  UT   
+## 10 10243700 0.0391      10 CLEVE C NR…       83.5 16        39.2   -115.  NV   
 ## # ℹ 1,134 more rows
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+## # ℹ 17 more variables: CLASS &lt;chr&gt;, AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="data-wrangling-using-tidyverse.html#cb61-1" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##    site_no   RBI RBIrank STANAME DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE
-##      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1  9.49e6  1.76    1144 CANADA…      675.  15        32.3   -111. 
-##  2  9.51e6  1.75    1143 SKUNK …      170.  15        33.7   -112. 
-##  3  8.40e6  1.62    1142 SOUTH …      534   13        32.6   -104. 
-##  4  9.49e6  1.58    1141 BRAWLE…     2028.  15        32.1   -111. 
-##  5  9.54e6  1.57    1140 SAN SI…     1483.  15        32.0   -112. 
-##  6  8.20e6  1.56    1139 Seco C…      435.  12        29.4    -99.3
-##  7  1.11e7  1.55    1138 Lytle …      365.  18        34.1   -117. 
-##  8  7.02e6  1.51    1137 Fishpo…       24.9 7         38.6    -90.5
-##  9  7.23e6  1.50    1136 Palo D…     2909.  11        36.2   -101. 
-## 10  6.85e6  1.40    1135 BEAVER…     4358.  10L       40.0   -101. 
+##    site_no   RBI RBIrank STANAME DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE CLASS
+##      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+##  1  9.49e6  1.76    1144 CANADA…      675.  15        32.3   -111.  AZ    Non-…
+##  2  9.51e6  1.75    1143 SKUNK …      170.  15        33.7   -112.  AZ    Non-…
+##  3  8.40e6  1.62    1142 SOUTH …      534   13        32.6   -104.  NM    Ref  
+##  4  9.49e6  1.58    1141 BRAWLE…     2028.  15        32.1   -111.  AZ    Ref  
+##  5  9.54e6  1.57    1140 SAN SI…     1483.  15        32.0   -112.  AZ    Ref  
+##  6  8.20e6  1.56    1139 Seco C…      435.  12        29.4    -99.3 TX    Ref  
+##  7  1.11e7  1.55    1138 Lytle …      365.  18        34.1   -117.  CA    Non-…
+##  8  7.02e6  1.51    1137 Fishpo…       24.9 7         38.6    -90.5 MO    Non-…
+##  9  7.23e6  1.50    1136 Palo D…     2909.  11        36.2   -101.  TX    Ref  
+## 10  6.85e6  1.40    1135 BEAVER…     4358.  10L       40.0   -101.  KS    Ref  
 ## # ℹ 1,134 more rows
-## # ℹ 18 more variables: STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+## # ℹ 16 more variables: AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
 </div>
 <div id="select" class="section level2 hasAnchor" number="3.11">
 <h2><span class="header-section-number">3.11</span> Select<a href="data-wrangling-using-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -649,47 +633,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Create a new column in rbi called T_RANGE by subtracting T_MIN_SITE from T_MAX_SITE</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="data-wrangling-using-tidyverse.html#cb64-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 27
-##    site_no    RBI RBIrank STANAME         DRAIN_SQKM HUC02 LAT_GAGE
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River nea…     2253.  1         47.2
-##  2 1021480 0.208      300 Old Stream nea…       76.7 1         44.9
-##  3 1022500 0.198      286 Narraguagus Ri…      574.  1         44.6
-##  4 1029200 0.132      183 Seboeis River …      445.  1         46.1
-##  5 1030500 0.114      147 Mattawamkeag R…     3676.  1         45.5
-##  6 1031300 0.297      489 Piscataquis Ri…      304.  1         45.3
-##  7 1031500 0.320      545 Piscataquis Ri…      769   1         45.2
-##  8 1037380 0.318      537 Ducktrap River…       39   1         44.3
-##  9 1044550 0.242      360 Spencer Stream…      500.  1         45.3
-## 10 1047000 0.344      608 Carrabassett R…      909.  1         44.9
+##    site_no    RBI RBIrank STANAME      DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+##  1 1013500 0.0584      35 Fish River …     2253.  1         47.2    -68.6 ME   
+##  2 1021480 0.208      300 Old Stream …       76.7 1         44.9    -67.7 ME   
+##  3 1022500 0.198      286 Narraguagus…      574.  1         44.6    -67.9 ME   
+##  4 1029200 0.132      183 Seboeis Riv…      445.  1         46.1    -68.6 ME   
+##  5 1030500 0.114      147 Mattawamkea…     3676.  1         45.5    -68.3 ME   
+##  6 1031300 0.297      489 Piscataquis…      304.  1         45.3    -69.6 ME   
+##  7 1031500 0.320      545 Piscataquis…      769   1         45.2    -69.3 ME   
+##  8 1037380 0.318      537 Ducktrap Ri…       39   1         44.3    -69.1 ME   
+##  9 1044550 0.242      360 Spencer Str…      500.  1         45.3    -70.2 ME   
+## 10 1047000 0.344      608 Carrabasset…      909.  1         44.9    -70.0 ME   
 ## # ℹ 1,134 more rows
-## # ℹ 20 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+## # ℹ 18 more variables: CLASS &lt;chr&gt;, AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;,
+## #   T_RANGE &lt;dbl&gt;</code></pre>
 <p>When downloading data from the USGS through R, you have to enter the gage ID as a character, even though they are all made up of numbers. So to practice doing this, update the site_no column to be a character datatype</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="data-wrangling-using-tidyverse.html#cb66-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
 <pre><code>## # A tibble: 1,144 × 26
-##    site_no    RBI RBIrank STANAME         DRAIN_SQKM HUC02 LAT_GAGE
-##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River nea…     2253.  1         47.2
-##  2 1021480 0.208      300 Old Stream nea…       76.7 1         44.9
-##  3 1022500 0.198      286 Narraguagus Ri…      574.  1         44.6
-##  4 1029200 0.132      183 Seboeis River …      445.  1         46.1
-##  5 1030500 0.114      147 Mattawamkeag R…     3676.  1         45.5
-##  6 1031300 0.297      489 Piscataquis Ri…      304.  1         45.3
-##  7 1031500 0.320      545 Piscataquis Ri…      769   1         45.2
-##  8 1037380 0.318      537 Ducktrap River…       39   1         44.3
-##  9 1044550 0.242      360 Spencer Stream…      500.  1         45.3
-## 10 1047000 0.344      608 Carrabassett R…      909.  1         44.9
+##    site_no    RBI RBIrank STANAME      DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE STATE
+##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;
+##  1 1013500 0.0584      35 Fish River …     2253.  1         47.2    -68.6 ME   
+##  2 1021480 0.208      300 Old Stream …       76.7 1         44.9    -67.7 ME   
+##  3 1022500 0.198      286 Narraguagus…      574.  1         44.6    -67.9 ME   
+##  4 1029200 0.132      183 Seboeis Riv…      445.  1         46.1    -68.6 ME   
+##  5 1030500 0.114      147 Mattawamkea…     3676.  1         45.5    -68.3 ME   
+##  6 1031300 0.297      489 Piscataquis…      304.  1         45.3    -69.6 ME   
+##  7 1031500 0.320      545 Piscataquis…      769   1         45.2    -69.3 ME   
+##  8 1037380 0.318      537 Ducktrap Ri…       39   1         44.3    -69.1 ME   
+##  9 1044550 0.242      360 Spencer Str…      500.  1         45.3    -70.2 ME   
+## 10 1047000 0.344      608 Carrabasset…      909.  1         44.9    -70.0 ME   
 ## # ℹ 1,134 more rows
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
+## # ℹ 17 more variables: CLASS &lt;chr&gt;, AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;,
+## #   PPTAVG_SITE &lt;dbl&gt;, T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
 ## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;, SNOW_PCT_PRECIP &lt;dbl&gt;,
+## #   PRECIP_SEAS_IND &lt;dbl&gt;, FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
 </div>
 <div id="summarize" class="section level2 hasAnchor" number="3.13">
 <h2><span class="header-section-number">3.13</span> Summarize<a href="data-wrangling-using-tidyverse.html#summarize" class="anchor-section" aria-label="Anchor link to header"></a></h2>

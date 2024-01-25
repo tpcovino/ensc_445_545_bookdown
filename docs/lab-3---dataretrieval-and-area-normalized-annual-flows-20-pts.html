@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2024-01-22" />
+<meta name="date" content="2024-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,7 +53,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
@@ -330,16 +330,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, leaflet, lubridate) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
 <p>Load the necessary packages.</p>
 <p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022. Call this df “stream_gauges”</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-1" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
-<span id="cb149-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-2" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb149-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-3" tabindex="-1"></a><span class="co"># then load the data. </span></span>
-<span id="cb149-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-4" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb149-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb149-5" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb133-1" tabindex="-1"></a><span class="co"># write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb133-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb133-2" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb133-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb133-3" tabindex="-1"></a><span class="co"># then load the data. </span></span>
+<span id="cb133-4"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb133-4" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb133-5"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb133-5" tabindex="-1"></a><span class="co"># you will want to repeat this process in any chunks that have dataRetrieval functions that are reaching out to the internet. </span></span></code></pre></div>
 <p>Map the gauges.</p>
 <p>Download the Q data for the gauges using dataRetrieval. Call the dataframe you create “flows”</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-1" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
-<span id="cb150-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-2" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
-<span id="cb150-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb150-3" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb134-1" tabindex="-1"></a><span class="co"># Again we want to write and then read the df so we can comment out the dataRetrieval function from trying to go to the internet. </span></span>
+<span id="cb134-2"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb134-2" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb134-3"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#cb134-3" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
 <p>Make a facet wrap to look at the flows for each gauge.</p>
 <p>Filter your data frame of streamflow data to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this df “flows_filt”</p>
 <p>Make another facet wrap of flow at those 4 guages.</p>
