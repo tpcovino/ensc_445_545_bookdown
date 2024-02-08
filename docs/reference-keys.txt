@@ -51,9 +51,13 @@ first-lets-map-these-sites.
 joins
 join-practice-example
 now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.
-lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts
-summary-20-pts
-deliverable
+dataretrieval-and-area-normalized-flows-20-pts
+intro
+this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html.
+load-the-necessary-packages.
+workflow
+summary-14-pts
+deliverable-6-pts
 statistics-in-hydrology---unit-3
 learning-objectives-2
 homework-q1-2-pts
@@ -79,7 +83,7 @@ problem-3-5-pts
 problem-4-5-pts
 problem-5-5-pts-1
 problem-6-5-pts-1
-deliverable-1
+deliverable
 demo-dataretrieval-and-streamstats
 load-some-standard-packages.
 define-parameters-for-dataretrieval.
