@@ -351,7 +351,7 @@ ad.test(all_the_water$value)
 
 - According to the tests you've just performed, which datasets ARE and which datesets are NOT normal?
 
-## Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)
+## Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)
 
 - Write up your answers to HW questions 1 - 5 in a word doc and submit on D2L. 
 
