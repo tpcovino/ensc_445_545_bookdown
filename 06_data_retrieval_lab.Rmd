@@ -1,12 +1,5 @@
----
-author: "YOUR NAME HERE"
-output: 
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
----
-# dataRetrieval and area normalized flows (20 pts)
+
+# Lab 2: dataRetrieval and area normalized flows (20 pts)
 
 [**Repo here**](https://github.com/tpcovino/lab_3){target="_blank"}
 

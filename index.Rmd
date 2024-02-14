@@ -46,21 +46,23 @@ This course will use all online and open-source resources and will follow FAIR (
 - *Lab 1 (2/1)*: Data viz, wrangling, and programming. <br>
 
 **Week 4**: <br>
-- *Lecture (2/6)*: Statistics in hydrology. <br>
-- *Lab 2 (2/8)*: Statistics in hydrology. <br>
-- *Reading*: [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: 1-Summarizing Univariate Data in SMWR 
-
-**Week 5**: <br> 
-- *Lecture (2/13)*: Downloading and shaping data frames.<br>
-- *Lab 3 (2/15)*: Downloading and shaping data frames. <br>
+- *Lecture (2/6)*: Downloading and shaping data frames.<br>
+- *Lab 2 (2/8)*: Downloading and shaping data frames. <br>
 - **Submit term project ideas** <br>
 - *Reading*: [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"}
 *AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
 
+
+**Week 5**: <br> 
+- *Lecture (2/13)*: Statistics in hydrology. <br>
+- *Lab 2 (2/15)*: Statistics in hydrology. <br>
+- *Reading*: [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Summarizing Univariate Data in SMWR 
+
+
 **Week 6**: <br> 
 - *Lecture (2/20)*: Surface water: Rating curves and hydrographs. \
 - *Lab 4 (2/22)*: Rating curves and hydrographs. <br>
-- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 4-Hypothesis Tests in SMWR.
+- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Hypothesis Tests in SMWR.
 
 **Week 7**: <br>
 - *Lecture (2/27)*: Term project work session. <br>

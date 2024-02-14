@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  
+  
+  
+
+<meta name="author" content="Tim Covino" />
+
+
+<meta name="date" content="2024-02-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dataretrieval.html"/>
+<link rel="next" href="statistics-in-hydrology.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Watershed Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#change-point-type"><i class="fa fa-check"></i><b>2.5</b> Change point type</a></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#set-colors"><i class="fa fa-check"></i><b>2.6</b> Set colors</a></li>
+<li class="chapter" data-level="2.7" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="2.8" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#plotting-multiple-groups-adding-a-third-variable"><i class="fa fa-check"></i><b>2.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="2.9" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#facets"><i class="fa fa-check"></i><b>2.9</b> Facets</a></li>
+<li class="chapter" data-level="2.10" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="2.11" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#boxplots"><i class="fa fa-check"></i><b>2.11</b> Boxplots</a></li>
+<li class="chapter" data-level="2.12" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="2.13" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#multiple-geoms"><i class="fa fa-check"></i><b>2.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="2.14" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#exit-ticket"><i class="fa fa-check"></i><b>2.14</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Data wrangling using tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator"><i class="fa fa-check"></i><b>3.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--"><i class="fa fa-check"></i><b>3.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#using-functions"><i class="fa fa-check"></i><b>3.5</b> Using functions</a></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#read-in-some-data"><i class="fa fa-check"></i><b>3.6</b> Read in some data</a></li>
+<li class="chapter" data-level="3.7" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#what-is-a-tibble"><i class="fa fa-check"></i><b>3.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="3.8" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr"><i class="fa fa-check"></i><b>3.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="3.9" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#filter"><i class="fa fa-check"></i><b>3.9</b> Filter</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-conditions"><i class="fa fa-check"></i><b>3.9.1</b> Multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#arrange"><i class="fa fa-check"></i><b>3.10</b> Arrange</a></li>
+<li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.11</b> Select</a></li>
+<li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.12</b> Mutate</a></li>
+<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.13</b> Summarize</a></li>
+<li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="3.17" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.17</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html"><i class="fa fa-check"></i><b>4</b> Lab 1: Data vis, wrangling, and programming (10 pts)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-1-1-pts"><i class="fa fa-check"></i><b>4.1</b> Problem 1 (1 pts)</a></li>
+<li class="chapter" data-level="4.2" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-2-1-pts"><i class="fa fa-check"></i><b>4.2</b> Problem 2 (1 pts)</a></li>
+<li class="chapter" data-level="4.3" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-3-2-pts"><i class="fa fa-check"></i><b>4.3</b> Problem 3 (2 pts)</a></li>
+<li class="chapter" data-level="4.4" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-4-2-pts"><i class="fa fa-check"></i><b>4.4</b> Problem 4 (2 pts)</a></li>
+<li class="chapter" data-level="4.5" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-5-2-pts"><i class="fa fa-check"></i><b>4.5</b> Problem 5 (2 pts)</a></li>
+<li class="chapter" data-level="4.6" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#problem-6-2-pts"><i class="fa fa-check"></i><b>4.6</b> Problem 6 (2 pts)</a></li>
+<li class="chapter" data-level="4.7" data-path="lab-1-data-vis-wrangling-and-programming-10-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-10-pts.html#summary"><i class="fa fa-check"></i><b>4.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dataretrieval.html"><a href="dataretrieval.html"><i class="fa fa-check"></i><b>5</b> dataRetrieval</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dataretrieval.html"><a href="dataretrieval.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="dataretrieval.html"><a href="dataretrieval.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>5.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="5.3" data-path="dataretrieval.html"><a href="dataretrieval.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>5.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="5.4" data-path="dataretrieval.html"><a href="dataretrieval.html#joins"><i class="fa fa-check"></i><b>5.4</b> Joins</a></li>
+<li class="chapter" data-level="5.5" data-path="dataretrieval.html"><a href="dataretrieval.html#join-practice-example"><i class="fa fa-check"></i><b>5.5</b> Join practice example</a></li>
+<li class="chapter" data-level="5.6" data-path="dataretrieval.html"><a href="dataretrieval.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>5.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><i class="fa fa-check"></i><b>6</b> Lab 2: dataRetrieval and area normalized flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
+<li class="chapter" data-level="6.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html"><i class="fa fa-check"></i><b>7</b> Statistics in hydrology</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#learning-objectives-2"><i class="fa fa-check"></i><b>7.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q1-2-pts"><i class="fa fa-check"></i><b>7.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="7.3" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-the-difference-between-a-sample-and-a-population"><i class="fa fa-check"></i><b>7.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="7.4" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q2-2-pts"><i class="fa fa-check"></i><b>7.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="7.5" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measuring-our-sample-distribution-central-tendency"><i class="fa fa-check"></i><b>7.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="7.6" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#so-whats-a-weighted-average"><i class="fa fa-check"></i><b>7.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="7.7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measures-of-variability"><i class="fa fa-check"></i><b>7.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="7.8" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q3-2-pts"><i class="fa fa-check"></i><b>7.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="7.9" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one"><i class="fa fa-check"></i><b>7.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="7.10" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q4-2-pts"><i class="fa fa-check"></i><b>7.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="7.11" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q5-2-pts"><i class="fa fa-check"></i><b>7.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="7.12" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#deliverable-10-pts-due-thursday-215-by-1159-pm"><i class="fa fa-check"></i><b>7.12</b> Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3: Statistics in hydrology (30 pts)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-1-5-pts"><i class="fa fa-check"></i><b>8.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="8.2" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-2-5-pts"><i class="fa fa-check"></i><b>8.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="8.3" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-3-5-pts"><i class="fa fa-check"></i><b>8.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="8.4" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-4-5-pts"><i class="fa fa-check"></i><b>8.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="8.5" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-5-5-pts"><i class="fa fa-check"></i><b>8.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="8.6" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#problem-6-5-pts"><i class="fa fa-check"></i><b>8.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="8.7" data-path="lab-3-statistics-in-hydrology-30-pts.html"><a href="lab-3-statistics-in-hydrology-30-pts.html#deliverable"><i class="fa fa-check"></i><b>8.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html"><i class="fa fa-check"></i><b>9</b> Hydrographs and rating curves</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#overall-learning-objectives"><i class="fa fa-check"></i><b>9.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#reading"><i class="fa fa-check"></i><b>9.2</b> Reading</a></li>
+<li class="chapter" data-level="9.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#lecture"><i class="fa fa-check"></i><b>9.3</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#hydrographs-and-rating-curves-1"><i class="fa fa-check"></i><b>9.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="9.3.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>9.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="9.3.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#making-stage-measurements"><i class="fa fa-check"></i><b>9.3.3</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="9.3.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>9.3.4</b> Applications of streamflow and stream gage</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>9.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="9.5" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#summary-questions"><i class="fa fa-check"></i><b>9.5</b> Summary questions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lab-4---rating-curve-analysis.html"><a href="lab-4---rating-curve-analysis.html"><i class="fa fa-check"></i><b>10</b> Lab 4 - Rating curve analysis</a></li>
+<li class="chapter" data-level="11" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html"><i class="fa fa-check"></i><b>11</b> Flow Duration Curves</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#get-data"><i class="fa fa-check"></i><b>11.1</b> Get data</a></li>
+<li class="chapter" data-level="11.2" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>11.2</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="11.3" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#ecdfs"><i class="fa fa-check"></i><b>11.3</b> ECDFs</a></li>
+<li class="chapter" data-level="11.4" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>11.4</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="11.5" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>11.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="11.6" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>11.6</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="11.7" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>11.7</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="11.8" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#challenge-examining-flow-regime-change-at-the-grand-canyon"><i class="fa fa-check"></i><b>11.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
+<li class="chapter" data-level="11.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>11.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>12</b> Lab 5 - Low Flow Analysis</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Watershed Analysis: ENSC 445/LRES 545</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lab-2-dataretrieval-and-area-normalized-flows-20-pts" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Lab 2: dataRetrieval and area normalized flows (20 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#lab-2-dataretrieval-and-area-normalized-flows-20-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://github.com/tpcovino/lab_3" target="_blank"><strong>Repo here</strong></a></p>
+<div id="intro" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Intro<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
+<div id="this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html." class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> This is knitr settings. Knitr is a package that will turn this Rmd to an html.<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb92-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="load-the-necessary-packages." class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Load the necessary packages.<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb93-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb93-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-3" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb93-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+</div>
+<div id="workflow" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Workflow<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-1" tabindex="-1"></a><span class="co"># Load the stream gauge data</span></span>
+<span id="cb94-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-2" tabindex="-1"></a><span class="co"># Configs that could be changed ...</span></span>
+<span id="cb94-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-3" tabindex="-1"></a>param_cd <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span> <span class="co"># Parameter code for streamflow . See `dataRetrieval::parameterCdFile` for more.</span></span>
+<span id="cb94-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-4" tabindex="-1"></a>service_cd <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># means &quot;daily value&quot;. See `https://waterservices.usgs.gov/rest/` for more info.</span></span>
+<span id="cb94-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-5" tabindex="-1"></a><span class="co"># State code</span></span>
+<span id="cb94-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-6" tabindex="-1"></a>state_cd <span class="ot">&lt;-</span> <span class="st">&quot;MT&quot;</span></span>
+<span id="cb94-7"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-7" tabindex="-1"></a><span class="co"># County code</span></span>
+<span id="cb94-8"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-8" tabindex="-1"></a>county_cd <span class="ot">&lt;-</span> <span class="st">&quot;Park County&quot;</span></span>
+<span id="cb94-9"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-9" tabindex="-1"></a><span class="co"># set start and end dates for streamflow time series</span></span>
+<span id="cb94-10"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-10" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
+<span id="cb94-11"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-11" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
+<span id="cb94-12"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-12" tabindex="-1"></a>huc_cd <span class="ot">&lt;-</span> <span class="st">&quot;10070003&quot;</span></span>
+<span id="cb94-13"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-13" tabindex="-1"></a></span>
+<span id="cb94-14"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-14" tabindex="-1"></a><span class="co"># Use whatNWISsites to identify what gauges exist that meet the above conditions. However, the whatNWISsites doesn&#39;t always screen out sites that don&#39;t have the exact dates we want. </span></span>
+<span id="cb94-15"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-15" tabindex="-1"></a></span>
+<span id="cb94-16"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-16" tabindex="-1"></a>stream_gauges <span class="ot">&lt;-</span> <span class="fu">whatNWISsites</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va)</span>
+<span id="cb94-17"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-17" tabindex="-1"></a></span>
+<span id="cb94-18"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-18" tabindex="-1"></a><span class="co"># Since whatNWISsites doesn&#39;t always work for the dates we can also run whatNWISdata to filter for the dates and gain some info on the gauges. Both of them are useful to run.  </span></span>
+<span id="cb94-19"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-19" tabindex="-1"></a></span>
+<span id="cb94-20"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-20" tabindex="-1"></a>stream_gauges_info <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb94-21"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-21" tabindex="-1"></a>  <span class="fu">filter</span>(begin_date <span class="sc">&lt;</span> start, end_date <span class="sc">&gt;</span> end) </span>
+<span id="cb94-22"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-22" tabindex="-1"></a></span>
+<span id="cb94-23"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-23" tabindex="-1"></a><span class="co"># Uncomment the code below to write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb94-24"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-24" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb94-25"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-25" tabindex="-1"></a><span class="co">#write_csv(stream_gauges_info, &quot;steam_gauges_info.csv&quot;)</span></span>
+<span id="cb94-26"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-26" tabindex="-1"></a></span>
+<span id="cb94-27"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-27" tabindex="-1"></a><span class="co"># In the future uncomment the code below to load the csv. </span></span>
+<span id="cb94-28"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-28" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb94-29"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-29" tabindex="-1"></a><span class="co">#stream_gauges_info &lt;- read_csv(&quot;stream_gauges_info.csv&quot;)</span></span></code></pre></div>
+<p>Map the gauges. If leaflet isn’t working for you, don’t worry. This isn’t critical, just useful to visualize where the gauges are.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-1" tabindex="-1"></a>park_map <span class="ot">&lt;-</span> <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb95-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-2" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb95-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-3" tabindex="-1"></a>  <span class="fu">addAwesomeMarkers</span>(<span class="at">data =</span> stream_gauges, <span class="at">lat =</span> <span class="sc">~</span>dec_lat_va, <span class="at">lng =</span> <span class="sc">~</span>dec_long_va, <span class="at">label =</span> <span class="sc">~</span>station_nm, </span>
+<span id="cb95-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-4" tabindex="-1"></a>                    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">&quot;Site&quot;</span>, site_no)) </span>
+<span id="cb95-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-5" tabindex="-1"></a>  </span>
+<span id="cb95-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-6" tabindex="-1"></a>park_map</span></code></pre></div>
+<p>Download the Q data for the gauges and create a df called “flows”.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> stream_gauges<span class="sc">$</span>site_no</span>
+<span id="cb96-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-2" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-3" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> sites, <span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb96-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-4" tabindex="-1"></a></span>
+<span id="cb96-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-5" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb96-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-6" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<p>Make a facet wrap to look at the flows for each gauge. Facet by “site_no”.</p>
+<p>Filter the “flows” df to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this new df “flows_filt”.</p>
+<p>Make another facet wrap of flow at those 4 gauges. Again, filter by “site_no”.</p>
+<p>For the 4 gauges you have kept, convert flow to mm/day.</p>
+<p>This is a unit of depth per time, which we generally refer to as an area normalized flow. To get area normalized flow you divide the volumetric flow (e.g., cubic meters per second, m3/s) by the area of the watershed (e.g., cubic meters, m2). In this example, that division would yield meters per second (m/s). From there you would do some conversion to get to mm/day.</p>
+<p>To do this, you obviously need to know the area of each watershed, which you can get from readNWISsite.</p>
+<p>Also, remember that your Q data are currently in cfs so there are multiple conversions you will need to do.</p>
+<p>You can find this online but the areas given from NWIS are in square miles. I’d recommend converting the area from square miles to square meters. And converting cubic feet per second to cubic meters per second. From there, the instructions above should get you where you want to go.</p>
+<p>You can use whatNWISdata, readNWISsite, and a join (e.g., left_join) to get the names of the sites and the drainage areas in the same df.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-1" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) </span>
+<span id="cb97-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-2" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-3" tabindex="-1"></a><span class="co">#write_csv(site_info_a, &quot;site_info_a.csv&quot;)</span></span>
+<span id="cb97-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-4" tabindex="-1"></a><span class="co">#site_info_a &lt;- read_csv(&quot;site_info_a.csv&quot;)</span></span>
+<span id="cb97-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-5" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-6" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> site_info_a <span class="sc">%&gt;%</span> </span>
+<span id="cb97-7"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-7" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va, alt_va, begin_date, end_date, count_nu)</span>
+<span id="cb97-8"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-8" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-9" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(stream_gauges<span class="sc">$</span>site_no)</span>
+<span id="cb97-10"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-10" tabindex="-1"></a></span>
+<span id="cb97-11"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-11" tabindex="-1"></a><span class="co">#write_csv(site_info_b, &quot;site_info_b.csv&quot;)</span></span>
+<span id="cb97-12"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-12" tabindex="-1"></a><span class="co">#site_info_b &lt;- read_csv(&quot;site_info_b.csv&quot;)</span></span>
+<span id="cb97-13"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-13" tabindex="-1"></a></span>
+<span id="cb97-14"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-14" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> site_info_b <span class="sc">%&gt;%</span> </span>
+<span id="cb97-15"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-15" tabindex="-1"></a>  <span class="fu">select</span>(site_no, drain_area_va)</span>
+<span id="cb97-16"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-16" tabindex="-1"></a></span>
+<span id="cb97-17"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-17" tabindex="-1"></a>site_info <span class="ot">&lt;-</span> <span class="fu">left_join</span>(site_info_a, site_info_b, <span class="at">by =</span> <span class="st">&quot;site_no&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-18"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-18" tabindex="-1"></a>  <span class="fu">filter</span>(site_no <span class="sc">!=</span> <span class="st">&quot;06192980&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187915&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187910&quot;</span>) </span></code></pre></div>
+<p>Next, you will need to do another join to get the flow data and the drainage area in the same df. Once you have them in the same df all you need to do is the conversions outlined above.</p>
+<p>Now that you have flow at each site in mm/day, make a facet wrap of flow for each gauge in mm/day. This area normalize flow gives us a sense of how much flow a watershed produces per unit area. It also allows us to compare across watersheds of different sizes. Obviously a larger watershed will produce more volumetric flow but will it produce more flow per unit area? Think about it like an hourly wage. You might make more at work because you work more hours, but your friend might make a higher hourly wage. So volumetric is like how much you made this pay period, and area normalized is like how much you made divided by the number of hours you worked. So wet watersheds that produce a lot of flow per unit area, have a high hourly wage, so to speak.</p>
+<p>Compute and plot total annual flow for each gauge. You will need group_by(site_no, station_nm, year), and reframe. We did this is the first few weeks. Remember to add in na.rm = TRUE in case there are any NA values.</p>
+<p>Plot total annual flow from each gauge in mm/year all on the same graph, and color by gauge name.</p>
+<p>Make a map of the gauges included in this plot of total annual flow to aid in interpretation.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb98-1" tabindex="-1"></a><span class="co"># </span></span></code></pre></div>
+</div>
+</div>
+<div id="summary-14-pts" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Summary (14 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using mm/year allows us to compare across gauges with very different volumetric (e.g., cfs or cms) flow rates. Remember that gauges that produce more water per unit area have a higher hourly wage. So from a watershed hydrology perspective, what types of watersheds would produce more water per unit area? Think about the watershed and climate characteristics that might lead to more or less production of water per unit area (aka, area normalized flow).</p>
+<p>Use your plots of mm/year to comment on:<br />
+1. Does one gauge produce consistently less flow year to year? (2 pts)<br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Does one gauge produce consistently more flow year to year? (2 pts)<br />
+</p></li>
+<li><p>Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be. (5 pts)<br />
+</p></li>
+<li><p>For any gauges that seem different than the others, provide a plausible explanation for why that might be. (5 pts)</p></li>
+</ol>
+</div>
+<div id="deliverable-6-pts" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Deliverable (6 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Knit this .Rmd to .html and upload both on D2L. If you can’t get to knit, just upload .Rmd.</p>
+<p>Points for clarity and commenting of .Rmd and clarity of figures.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dataretrieval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistics-in-hydrology.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/06_data_retrieval_lab.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/06_data_retrieval_lab.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

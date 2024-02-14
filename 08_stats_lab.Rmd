@@ -1,12 +1,6 @@
----
-output: 
-  html_document:
-    toc: true
-    toc_depth: 3
-    toc_float: true
----
 
-# Lab 2: Statistics in hydrology (30 pts)
+
+# Lab 3: Statistics in hydrology (30 pts)
 
 [**The repo for this lab can be found here**](https://github.com/tpcovino/lab_2){target="_blank"}
 

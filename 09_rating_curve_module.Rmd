@@ -1,6 +1,8 @@
 
 # Hydrographs and rating curves
 
+- this is not turned in, but you should work through this exercise to prepare for the rating curve lab. 
+
 A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record.  A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments. 
 
 ## Overall Learning Objectives
@@ -70,10 +72,6 @@ d.	Repeat steps 1 – 3, 5 times. Be sure you have a large range of water depths
 e.	Repeat the above steps with your second water vessel.
 f.	Plot your results for each water vessel separately. Put the depth of water on the x-axis and the volume on the y-axis. Add a best fit line to your plot. Include these two plots in your Assessment submission.
 g.	Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?
-
-**Activity Video:** 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/In-J9mHh6rU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>
 
 
 ## Summary questions

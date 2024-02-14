@@ -1,8 +1,3 @@
-```{r}
-
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = TRUE)
-
-```
 
 
 # Intro to data visualization
@@ -32,6 +27,13 @@ You only have to install the library once. You have to load it using the library
 ```{r}
 #install.packages("tidyverse")
 library(tidyverse)
+
+```
+
+
+```{r}
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = TRUE)
 
 ```
 
