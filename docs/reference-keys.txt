@@ -36,14 +36,16 @@ multiple-operations-with-pipes
 a-final-comment-on-nas
 thats-it-for-today
 exit-ticket-1
-lab-1-data-vis-wrangling-and-programming-10-pts
+lab-1-data-vis-wrangling-and-programming-12-pts
 problem-1-1-pts
 problem-2-1-pts
 problem-3-2-pts
 problem-4-2-pts
 problem-5-2-pts
 problem-6-2-pts
-summary
+summary-2-pts
+feeback
+deliverables
 dataretrieval
 goals
 exploring-what-dataretrieval-can-do
@@ -76,7 +78,7 @@ what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one
 homework-q4-2-pts
 homework-q5-2-pts
 deliverable-10-pts-due-thursday-215-by-1159-pm
-lab-3-statistics-in-hydrology-30-pts
+lab-3-statistics-in-hydrology-33-pts
 problem-1-5-pts
 problem-2-5-pts
 problem-3-5-pts
