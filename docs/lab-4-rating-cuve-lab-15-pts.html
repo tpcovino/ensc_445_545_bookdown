@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 10 Lab 4: Rating cuve lab (15 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 10 Lab 4: Rating cuve lab (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 10 Lab 4: Rating cuve lab (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 10 Lab 4: Rating cuve lab (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lab-3-statistics-in-hydrology-33-pts.html"/>
-<link rel="next" href="lab-4-rating-cuve-lab-15-pts.html"/>
+<link rel="prev" href="hydrographs-and-rating-curves-6-pts.html"/>
+<link rel="next" href="flow-duration-curves.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -324,95 +324,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hydrographs-and-rating-curves-6-pts" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Hydrographs and rating curves (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record. A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments.</p>
-<div id="overall-learning-objectives" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Overall Learning Objectives<a href="hydrographs-and-rating-curves-6-pts.html#overall-learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>At the end of this module, students should be able to describe hydrographs of rain vs snow dominated systems, create a stage-discharge relationship, and understand the different methods used to measure streamflow.</p>
+<div id="lab-4-rating-cuve-lab-15-pts" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Lab 4: Rating cuve lab (15 pts)<a href="lab-4-rating-cuve-lab-15-pts.html#lab-4-rating-cuve-lab-15-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Download the repo for this lab <a href="https://github.com/tpcovino/rating_curve_lab.git" target="_blank">here</a></p>
+<p>In this lab we will analyze rating curve data. A rating curve is a relationship between stage (depth of water) and discharge (flow). In natural rivers these relationships tend to change over time as the geomorphology of the river channel changes. When this happens the rating curve needs to be updated.</p>
+<div id="this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html.-1" class="section level3 hasAnchor" number="10.0.1">
+<h3><span class="header-section-number">10.0.1</span> This is knitr settings. Knitr is a package that will turn this Rmd to an html.<a href="lab-4-rating-cuve-lab-15-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html.-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb116-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Here are some packages you will need. You may use/need others as well.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb117-2"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb117-3"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-3" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb117-4"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-4" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb117-5"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb117-6"><a href="lab-4-rating-cuve-lab-15-pts.html#cb117-6" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code></pre></div>
+<p>We can begin by defining some dataRetrieval parameters.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb118-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;06192500&quot;</span></span></code></pre></div>
 </div>
-<div id="reading" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Reading<a href="hydrographs-and-rating-curves-6-pts.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://www.dropbox.com/s/zdl5syq3c0cdrl8/Dingman_2002_Appendix_F.pdf?dl=0">Dingman Appendix F</a></p>
-</div>
-<div id="lecture" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Lecture<a href="hydrographs-and-rating-curves-6-pts.html#lecture" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="hydrographs-and-rating-curves" class="section level3 hasAnchor" number="9.3.1">
-<h3><span class="header-section-number">9.3.1</span> Hydrographs and Rating Curves<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gauging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don’t have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).</p>
-<p><img src="images/figure_1.JPG" /></p>
-<p><img src="images/figure_2.JPG" /></p>
-<p>As noted above, the stage-discharge relationship depends on the characteristics of the stream channel. Therefore, if the channel geometry changes as a result of erosion or deposition, the rating curve needs to be updated. Because of this, it would be ideal to take stage measurements at a control structure (i.e., weirs and flumes) or stable cross section (i.e., at bridges or where bedrock is confining the channel). However, this is not always possible and we must rebuild rating curves if there is significant change in channel morphology. Additionally, it is important not to extrapolate the stage-discharge relationship for data larger or smaller than the stages and discharges measured in the field that were used to create your rating curve. Extrapolating beyond the bounds of the rating curve leads to large uncertainty in the estimates discharge.</p>
-</div>
-<div id="rain-versus-snow-dominated-systems" class="section level3 hasAnchor" number="9.3.2">
-<h3><span class="header-section-number">9.3.2</span> Rain versus Snow dominated systems<a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The shape of the hydrograph contains information about the system that you are working in. The most common conclusion that can be drawn from a hydrograph is whether a system is snow or rain dominated and in what hemisphere the stream is located. Snowmelt dominated streams in the northern hemisphere have peak flows in April or May, whereas snowmelt dominated systems in the southern hemisphere will typically have peak flows around October. In the northern hemisphere and indeed in the US, hydrologists prefer to conduct analyses based on the water year (October 1 - September 30) as opposed to the calendar year. This allows the comparison of incoming precipitation and outgoing streamflow, and specifically ensures that snow delivered in October-December is accounted for in the same time period that it is likely to melt, which may be in spring or summer of the following calendar year.</p>
-<p>A snow dominated hydrograph (Figure 3) typically has a prominent peak in discharge during the spring and summer months driven by snowmelt as temperatures warm. Alternatively, a rain dominated hydrograph is characterized by high magnitude, short duration increases in flow due to specific rain events (Figure 4). These temporal patterns of high and low flows are referred to collectively as a river’s flow regime. The flow regime plays a key role in regulating geomorphic processes that shape river channels and floodplains, ecological processes that govern the life history of aquatic organisms, and is a major determinant of the biodiversity found in river ecosystems.</p>
-<p><img src="images/figure_3.JPG" /></p>
-<p><img src="images/figure_4.JPG" /></p>
-</div>
-<div id="making-stage-measurements" class="section level3 hasAnchor" number="9.3.3">
-<h3><span class="header-section-number">9.3.3</span> Making Stage Measurements<a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Stage, or water depth, measurements can be continuously collected with either analog methods (a chart recorder with float gauge) or digital methods (pressure transducers or capacitance rods). These instruments are commonly placed in a stilling well to reduce noise induced by waves. This continuous measurement is usually accompanied with a staff gage which is used to take point measurements on site by a technician. Often control structures are utilized when routinely taking stage measurements at a specific cross section. Control structures such as flumes and weirs are advantageous as they slow stream water, create a smooth surface to measure stage and have a well-known, unchanging geometry. Flumes are self-cleaning whereas weirs are not. Weirs tend to create a pond upstream of the structure.</p>
-<p><strong>USGS Gaging Station Videos:</strong></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BaSgOHYhj_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UQlBR5vbqyw?si=BFdIefxsF1luNHRR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<p><strong>Montana DNRC Videos:</strong></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bxHagMo6nm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ytaC23ZCD30?si=OtxSMJP1Eof7yO2S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-</div>
-<div id="applications-of-streamflow-and-stream-gage" class="section level3 hasAnchor" number="9.3.4">
-<h3><span class="header-section-number">9.3.4</span> Applications of streamflow and stream gage<a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Stage and streamflow are important for a variety of applications. Check out this USGS video describing applications of how the data collected at USGS stream gaging sites is used:</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9H-0A3nJabM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
-</div>
-</div>
-<div id="optional-activity-to-gain-deeper-understanding-of-rating-curve" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Optional activity to gain deeper understanding of rating curve<a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Similar to a stage-discharge relationship you would make in a stream, you can make a volume-depth relationship with any cup or bowl at your house.</p>
-<p><strong>Materials:</strong></p>
-<ol style="list-style-type: decimal">
-<li>2 different water vessels (i.e. cups, water bottles and bowls). Make sure they vary in size and shape.</li>
-<li>Measuring cup</li>
-<li>Ruler</li>
-<li>Notebook</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Using the measuring cup, add a known amount of water into one of the water vessels.</li>
-<li>Measure the height of the water with your ruler.</li>
-<li>Record the total amount of water in the cup and depth of the water.</li>
-<li>Repeat steps 1 – 3, 5 times. Be sure you have a large range of water depths ranging from almost empty to full.</li>
-<li>Repeat the above steps with your second water vessel.</li>
-<li>Plot your results for each water vessel separately. Put the depth of water on the x-axis and the volume on the y-axis. Add a best fit line to your plot. Include these two plots in your Assessment submission.</li>
-<li>Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?</li>
-</ol>
-</div>
-<div id="summary-questions-and-deliverable-6-pts" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Summary questions and deliverable (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-and-deliverable-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Submit your answers to these questions as a word doc on D2L.</p>
-<ol style="list-style-type: decimal">
-<li>You have a rating curve that has good coverage between 1 and 7 ft depth.</li>
-</ol>
+<div id="problem-1" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Problem 1<a href="lab-4-rating-cuve-lab-15-pts.html#problem-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Download rating curve data using readNWISmeas. Use ?readNWISmeas for details.</p>
+<p>I will write this code and raname the columns so we are all working with the same variable names. qual is an assessment of how good the measurement was.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb119-1" tabindex="-1"></a>rate_df <span class="ot">&lt;-</span> <span class="fu">readNWISmeas</span>(<span class="at">siteNumbers =</span> site) <span class="sc">%&gt;%</span> </span>
+<span id="cb119-2"><a href="lab-4-rating-cuve-lab-15-pts.html#cb119-2" tabindex="-1"></a>  <span class="fu">select</span>(site_no, <span class="at">date =</span> measurement_dt, <span class="at">stage_ft =</span> gage_height_va, <span class="at">q_cfs =</span> discharge_va, <span class="at">qual =</span> measured_rating_diff)</span></code></pre></div>
+<p>A good first step is to plot a time series of Q vs date, and stage vs. date. This is good to just have an initial look and see if anything looks weird. Using patchwork put the time series of stage on top and the time series of Q on bottom, color by qual.</p>
+<div id="q1.1.-3-pts" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Q1.1. (3 pts)<a href="lab-4-rating-cuve-lab-15-pts.html#q1.1.-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Is it appropriate to estimate discharge for a stage of 8.5 ft with this rating curve? If so, why? If not, why not?
-<br></li>
+<li>comment on temporal patterns in stage and Q. What are some key aspects of these time series that jump out at you? Given that rating curves are non-stationary (i.e., they can change through time) can you make some initial judgements on temporal groupings that you might apply for developing rating curves?</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Describe the process to create a rating curve at a stream site be sure to include information on:</li>
-</ol>
-<p>-The requirements of a good cross section to establish the site.</p>
-<p>-When and how frequently you would make discharge measurements.</p>
+</div>
+</div>
+<div id="problem-2" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Problem 2<a href="lab-4-rating-cuve-lab-15-pts.html#problem-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the analysis above it seems likely that we will need to have some temporal groupings. It is quite common to group between large flow (i.e., flood) events. So you might have one rating curve for about 10 years, then there is a flood and the curve changes. That one may be accurate for about 10 years until the next large flood. In general, anytime there is major reworking of the channel, channel geometry/morphology changes as a function of aggradation or degradation - then we need to update the rating curve. Rating curves can also change more slowly over time as a function of slower deposition or scouring processes.</p>
+<p>First - make a plot using ALL of rating curve data. Put stage on x and Q on y. Color by date.
+You can make the color ramp more distinct using:
+scale_color_gradient(low = ‘cyan’, high = ‘deeppink’, trans = “date”)
+Feel free to play with colors to see what gives you good separation between low and high.</p>
+<div id="q2.1.-2-pt" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Q2.1. (2 pt)<a href="lab-4-rating-cuve-lab-15-pts.html#q2.1.-2-pt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>What instrumentation would you use to collect continuous stage measurements.</li>
+<li>what do you notice when you plot ALL of the rating curve data?</li>
 </ul>
-<ol start="3" style="list-style-type: decimal">
-<li>What causes the stage-discharge relationship (i.e., the rating curve) to change?</li>
-</ol>
+</div>
+</div>
+<div id="problem-3" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Problem 3<a href="lab-4-rating-cuve-lab-15-pts.html#problem-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using your plots from above, in particularly the plot of stage over time, start exploring some temporal groupings of stage-discharge. You can make sub-sets of the rate_df by making a year column using lubridate and then filtering for years.</p>
+<p>For this task try to find some periods that have fairly tight relationships between stage and Q, without obvious deviations.</p>
+<p>When making these plots add a smooth line to aid in visually assessing the scatter around the trendline. You do that with:</p>
+<p>geom_smooth(color = “red”)</p>
+<p>Once you have ~3 groupings plot the rating curves, add geom_smooth to each, set the limits to</p>
+<p>xlim(0, 11) +
+ylim(0, 40000) +</p>
+<p>And stack them on top of each other using patchwork.</p>
+<div id="q3.1.-5-pts" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Q3.1. (5 pts)<a href="lab-4-rating-cuve-lab-15-pts.html#q3.1.-5-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Do your rating curves span the same range of stage and Q? What happens if you try to extrapolate beyond the bounds of a rating curve?</li>
+</ul>
+</div>
+</div>
+<div id="problem-4" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Problem 4<a href="lab-4-rating-cuve-lab-15-pts.html#problem-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we need to fit a function (i.e., equation) to each of your stage-discharge relationships.</p>
+<p>We do this by fitting a non-linear model to the data. Remembmer that stage-discharge relations (the rating curve) are typically non-linear. We will use nls, which you can read up on with “?nls”. In this model a1, C, and n are parameters and we have to give them initial values. After that, R will find the best fit for each parameter. The equation will be Q = C(Stage - a1)^n where C is a fitting parameter, a1 is the depth at which flow is 0 (so if flow was zero at 1 ft depth a1 = 1), and n is an exponent that gives the function its concave up shape.</p>
+<p>I would recommend starting with a1 = 0. Here is some example code for how you would fit a non-linear model to your data:</p>
+<p>Here we give a1 an initial value. Note that the a1 offset is something we are adding to the nls. It is not one of the parameters of the model, so it won’t be fit. This is something we would evaluate by looking at the data.</p>
+<p>a1 &lt;- 0</p>
+<p>Next we run the model. This code below says run a nls model where Discharge = C*(gage height - a1)^n. In R statistical models the ~ is similar to equals. It basically means predict discharge using this function.</p>
+<p>model &lt;- nls(discharge~C*(gage_height-a1)^n, start = list(C = 1, n = 1.2), data = meas, trace=T)</p>
+<p>Keep in mind that in the line of code above you will need to change the code to use YOUR specific variable names and df. What I have provided is generic. Also keep in mind you may have to change the initial value for a1, C, and/or n. If they aren’t close enough initial values the model will fail to converge on an optimal set of parameters.</p>
+<p>After you have gotten your model to converge you can get a summary of the output.
+summary(model)</p>
+<p>And we can also pull out the parameters that we are interested in (C and n).
+C1 &lt;- coef(model)[1]
+n1 &lt;- coef(model)[2]</p>
+<p>We can also put the parameters into an equation in the eqn_a &lt;-
+That can then be used to add the equation to the ggplot.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb120-1" tabindex="-1"></a><span class="co"># test the parsing of the equation</span></span>
+<span id="cb120-2"><a href="lab-4-rating-cuve-lab-15-pts.html#cb120-2" tabindex="-1"></a><span class="co">#parse(text = eqn_a)# you will need to uncomment this code. </span></span></code></pre></div>
+<p>#Now we can plot the data and add a geom_smooth. Next we annotate the figure with the equations (i.e., the rating curve).</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="lab-4-rating-cuve-lab-15-pts.html#cb121-1" tabindex="-1"></a><span class="co">#formula &lt;- y ~ C * x^(n) # you will need to uncomment this code. </span></span></code></pre></div>
+<p>Q4.1. (5 pts)</p>
+<ul>
+<li><p>Please provide your paramater values (a, C, and n) for each of your rating curves (hint: you should have 3 rating curves for 3 time periods).</p></li>
+<li><p>What is your calculated Q for a stage of 3 ft with each of your rating curves?</p></li>
+<li><p>Is it appropriate to use any of your rating curves to calculate flow at a stage of 12 ft? Why or why not?</p></li>
+</ul>
 
 </div>
 </div>
@@ -421,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="lab-3-statistics-in-hydrology-33-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lab-4-rating-cuve-lab-15-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hydrographs-and-rating-curves-6-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flow-duration-curves.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -453,7 +453,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/09_rating_curve_module.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/10_rating_curve_lab.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -461,7 +461,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/09_rating_curve_module.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/10_rating_curve_lab.Rmd",
 "text": null
 },
 "download": null,

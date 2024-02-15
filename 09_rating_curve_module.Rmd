@@ -77,7 +77,9 @@ f.	Plot your results for each water vessel separately. Put the depth of water on
 g.	Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?
 
 
-## Summary questions (6 pts)
+## Summary questions and deliverable (6 pts)
+
+Submit your answers to these questions as a word doc on D2L. 
 
 1. You have a rating curve that has good coverage between 1 and 7 ft depth.
 
