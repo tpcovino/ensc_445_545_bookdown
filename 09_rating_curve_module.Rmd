@@ -1,7 +1,6 @@
 
-# Hydrographs and rating curves
+# Hydrographs and rating curves (6 pts)
 
-- this is not turned in, but you should work through this exercise to prepare for the rating curve lab. 
 
 A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record.  A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments. 
 
@@ -18,7 +17,7 @@ At the end of this module, students should be able to describe hydrographs of ra
 
 ### Hydrographs and Rating Curves
 
-A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gaging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don't have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).
+A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gauging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don't have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).
 
 ![](images/figure_1.jpg)
 
@@ -40,13 +39,17 @@ A snow dominated hydrograph (Figure 3) typically has a prominent peak in dischar
 
 Stage, or water depth, measurements can be continuously collected with either analog methods (a chart recorder with float gauge) or digital methods (pressure transducers or capacitance rods). These instruments are commonly placed in a stilling well to reduce noise induced by waves. This continuous measurement is usually accompanied with a staff gage which is used to take point measurements on site by a technician. Often control structures are utilized when routinely taking stage measurements at a specific cross section. Control structures such as flumes and weirs are advantageous as they slow stream water, create a smooth surface to measure stage and have a well-known, unchanging geometry. Flumes are self-cleaning whereas weirs are not. Weirs tend to create a pond upstream of the structure.
 
-**USGS Gaging Station Video:**
+**USGS Gaging Station Videos:**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BaSgOHYhj_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>
 
-**Montana DNRC Video:**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UQlBR5vbqyw?si=BFdIefxsF1luNHRR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+**Montana DNRC Videos:**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/bxHagMo6nm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ytaC23ZCD30?si=OtxSMJP1Eof7yO2S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### Applications of streamflow and stream gage 
 
@@ -74,18 +77,22 @@ f.	Plot your results for each water vessel separately. Put the depth of water on
 g.	Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?
 
 
-## Summary questions
+## Summary questions (6 pts)
 
-You have a rating curve that has good coverage between 1 and 7 ft depth.
+1. You have a rating curve that has good coverage between 1 and 7 ft depth.
 
   - Is it appropriate to estimate discharge for a stage of 8.5 ft with this rating curve? If so, why? If not, why not?
 <br>  
 
-Describe the process to create a rating curve at a stream site be sure to include information on:
+2. Describe the process to create a rating curve at a stream site be sure to include information on:
 
   -The requirements of a good cross section to establish the site.
+  
   -When and how frequently you would make discharge measurements.
+  
  - What instrumentation would you use to collect continuous stage measurements.
+ 
+3. What causes the stage-discharge relationship (i.e., the rating curve) to change? 
     
 
 

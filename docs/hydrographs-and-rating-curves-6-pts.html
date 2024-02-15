@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Lab 1: Data vis, wrangling, and programming (12 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 4 Lab 1: Data vis, wrangling, and programming (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Lab 1: Data vis, wrangling, and programming (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Lab 1: Data vis, wrangling, and programming (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangling-using-tidyverse.html"/>
-<link rel="next" href="dataretrieval.html"/>
+<link rel="prev" href="lab-3-statistics-in-hydrology-33-pts.html"/>
+<link rel="next" href="lab-4---rating-curve-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -308,67 +308,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lab-1-data-vis-wrangling-and-programming-12-pts" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Lab 1: Data vis, wrangling, and programming (12 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#lab-1-data-vis-wrangling-and-programming-12-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="https://github.com/tpcovino/lab_1" target="_blank"><strong>You can find the repo for this lab here</strong></a></p>
-<p>As we have done previously, go to Code, download zip and put folder on your computer. Open the project in that folder and then open the .Rmd. Remember that opening the project from that folder will set that folder as the “working directory”. Doing so means that when you read in your data, R will “look” in the right place to find it. Remember to rename the .Rmd file with your name in the file name.</p>
-<p>This lab covers workflow and functions that you have seen and a few things that haven’t been explicitly demonstrated. Using functions that haven’t been explicitly demonstrated will help you in developing your ability to use new functions and workflows. Understanding how to utilize resources like Stack Overflow and package vignettes will help you solve coding problems. You can also get function and package help from the console by typing “?”. For example, you could type “?ggplot” or “?tidyverse” into the console and a help window will appear in the lower right. Also, when you are searching for coding help it is useful to be explicit about whether you are in base R or tidyverse.</p>
-<div id="problem-1-1-pts" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Problem 1 (1 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-1-1-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Load the tidyverse library.</p>
-<p>Read in the pine_nfdr csv using read_csv(). Name this “pine_nfdr”.</p>
-<p>Make a plot with the date on the x axis, discharge on the y axis. Show the discharge of the two watersheds as a line, coloring by watershed (StationID). Use a theme to remove the grey background. Label the axes appropriately with labels and units. Bonus: change the title of the legend to “Gauging Station”</p>
+<div id="hydrographs-and-rating-curves-6-pts" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Hydrographs and rating curves (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record. A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments.</p>
+<div id="overall-learning-objectives" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Overall Learning Objectives<a href="hydrographs-and-rating-curves-6-pts.html#overall-learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the end of this module, students should be able to describe hydrographs of rain vs snow dominated systems, create a stage-discharge relationship, and understand the different methods used to measure streamflow.</p>
 </div>
-<div id="problem-2-1-pts" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Problem 2 (1 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-2-1-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Make a boxplot to compare the discharge of Pine to NFDR for February 2010.</p>
-<p>Hint: use the pipe operator and the filter() function.</p>
+<div id="reading" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Reading<a href="hydrographs-and-rating-curves-6-pts.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.dropbox.com/s/zdl5syq3c0cdrl8/Dingman_2002_Appendix_F.pdf?dl=0">Dingman Appendix F</a></p>
 </div>
-<div id="problem-3-2-pts" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Problem 3 (2 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-3-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Read in the flashy csv. Name this “flashy”.</p>
-<p>Create a new df called flashy_west that includes data for: MT, ID, WY, UT, CO, NV, AZ, and NM</p>
-<p>For only sites in flashy_west: Plot PET (Potential Evapotranspiration) on the X axis and RBI (flashiness index) on the Y axis. Color the points based on what state they are in. Use the linedraw ggplot theme.</p>
+<div id="lecture" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Lecture<a href="hydrographs-and-rating-curves-6-pts.html#lecture" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hydrographs-and-rating-curves" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Hydrographs and Rating Curves<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gauging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don’t have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).</p>
+<p><img src="images/figure_1.JPG" /></p>
+<p><img src="images/figure_2.JPG" /></p>
+<p>As noted above, the stage-discharge relationship depends on the characteristics of the stream channel. Therefore, if the channel geometry changes as a result of erosion or deposition, the rating curve needs to be updated. Because of this, it would be ideal to take stage measurements at a control structure (i.e., weirs and flumes) or stable cross section (i.e., at bridges or where bedrock is confining the channel). However, this is not always possible and we must rebuild rating curves if there is significant change in channel morphology. Additionally, it is important not to extrapolate the stage-discharge relationship for data larger or smaller than the stages and discharges measured in the field that were used to create your rating curve. Extrapolating beyond the bounds of the rating curve leads to large uncertainty in the estimates discharge.</p>
 </div>
-<div id="problem-4-2-pts" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Problem 4 (2 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-4-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We want to look at the amount of snow for each site in the flashy_west df. Problem is, we are only given the average amount of total precip (PPTAVG_BASIN) and the percentage of snow (SNOW_PCT_PRECIP).</p>
-<p>Create a new column in the df called “snow_avg_basin” and make it equal to the average total precip times the percentage of snow (careful with the percentage number).</p>
-<p>Make a barplot showing the amount of snow for each site in MT. Put station name on the x axis and snow amount on the y. You have to add something to geom_bar() to use it for a 2 variable plot. <em>Use “?geom_bar” in the console and the internet to investigate.</em></p>
-<p>The x axis of the resulting plot looks terrible! Rotate the X axis labels so we can read them.</p>
+<div id="rain-versus-snow-dominated-systems" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Rain versus Snow dominated systems<a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The shape of the hydrograph contains information about the system that you are working in. The most common conclusion that can be drawn from a hydrograph is whether a system is snow or rain dominated and in what hemisphere the stream is located. Snowmelt dominated streams in the northern hemisphere have peak flows in April or May, whereas snowmelt dominated systems in the southern hemisphere will typically have peak flows around October. In the northern hemisphere and indeed in the US, hydrologists prefer to conduct analyses based on the water year (October 1 - September 30) as opposed to the calendar year. This allows the comparison of incoming precipitation and outgoing streamflow, and specifically ensures that snow delivered in October-December is accounted for in the same time period that it is likely to melt, which may be in spring or summer of the following calendar year.</p>
+<p>A snow dominated hydrograph (Figure 3) typically has a prominent peak in discharge during the spring and summer months driven by snowmelt as temperatures warm. Alternatively, a rain dominated hydrograph is characterized by high magnitude, short duration increases in flow due to specific rain events (Figure 4). These temporal patterns of high and low flows are referred to collectively as a river’s flow regime. The flow regime plays a key role in regulating geomorphic processes that shape river channels and floodplains, ecological processes that govern the life history of aquatic organisms, and is a major determinant of the biodiversity found in river ecosystems.</p>
+<p><img src="images/figure_3.JPG" /></p>
+<p><img src="images/figure_4.JPG" /></p>
 </div>
-<div id="problem-5-2-pts" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Problem 5 (2 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-5-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Create a new tibble called “flashy_west_thin” that contains the min, max, and mean PET for each state in flashy_west. Sort/arrange the tibble by mean PET from high to low. Give your columns meaningful names within the summarize function or using rename(). <em>You haven’t seen rename yet</em>. Use ?rename in the console or search for examples. When searching you need to indicate that you are looking for “tidyverse rename”. Rename is part of dplyr, which is part of tidyverse.</p>
-<p>Be sure your code outputs the tibble.</p>
+<div id="making-stage-measurements" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Making Stage Measurements<a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Stage, or water depth, measurements can be continuously collected with either analog methods (a chart recorder with float gauge) or digital methods (pressure transducers or capacitance rods). These instruments are commonly placed in a stilling well to reduce noise induced by waves. This continuous measurement is usually accompanied with a staff gage which is used to take point measurements on site by a technician. Often control structures are utilized when routinely taking stage measurements at a specific cross section. Control structures such as flumes and weirs are advantageous as they slow stream water, create a smooth surface to measure stage and have a well-known, unchanging geometry. Flumes are self-cleaning whereas weirs are not. Weirs tend to create a pond upstream of the structure.</p>
+<p><strong>USGS Gaging Station Videos:</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BaSgOHYhj_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UQlBR5vbqyw?si=BFdIefxsF1luNHRR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+<p><strong>Montana DNRC Videos:</strong></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bxHagMo6nm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ytaC23ZCD30?si=OtxSMJP1Eof7yO2S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 </div>
-<div id="problem-6-2-pts" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Problem 6 (2 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-6-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take the tibble from problem 5 and create a new df by first creating a new column that is the Range of the PET (max PET - min PET). Then get rid of the max PET and min PET columns so the tibble just has columns for State, mean_PET, and PET_range.</p>
-<p>Be sure your code outputs the tibble.</p>
-<p>Save new_tib_thin as .csv files to your folder for this lab using the write_csv function. To get help on this function type “?write_csv” into the console.</p>
+<div id="applications-of-streamflow-and-stream-gage" class="section level3 hasAnchor" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> Applications of streamflow and stream gage<a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Stage and streamflow are important for a variety of applications. Check out this USGS video describing applications of how the data collected at USGS stream gaging sites is used:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9H-0A3nJabM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
 </div>
-<div id="summary-2-pts" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Summary (2 pts)<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#summary-2-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="optional-activity-to-gain-deeper-understanding-of-rating-curve" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Optional activity to gain deeper understanding of rating curve<a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Similar to a stage-discharge relationship you would make in a stream, you can make a volume-depth relationship with any cup or bowl at your house.</p>
+<p><strong>Materials:</strong></p>
+<ol style="list-style-type: decimal">
+<li>2 different water vessels (i.e. cups, water bottles and bowls). Make sure they vary in size and shape.</li>
+<li>Measuring cup</li>
+<li>Ruler</li>
+<li>Notebook</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Using the measuring cup, add a known amount of water into one of the water vessels.</li>
+<li>Measure the height of the water with your ruler.</li>
+<li>Record the total amount of water in the cup and depth of the water.</li>
+<li>Repeat steps 1 – 3, 5 times. Be sure you have a large range of water depths ranging from almost empty to full.</li>
+<li>Repeat the above steps with your second water vessel.</li>
+<li>Plot your results for each water vessel separately. Put the depth of water on the x-axis and the volume on the y-axis. Add a best fit line to your plot. Include these two plots in your Assessment submission.</li>
+<li>Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?</li>
+</ol>
+</div>
+<div id="summary-questions-6-pts" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Summary questions (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>You have a rating curve that has good coverage between 1 and 7 ft depth.</li>
+</ol>
 <ul>
-<li>Using the figues from problems 5 &amp; 6 comment on the pattern in max PET across the western states. What climatological variable is likely driving this pattern? Do you think the values of actual evapotranspiration (AET) would be the same or different from the values of potential evapotranspiration (PET)? In which state would AET and PET potentially be most different and why?</li>
+<li>Is it appropriate to estimate discharge for a stage of 8.5 ft with this rating curve? If so, why? If not, why not?
+<br></li>
 </ul>
-<p>PET Reading:</p>
-<p><a href="https://www.ncei.noaa.gov/access/monitoring/dyk/potential-evapotranspiration" target="_blank">From NOAA</a></p>
-<p><a href="images/VargasZeppetello_etal_2019b.pdf" target="_blank">Vargas Zepetello et al. 2019b</a> read Abstract and Introduction sections</p>
-</div>
-<div id="feeback" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> Feeback<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#feeback" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Describe the process to create a rating curve at a stream site be sure to include information on:</li>
+</ol>
+<p>-The requirements of a good cross section to establish the site.</p>
+<p>-When and how frequently you would make discharge measurements.</p>
 <ul>
-<li>How long did this lab take you?</li>
-<li>Is there anything in particular you would like more practice with?</li>
+<li>What instrumentation would you use to collect continuous stage measurements.</li>
 </ul>
-</div>
-<div id="deliverables" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Deliverables<a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Knit this .Rmd as an .html and submit your lab_1_YOUR_NAME.Rmd and lab_1_YOUR_NAME.html on D2L.</li>
-</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>What causes the stage-discharge relationship (i.e., the rating curve) to change?</li>
+</ol>
 
 </div>
 </div>
@@ -377,8 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-wrangling-using-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dataretrieval.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-3-statistics-in-hydrology-33-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab-4---rating-curve-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -409,7 +436,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/04_data_viz_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/09_rating_curve_module.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -417,7 +444,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/04_data_viz_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/09_rating_curve_module.Rmd",
 "text": null
 },
 "download": null,
