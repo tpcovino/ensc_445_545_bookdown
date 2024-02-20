@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2024-02-15" />
+<meta name="date" content="2024-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,8 +269,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves"><i class="fa fa-check"></i><b>9.3.1</b> Hydrographs and Rating Curves</a></li>
 <li class="chapter" data-level="9.3.2" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>9.3.2</b> Rain versus Snow dominated systems</a></li>
-<li class="chapter" data-level="9.3.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements"><i class="fa fa-check"></i><b>9.3.3</b> Making Stage Measurements</a></li>
-<li class="chapter" data-level="9.3.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>9.3.4</b> Applications of streamflow and stream gage</a></li>
+<li class="chapter" data-level="9.3.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#field-measurements-of-area-velocity"><i class="fa fa-check"></i><b>9.3.3</b> Field Measurements of Area-Velocity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements"><i class="fa fa-check"></i><b>9.3.4</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="9.3.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>9.3.5</b> Applications of streamflow and stream gage</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>9.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
 <li class="chapter" data-level="9.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-and-deliverable-6-pts"><i class="fa fa-check"></i><b>9.5</b> Summary questions and deliverable (6 pts)</a></li>
@@ -341,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.1</span> Problem 1 (5 pts)<a href="lab-3-statistics-in-hydrology-33-pts.html#problem-1-5-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the tidyverse and patchwork libraries and read in the flashy and pine_nfdr datasets.</p>
 <p>Using the flashy dataset, generate two new dataframes. One for the “WestMnts” and one for the “NorthEast” AGGECOREGION. Name these flashy_west and flashy_ne. Next make pdfs of the average basin rainfall (PPTAVG_BASIN) for the WestMnts (flashy_west) and NorthEast (flashy_ne) agricultural ecoregions. On each pdf add vertical lines showing the mean and median. Label the x axis “Average precipitation (mm)” and the y “Density”. Set the x scale limits to 0 - 500 using xlim(c(0, 500)). Save each ggplot as an object and stack them on top of each other. Provide a caption below the figure that states which is on top, which is on bottom, and which color is the mean and which is the median.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="lab-3-statistics-in-hydrology-33-pts.html#cb114-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lab-3-statistics-in-hydrology-33-pts.html#cb115-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="lab-3-statistics-in-hydrology-33-pts.html#cb115-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="lab-3-statistics-in-hydrology-33-pts.html#cb116-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
 <p>Use patchwork to stack the NE and West ggplots.</p>
 </div>
 <div id="problem-2-5-pts" class="section level2 hasAnchor" number="8.2">

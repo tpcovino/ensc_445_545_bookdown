@@ -92,6 +92,7 @@ reading
 lecture
 hydrographs-and-rating-curves
 rain-versus-snow-dominated-systems
+field-measurements-of-area-velocity
 making-stage-measurements
 applications-of-streamflow-and-stream-gage
 optional-activity-to-gain-deeper-understanding-of-rating-curve

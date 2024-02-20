@@ -15,6 +15,8 @@ At the end of this module, students should be able to describe hydrographs of ra
 
 ## Lecture
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3C-6qlXBNZE?si=e8DOuBUWEY5_vop0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ### Hydrographs and Rating Curves
 
 A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gauging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don't have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).
@@ -34,6 +36,11 @@ A snow dominated hydrograph (Figure 3) typically has a prominent peak in dischar
 ![](images/figure_3.jpg)
 
 ![](images/figure_4.jpg)
+
+### Field Measurements of Area-Velocity
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/A3aM42UnRo4?si=pR3pRxkCJn3nRDCI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 ### Making Stage Measurements
 
