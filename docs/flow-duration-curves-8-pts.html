@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 11 Flow Duration Curves (8 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 11 Flow Duration Curves (8 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 11 Flow Duration Curves (8 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Hydrographs and rating curves (6 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 11 Flow Duration Curves (8 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lab-3-statistics-in-hydrology-33-pts.html"/>
-<link rel="next" href="lab-4-rating-cuve-lab-15-pts.html"/>
+<link rel="prev" href="lab-4-rating-cuve-lab-15-pts.html"/>
+<link rel="next" href="lab-5---low-flow-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -327,101 +327,155 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hydrographs-and-rating-curves-6-pts" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Hydrographs and rating curves (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record. A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments.</p>
-<div id="overall-learning-objectives" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Overall Learning Objectives<a href="hydrographs-and-rating-curves-6-pts.html#overall-learning-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>At the end of this module, students should be able to describe hydrographs of rain vs snow dominated systems, create a stage-discharge relationship, and understand the different methods used to measure streamflow.</p>
-</div>
-<div id="reading" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Reading<a href="hydrographs-and-rating-curves-6-pts.html#reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://www.dropbox.com/s/zdl5syq3c0cdrl8/Dingman_2002_Appendix_F.pdf?dl=0">Dingman Appendix F</a></p>
-</div>
-<div id="lecture" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Lecture<a href="hydrographs-and-rating-curves-6-pts.html#lecture" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3C-6qlXBNZE?si=e8DOuBUWEY5_vop0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<div id="hydrographs-and-rating-curves" class="section level3 hasAnchor" number="9.3.1">
-<h3><span class="header-section-number">9.3.1</span> Hydrographs and Rating Curves<a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A hydrograph is a time series of stream discharge at a specific point in a river. Hydrographs are constructed by continuously measuring stage (depth of water) and developing a rating curve (Figure 1), which is a relationship between stage (D) and discharge (Q) at a specific monitoring location. Discharge can be measured at stream gauging stations using the velocity-area or dilution gauging methods, or by installing a weir or flume. Weirs and flumes have specific geometry and a known relationship between stage and discharge. However, we often don’t have a weir or flume, and we have to construct this relationship by taking measurements of stage and discharge across a range of flows to develop the rating curve. The stage-discharge relationship typically takes the form of a power law equation (Equation 1) and is controlled by channel morphology. By using this mathematical relationship between stage and discharge we can convert a continuous stage record to a continuous discharge record (Figure 2).</p>
-<p><img src="images/figure_1.JPG" /></p>
-<p><img src="images/figure_2.JPG" /></p>
-<p>As noted above, the stage-discharge relationship depends on the characteristics of the stream channel. Therefore, if the channel geometry changes as a result of erosion or deposition, the rating curve needs to be updated. Because of this, it would be ideal to take stage measurements at a control structure (i.e., weirs and flumes) or stable cross section (i.e., at bridges or where bedrock is confining the channel). However, this is not always possible and we must rebuild rating curves if there is significant change in channel morphology. Additionally, it is important not to extrapolate the stage-discharge relationship for data larger or smaller than the stages and discharges measured in the field that were used to create your rating curve. Extrapolating beyond the bounds of the rating curve leads to large uncertainty in the estimates discharge.</p>
-</div>
-<div id="rain-versus-snow-dominated-systems" class="section level3 hasAnchor" number="9.3.2">
-<h3><span class="header-section-number">9.3.2</span> Rain versus Snow dominated systems<a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The shape of the hydrograph contains information about the system that you are working in. The most common conclusion that can be drawn from a hydrograph is whether a system is snow or rain dominated and in what hemisphere the stream is located. Snowmelt dominated streams in the northern hemisphere have peak flows in April or May, whereas snowmelt dominated systems in the southern hemisphere will typically have peak flows around October. In the northern hemisphere and indeed in the US, hydrologists prefer to conduct analyses based on the water year (October 1 - September 30) as opposed to the calendar year. This allows the comparison of incoming precipitation and outgoing streamflow, and specifically ensures that snow delivered in October-December is accounted for in the same time period that it is likely to melt, which may be in spring or summer of the following calendar year.</p>
-<p>A snow dominated hydrograph (Figure 3) typically has a prominent peak in discharge during the spring and summer months driven by snowmelt as temperatures warm. Alternatively, a rain dominated hydrograph is characterized by high magnitude, short duration increases in flow due to specific rain events (Figure 4). These temporal patterns of high and low flows are referred to collectively as a river’s flow regime. The flow regime plays a key role in regulating geomorphic processes that shape river channels and floodplains, ecological processes that govern the life history of aquatic organisms, and is a major determinant of the biodiversity found in river ecosystems.</p>
-<p><img src="images/figure_3.JPG" /></p>
-<p><img src="images/figure_4.JPG" /></p>
-</div>
-<div id="field-measurements-of-area-velocity" class="section level3 hasAnchor" number="9.3.3">
-<h3><span class="header-section-number">9.3.3</span> Field Measurements of Area-Velocity<a href="hydrographs-and-rating-curves-6-pts.html#field-measurements-of-area-velocity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/A3aM42UnRo4?si=pR3pRxkCJn3nRDCI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+<div id="flow-duration-curves-8-pts" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Flow Duration Curves (8 pts)<a href="flow-duration-curves-8-pts.html#flow-duration-curves-8-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.</p>
+<div id="lecture-1" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Lecture<a href="flow-duration-curves-8-pts.html#lecture-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j3wniP1qHRo?si=xwNm5pRK5KhyuLzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 </div>
-<div id="making-stage-measurements" class="section level3 hasAnchor" number="9.3.4">
-<h3><span class="header-section-number">9.3.4</span> Making Stage Measurements<a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Stage, or water depth, measurements can be continuously collected with either analog methods (a chart recorder with float gauge) or digital methods (pressure transducers or capacitance rods). These instruments are commonly placed in a stilling well to reduce noise induced by waves. This continuous measurement is usually accompanied with a staff gage which is used to take point measurements on site by a technician. Often control structures are utilized when routinely taking stage measurements at a specific cross section. Control structures such as flumes and weirs are advantageous as they slow stream water, create a smooth surface to measure stage and have a well-known, unchanging geometry. Flumes are self-cleaning whereas weirs are not. Weirs tend to create a pond upstream of the structure.</p>
-<p><strong>USGS Gaging Station Videos:</strong></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BaSgOHYhj_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UQlBR5vbqyw?si=BFdIefxsF1luNHRR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
-<p><strong>Montana DNRC Videos:</strong></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bxHagMo6nm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ytaC23ZCD30?si=OtxSMJP1Eof7yO2S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-</iframe>
+<div id="reading-1" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Reading<a href="flow-duration-curves-8-pts.html#reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.epa.gov/snep/flow-duration-curves-new-model-envision-healthy-watersheds-and-resilient-communities" target="_blank">Flow Duration Curves: A new model to envision healthy watersheds and resilient communities</a></p>
 </div>
-<div id="applications-of-streamflow-and-stream-gage" class="section level3 hasAnchor" number="9.3.5">
-<h3><span class="header-section-number">9.3.5</span> Applications of streamflow and stream gage<a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Stage and streamflow are important for a variety of applications. Check out this USGS video describing applications of how the data collected at USGS stream gaging sites is used:</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9H-0A3nJabM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
-</iframe>
+<div id="packages-and-coding" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Packages and coding<a href="flow-duration-curves-8-pts.html#packages-and-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As always let’s load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.</p>
+<p>We will also use theme_set() in this chunk so we don’t have to change the ggplot theme every time we make a plot.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="flow-duration-curves-8-pts.html#cb123-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb123-2"><a href="flow-duration-curves-8-pts.html#cb123-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb123-3"><a href="flow-duration-curves-8-pts.html#cb123-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb123-4"><a href="flow-duration-curves-8-pts.html#cb123-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb123-5"><a href="flow-duration-curves-8-pts.html#cb123-5" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="flow-duration-curves-8-pts.html#cb123-6" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
+<span id="cb123-7"><a href="flow-duration-curves-8-pts.html#cb123-7" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
+<span id="cb123-8"><a href="flow-duration-curves-8-pts.html#cb123-8" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 </div>
+<div id="get-data" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Get data<a href="flow-duration-curves-8-pts.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To start, let’s grab the USGS discharge data for the gage in Linville NC from 1960 to 2020.</p>
+<p>We will download the data using USGS dataRetrieval and look at a line plot.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="flow-duration-curves-8-pts.html#cb124-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
+<span id="cb124-2"><a href="flow-duration-curves-8-pts.html#cb124-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
+<span id="cb124-3"><a href="flow-duration-curves-8-pts.html#cb124-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb124-4"><a href="flow-duration-curves-8-pts.html#cb124-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb124-5"><a href="flow-duration-curves-8-pts.html#cb124-5" tabindex="-1"></a></span>
+<span id="cb124-6"><a href="flow-duration-curves-8-pts.html#cb124-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
+<span id="cb124-7"><a href="flow-duration-curves-8-pts.html#cb124-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb124-8"><a href="flow-duration-curves-8-pts.html#cb124-8" tabindex="-1"></a></span>
+<span id="cb124-9"><a href="flow-duration-curves-8-pts.html#cb124-9" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb124-10"><a href="flow-duration-curves-8-pts.html#cb124-10" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb124-11"><a href="flow-duration-curves-8-pts.html#cb124-11" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 </div>
-<div id="optional-activity-to-gain-deeper-understanding-of-rating-curve" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Optional activity to gain deeper understanding of rating curve<a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Similar to a stage-discharge relationship you would make in a stream, you can make a volume-depth relationship with any cup or bowl at your house.</p>
-<p><strong>Materials:</strong></p>
-<ol style="list-style-type: decimal">
-<li>2 different water vessels (i.e. cups, water bottles and bowls). Make sure they vary in size and shape.</li>
-<li>Measuring cup</li>
-<li>Ruler</li>
-<li>Notebook</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Using the measuring cup, add a known amount of water into one of the water vessels.</li>
-<li>Measure the height of the water with your ruler.</li>
-<li>Record the total amount of water in the cup and depth of the water.</li>
-<li>Repeat steps 1 – 3, 5 times. Be sure you have a large range of water depths ranging from almost empty to full.</li>
-<li>Repeat the above steps with your second water vessel.</li>
-<li>Plot your results for each water vessel separately. Put the depth of water on the x-axis and the volume on the y-axis. Add a best fit line to your plot. Include these two plots in your Assessment submission.</li>
-<li>Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?</li>
-</ol>
-</div>
-<div id="summary-questions-and-deliverable-6-pts" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Summary questions and deliverable (6 pts)<a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-and-deliverable-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Submit your answers to these questions as a word doc on D2L.</p>
-<ol style="list-style-type: decimal">
-<li>You have a rating curve that has good coverage between 1 and 7 ft depth.</li>
-</ol>
+<div id="review-describe-the-distribution" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Review: describe the distribution<a href="flow-duration-curves-8-pts.html#review-describe-the-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Make a plot to view the distribution of the discharge data.</p>
 <ul>
-<li>Is it appropriate to estimate discharge for a stage of 8.5 ft with this rating curve? If so, why? If not, why not?
-<br></li>
+<li>What is the median flow value?</li>
+<li>What does this tell us about flow at that river?</li>
+<li>How often is the river at or below that value?</li>
+<li>Could you pick that number off the plot?</li>
+<li>What about the flow the river is at or above only 5% of the time?</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Describe the process to create a rating curve at a stream site be sure to include information on:</li>
-</ol>
-<p>-The requirements of a good cross section to establish the site.</p>
-<p>-When and how frequently you would make discharge measurements.</p>
-<ul>
-<li>What instrumentation would you use to collect continuous stage measurements.</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>What causes the stage-discharge relationship (i.e., the rating curve) to change?</li>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="flow-duration-curves-8-pts.html#cb125-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb125-2"><a href="flow-duration-curves-8-pts.html#cb125-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb125-3"><a href="flow-duration-curves-8-pts.html#cb125-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb125-4"><a href="flow-duration-curves-8-pts.html#cb125-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+</div>
+<div id="ecdfs" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> ECDFs<a href="flow-duration-curves-8-pts.html#ecdfs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at an Empirical Cumulative Density Function (ECDF) of the data.</p>
+<p>Look at this carefully, what does it show? How is it different from the pdf of the data?</p>
+<p>Plot the median again. Without the line on the plot, how would you tell where the median is?</p>
+<p>Given your answer to the question above, can you determine the flow the river is at or above only 25% of the time? Think carefully about what the y axis of the ECDF means.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="flow-duration-curves-8-pts.html#cb126-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb126-2"><a href="flow-duration-curves-8-pts.html#cb126-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
+<span id="cb126-3"><a href="flow-duration-curves-8-pts.html#cb126-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb126-4"><a href="flow-duration-curves-8-pts.html#cb126-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb126-5"><a href="flow-duration-curves-8-pts.html#cb126-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+</div>
+<div id="calculate-flow-exceedence-probabilities" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Calculate flow exceedence probabilities<a href="flow-duration-curves-8-pts.html#calculate-flow-exceedence-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In hydrology, it is common to look at a similar representation of flow distributions, but with flow on the Y axis and “% time flow is equaled or exceeded” on the X axis. There are a number of ways we could make this plot: for example we could transform the axes of the plot above or we could use the function that results from the ECDF function in R to calculate exceedence probabilities at flow throughout our range of flows. But for our purposes, we are just going to calculate it manually.</p>
+<p>We are going to calculate our own exceedence probabilities because knowing how to do this will help us understand what a flow duration curve is AND we will need to do similar things in our high and low flow analyses.</p>
+<p>The formula for exceedence probability (P) is below. What do we need to calculate this?</p>
+<p>Exceedence probability (P), Probability a flow is equaled or exceeded</p>
+<p><span class="math inline">\(P = 100 * [M / (n + 1)]\)</span></p>
+<p>M = Ranked position of the flow
+n = total number of observations in data record</p>
+<p>Here’s a description of what we will do:
+&gt; Pass our Qdat data to mutate and create a new column that is equal to the ranks of the discharge column.
+&gt; Then pass that result to mutate again and create another column equal exceedence probability (P) * 100, which will give us %.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="flow-duration-curves-8-pts.html#cb127-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
+<span id="cb127-2"><a href="flow-duration-curves-8-pts.html#cb127-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
+<span id="cb127-3"><a href="flow-duration-curves-8-pts.html#cb127-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb127-4"><a href="flow-duration-curves-8-pts.html#cb127-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
+<span id="cb127-5"><a href="flow-duration-curves-8-pts.html#cb127-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
+</div>
+<div id="plot-a-flow-duration-curve-using-the-probabilities" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Plot a Flow Duration Curve using the probabilities<a href="flow-duration-curves-8-pts.html#plot-a-flow-duration-curve-using-the-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now construct the following plot: A line with P on the x axis and flow on the y axis. Name the x axis “% Time flow equaled or exceeded” and log the y axis.</p>
+<p>That’s a flow duration curve!</p>
+<p>Questions about the flow duration curve:
+* How often is a flow of 100 cfs exceeded at this gage?
+* Is flow more variable for flows exceeded 0-25% or of the time or 75-100% * of the time?
+* How can you tell?</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="flow-duration-curves-8-pts.html#cb128-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb128-2"><a href="flow-duration-curves-8-pts.html#cb128-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb128-3"><a href="flow-duration-curves-8-pts.html#cb128-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb128-4"><a href="flow-duration-curves-8-pts.html#cb128-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-5"><a href="flow-duration-curves-8-pts.html#cb128-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+</div>
+<div id="example-use-of-an-fdc" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Example use of an FDC<a href="flow-duration-curves-8-pts.html#example-use-of-an-fdc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s explore one potential use of flow duration curves: examining the differences between two sets of flow data.</p>
+<p>From the line plot of the discharge, it looked like the flow regime may have shifted a bit in the data between the early years and newer data. Let’s use flow duration curves to examine potential differences. We can come up with groups and then use group_by to run the analysis by groups instead of the whole dataset.</p>
+<p>We are introducing a new function here called case_when(). This allows you to assign values to a new column based on values in another column. In our case, we are going to name different time periods in our data.</p>
+<p>We will then group the data by these periods and calculate exceedence probabilities for each. The procedure works the same, except we add a group_by statement to group by our time period column before we create the rank and P columns. Then, when we plot, we can just tell ggplot to create different colored lines based on the time period names and it will plot a separate flow duration curve for each. Tidyverse FOR THE WIN!</p>
+<p>Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="flow-duration-curves-8-pts.html#cb129-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb129-2"><a href="flow-duration-curves-8-pts.html#cb129-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb129-3"><a href="flow-duration-curves-8-pts.html#cb129-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
+<span id="cb129-4"><a href="flow-duration-curves-8-pts.html#cb129-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
+<span id="cb129-5"><a href="flow-duration-curves-8-pts.html#cb129-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
+<span id="cb129-6"><a href="flow-duration-curves-8-pts.html#cb129-6" tabindex="-1"></a></span>
+<span id="cb129-7"><a href="flow-duration-curves-8-pts.html#cb129-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb129-8"><a href="flow-duration-curves-8-pts.html#cb129-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb129-9"><a href="flow-duration-curves-8-pts.html#cb129-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
+<span id="cb129-10"><a href="flow-duration-curves-8-pts.html#cb129-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
+<span id="cb129-11"><a href="flow-duration-curves-8-pts.html#cb129-11" tabindex="-1"></a></span>
+<span id="cb129-12"><a href="flow-duration-curves-8-pts.html#cb129-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
+<span id="cb129-13"><a href="flow-duration-curves-8-pts.html#cb129-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb129-14"><a href="flow-duration-curves-8-pts.html#cb129-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb129-15"><a href="flow-duration-curves-8-pts.html#cb129-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb129-16"><a href="flow-duration-curves-8-pts.html#cb129-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+</div>
+<div id="compare-to-a-boxplot-of-the-same-data" class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Compare to a boxplot of the same data<a href="flow-duration-curves-8-pts.html#compare-to-a-boxplot-of-the-same-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are really just looking at the data distribution here. Remember another good way to compare distributions is a boxplot. Let’s create a boxplot showing flows from these time periods. (we will also mess with the dimensions of the plot so the boxes aren’t so wide using fig.width and fig.height in the ``` header above the code chunk)</p>
+<p>What are the advantages/disadvantages of the flow duration curves vs. boxplots?</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="flow-duration-curves-8-pts.html#cb130-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
+<span id="cb130-2"><a href="flow-duration-curves-8-pts.html#cb130-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb130-3"><a href="flow-duration-curves-8-pts.html#cb130-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-130-1.png" width="480" /></p>
+</div>
+<div id="assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts" class="section level2 hasAnchor" number="11.11">
+<h2><span class="header-section-number">11.11</span> Assignment: Examining flow regime change at the Grand Canyon (8 pts)<a href="flow-duration-curves-8-pts.html#assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The USGS Gage “Colorado River at Yuma, AZ” is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="flow-duration-curves-8-pts.html#cb131-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
+<span id="cb131-2"><a href="flow-duration-curves-8-pts.html#cb131-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
+<span id="cb131-3"><a href="flow-duration-curves-8-pts.html#cb131-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
+<span id="cb131-4"><a href="flow-duration-curves-8-pts.html#cb131-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
+<p>Deliverables:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)</p></li>
+<li><p>Describe what the FDCs for the two periods tell you about the flows in the river. Be specific and quantitative in your description. (5 pts)</p></li>
 </ol>
 
 </div>
@@ -431,8 +485,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="lab-3-statistics-in-hydrology-33-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lab-4-rating-cuve-lab-15-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-4-rating-cuve-lab-15-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab-5---low-flow-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -463,7 +517,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/09_rating_curve_module.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/11_flow_duration_curves.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -471,7 +525,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/09_rating_curve_module.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/11_flow_duration_curves.Rmd",
 "text": null
 },
 "download": null,

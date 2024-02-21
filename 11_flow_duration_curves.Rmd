@@ -1,17 +1,25 @@
 
 
-# Flow Duration Curves
+# Flow Duration Curves (8 pts)
 
 
 Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.
 
-We are on our way to doing analyses of extreme discharge events: low flow statistics and floods. But in order to do that, we need to understand a common way to look at data distributions in hydrology: the flow duration curve. As you'll see below, this is basically just a different way of looking at a pdf, and it can take some getting used to. But it is also a very useful tool!
+## Lecture
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j3wniP1qHRo?si=xwNm5pRK5KhyuLzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Reading
+
+[Flow Duration Curves: A new model to envision healthy watersheds and resilient communities ](https://www.epa.gov/snep/flow-duration-curves-new-model-envision-healthy-watersheds-and-resilient-communities){target="_blank"}
+
+## Packages and coding
 
 As always let's load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.
 
 We will also use theme_set() in this chunk so we don't have to change the ggplot theme every time we make a plot.
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(dataRetrieval)
 library(lubridate)
@@ -170,11 +178,10 @@ Qdat %>% ggplot(aes(x = period, y = Flow)) +
   scale_y_log10()
 ```
 
-## Challenge: Examining flow regime change at the Grand Canyon
+## Assignment: Examining flow regime change at the Grand Canyon (8 pts)
 
-The USGS Gage "Colorado River at Yuma, AZ" is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. 
+The USGS Gage "Colorado River at Yuma, AZ" is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage. 
 
-How does the FDC show the differences you observed in the line plot?
 
 ```{r}
 siteid <- "09521000"
@@ -182,8 +189,13 @@ startDate <- "1905-10-01"
 endDate <- "1965-10-01"
 parameter <- "00060"
 
-
 ```
 
 
-## That's it! Next we will apply some of these principles to look at low-flow statistics.
+Deliverables:
+
+1. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)
+
+2. Describe what the FDCs for the two periods tell you about the flows in the river. Be specific and quantitative in your description. (5 pts)
+
+

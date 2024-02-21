@@ -106,7 +106,10 @@ q2.1.-2-pt
 problem-3
 q3.1.-5-pts
 problem-4
-flow-duration-curves
+flow-duration-curves-8-pts
+lecture-1
+reading-1
+packages-and-coding
 get-data
 review-describe-the-distribution
 ecdfs
@@ -114,6 +117,5 @@ calculate-flow-exceedence-probabilities
 plot-a-flow-duration-curve-using-the-probabilities
 example-use-of-an-fdc
 compare-to-a-boxplot-of-the-same-data
-challenge-examining-flow-regime-change-at-the-grand-canyon
-thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.
+assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts
 lab-5---low-flow-analysis
