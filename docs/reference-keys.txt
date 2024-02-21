@@ -118,4 +118,16 @@ plot-a-flow-duration-curve-using-the-probabilities
 example-use-of-an-fdc
 compare-to-a-boxplot-of-the-same-data
 assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts
-lab-5---low-flow-analysis
+lab-5-low-flow-analysis-15-pts
+what-are-low-flow-statistics
+get-data-1
+create-the-x-days-average-flow-record
+look-at-what-a-rolling-mean-does.
+calculate-yearly-minimums
+challenge
+calculate-return-interval
+fit-to-pearson-type-iii-distribution
+deliverable---summary-questions-12-pts
+question-1-6-pts
+question-2-3-pts
+question-3-6-pts

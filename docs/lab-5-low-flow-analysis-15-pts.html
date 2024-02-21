@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Page not found | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 12 Lab 5: Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 12 Lab 5: Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 12 Lab 5: Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 12 Lab 5: Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="flow-duration-curves-8-pts.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -345,18 +345,220 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="lab-5-low-flow-analysis-15-pts" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Lab 5: Low Flow Analysis (15 pts)<a href="lab-5-low-flow-analysis-15-pts.html#lab-5-low-flow-analysis-15-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this lab I am giving you most of the code. Your task will be to use that code to analyze low flows at the Gallatin Gateway gage and answer the summary questions at the end of this markdown. For you deliverable submit your answers to the summary questions in a word doc.</p>
+<p><a href="https://github.com/tpcovino/lab_5">Link to repo here</a></p>
+<p><strong>Reading:</strong>
+<a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows" target="_blank">Definitions and characteristics of low flows</a> in EPA Environmental Modeling Community of Practice</p>
+<p><em>Load packages for analysis. zoo will allow us to easily perform rolling means, and moments will allow easy calculation of skewness.</em></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb132-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb132-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-3" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb132-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-4" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
+<span id="cb132-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb132-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-6" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="lab-5-low-flow-analysis-15-pts.html#cb132-7" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
+<div id="what-are-low-flow-statistics" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> What are low flow statistics?<a href="lab-5-low-flow-analysis-15-pts.html#what-are-low-flow-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Low flow design flows can be specified based on hydrological or biological data. Biological methods look more at water quality standards relevant to biota. The hydrologic method just looks at the statistical distribution of low flows over a period of time.</p>
+<ul>
+<li>Just from this simple definition, can you think of a management situation where it would make sense to use the biological method? The hydrologic method? What are the advantages to each?</li>
+</ul>
+<p>We will focus on hydrologic methods. You will most frequently see low flow stats in the format of xQy. So for example 7Q10 or 1Q10 are common design flows. Let’s look at the EPA definition of these and then break them down.</p>
+<p>“The 1Q10 and 7Q10 are both hydrologically based design flows. The 1Q10 is the lowest 1-day average flow that occurs (on average) once every 10 years. The 7Q10 is the lowest 7-day average flow that occurs (on average) once every 10 years.” -EPA <a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10" class="uri">https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10</a></p>
+<p>So the first number, <strong>the 7 in 7Q10</strong> is how many days we will average flow over to calculate the statistic. Why does does this matter? Why not always use a 1 day flow record?</p>
+<p>Then the second number is the return-interval of the flow, or the probability that a flow of that magnitude or lower will occur any given year. <strong>The 10 in 7Q10</strong> means there is a 10 percent chance that the associated 7-day average flow or below will occur in any given year. Another way of saying this is that a flow of that magnitude or below occurs on average once every 10 years. <strong>However</strong> expressing it this way can be dangerous, especially with the opposite type of extreme flows: Floods. Why do you think it could be dangerous to say a flow of this magnitude or below will happen on average once every 10 years?</p>
+<p><strong>So, to calculate a 7Q10</strong> we need:
+* 7-day mean-daily flows
+* The minumum value per year of those 7-day mean-daily flows
+* The return intervals of those flows minimum yearly flows</p>
+<p><strong>Because a 7Q10 flow means</strong>
+* There is a 10% chance (return interval = 10) that a river will have a average weekly flow of that level or below in a given year.</p>
+</div>
+<div id="get-data-1" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Get data<a href="lab-5-low-flow-analysis-15-pts.html#get-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will calculate the 7Q10 low flow statistic for the Gallatin Gateway USGS gage (06043500) using daily discharge data from 1990-2022. (parameter = 00060)</p>
+<p>In the code below you will see that I have added a line of code to add a water year (addWaterYear). This allows us to start doing our analyes on the water year (Oct - Oct) as opposed to calendar year like we have in the past.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-1" tabindex="-1"></a>site_no <span class="ot">&lt;-</span> <span class="st">&quot;06043500&quot;</span></span>
+<span id="cb133-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
+<span id="cb133-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
+<span id="cb133-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb133-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-5" tabindex="-1"></a></span>
+<span id="cb133-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(<span class="at">site =</span> site_no, <span class="at">parameterCd =</span> parameter, <span class="at">startDate =</span> startDate, <span class="at">endDate =</span> endDate) <span class="sc">%&gt;%</span></span>
+<span id="cb133-7"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-7" tabindex="-1"></a>  <span class="fu">addWaterYear</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb133-8"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-8" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb133-9"><a href="lab-5-low-flow-analysis-15-pts.html#cb133-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agency_cd)</span></code></pre></div>
+</div>
+<div id="create-the-x-days-average-flow-record" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Create the X days average flow record<a href="lab-5-low-flow-analysis-15-pts.html#create-the-x-days-average-flow-record" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Remember the 7 in 7Q10 means we are looking at the 7-day average flow. We just have daily values from the USGS gage, so we need to create this data record.</p>
+<p>To do this we will calculate a rolling average, also called a moving-window average. This just means you grab the first 7 days, average them, then move the window of the days you are averaging forward a day, and average again… all the way through the record.</p>
+<p>For your rolling mean you can have the window look forward, backward, or forward and backward. For example, a forward window takes the average of X number of records and places the value at the beginning. Backward places that value at the end, and both would put it in the middle. In the function we will use to do this, forward is a left align, backward is right align, and both is centered.</p>
+<p><strong>For example</strong></p>
+<blockquote>
+<p>data window = 1, 2, 3, 4, 5 (lots of values before and after this)</p>
+</blockquote>
+<blockquote>
+<p>mean = 3</p>
+</blockquote>
+<blockquote>
+<p>forward window/left align: 3, NA, NA, NA, NA</p>
+</blockquote>
+<blockquote>
+<p>backward window/right align: NA, NA, NA, NA, 3</p>
+</blockquote>
+<blockquote>
+<p>both/center align: NA, NA, 3, NA, NA</p>
+</blockquote>
+<p>We could certainly set up some code to calculate this, but there is a nice and fast function in the zoo package for calculating rolling means. It is called rollmean().</p>
+<p>As we write the code to do this analysis, we are going to keep in mind that we may want to calculate a different type of low flow, like a 1Q10, so we are going to store the x and y of the xQy low flow statistic as objects rather than including them several places in the code. That way we can just change them in one place and run the analysis to compute a different statistic.</p>
+<p>Use rollmean() to create a column called xdaymean that is the 7-day rolling average.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-1" tabindex="-1"></a><span class="co">#set x and y for xQy design flow</span></span>
+<span id="cb134-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-2" tabindex="-1"></a>Xday <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb134-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-3" tabindex="-1"></a>YrecInt <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb134-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-4" tabindex="-1"></a></span>
+<span id="cb134-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-5" tabindex="-1"></a><span class="co">#X day rolling mean, don&#39;t fill the ends of the timeseries,</span></span>
+<span id="cb134-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb134-6" tabindex="-1"></a><span class="co">#don&#39;t ignore NAs, use a backward-looking window (right align)</span></span></code></pre></div>
+</div>
+<div id="look-at-what-a-rolling-mean-does." class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Look at what a rolling mean does.<a href="lab-5-low-flow-analysis-15-pts.html#look-at-what-a-rolling-mean-does." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We just added a new column with the rolling mean, so let’s plot it and see what it did to the discharge record.</p>
+<p>Let’s look at June-August 1991. You can’t see too well what is going on in the full record.</p>
+<p>Create a line plot (geom_line) of daily flow and rolling mean flow for 6/1/1991 to 9/1/1991.</p>
+<p>What’s the rolling mean doing?</p>
+</div>
+<div id="calculate-yearly-minimums" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Calculate yearly minimums<a href="lab-5-low-flow-analysis-15-pts.html#calculate-yearly-minimums" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Okay, we have our X-day rolling mean. Now we need to calculate the probability that a given magnitude flow or below will happen in a given year. Because we are concerned with <em>a given year</em> we need the lowest flow per year.</p>
+<p>We will calculate minimum flow per year by gouping by the <em>waterYear</em> column, and using the summarize function to calculate the minimum flow per water year.</p>
+<div id="challenge" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Challenge<a href="lab-5-low-flow-analysis-15-pts.html#challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>create a new df called Q_yearly_mins that has year and minimum annual Q calculated from your 7-day rolling mean.</li>
+</ul>
+</div>
+</div>
+<div id="calculate-return-interval" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Calculate return interval<a href="lab-5-low-flow-analysis-15-pts.html#calculate-return-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we have a df that contains our yearly minimum flows, we can calculate the return interval as</p>
+<p><span class="math inline">\(Return Interval = (n + 1) / rank\)</span></p>
+<p>Where n is the number of records in the data (number of years) and rank is the rank of each year’s low flow (lowest flow = rank 1 and so on). We can calculate the rank with the rank() function in base R. In the rank function we will specify that in the case of a tie, the first value gets the lower rank using ties.method = “first”. That code will look like:</p>
+<p>mutate(rank = rank(minQ, ties.method = “first”))</p>
+<p>You will also need to create a column of return interval with:</p>
+<p>mutate(ReturnInterval = (length(rank) + 1)/rank)</p>
+<ul>
+<li>the length() function returns the length (n) of the column.</li>
+</ul>
+<p>We can then transform that to an exceedence probability as</p>
+<p><span class="math inline">\(Exceedence Probability = 1 / Return Interval\)</span></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-1" tabindex="-1"></a><span class="co"># add rank column and return interval column (uncomment the code below)</span></span>
+<span id="cb135-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-2" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-3" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
+<span id="cb135-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-4" tabindex="-1"></a><span class="co">#                 mutate(rank = rank(minQ, ties.method = &quot;first&quot;)) %&gt;%</span></span>
+<span id="cb135-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-5" tabindex="-1"></a><span class="co">#                 mutate(ReturnInterval = (length(rank) + 1)/rank) %&gt;%</span></span>
+<span id="cb135-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb135-6" tabindex="-1"></a><span class="co">#                 mutate(ExceedProb = 1 / ReturnInterval)</span></span></code></pre></div>
+<ul>
+<li>use patchwork to create a figure with minQ on the y and return on the x and another with minQ on the y and exceedence probability on the x.</li>
+</ul>
+</div>
+<div id="fit-to-pearson-type-iii-distribution" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Fit to Pearson Type III distribution<a href="lab-5-low-flow-analysis-15-pts.html#fit-to-pearson-type-iii-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Source for these calculations:
+<a href="https://water.usgs.gov/osw/bulletin17b/dl_flow.pdf" class="uri">https://water.usgs.gov/osw/bulletin17b/dl_flow.pdf</a></p>
+<p>We now have everything we need to calculate what the 10-year return interval flow is (the 0.1 probability flow). To do this, we have to fit a distribution to our data and then use that fitted distribution to predict the value of the 10-year return interval flow.</p>
+<p>This may sound a little complex, but let’s think about it this way:</p>
+<ul>
+<li>You have some data, let’s say: heights of students</li>
+<li>You did some tests on it and know it is a normal distribution</li>
+<li>If you measure the mean and standard deviation of that distribution, you could create a “fitted” representation of your distrubtion by generating a normal distribution with the same mean and standard deviation with the rnorm() function.</li>
+<li>Now you could plot that fitted, synthetic distribution as an ECDF and read the plot to determine, say, 10% of students (0.1 probability) are at or above what height?</li>
+</ul>
+<p>Assume the average height from your data was 65 inches and the standard deviation was 6 inches (this is 100% made up), let’s look at it.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-1" tabindex="-1"></a><span class="co"># fitteddistribution &lt;- rnorm(1000, mean = 65, sd = 6) %&gt;%</span></span>
+<span id="cb136-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-2" tabindex="-1"></a><span class="co">#   as_tibble()</span></span>
+<span id="cb136-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb136-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-4" tabindex="-1"></a><span class="co"># ggplot(fitteddistribution, aes(x = value))+</span></span>
+<span id="cb136-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-5" tabindex="-1"></a><span class="co">#   stat_ecdf()+</span></span>
+<span id="cb136-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-6" tabindex="-1"></a><span class="co">#   xlab(&quot;height (in)&quot;)+</span></span>
+<span id="cb136-7"><a href="lab-5-low-flow-analysis-15-pts.html#cb136-7" tabindex="-1"></a><span class="co">#   ylab(&quot;probability&quot;)</span></span></code></pre></div>
+<p>To get our 10 year return period (0.1 exceedence probability) we are going to do the same thing, except we know the distribution of the data isn’t normal, so we have to use a different distribution.</p>
+<p>There are a bunch of “extreme value” distributions used in these types of analyses. When we talk about floods we will use the Gumbel distribution, for example. For this type of analysis, it is common to use the Pearson Type III distribution.</p>
+<p>When we used the normal distribution example, we let R produce the distribution that fit our data. In this case we will use the equation that describes the Person Type III distribution. To predict flow at a given recurrence interval we will need the mean of the logged discharges (Xbar), the frequency factor (K), the standard deviation of the log discharges (S), skewness (g), and the standard normal variate (z). We will first compute this for all of the values in our dataset to see how the fitted values fit our calculated values.</p>
+<p><strong>Pearson Type III</strong></p>
+<p><span class="math inline">\(Flow = exp(Xbar + KS)\)</span></p>
+<p>where:</p>
+<p>Xbar = mean of the log discharge you are investigating</p>
+<p>K = frequency factor</p>
+<p>S = standard deviation of log discharges</p>
+<p><strong>Frequency Factor</strong></p>
+<p><span class="math inline">\(K = (2 / g) * ((1 +( g * z)) / 6 - ((g ^ 2) / 36)) ^ 3 - 1)\)</span></p>
+<p><strong>Skewness</strong></p>
+<p>g = skewness() from moments package</p>
+<p><strong>Standard normal variate</strong></p>
+<p><span class="math inline">\(z = 4.91 * ((1 / y) ^ {0.14} - (1 - (1 / y)) ^ {0.14})\)</span></p>
+<p>y = recurrence interval</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-1" tabindex="-1"></a><span class="co">#Measures of the distribution</span></span>
+<span id="cb137-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-2" tabindex="-1"></a><span class="co"># Xbar &lt;- mean(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb137-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-3" tabindex="-1"></a><span class="co"># S    &lt;- sd(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb137-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-4" tabindex="-1"></a><span class="co"># g    &lt;- skewness(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb137-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-5" tabindex="-1"></a> </span>
+<span id="cb137-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-6" tabindex="-1"></a><span class="co">#calculate z, K, to plot the fitted Pearson Type III (uncomment the code below)</span></span>
+<span id="cb137-7"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-7" tabindex="-1"></a></span>
+<span id="cb137-8"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-8" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
+<span id="cb137-9"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-9" tabindex="-1"></a><span class="co">#   mutate(z = 4.91 * ((1 / ReturnInterval) ^ 0.14 - (1 - 1 / ReturnInterval) ^ 0.14)) %&gt;%</span></span>
+<span id="cb137-10"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-10" tabindex="-1"></a><span class="co">#   mutate(K = (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) ) %&gt;%</span></span>
+<span id="cb137-11"><a href="lab-5-low-flow-analysis-15-pts.html#cb137-11" tabindex="-1"></a><span class="co">#   mutate(Qfit = exp(Xbar + K * S))</span></span></code></pre></div>
+<p>Let’s look our results and see how they fit. Plot the return interval on the x axis and flow on the y. Plot minQ, the minimum Q data, and Qfit, the “data” from the the model fit.</p>
+<p>Above we calculated z, K and the flow for each return interval in our data record to see how the distribution fit our data. We can see it fits quite well.</p>
+<p>We can use the same calculations as we used on the entire record to calculate a specific return period of interest. In our case, the 10 year return period for the 7Q10.</p>
+<p>We will set y equal to YrecInt, which we set above. This way we can just change it at the top of the code to run whatever xQy metric we want.</p>
+<p>Here I am giving you the code, for fitting these models but look at the code above where we fit the distribution to all the data and the code below where we are specfically calculating the 7Q10 and be sure you understand what the code is doing. If you don’t, reach out to me so we can step through it.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-1" tabindex="-1"></a><span class="co">#xQy ei: 7Q10</span></span>
+<span id="cb138-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-2" tabindex="-1"></a><span class="co"># y = YrecInt</span></span>
+<span id="cb138-3"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb138-4"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-4" tabindex="-1"></a><span class="co"># #Find these values based on established relationships</span></span>
+<span id="cb138-5"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-5" tabindex="-1"></a><span class="co"># z    &lt;- 4.91 * ((1 / y) ^ 0.14 - (1 - 1 / y) ^ 0.14)</span></span>
+<span id="cb138-6"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-6" tabindex="-1"></a><span class="co"># K    &lt;- (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) </span></span>
+<span id="cb138-7"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-7" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb138-8"><a href="lab-5-low-flow-analysis-15-pts.html#cb138-8" tabindex="-1"></a><span class="co"># PearsonxQy &lt;- exp(Xbar + K * S)</span></span></code></pre></div>
+<p>So, our 7Q10 flow in cfs for this gage is….</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="lab-5-low-flow-analysis-15-pts.html#cb139-1" tabindex="-1"></a><span class="co">#Low flow stat (7Q10 in this case)</span></span>
+<span id="cb139-2"><a href="lab-5-low-flow-analysis-15-pts.html#cb139-2" tabindex="-1"></a><span class="co">#PearsonxQy</span></span></code></pre></div>
+</div>
+<div id="deliverable---summary-questions-12-pts" class="section level2 hasAnchor" number="12.8">
+<h2><span class="header-section-number">12.8</span> Deliverable - Summary questions (12 pts)<a href="lab-5-low-flow-analysis-15-pts.html#deliverable---summary-questions-12-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>submit your answers to these questions as a word doc on D2L.</li>
+</ul>
+<div id="question-1-6-pts" class="section level3 hasAnchor" number="12.8.1">
+<h3><span class="header-section-number">12.8.1</span> Question 1 (6 pts)<a href="lab-5-low-flow-analysis-15-pts.html#question-1-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Interpret your plots of minQ vs return interval and minQ vs exceedence probability. What does each tell you? Using these figures estimate the probability of having a year with minimum annual flow ~ 250 cfs. What return interval would you estimate for a year with miminum annual flow ~ 250 cfs?</li>
+</ul>
+</div>
+<div id="question-2-3-pts" class="section level3 hasAnchor" number="12.8.2">
+<h3><span class="header-section-number">12.8.2</span> Question 2 (3 pts)<a href="lab-5-low-flow-analysis-15-pts.html#question-2-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>what is your 7Q10?</li>
+<li>In the context of low flows, describe what the 7Q10 is and how it might be used in water resource management.</li>
+</ul>
+</div>
+<div id="question-3-6-pts" class="section level3 hasAnchor" number="12.8.3">
+<h3><span class="header-section-number">12.8.3</span> Question 3 (6 pts)<a href="lab-5-low-flow-analysis-15-pts.html#question-3-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>You are a water resource planner for the city of Bozeman. Part of your job is to monitor low flows. You have noticed that the 7-day moving average has dropped below the 7Q10. What does this tell you? And what recommendations would you make to the city regarding water use?</li>
+</ul>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="flow-duration-curves-8-pts.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -388,7 +590,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/%s",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/12_low_flow_analysis_lab.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -396,7 +598,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/%s",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/12_low_flow_analysis_lab.Rmd",
 "text": null
 },
 "download": null,
