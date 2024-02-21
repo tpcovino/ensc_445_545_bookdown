@@ -2,7 +2,7 @@
 
 In this lab I am giving you most of the code. Your task will be to use that code to analyze low flows at the Gallatin Gateway gage and answer the summary questions at the end of this markdown. For you deliverable submit your answers to the summary questions in a word doc. 
 
-[Link to repo here](https://github.com/tpcovino/lab_5)
+[Link to repo here](https://github.com/tpcovino/lab_5){target="_blank"}
 
 **Reading:** 
 [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows){target="_blank"} in EPA Environmental Modeling Community of Practice
