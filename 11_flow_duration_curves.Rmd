@@ -178,7 +178,7 @@ Qdat %>% ggplot(aes(x = period, y = Flow)) +
   scale_y_log10()
 ```
 
-## Module Summary Assignment: Examining flow regime change at the Grand Canyon (8 pts)
+## Module Summary Assignment: Examining flow regime change at the Grand Canyon (12 pts)
 
 The USGS Gage "Colorado River at Yuma, AZ" is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage. 
 
@@ -194,7 +194,9 @@ parameter <- "00060"
 
 Deliverables:
 
-1. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)
+1. Provide your answers to module questions 1 & 2 (4 pts)
+
+2. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)
 
 2. Describe what the FDCs for the two periods tell you about the flows in the river. Be specific and quantitative in your description. (5 pts)
 
