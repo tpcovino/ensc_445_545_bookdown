@@ -106,7 +106,7 @@ q2.1.-2-pt
 problem-3
 q3.1.-5-pts
 problem-4
-flow-duration-curves-8-pts
+flow-duration-curves-12-pts
 lecture-1
 reading-1
 packages-and-coding
@@ -116,8 +116,10 @@ ecdfs
 calculate-flow-exceedence-probabilities
 plot-a-flow-duration-curve-using-the-probabilities
 example-use-of-an-fdc
+module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.
 compare-to-a-boxplot-of-the-same-data
-assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts
+module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots
+module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts
 lab-5-low-flow-analysis-15-pts
 what-are-low-flow-statistics
 get-data-1

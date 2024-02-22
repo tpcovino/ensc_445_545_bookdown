@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 11 Flow Duration Curves (12 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 11 Flow Duration Curves (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 11 Flow Duration Curves (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Lab 2: dataRetrieval and area normalized flows (20 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 11 Flow Duration Curves (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dataretrieval.html"/>
-<link rel="next" href="statistics-in-hydrology.html"/>
+<link rel="prev" href="lab-4-rating-cuve-lab-15-pts.html"/>
+<link rel="next" href="lab-5-low-flow-analysis-15-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -347,122 +347,160 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lab-2-dataretrieval-and-area-normalized-flows-20-pts" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Lab 2: dataRetrieval and area normalized flows (20 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#lab-2-dataretrieval-and-area-normalized-flows-20-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><a href="https://github.com/tpcovino/lab_3" target="_blank"><strong>Repo here</strong></a></p>
-<div id="intro" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Intro<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
-<div id="this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html." class="section level3 hasAnchor" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> This is knitr settings. Knitr is a package that will turn this Rmd to an html.<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb92-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="flow-duration-curves-12-pts" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Flow Duration Curves (12 pts)<a href="flow-duration-curves-12-pts.html#flow-duration-curves-12-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.</p>
+<div id="lecture-1" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Lecture<a href="flow-duration-curves-12-pts.html#lecture-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j3wniP1qHRo?si=xwNm5pRK5KhyuLzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 </div>
-<div id="load-the-necessary-packages." class="section level3 hasAnchor" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Load the necessary packages.<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb93-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
-<span id="cb93-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-3" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb93-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb93-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<div id="reading-1" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Reading<a href="flow-duration-curves-12-pts.html#reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.epa.gov/snep/flow-duration-curves-new-model-envision-healthy-watersheds-and-resilient-communities" target="_blank">Flow Duration Curves: A new model to envision healthy watersheds and resilient communities</a></p>
 </div>
-<div id="workflow" class="section level3 hasAnchor" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Workflow<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-1" tabindex="-1"></a><span class="co"># Load the stream gauge data</span></span>
-<span id="cb94-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-2" tabindex="-1"></a><span class="co"># Configs that could be changed ...</span></span>
-<span id="cb94-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-3" tabindex="-1"></a>param_cd <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span> <span class="co"># Parameter code for streamflow . See `dataRetrieval::parameterCdFile` for more.</span></span>
-<span id="cb94-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-4" tabindex="-1"></a>service_cd <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># means &quot;daily value&quot;. See `https://waterservices.usgs.gov/rest/` for more info.</span></span>
-<span id="cb94-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-5" tabindex="-1"></a><span class="co"># State code</span></span>
-<span id="cb94-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-6" tabindex="-1"></a>state_cd <span class="ot">&lt;-</span> <span class="st">&quot;MT&quot;</span></span>
-<span id="cb94-7"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-7" tabindex="-1"></a><span class="co"># County code</span></span>
-<span id="cb94-8"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-8" tabindex="-1"></a>county_cd <span class="ot">&lt;-</span> <span class="st">&quot;Park County&quot;</span></span>
-<span id="cb94-9"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-9" tabindex="-1"></a><span class="co"># set start and end dates for streamflow time series</span></span>
-<span id="cb94-10"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-10" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
-<span id="cb94-11"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-11" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
-<span id="cb94-12"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-12" tabindex="-1"></a>huc_cd <span class="ot">&lt;-</span> <span class="st">&quot;10070003&quot;</span></span>
-<span id="cb94-13"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-13" tabindex="-1"></a></span>
-<span id="cb94-14"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-14" tabindex="-1"></a><span class="co"># Use whatNWISsites to identify what gauges exist that meet the above conditions. However, the whatNWISsites doesn&#39;t always screen out sites that don&#39;t have the exact dates we want. </span></span>
-<span id="cb94-15"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-15" tabindex="-1"></a></span>
-<span id="cb94-16"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-16" tabindex="-1"></a>stream_gauges <span class="ot">&lt;-</span> <span class="fu">whatNWISsites</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va)</span>
-<span id="cb94-17"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-17" tabindex="-1"></a></span>
-<span id="cb94-18"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-18" tabindex="-1"></a><span class="co"># Since whatNWISsites doesn&#39;t always work for the dates we can also run whatNWISdata to filter for the dates and gain some info on the gauges. Both of them are useful to run.  </span></span>
-<span id="cb94-19"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-19" tabindex="-1"></a></span>
-<span id="cb94-20"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-20" tabindex="-1"></a>stream_gauges_info <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb94-21"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-21" tabindex="-1"></a>  <span class="fu">filter</span>(begin_date <span class="sc">&lt;</span> start, end_date <span class="sc">&gt;</span> end) </span>
-<span id="cb94-22"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-22" tabindex="-1"></a></span>
-<span id="cb94-23"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-23" tabindex="-1"></a><span class="co"># Uncomment the code below to write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
-<span id="cb94-24"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-24" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb94-25"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-25" tabindex="-1"></a><span class="co">#write_csv(stream_gauges_info, &quot;steam_gauges_info.csv&quot;)</span></span>
-<span id="cb94-26"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-26" tabindex="-1"></a></span>
-<span id="cb94-27"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-27" tabindex="-1"></a><span class="co"># In the future uncomment the code below to load the csv. </span></span>
-<span id="cb94-28"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-28" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
-<span id="cb94-29"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb94-29" tabindex="-1"></a><span class="co">#stream_gauges_info &lt;- read_csv(&quot;stream_gauges_info.csv&quot;)</span></span></code></pre></div>
-<p>Map the gauges. If leaflet isn’t working for you, don’t worry. This isn’t critical, just useful to visualize where the gauges are.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-1" tabindex="-1"></a>park_map <span class="ot">&lt;-</span> <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb95-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-2" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb95-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-3" tabindex="-1"></a>  <span class="fu">addAwesomeMarkers</span>(<span class="at">data =</span> stream_gauges, <span class="at">lat =</span> <span class="sc">~</span>dec_lat_va, <span class="at">lng =</span> <span class="sc">~</span>dec_long_va, <span class="at">label =</span> <span class="sc">~</span>station_nm, </span>
-<span id="cb95-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-4" tabindex="-1"></a>                    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">&quot;Site&quot;</span>, site_no)) </span>
-<span id="cb95-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-5" tabindex="-1"></a>  </span>
-<span id="cb95-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb95-6" tabindex="-1"></a>park_map</span></code></pre></div>
-<p>Download the Q data for the gauges and create a df called “flows”.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> stream_gauges<span class="sc">$</span>site_no</span>
-<span id="cb96-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-2" tabindex="-1"></a></span>
-<span id="cb96-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-3" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> sites, <span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb96-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-4" tabindex="-1"></a></span>
-<span id="cb96-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-5" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
-<span id="cb96-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb96-6" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
-<p>Make a facet wrap to look at the flows for each gauge. Facet by “site_no”.</p>
-<p>Filter the “flows” df to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this new df “flows_filt”.</p>
-<p>Make another facet wrap of flow at those 4 gauges. Again, filter by “site_no”.</p>
-<p>For the 4 gauges you have kept, convert flow to mm/day.</p>
-<p>This is a unit of depth per time, which we generally refer to as an area normalized flow. To get area normalized flow you divide the volumetric flow (e.g., cubic meters per second, m3/s) by the area of the watershed (e.g., cubic meters, m2). In this example, that division would yield meters per second (m/s). From there you would do some conversion to get to mm/day.</p>
-<p>To do this, you obviously need to know the area of each watershed, which you can get from readNWISsite.</p>
-<p>Also, remember that your Q data are currently in cfs so there are multiple conversions you will need to do.</p>
-<p>You can find this online but the areas given from NWIS are in square miles. I’d recommend converting the area from square miles to square meters. And converting cubic feet per second to cubic meters per second. From there, the instructions above should get you where you want to go.</p>
-<p>You can use whatNWISdata, readNWISsite, and a join (e.g., left_join) to get the names of the sites and the drainage areas in the same df.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-1" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) </span>
-<span id="cb97-2"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-2" tabindex="-1"></a></span>
-<span id="cb97-3"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-3" tabindex="-1"></a><span class="co">#write_csv(site_info_a, &quot;site_info_a.csv&quot;)</span></span>
-<span id="cb97-4"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-4" tabindex="-1"></a><span class="co">#site_info_a &lt;- read_csv(&quot;site_info_a.csv&quot;)</span></span>
-<span id="cb97-5"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-5" tabindex="-1"></a></span>
-<span id="cb97-6"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-6" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> site_info_a <span class="sc">%&gt;%</span> </span>
-<span id="cb97-7"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-7" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va, alt_va, begin_date, end_date, count_nu)</span>
-<span id="cb97-8"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-8" tabindex="-1"></a></span>
-<span id="cb97-9"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-9" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(stream_gauges<span class="sc">$</span>site_no)</span>
-<span id="cb97-10"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-10" tabindex="-1"></a></span>
-<span id="cb97-11"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-11" tabindex="-1"></a><span class="co">#write_csv(site_info_b, &quot;site_info_b.csv&quot;)</span></span>
-<span id="cb97-12"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-12" tabindex="-1"></a><span class="co">#site_info_b &lt;- read_csv(&quot;site_info_b.csv&quot;)</span></span>
-<span id="cb97-13"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-13" tabindex="-1"></a></span>
-<span id="cb97-14"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-14" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> site_info_b <span class="sc">%&gt;%</span> </span>
-<span id="cb97-15"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-15" tabindex="-1"></a>  <span class="fu">select</span>(site_no, drain_area_va)</span>
-<span id="cb97-16"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-16" tabindex="-1"></a></span>
-<span id="cb97-17"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-17" tabindex="-1"></a>site_info <span class="ot">&lt;-</span> <span class="fu">left_join</span>(site_info_a, site_info_b, <span class="at">by =</span> <span class="st">&quot;site_no&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb97-18"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb97-18" tabindex="-1"></a>  <span class="fu">filter</span>(site_no <span class="sc">!=</span> <span class="st">&quot;06192980&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187915&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187910&quot;</span>) </span></code></pre></div>
-<p>Next, you will need to do another join to get the flow data and the drainage area in the same df. Once you have them in the same df all you need to do is the conversions outlined above.</p>
-<p>Now that you have flow at each site in mm/day, make a facet wrap of flow for each gauge in mm/day. This area normalize flow gives us a sense of how much flow a watershed produces per unit area. It also allows us to compare across watersheds of different sizes. Obviously a larger watershed will produce more volumetric flow but will it produce more flow per unit area? Think about it like an hourly wage. You might make more at work because you work more hours, but your friend might make a higher hourly wage. So volumetric is like how much you made this pay period, and area normalized is like how much you made divided by the number of hours you worked. So wet watersheds that produce a lot of flow per unit area, have a high hourly wage, so to speak.</p>
-<p>Compute and plot total annual flow for each gauge. You will need group_by(site_no, station_nm, year), and reframe. We did this is the first few weeks. Remember to add in na.rm = TRUE in case there are any NA values.</p>
-<p>Plot total annual flow from each gauge in mm/year all on the same graph, and color by gauge name.</p>
-<p>Make a map of the gauges included in this plot of total annual flow to aid in interpretation.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#cb98-1" tabindex="-1"></a><span class="co"># </span></span></code></pre></div>
+<div id="packages-and-coding" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Packages and coding<a href="flow-duration-curves-12-pts.html#packages-and-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As always let’s load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.</p>
+<p>We will also use theme_set() in this chunk so we don’t have to change the ggplot theme every time we make a plot.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="flow-duration-curves-12-pts.html#cb122-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb122-2"><a href="flow-duration-curves-12-pts.html#cb122-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb122-3"><a href="flow-duration-curves-12-pts.html#cb122-3" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb122-4"><a href="flow-duration-curves-12-pts.html#cb122-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb122-5"><a href="flow-duration-curves-12-pts.html#cb122-5" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="flow-duration-curves-12-pts.html#cb122-6" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
+<span id="cb122-7"><a href="flow-duration-curves-12-pts.html#cb122-7" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
+<span id="cb122-8"><a href="flow-duration-curves-12-pts.html#cb122-8" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 </div>
+<div id="get-data" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Get data<a href="flow-duration-curves-12-pts.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To start, let’s grab the USGS discharge data for the gage in Linville NC from 1960 to 2020.</p>
+<p>We will download the data using USGS dataRetrieval and look at a line plot.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="flow-duration-curves-12-pts.html#cb123-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
+<span id="cb123-2"><a href="flow-duration-curves-12-pts.html#cb123-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
+<span id="cb123-3"><a href="flow-duration-curves-12-pts.html#cb123-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb123-4"><a href="flow-duration-curves-12-pts.html#cb123-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb123-5"><a href="flow-duration-curves-12-pts.html#cb123-5" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="flow-duration-curves-12-pts.html#cb123-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
+<span id="cb123-7"><a href="flow-duration-curves-12-pts.html#cb123-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb123-8"><a href="flow-duration-curves-12-pts.html#cb123-8" tabindex="-1"></a></span>
+<span id="cb123-9"><a href="flow-duration-curves-12-pts.html#cb123-9" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb123-10"><a href="flow-duration-curves-12-pts.html#cb123-10" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb123-11"><a href="flow-duration-curves-12-pts.html#cb123-11" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 </div>
-<div id="summary-14-pts" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Summary (14 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Using mm/year allows us to compare across gauges with very different volumetric (e.g., cfs or cms) flow rates. Remember that gauges that produce more water per unit area have a higher hourly wage. So from a watershed hydrology perspective, what types of watersheds would produce more water per unit area? Think about the watershed and climate characteristics that might lead to more or less production of water per unit area (aka, area normalized flow).</p>
-<p>Use your plots of mm/year to comment on:<br />
-1. Does one gauge produce consistently less flow year to year? (2 pts)<br />
-</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Does one gauge produce consistently more flow year to year? (2 pts)<br />
-</p></li>
-<li><p>Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be. (5 pts)<br />
-</p></li>
-<li><p>For any gauges that seem different than the others, provide a plausible explanation for why that might be. (5 pts)</p></li>
+<div id="review-describe-the-distribution" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Review: describe the distribution<a href="flow-duration-curves-12-pts.html#review-describe-the-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Make a plot to view the distribution of the discharge data.</p>
+<ul>
+<li>What is the median flow value?</li>
+<li>What does this tell us about flow at that river?</li>
+<li>How often is the river at or below that value?</li>
+<li>Could you pick that number off the plot?</li>
+<li>What about the flow the river is at or above only 5% of the time?</li>
+</ul>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="flow-duration-curves-12-pts.html#cb124-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb124-2"><a href="flow-duration-curves-12-pts.html#cb124-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb124-3"><a href="flow-duration-curves-12-pts.html#cb124-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb124-4"><a href="flow-duration-curves-12-pts.html#cb124-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+</div>
+<div id="ecdfs" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> ECDFs<a href="flow-duration-curves-12-pts.html#ecdfs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at an Empirical Cumulative Density Function (ECDF) of the data.</p>
+<p>Look at this carefully, what does it show? How is it different from the pdf of the data?</p>
+<p>Plot the median again. Without the line on the plot, how would you tell where the median is?</p>
+<p>Given your answer to the question above, can you determine the flow the river is at or above only 25% of the time? Think carefully about what the y axis of the ECDF means.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="flow-duration-curves-12-pts.html#cb125-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb125-2"><a href="flow-duration-curves-12-pts.html#cb125-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
+<span id="cb125-3"><a href="flow-duration-curves-12-pts.html#cb125-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb125-4"><a href="flow-duration-curves-12-pts.html#cb125-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb125-5"><a href="flow-duration-curves-12-pts.html#cb125-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+</div>
+<div id="calculate-flow-exceedence-probabilities" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Calculate flow exceedence probabilities<a href="flow-duration-curves-12-pts.html#calculate-flow-exceedence-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In hydrology, it is common to look at a similar representation of flow distributions, but with flow on the Y axis and “% time flow is equaled or exceeded” on the X axis. There are a number of ways we could make this plot: for example we could transform the axes of the plot above or we could use the function that results from the ECDF function in R to calculate exceedence probabilities at flow throughout our range of flows. But for our purposes, we are just going to calculate it manually.</p>
+<p>We are going to calculate our own exceedence probabilities because knowing how to do this will help us understand what a flow duration curve is AND we will need to do similar things in our high and low flow analyses.</p>
+<p>The formula for exceedence probability (P) is below. What do we need to calculate this?</p>
+<p>Exceedence probability (P), Probability a flow is equaled or exceeded</p>
+<p><span class="math inline">\(P = 100 * [M / (n + 1)]\)</span></p>
+<p>M = Ranked position of the flow
+n = total number of observations in data record</p>
+<p>Here’s a description of what we will do:
+&gt; Pass our Qdat data to mutate and create a new column that is equal to the ranks of the discharge column.
+&gt; Then pass that result to mutate again and create another column equal exceedence probability (P) * 100, which will give us %.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="flow-duration-curves-12-pts.html#cb126-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
+<span id="cb126-2"><a href="flow-duration-curves-12-pts.html#cb126-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
+<span id="cb126-3"><a href="flow-duration-curves-12-pts.html#cb126-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb126-4"><a href="flow-duration-curves-12-pts.html#cb126-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
+<span id="cb126-5"><a href="flow-duration-curves-12-pts.html#cb126-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
+</div>
+<div id="plot-a-flow-duration-curve-using-the-probabilities" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Plot a Flow Duration Curve using the probabilities<a href="flow-duration-curves-12-pts.html#plot-a-flow-duration-curve-using-the-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now construct the following plot: A line with P on the x axis and flow on the y axis. Name the x axis “% Time flow equaled or exceeded” and log the y axis.</p>
+<p>That’s a flow duration curve!</p>
+<p>Questions about the flow duration curve:
+* How often is a flow of 100 cfs exceeded at this gage?
+* Is flow more variable for flows exceeded 0-25% or of the time or 75-100% * of the time?
+* How can you tell?</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="flow-duration-curves-12-pts.html#cb127-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb127-2"><a href="flow-duration-curves-12-pts.html#cb127-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb127-3"><a href="flow-duration-curves-12-pts.html#cb127-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb127-4"><a href="flow-duration-curves-12-pts.html#cb127-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb127-5"><a href="flow-duration-curves-12-pts.html#cb127-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+</div>
+<div id="example-use-of-an-fdc" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Example use of an FDC<a href="flow-duration-curves-12-pts.html#example-use-of-an-fdc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s explore one potential use of flow duration curves: examining the differences between two sets of flow data.</p>
+<p>From the line plot of the discharge, it looked like the flow regime may have shifted a bit in the data between the early years and newer data. Let’s use flow duration curves to examine potential differences. We can come up with groups and then use group_by to run the analysis by groups instead of the whole dataset.</p>
+<p>We are introducing a new function here called case_when(). This allows you to assign values to a new column based on values in another column. In our case, we are going to name different time periods in our data.</p>
+<p>We will then group the data by these periods and calculate exceedence probabilities for each. The procedure works the same, except we add a group_by statement to group by our time period column before we create the rank and P columns. Then, when we plot, we can just tell ggplot to create different colored lines based on the time period names and it will plot a separate flow duration curve for each. Tidyverse FOR THE WIN!</p>
+</div>
+<div id="module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Module Question 1 (2 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.<a href="flow-duration-curves-12-pts.html#module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="flow-duration-curves-12-pts.html#cb128-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb128-2"><a href="flow-duration-curves-12-pts.html#cb128-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb128-3"><a href="flow-duration-curves-12-pts.html#cb128-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
+<span id="cb128-4"><a href="flow-duration-curves-12-pts.html#cb128-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
+<span id="cb128-5"><a href="flow-duration-curves-12-pts.html#cb128-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
+<span id="cb128-6"><a href="flow-duration-curves-12-pts.html#cb128-6" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="flow-duration-curves-12-pts.html#cb128-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb128-8"><a href="flow-duration-curves-12-pts.html#cb128-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb128-9"><a href="flow-duration-curves-12-pts.html#cb128-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
+<span id="cb128-10"><a href="flow-duration-curves-12-pts.html#cb128-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
+<span id="cb128-11"><a href="flow-duration-curves-12-pts.html#cb128-11" tabindex="-1"></a></span>
+<span id="cb128-12"><a href="flow-duration-curves-12-pts.html#cb128-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
+<span id="cb128-13"><a href="flow-duration-curves-12-pts.html#cb128-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb128-14"><a href="flow-duration-curves-12-pts.html#cb128-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb128-15"><a href="flow-duration-curves-12-pts.html#cb128-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb128-16"><a href="flow-duration-curves-12-pts.html#cb128-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+</div>
+<div id="compare-to-a-boxplot-of-the-same-data" class="section level2 hasAnchor" number="11.11">
+<h2><span class="header-section-number">11.11</span> Compare to a boxplot of the same data<a href="flow-duration-curves-12-pts.html#compare-to-a-boxplot-of-the-same-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are really just looking at the data distribution here. Remember another good way to compare distributions is a boxplot. Let’s create a boxplot showing flows from these time periods. (we will also mess with the dimensions of the plot so the boxes aren’t so wide using fig.width and fig.height in the ``` header above the code chunk)</p>
+</div>
+<div id="module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="section level2 hasAnchor" number="11.12">
+<h2><span class="header-section-number">11.12</span> Module Question 2 (2 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?<a href="flow-duration-curves-12-pts.html#module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="flow-duration-curves-12-pts.html#cb129-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
+<span id="cb129-2"><a href="flow-duration-curves-12-pts.html#cb129-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb129-3"><a href="flow-duration-curves-12-pts.html#cb129-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-130-1.png" width="480" /></p>
+</div>
+<div id="module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts" class="section level2 hasAnchor" number="11.13">
+<h2><span class="header-section-number">11.13</span> Module Summary Assignment: Examining flow regime change at the Grand Canyon (8 pts)<a href="flow-duration-curves-12-pts.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-8-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The USGS Gage “Colorado River at Yuma, AZ” is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="flow-duration-curves-12-pts.html#cb130-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
+<span id="cb130-2"><a href="flow-duration-curves-12-pts.html#cb130-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
+<span id="cb130-3"><a href="flow-duration-curves-12-pts.html#cb130-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
+<span id="cb130-4"><a href="flow-duration-curves-12-pts.html#cb130-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
+<p>Deliverables:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)</p></li>
+<li><p>Describe what the FDCs for the two periods tell you about the flows in the river. Be specific and quantitative in your description. (5 pts)</p></li>
 </ol>
-</div>
-<div id="deliverable-6-pts" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Deliverable (6 pts)<a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Knit this .Rmd to .html and upload both on D2L. If you can’t get to knit, just upload .Rmd.</p>
-<p>Points for clarity and commenting of .Rmd and clarity of figures.</p>
 
 </div>
 </div>
@@ -471,8 +509,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="dataretrieval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistics-in-hydrology.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-4-rating-cuve-lab-15-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab-5-low-flow-analysis-15-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -503,7 +541,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/06_data_retrieval_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/11_flow_duration_curves.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -511,7 +549,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/06_data_retrieval_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/11_flow_duration_curves.Rmd",
 "text": null
 },
 "download": null,
