@@ -1,0 +1,78 @@
+# Functions
+
+## Reading on functions from RDS by Hadley Wickham
+
+[Functions from RDS](https://r4ds.hadley.nz/functions){target="_blank"}
+
+## Tutorial 
+
+This is a good opportunity to illustrate the usefulness of writing your own functions. When you install packages in R, you get a bunch of functions you can use. But you can also create these on your own to simplify your analyses!
+
+You do this with the following syntax: MyNewFunction <- function(param1, param2){ >code >}
+
+Whatever the last line of the “code” portion of the function spits out, get’s returned from the function. So if you said X <- mynewfunction(param1, parm2) X would now have it in whatever your function returned. See a simple example below: a function that adds 1 to any number we pass to it.
+
+
+```{r}
+
+add1 <- function(number){
+          number + 1
+          }
+
+add1(14)
+```
+
+You can make a generic ggplot function. Here I make a geom_point function. You can adjust the ggplot details to whatever you want. 
+
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+```{r}
+
+point_fun <- function(...) {
+  ggplot(df, aes(x = x, y = y, color = color)) +
+    geom_point() +
+    labs(x = x_lab, y = y_lab, title = title, color = color_lab)
+}
+
+
+```
+
+Then you just tell it what the inputs are. If you don't want to color by something you need to remove that from the function. If you don't want a title you just say title <- ""
+
+Of course you could make a variety of these. A line function. So on. 
+
+The mtcars is just an example df that comes with R for demonstration. 
+```{r}
+df <- mtcars
+x <- mtcars$hp
+y <- mtcars$mpg
+x_lab <- "Horsepower"
+y_lab <- "MPG"
+color <- mtcars$cyl
+color_lab <- "Cyl"
+title <- "Plot title"
+  
+point_fun()
+
+```
+
+You could also save the plot as an object and adjust. 
+```{r}
+
+p <- point_fun()
+
+p + theme_bw() + geom_line() + scale_x_reverse()
+
+```
+
+In general you should write a function for anything that you do repetitively. So if you have a particular analysis that you will do many times, rather that cutting and pasting or writing the code over and over again, just write a function, save that function, and call it when you need it. 
+
+Next week will we look at for loops which are also useful for iterating something over and over again. 
+
+

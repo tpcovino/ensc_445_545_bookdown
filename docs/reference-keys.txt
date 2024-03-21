@@ -98,7 +98,6 @@ applications-of-streamflow-and-stream-gage
 optional-activity-to-gain-deeper-understanding-of-rating-curve
 summary-questions-and-deliverable-6-pts
 lab-4-rating-cuve-lab-15-pts
-this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html.-1
 problem-1
 q1.1.-3-pts
 problem-2
@@ -133,3 +132,16 @@ deliverable---summary-questions-12-pts
 question-1-6-pts
 question-2-3-pts
 question-3-6-pts
+functions
+reading-on-functions-from-rds-by-hadley-wickham
+tutorial
+lab-6-climate-trend-analysis
+find-repo-here
+summary-questions-and-deliverable
+new-packages
+data-download-exploration-and-cleaning
+make-some-data-conversions.
+computing-annual-values
+exploratory-data-analysis-eda-of-annual-values
+trend-analysis-and-creating-table-1
+see-summary-section-at-top-for-questions-to-answer-and-deliverable.

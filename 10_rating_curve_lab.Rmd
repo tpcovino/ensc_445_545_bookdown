@@ -6,12 +6,6 @@ Download the repo for this lab [here](https://github.com/tpcovino/rating_curve_l
 
 In this lab we will analyze rating curve data. A rating curve is a relationship between stage (depth of water) and discharge (flow). In natural rivers these relationships tend to change over time as the geomorphology of the river channel changes. When this happens the rating curve needs to be updated.
 
-### This is knitr settings. Knitr is a package that will turn this Rmd to an html. 
-```{r}
-
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
-
-```
 
 
 Here are some packages you will need. You may use/need others as well. 

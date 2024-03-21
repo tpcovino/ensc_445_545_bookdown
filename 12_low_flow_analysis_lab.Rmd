@@ -9,7 +9,7 @@ In this lab I am giving you most of the code. Your task will be to use that code
 
 
 *Load packages for analysis. zoo will allow us to easily perform rolling means, and moments will allow easy calculation of skewness.*
-```{r, warning=FALSE, results='hide', message=FALSE}
+```{r}
 
 library(zoo)
 library(tidyverse)

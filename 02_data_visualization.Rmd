@@ -25,17 +25,12 @@ We will use the tidyverse a lot this semester. It is a suite of packages that ha
 You only have to install the library once. You have to load it using the library() function each time you start an R session.
 
 ```{r}
+options(knitr.duplicate.label = "allow")
 #install.packages("tidyverse")
 library(tidyverse)
 
 ```
 
-
-```{r}
-
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = TRUE)
-
-```
 
 ## Reading data
 
@@ -181,7 +176,7 @@ ggplot(data = SNP, aes(x = datetime, y = cfs)) +
 
 You can also use facet_grid() to break your plots up into panels based on two variables. Below we will create a panel for each month in each watershed. Adding scales = "free" allows facet_grid to change the axes. By default, all axes will be the same. This is often what we want, so we can more easily compare magnitudes, but sometimes we are looking for patterns more, so we may want to let the axes have whatever range works for the individual plots.
 
-```{r echo=TRUE}
+```{r}
 
 ggplot(data = SNP, aes(x = datetime, y = cfs)) +
   geom_line() +
@@ -195,7 +190,7 @@ We can look at these data in other ways as well. A very useful way to look at th
 
 Because the data span several orders of magnitude, we will have to log the y axis to see the differences between the two streams. We do that by adding scale_y\_log10()
 
-```{r echo=TRUE}
+```{r}
 
 ggplot(data = SNP, aes(x = StationID, y = cfs)) + 
   stat_boxplot() +
@@ -206,7 +201,7 @@ ggplot(data = SNP, aes(x = StationID, y = cfs)) +
 
 To investigate the boxplot more closely we can use "plotly", which generates interactive plots.
 
-```{r echo=TRUE}
+```{r}
 #install.packages("plotly")
 library(plotly)
 
@@ -223,7 +218,7 @@ Let's play around a bit with controlling color, point size, etc with other data.
 We can control the size of points by putting size = in the aes() and color by putting color =
 
 
-```{r echo=TRUE}
+```{r}
 
 ggplot(RBI, aes(x = DRAIN_SQKM, y = RBI, size = T_AVG_SITE, color = STATE))+
   geom_point()
@@ -236,7 +231,7 @@ If you use a point type that has a background, like \#21, you can also set the b
 If points are too close together to see them all you can use a hollow point type or set the alpha lower so the points are transparent (alpha = )
 
 
-```{r echo=TRUE}
+```{r}
 
   ggplot(data = RBI, aes(x = DRAIN_SQKM, y = RBI, size = T_AVG_SITE, bg = STATE))+
   geom_point(pch = 21, alpha = 0.3)
@@ -259,7 +254,7 @@ ggplot(data = RBI, aes(x = RBI, y = DRAIN_SQKM, color = STATE))+
 ```
 
 
-```{r echo=TRUE}
+```{r}
 
 ggplot(data = RBI, aes(x = RBI, y = DRAIN_SQKM, color = AGGECOREGION))+
   stat_smooth(method = "lm", linetype = 2)+

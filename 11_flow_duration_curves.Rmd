@@ -19,7 +19,7 @@ As always let's load the packages we will use: tidyverse, dataRetrieval, lubrida
 
 We will also use theme_set() in this chunk so we don't have to change the ggplot theme every time we make a plot.
 
-```{r, message = FALSE, warning = FALSE}
+```{r}
 library(tidyverse)
 library(dataRetrieval)
 library(lubridate)
