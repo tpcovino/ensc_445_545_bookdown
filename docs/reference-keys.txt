@@ -145,3 +145,9 @@ computing-annual-values
 exploratory-data-analysis-eda-of-annual-values
 trend-analysis-and-creating-table-1
 see-summary-section-at-top-for-questions-to-answer-and-deliverable.
+for-loops
+libraries
+defining-parameters
+writing-the-for-loop
+adding-second-for
+removing-the-tmp-file

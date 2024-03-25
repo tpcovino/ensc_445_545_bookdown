@@ -1,0 +1,74 @@
+# For loops
+
+
+Here we are going to learn how to write a for loop to download some data and name files. We will do two sites for simplicity, but this can be fed as many sites as you wish!
+
+## Libraries
+```{r}
+library(tidyverse)
+library(dataRetrieval)
+
+```
+
+## Defining parameters 
+
+You could type out the sites and names or you could pull it from some whatNWISsites call. 
+```{r}
+sites <- c("06037500", "12363000")
+names <- c("salmon", "flathead")
+params <- c("00060", "00010") # This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. 
+start <- as_date("1900-10-01") # Just a nice round number for start time. 
+end <- as_date("2022-09-30") #End of last water year. 
+service <- "dv" # Daily values
+
+# Removed those sites for testing
+# "12363000", "13296000", "12344000", "12447200", "13331500", "06191500"
+
+```
+
+## Writing the for loop 
+
+Instead of writing a function, we use for(i in sites). So this will run through the list of sites and download the data and do whatever else you tell it. Then we create a filename that is data_, i. So it will write out data_06037500.csv for the first, data_12363000.csv for the second, so on. Then I just read the .csv in to check and make sure it worked.
+
+```{r}
+for (i in sites) {
+  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
+    renameNWISColumns()
+  filename <- paste("data_", i, sep="")
+  write_csv(tmp, file = paste(filename, ".csv", sep=""))
+}
+
+test_df <- read_csv("data_06037500.csv")
+```
+
+
+## Adding second for
+
+Here, I've added a second for. For i in sites and for j in names. So when we get to the naming we look to the j for the name to put that in the title of the .csv
+```{r}
+for (i in sites) {
+  for (j in names) {
+  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
+    renameNWISColumns()
+  filename <- paste("data_", j, sep="")
+  write_csv(tmp, file = paste(filename, ".csv", sep=""))
+  }
+}
+
+test_df <- read_csv("data_salmon.csv")
+```
+
+## Removing the tmp file
+
+This does the same thing, just removes the tmp file at the end to clean up the global environment.
+
+```{r}
+for (i in sites) {
+  for (j in names) {
+  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
+    renameNWISColumns()
+  assign(paste("data_", j, sep=""), tmp)
+  rm(tmp) 
+  }
+}
+```

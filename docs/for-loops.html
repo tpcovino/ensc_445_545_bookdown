@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Functions | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 13 Functions | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 15 For loops | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 15 For loops | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Functions | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 15 For loops | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Functions | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 15 For loops | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="lab-5-low-flow-analysis-15-pts.html"/>
-<link rel="next" href="lab-6-climate-trend-analysis.html"/>
+<link rel="prev" href="lab-6-climate-trend-analysis.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -373,50 +373,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Functions<a href="functions.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="reading-on-functions-from-rds-by-hadley-wickham" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Reading on functions from RDS by Hadley Wickham<a href="functions.html#reading-on-functions-from-rds-by-hadley-wickham" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://r4ds.hadley.nz/functions" target="_blank">Functions from RDS</a></p>
+<div id="for-loops" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> For loops<a href="for-loops.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we are going to learn how to write a for loop to download some data and name files. We will do two sites for simplicity, but this can be fed as many sites as you wish!</p>
+<div id="libraries" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Libraries<a href="for-loops.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="for-loops.html#cb155-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb155-2"><a href="for-loops.html#cb155-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
 </div>
-<div id="tutorial" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Tutorial<a href="functions.html#tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is a good opportunity to illustrate the usefulness of writing your own functions. When you install packages in R, you get a bunch of functions you can use. But you can also create these on your own to simplify your analyses!</p>
-<p>You do this with the following syntax: MyNewFunction &lt;- function(param1, param2){ &gt;code &gt;}</p>
-<p>Whatever the last line of the “code” portion of the function spits out, get’s returned from the function. So if you said X &lt;- mynewfunction(param1, parm2) X would now have it in whatever your function returned. See a simple example below: a function that adds 1 to any number we pass to it.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="functions.html#cb146-1" tabindex="-1"></a>add1 <span class="ot">&lt;-</span> <span class="cf">function</span>(number){</span>
-<span id="cb146-2"><a href="functions.html#cb146-2" tabindex="-1"></a>          number <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb146-3"><a href="functions.html#cb146-3" tabindex="-1"></a>          }</span>
-<span id="cb146-4"><a href="functions.html#cb146-4" tabindex="-1"></a></span>
-<span id="cb146-5"><a href="functions.html#cb146-5" tabindex="-1"></a><span class="fu">add1</span>(<span class="dv">14</span>)</span></code></pre></div>
-<p>You can make a generic ggplot function. Here I make a geom_point function. You can adjust the ggplot details to whatever you want.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="functions.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="functions.html#cb148-1" tabindex="-1"></a>point_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
-<span id="cb148-2"><a href="functions.html#cb148-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> color)) <span class="sc">+</span></span>
-<span id="cb148-3"><a href="functions.html#cb148-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb148-4"><a href="functions.html#cb148-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab, <span class="at">title =</span> title, <span class="at">color =</span> color_lab)</span>
-<span id="cb148-5"><a href="functions.html#cb148-5" tabindex="-1"></a>}</span></code></pre></div>
-<p>Then you just tell it what the inputs are. If you don’t want to color by something you need to remove that from the function. If you don’t want a title you just say title &lt;- “”</p>
-<p>Of course you could make a variety of these. A line function. So on.</p>
-<p>The mtcars is just an example df that comes with R for demonstration.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="functions.html#cb149-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb149-2"><a href="functions.html#cb149-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp</span>
-<span id="cb149-3"><a href="functions.html#cb149-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
-<span id="cb149-4"><a href="functions.html#cb149-4" tabindex="-1"></a>x_lab <span class="ot">&lt;-</span> <span class="st">&quot;Horsepower&quot;</span></span>
-<span id="cb149-5"><a href="functions.html#cb149-5" tabindex="-1"></a>y_lab <span class="ot">&lt;-</span> <span class="st">&quot;MPG&quot;</span></span>
-<span id="cb149-6"><a href="functions.html#cb149-6" tabindex="-1"></a>color <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>cyl</span>
-<span id="cb149-7"><a href="functions.html#cb149-7" tabindex="-1"></a>color_lab <span class="ot">&lt;-</span> <span class="st">&quot;Cyl&quot;</span></span>
-<span id="cb149-8"><a href="functions.html#cb149-8" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="st">&quot;Plot title&quot;</span></span>
-<span id="cb149-9"><a href="functions.html#cb149-9" tabindex="-1"></a>  </span>
-<span id="cb149-10"><a href="functions.html#cb149-10" tabindex="-1"></a><span class="fu">point_fun</span>()</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
-<p>You could also save the plot as an object and adjust.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="functions.html#cb150-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">point_fun</span>()</span>
-<span id="cb150-2"><a href="functions.html#cb150-2" tabindex="-1"></a></span>
-<span id="cb150-3"><a href="functions.html#cb150-3" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_x_reverse</span>()</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
-<p>In general you should write a function for anything that you do repetitively. So if you have a particular analysis that you will do many times, rather that cutting and pasting or writing the code over and over again, just write a function, save that function, and call it when you need it.</p>
-<p>Next week will we look at for loops which are also useful for iterating something over and over again.</p>
+<div id="defining-parameters" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Defining parameters<a href="for-loops.html#defining-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You could type out the sites and names or you could pull it from some whatNWISsites call.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="for-loops.html#cb156-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;06037500&quot;</span>, <span class="st">&quot;12363000&quot;</span>)</span>
+<span id="cb156-2"><a href="for-loops.html#cb156-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;flathead&quot;</span>)</span>
+<span id="cb156-3"><a href="for-loops.html#cb156-3" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;00060&quot;</span>, <span class="st">&quot;00010&quot;</span>) <span class="co"># This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. </span></span>
+<span id="cb156-4"><a href="for-loops.html#cb156-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1900-10-01&quot;</span>) <span class="co"># Just a nice round number for start time. </span></span>
+<span id="cb156-5"><a href="for-loops.html#cb156-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-09-30&quot;</span>) <span class="co">#End of last water year. </span></span>
+<span id="cb156-6"><a href="for-loops.html#cb156-6" tabindex="-1"></a>service <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># Daily values</span></span>
+<span id="cb156-7"><a href="for-loops.html#cb156-7" tabindex="-1"></a></span>
+<span id="cb156-8"><a href="for-loops.html#cb156-8" tabindex="-1"></a><span class="co"># Removed those sites for testing</span></span>
+<span id="cb156-9"><a href="for-loops.html#cb156-9" tabindex="-1"></a><span class="co"># &quot;12363000&quot;, &quot;13296000&quot;, &quot;12344000&quot;, &quot;12447200&quot;, &quot;13331500&quot;, &quot;06191500&quot;</span></span></code></pre></div>
+</div>
+<div id="writing-the-for-loop" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Writing the for loop<a href="for-loops.html#writing-the-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Instead of writing a function, we use for(i in sites). So this will run through the list of sites and download the data and do whatever else you tell it. Then we create a filename that is data_, i. So it will write out data_06037500.csv for the first, data_12363000.csv for the second, so on. Then I just read the .csv in to check and make sure it worked.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="for-loops.html#cb157-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb157-2"><a href="for-loops.html#cb157-2" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb157-3"><a href="for-loops.html#cb157-3" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb157-4"><a href="for-loops.html#cb157-4" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, i, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb157-5"><a href="for-loops.html#cb157-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb157-6"><a href="for-loops.html#cb157-6" tabindex="-1"></a>}</span>
+<span id="cb157-7"><a href="for-loops.html#cb157-7" tabindex="-1"></a></span>
+<span id="cb157-8"><a href="for-loops.html#cb157-8" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_06037500.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="adding-second-for" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Adding second for<a href="for-loops.html#adding-second-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here, I’ve added a second for. For i in sites and for j in names. So when we get to the naming we look to the j for the name to put that in the title of the .csv</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="for-loops.html#cb158-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb158-2"><a href="for-loops.html#cb158-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
+<span id="cb158-3"><a href="for-loops.html#cb158-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb158-4"><a href="for-loops.html#cb158-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb158-5"><a href="for-loops.html#cb158-5" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb158-6"><a href="for-loops.html#cb158-6" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb158-7"><a href="for-loops.html#cb158-7" tabindex="-1"></a>  }</span>
+<span id="cb158-8"><a href="for-loops.html#cb158-8" tabindex="-1"></a>}</span>
+<span id="cb158-9"><a href="for-loops.html#cb158-9" tabindex="-1"></a></span>
+<span id="cb158-10"><a href="for-loops.html#cb158-10" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_salmon.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="removing-the-tmp-file" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Removing the tmp file<a href="for-loops.html#removing-the-tmp-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This does the same thing, just removes the tmp file at the end to clean up the global environment.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="for-loops.html#cb159-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb159-2"><a href="for-loops.html#cb159-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
+<span id="cb159-3"><a href="for-loops.html#cb159-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb159-4"><a href="for-loops.html#cb159-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb159-5"><a href="for-loops.html#cb159-5" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), tmp)</span>
+<span id="cb159-6"><a href="for-loops.html#cb159-6" tabindex="-1"></a>  <span class="fu">rm</span>(tmp) </span>
+<span id="cb159-7"><a href="for-loops.html#cb159-7" tabindex="-1"></a>  }</span>
+<span id="cb159-8"><a href="for-loops.html#cb159-8" tabindex="-1"></a>}</span></code></pre></div>
 
 </div>
 </div>
@@ -425,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="lab-5-low-flow-analysis-15-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lab-6-climate-trend-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-6-climate-trend-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -457,7 +471,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/13_functions.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/15_for_loop.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -465,7 +479,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/13_functions.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/15_for_loop.Rmd",
 "text": null
 },
 "download": null,
