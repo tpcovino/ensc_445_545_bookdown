@@ -135,12 +135,10 @@ question-3-6-pts
 functions
 reading-on-functions-from-rds-by-hadley-wickham
 tutorial
-lab-6-climate-trend-analysis
-find-repo-here
+climate-trend-analysis
 summary-questions-and-deliverable
 new-packages
 data-download-exploration-and-cleaning
-make-some-data-conversions.
 computing-annual-values
 exploratory-data-analysis-eda-of-annual-values
 trend-analysis-and-creating-table-1

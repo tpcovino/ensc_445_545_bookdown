@@ -18,7 +18,7 @@ sites <- c("06037500", "12363000")
 names <- c("salmon", "flathead")
 params <- c("00060", "00010") # This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. 
 start <- as_date("1900-10-01") # Just a nice round number for start time. 
-end <- as_date("2022-09-30") #End of last water year. 
+end <- as_date("2023-09-30") #End of last water year. 
 service <- "dv" # Daily values
 
 # Removed those sites for testing
