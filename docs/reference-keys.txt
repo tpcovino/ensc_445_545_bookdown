@@ -149,3 +149,6 @@ defining-parameters
 writing-the-for-loop
 adding-second-for
 removing-the-tmp-file
+downloading-dems-and-delineating-watersheds-10-pts
+repo-here
+streamstats
