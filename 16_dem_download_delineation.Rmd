@@ -1,7 +1,8 @@
 
-# Downloading DEMs and delineating watersheds (10 pts)
+# Downloading DEMs and delineating watersheds (5 pts)
 
-This tutortial shows you how to download a DEM and delineate a watershed. Your deliverable for this lab is to repeat this workflow for a USGS gauge of your choosing (i.e., not the one in this tutorial) and submit a map with a figure caption noting the gauge number, location, and watershed area in the caption. On the map show a hillshade, the streams, and the gauge. 
+In this tutorial shows you how to download a DEM and delineate a watershed. Your deliverable for this lab is to repeat this workflow for a USGS gauge of your choosing (i.e., not the one in this tutorial) and submit a map with a figure caption noting the gauge number, location, and watershed area in the caption. On the map show a hillshade, the streams, and the gauge. 
+
 
 ## [Repo here](https://github.com/tpcovino/21_dem_download_delineation.git){target="_blank"}
 
