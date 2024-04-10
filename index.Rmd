@@ -96,14 +96,14 @@ This course will use all online and open-source resources and will follow FAIR (
 - *Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL){target="_blank"}
 
 **Week 14**: <br>
-- *Lab (4/25)*: Term project work session <br>
-- *Lab (4/27)*: Hyrologic modeling <br>
+- *Lab (4/16)*: Term project work session <br>
+- *Lab (4/18)*: Hyrologic modeling <br>
 
 **Week 15**: <br>
-- *Lab (4/25)*: Term project work session <br>
-- *Lab (4/27)*: Term project work session
+- *Lab (4/23)*: Term project work session <br>
+- *Lab (4/25)*: Term project work session
 
-**Week 16**: Term project presentations (5/2 and 5/4)
+**Week 16**: Term project presentations (4/30 and 5/2)
 
 **Week 17 (finals week)**: Submit term project R Markdown
 
