@@ -97,7 +97,7 @@ This course will use all online and open-source resources and will follow FAIR (
 
 **Week 14**: <br>
 - *Lab (4/16)*: Term project work session <br>
-- *Lab (4/18)*: Hyrologic modeling <br>
+- *Lab (4/18)*: Hydrologic modeling <br>
 
 **Week 15**: <br>
 - *Lab (4/23)*: Term project work session <br>
