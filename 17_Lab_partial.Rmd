@@ -1,0 +1,365 @@
+
+
+# Lab 6: Modeling in hydrology
+
+[Find repo here](https://github.com/tpcovino/22_predict_peak.git){target="_blank"}
+
+## Background
+
+### Identifying the question
+
+The [Predict the Peak Fundraiser](https://mfp.betterworld.org/giveaways/predict-peak-2024-yellowstone#rules){target="_blank"} is run by the Montana Freshwater Partners, a nonprofit that preserves and restores streams and wetlands throughout the sate of Montana. The task is simple: predict the peak flow of the Yellowstone, Sun, or Gallatin River and win big! We'll build a model to predict peak flows on each of those rivers, and students can opt in to submitting their modeled results if they so choose.
+
+### Modeling approaches
+
+**Empirical Models** are based on empirical analysis of observed inputs (e.g., rainfall) or outputs (ET, discharge). These simple models may not be transferable to other watersheds. Also, they may not reveal much about the physical processes influencing runoff. Therefore, these types of models may not be valid if the study area experiences land use or climate change.
+
+**Conceptual Models** describe processes with simple mathematical equations. For example, we might use a simple linear equation to interpolate precipitation inputs over a watershed with a high elevation gradient using precipitation measurements from two points (high and low). This represents the basic relationship between precipitation and elevation, but does not capture all features that affect precipitation patterns (e.g. aspect, prevailing winds). The combined impact of these factors is probably negligible compared to the substantial amount of data required to accurately model them.
+
+**Physically Based Models** These models offer deep insights into the processes governing runoff generation by relying on fundamental physical equations like mass conservation. However, they come with drawbacks. Their implementation often demands complex numerical solving methods and a significant volume of input data. Without empirical data to validate these techniques, there is a risk of introducing substantial uncertainty into our models, reducing their reliability and effectiveness.
+
+When modeling watersheds, we often use a mix of empirical, conceptual, and physically based models. The choice of model type depends on factors like the data we have, the time or computing resources we can allocate, and how we plan to use the model.
+
+## Question 1 (3 pts)
+
+What kind of data would you use to build a model that predicts peak streamflow in this part of Montana? Make a list of all of the data you'd like to add. Is all of this data feasible? How would you downscale the number of inputs to your model, balancing the need for data with the feasibility of getting that data?
+
+## Download and explore flow data
+
+For the purposes of this lab, we'll see if we can model a relationship between peak SWE values and flow on the Yellowstone River. You're welcome to adapt this code for the Sun or Gallatin Rivers if you'd like a challenge (or up your chance at winning a prize).
+
+
+```{r}
+# library(tidyverse)
+# library(dataRetrieval)
+# library(snotelr)
+# library(caret)
+# library(randomForest)
+# library(plotly)
+# library(leaflet)
+
+theme_set(theme_linedraw())
+```
+
+First we'll use the dataRetrieval package to download data from the Yellowstone Gauge near Livingston. This is the gauge they'll be using to determine the 2024 peak flow value. We'll use the past 30 years of data.
+
+```{r}
+# siteno <-"06192500"
+# startDate <- "1988-10-01"
+# endDate <- "2023-9-30"
+# parameter <- "00060"
+# 
+# Qdat <- readNWISdv(siteno, parameter, startDate, endDate) %>% 
+#   addWaterYear() %>% 
+#   renameNWISColumns() %>% 
+#   select(-agency_cd)
+# 
+# Qdat$waterYear <- as.character(Qdat$waterYear)
+
+#Look at the data
+# Qdat %>% 
+#   ggplot(aes(x = Date, y = Flow)) +
+#   geom_line()
+```
+
+This is helpful to see, but it can be hard to compare the variation from year to year on a yearly scale.
+
+Let's stack each water year on top of each other so we can see the range of variation a bit better. Let's also plot the median value as a blue line.
+
+```{r}
+#Extract just month and day 
+# Qdat <- Qdat %>%
+#   mutate(month_day = paste(month(Date), day(Date), sep = "-") %>%
+#            as.Date(format = "%m-%d"))
+
+#Plot the data 
+# ggplotly(
+# Qdat %>% 
+#   ggplot(aes(x = month_day, y = Flow, group = waterYear))+
+#   geom_line(color='gray', alpha = 0.7)+
+#   stat_summary(fun = median, geom = "line", aes(group = 1), color = 'blue') +
+#   scale_x_date(date_labels = "%b %d", date_breaks = "2 months")+
+#   labs(x = 'Date', y = "Flow (cfs)", title = 'Yearly Flow Patterns')
+# ) 
+```
+
+## Extract peak flow values
+
+To win the fundraiser, we need to predict the peak value. Let's extract just the peak value from each year and explore the range.
+
+```{r}
+#Create new df with peak flow value for each water year
+# peak_flow <- Qdat %>%
+#   group_by(waterYear) %>%
+#   summarise(peak_flow = max(Flow, na.rm = T))
+
+#Calculate mean and median
+# peak_mean <- mean(peak_flow$peak_flow)
+# peak_med <- median(peak_flow$peak_flow)
+
+#Plot as pdf
+# peak_flow %>%
+#   ggplot(aes(peak_flow))+
+#   stat_density()+
+#   geom_vline(xintercept = median(peak_flow$peak_flow), linetype = 'dashed',  color = 'red')+
+#   geom_vline(xintercept = mean(peak_flow$peak_flow), linetype = 'dashed',  color = 'blue')+
+#   labs(x = "Peak flow (cfs)", y = "Density")
+
+```
+
+That's a pretty wide range of possible peak flow values! Looks like some basic stats aren't enough to allow us to make an informed guess. We'll need to correlate peak SWE to peak flow values.
+
+## Choose Snotel Sites
+
+First let's see what snotel sites exist in the region. I'll filter for Teton and Park county in WY, which are both in Yellowstone NP.
+
+```{r}
+# snotel_sites <- snotel_info()%>%
+#   filter(state == "WY", county == c("Teton", "Park"))
+# 
+# snotel_map <- leaflet() %>% 
+#   addProviderTiles("OpenStreetMap") %>% 
+#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, 
+#                     popup = ~paste("Start:", start, "<br>End date:", end, "<br>Site:", description, "<br>Site ID:", site_id)) 
+
+# snotel_map
+```
+
+There are a lot in the area! How do we know which sites to choose? One approach could be to determine what the contributing area of our stream is (i.e. the watershed boundary) and use all of the snotel sites within the watershed.
+
+## Working with spatial data
+
+The USGS has a series of pre-defined watershed boundaries. Let's explore them to see if we can find a good representation of this portion of the Yellowstone River. The huc_shape item will include every watershed in Montana.
+
+There are multiple packages for working with spatial data in R, but we'll stick to the sf package for now. The sf package plays nicely with leaflet, and is nice for working with polygons (i.e. watersheds) and point data (i.e. snotel sites).
+
+We set up our leaflet map the same way that we've used it before to look at snotel sites. This time, we'll use "addPolygons" to view our watershed boundaries.
+
+```{r warning=FALSE}
+# library(sf)
+# huc_shape<-st_read('WBD_Shapefiles/WBDHU8.shp') #all MT watersheds
+
+# Reproject to WGS84 to work with leaflet
+# huc_shape <- st_transform(huc_shape, crs = st_crs(4326))
+
+#View map
+# leaflet() %>%
+  # addProviderTiles("OpenStreetMap.Mapnik") %>%
+  # addPolygons(data = huc_shape, fillOpacity = 0.3, color = "blue", weight = 2, 
+  #             popup = ~Name)
+
+```
+
+Does one watershed represent the portion of the Yellowstone River we're interested in? There's not a perfect match, but I found one that is pretty close. Hover over the map to find the name of the watershed and filter huc_shape to extract just that watershed. Call this variable "yell_shape"
+
+```{r}
+# yell_shape<-
+```
+
+Let's use leaflet again to map our isolated watershed boundary. We'll add the snotel markers too.
+
+```{r}
+#View map
+# leaflet() %>%
+#   addProviderTiles("OpenStreetMap.Mapnik") %>%
+#   addPolygons(data = yell_shape, fillOpacity = 0.3, color = "blue", weight = 2, 
+#               popup = ~Name)%>%
+#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, 
+#                     popup = ~paste("Start:", start, "<br>End date:", end, "<br>Site:", description, "<br>Site ID:", site_id)) 
+```
+
+It looks like there are a few snotel sites in the contributing area. We could manually filter for those sites, but this can be tedious. A few lines of code can do this for us! st_as_sf() takes a dataframe with lat/long columns and by specifying these coordinates, allows R to understand and analyze the data as spatial.
+
+The command st_intersection() will extract all of the point data from within the watershed boundary.
+
+```{r}
+#Turn dataframe into spatial df by specifying lat and long. 
+# snotel_sf <- st_as_sf(snotel_sites, coords = c("longitude", "latitude"), crs = 4326)
+
+#Extract just snotel sites from within the watershed boundary 
+# sno_yell <- st_intersection(snotel_sf, yell_shape)
+```
+
+Excellent. Now we have a df with just the snotel sites in the Yellowstone watershed. Now we can download the snotel data from these sites.
+
+## Download and explore Snotel
+
+You can directly plug your site_id column from the Yellowstone snotel df into the snotel_download function. This is savvier than hard-coding in the site numbers.
+
+```{r}
+# sno_dat <- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %>% 
+#   mutate(date = ymd(date)) %>% 
+#   filter(date > as_date("1988-10-01") & date < as_date("2023-09-30")) %>% 
+#   mutate(wtr_yr = if_else(lubridate::month(date) > 9, lubridate::year(date) + 1, lubridate::year(date))) %>% 
+#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)
+```
+
+Let's look at the data in the same manner as before, plotting all data over the 30 year time series. We're interested in SWE (snow water equivalent), so let's plot a facet plot for each of our snotel sites with peak SWE on the x axis and Date on the y axis.
+
+```{r}
+#Plot SWE timeseries as facet_plot with each snotel site
+
+```
+
+Now let's make a plot with each year's data on top of itself like we did with the flow data. You'll need to extract the month and day to make a new column just like we did before.
+
+Create a ggplot showing all years as gray lines and add a blue line for the median. Use facet_wrap to plot each of the three snotel sites, and plotly to make the plot interactive such that the water year pops up when hovering over a line.
+
+```{r, warning = F}
+#Extract just month and day 
+
+# Plot all years on top of each other, add median SWE line and use facet wrap to plot each snotel site. Make sure to make the plot interactive and set the tooltip to show the water year. 
+
+```
+
+## Question 2 (3 points)
+
+What do you notice about yearly trends across the three sites? Pay attention to the y axis. Could you guess which of these sites is at the highest elevation? What about the lowest?
+
+## Extract peak SWE values
+
+Just like before, we want to examine the yearly peak value. Let's create a new df called peak_swe that outputs a peak SWE value corresponding with each water year.
+
+```{r}
+# peak_swe <-
+```
+
+How greatly do these values vary from year to year?
+
+```{r}
+# swe_summary<-peak_swe%>%
+#   group_by(description)%>%
+#   summarize(mean = mean(peak_swe), median = median(peak_swe))
+# 
+# peak_swe%>%
+#   ggplot(aes(peak_swe))+
+#   stat_density(aes(color = description, fill = description), alpha = 0.3)+
+#   labs(x = "Peak swe (in)", y = "Density")+
+#   geom_vline(xintercept = swe_summary$mean, color = c('red', 'green','blue'))+
+#   geom_vline(xintercept = swe_summary$median, color = c('red', 'green','blue'), linetype = "dashed")
+           
+```
+
+## Peak SWE and Q
+
+Let's see if peak SWE and peak Q correlate. Start by joining the peak flow and peak snowmelt dataframes by water year, calling this "peak_vals". Next, plot the relationship between the two. Use ggplotly and set tooltip = waterYear to explore outlier data.
+
+```{r, warning = F}
+#join peak_flow and peak_swe into one dataframe by water year.
+# peak_vals<-
+
+#plot swe vs. flow among sites
+# ggplotly(
+#   peak_vals%>%
+#   ggplot(aes(x=peak_swe, y = peak_flow, label = waterYear))+
+#   geom_point()+
+#   geom_smooth(method = 'lm')+
+#   labs(x = 'Peak SWE (in)', y = 'Peak Flow (cfs)')+
+#   facet_wrap(~description, ncol= 1)
+# , tooltip= 'waterYear')
+```
+
+## Question (3 points)
+
+You should note one outlier in your SWE vs. Flow plots. What year did this outlier occur? What could have caused such high peak flow despite relatively low peak SWE?
+
+## Model inputs
+
+Now let's reorganize the data to prepare it for our model.
+
+```{r}
+# model_df <- peak_vals %>%
+#   spread(description, peak_swe) %>%
+#   rename(chipmunk= `Chipmunk Creek (100700010404)`, 
+#          pelican = `Lower Pelican Creek (100700010409)`, 
+#          slough = `Upper Slough Creek (100700010705)`)
+```
+
+This is where the model magic happens. The train() command is part of the caret package. We'll tell the model that peak_flow is driven by our three snotel sites. The train command has a variety of different model types, but we want to run a random forest, "rf".
+
+```{r}
+# rf_model <- train(
+#   peak_flow ~ chipmunk + pelican + slough,
+#   data= model_df,
+#   method = "rf",
+#   trControl = trainControl(method = "cv", number = 10)
+# )
+# 
+# print(rf_model)
+```
+
+## Run model
+
+Now it's time to predict peak flow for 2024. Let's download the snotel data from this year and extract the peak SWE value from each site.
+
+We can use the predict() command and input our model and our 2024 data to calculate a flow value.
+
+```{r}
+#Download current data from snotel sites
+# sno_24 <- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %>% 
+#   mutate(date = ymd(date)) %>% 
+#   filter(date > as_date("2024-01-01") & date < as_date("2024-05-30")) %>% 
+#   mutate(wtr_yr = if_else(lubridate::month(date) > 9, lubridate::year(date) + 1, lubridate::year(date))) %>% 
+#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)
+
+#Find max value from each site
+# swe_24 <- sno_24 %>%
+#   group_by(description) %>%
+#   summarize(max_swe = max(swe)) %>%
+#   spread(description, max_swe) %>%
+#   rename(
+#     chipmunk = `Chipmunk Creek (100700010404)`,
+#     pelican = `Lower Pelican Creek (100700010409)`,
+#     slough = `Upper Slough Creek (100700010705)`
+#   )
+# 
+# predict_flow<-predict(rf_model, newdata= swe_24)
+# 
+# predict_flow
+```
+
+## Question 4 (3 points)
+
+Compare the predicted flow to the mean and median peak values you calculated earlier. Is the predicted value smaller than or greater than the historic mean/median value? Plot this year's SWE history on top of historic SWE data. Does the value make sense given the kind of snow year we're having?
+
+```{r}
+#Filter for 2024
+# sno_dat_filt<-sno_dat%>%
+#   filter(month_day < ymd("2024-06-15") & month_day > ymd("2024-01-01"))
+
+#Visualize this year's SWE
+# ggplotly(  
+# ggplot()+
+#   geom_line(data=sno_dat_filt, aes(x = month_day, y = swe, group = wtr_yr), color ='gray', alpha= 0.7)+
+#   geom_line(data= sno_24,aes(x =date , y = swe),color='red')+
+#   scale_x_date(date_labels = "%b %d", date_breaks = "2 months")+
+#   labs(x = 'Date', y = "Flow (cfs)")+ 
+#   facet_wrap(~ description, scales = "free_y", ncol = 1)  
+# )
+
+
+```
+
+We can also visualize our prediction on a scatter plot of peak flow vs peak SWE data. Does the value still make sense?
+
+```{r}
+# pred_val<-cbind(swe_24, predict_flow)%>%
+#    pivot_longer(cols = c(chipmunk, pelican, slough), 
+#                names_to = "description", 
+#                values_to = "peak_swe")
+#   
+# 
+# ggplot()+
+#   geom_point(data=peak_vals,aes(x=peak_swe, y = peak_flow, color = description))+
+#   geom_point(data= pred_val, aes(x= peak_swe, y = predict_flow), color= 'black')+
+#   labs(x = 'Peak SWE (in)', y = 'Peak Flow (cfs)')
+
+```
+
+## Question 5 (2 points)
+
+It looks like the 2022 outlier data is really affecting our results. Go back in your code and filter out water year 2022 in model_df. Now rerun the code below and examine your model. Does your new number make more sense?
+
+## Question 6 (1 point)
+
+Is the number you calculated today representative of the peak flow? If no, what do we need to wait for to accurately predict the flow? Think about our input to the model and if we have enough data to predict the peak right now.

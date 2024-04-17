@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 17 Lab 6: Modeling in hydrology | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 17 Lab 6: Modeling in hydrology | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 17 Lab 6: Modeling in hydrology | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 Lab 6: Modeling in hydrology | Watershed Analysis: ENSC 445/LRES 545" />
+  
+  
+  
+
+<meta name="author" content="Tim Covino" />
+
+
+<meta name="date" content="2024-04-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="downloading-dems-and-delineating-watersheds-5-pts.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Watershed Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-overview-and-objectives"><i class="fa fa-check"></i><b>1.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i><b>1.2</b> Structure</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#tentative-schedule-subject-to-change"><i class="fa fa-check"></i><b>1.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html"><i class="fa fa-check"></i><b>2</b> Intro to data visualization</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#download-and-install-tidyverse-library"><i class="fa fa-check"></i><b>2.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="2.3" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#reading-data"><i class="fa fa-check"></i><b>2.3</b> Reading data</a></li>
+<li class="chapter" data-level="2.4" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#our-first-ggplot"><i class="fa fa-check"></i><b>2.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="2.5" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#change-point-type"><i class="fa fa-check"></i><b>2.5</b> Change point type</a></li>
+<li class="chapter" data-level="2.6" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#set-colors"><i class="fa fa-check"></i><b>2.6</b> Set colors</a></li>
+<li class="chapter" data-level="2.7" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#controlling-color-with-a-third-variable-and-other-functions"><i class="fa fa-check"></i><b>2.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="2.8" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#plotting-multiple-groups-adding-a-third-variable"><i class="fa fa-check"></i><b>2.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="2.9" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#facets"><i class="fa fa-check"></i><b>2.9</b> Facets</a></li>
+<li class="chapter" data-level="2.10" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#two-variable-faceting"><i class="fa fa-check"></i><b>2.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="2.11" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#boxplots"><i class="fa fa-check"></i><b>2.11</b> Boxplots</a></li>
+<li class="chapter" data-level="2.12" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#more-about-color-size-etc"><i class="fa fa-check"></i><b>2.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="2.13" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#multiple-geoms"><i class="fa fa-check"></i><b>2.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="2.14" data-path="intro-to-data-visualization.html"><a href="intro-to-data-visualization.html#exit-ticket"><i class="fa fa-check"></i><b>2.14</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>3</b> Data wrangling using tidyverse</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#learning-objectives-1"><i class="fa fa-check"></i><b>3.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-use-r-as-a-calculator"><i class="fa fa-check"></i><b>3.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#you-can-create-new-objects-using--"><i class="fa fa-check"></i><b>3.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#using-functions"><i class="fa fa-check"></i><b>3.5</b> Using functions</a></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#read-in-some-data"><i class="fa fa-check"></i><b>3.6</b> Read in some data</a></li>
+<li class="chapter" data-level="3.7" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#what-is-a-tibble"><i class="fa fa-check"></i><b>3.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="3.8" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-wrangling-in-dplyr"><i class="fa fa-check"></i><b>3.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="3.9" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#filter"><i class="fa fa-check"></i><b>3.9</b> Filter</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-conditions"><i class="fa fa-check"></i><b>3.9.1</b> Multiple conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#arrange"><i class="fa fa-check"></i><b>3.10</b> Arrange</a></li>
+<li class="chapter" data-level="3.11" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#select"><i class="fa fa-check"></i><b>3.11</b> Select</a></li>
+<li class="chapter" data-level="3.12" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#mutate"><i class="fa fa-check"></i><b>3.12</b> Mutate</a></li>
+<li class="chapter" data-level="3.13" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#summarize"><i class="fa fa-check"></i><b>3.13</b> Summarize</a></li>
+<li class="chapter" data-level="3.14" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#multiple-operations-with-pipes"><i class="fa fa-check"></i><b>3.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="3.15" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#a-final-comment-on-nas"><i class="fa fa-check"></i><b>3.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="3.17" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.17</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html"><i class="fa fa-check"></i><b>4</b> Lab 1: Data vis, wrangling, and programming (12 pts)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-1-1-pts"><i class="fa fa-check"></i><b>4.1</b> Problem 1 (1 pts)</a></li>
+<li class="chapter" data-level="4.2" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-2-1-pts"><i class="fa fa-check"></i><b>4.2</b> Problem 2 (1 pts)</a></li>
+<li class="chapter" data-level="4.3" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-3-2-pts"><i class="fa fa-check"></i><b>4.3</b> Problem 3 (2 pts)</a></li>
+<li class="chapter" data-level="4.4" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-4-2-pts"><i class="fa fa-check"></i><b>4.4</b> Problem 4 (2 pts)</a></li>
+<li class="chapter" data-level="4.5" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-5-2-pts"><i class="fa fa-check"></i><b>4.5</b> Problem 5 (2 pts)</a></li>
+<li class="chapter" data-level="4.6" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-6-2-pts"><i class="fa fa-check"></i><b>4.6</b> Problem 6 (2 pts)</a></li>
+<li class="chapter" data-level="4.7" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#summary-2-pts"><i class="fa fa-check"></i><b>4.7</b> Summary (2 pts)</a></li>
+<li class="chapter" data-level="4.8" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#feeback"><i class="fa fa-check"></i><b>4.8</b> Feeback</a></li>
+<li class="chapter" data-level="4.9" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#deliverables"><i class="fa fa-check"></i><b>4.9</b> Deliverables</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dataretrieval.html"><a href="dataretrieval.html"><i class="fa fa-check"></i><b>5</b> dataRetrieval</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dataretrieval.html"><a href="dataretrieval.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="dataretrieval.html"><a href="dataretrieval.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>5.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="5.3" data-path="dataretrieval.html"><a href="dataretrieval.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>5.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="5.4" data-path="dataretrieval.html"><a href="dataretrieval.html#joins"><i class="fa fa-check"></i><b>5.4</b> Joins</a></li>
+<li class="chapter" data-level="5.5" data-path="dataretrieval.html"><a href="dataretrieval.html#join-practice-example"><i class="fa fa-check"></i><b>5.5</b> Join practice example</a></li>
+<li class="chapter" data-level="5.6" data-path="dataretrieval.html"><a href="dataretrieval.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>5.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><i class="fa fa-check"></i><b>6</b> Lab 2: dataRetrieval and area normalized flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
+<li class="chapter" data-level="6.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html"><i class="fa fa-check"></i><b>7</b> Statistics in hydrology</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#learning-objectives-2"><i class="fa fa-check"></i><b>7.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q1-2-pts"><i class="fa fa-check"></i><b>7.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="7.3" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-the-difference-between-a-sample-and-a-population"><i class="fa fa-check"></i><b>7.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="7.4" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q2-2-pts"><i class="fa fa-check"></i><b>7.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="7.5" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measuring-our-sample-distribution-central-tendency"><i class="fa fa-check"></i><b>7.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="7.6" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#so-whats-a-weighted-average"><i class="fa fa-check"></i><b>7.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="7.7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measures-of-variability"><i class="fa fa-check"></i><b>7.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="7.8" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q3-2-pts"><i class="fa fa-check"></i><b>7.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="7.9" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one"><i class="fa fa-check"></i><b>7.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="7.10" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q4-2-pts"><i class="fa fa-check"></i><b>7.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="7.11" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q5-2-pts"><i class="fa fa-check"></i><b>7.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="7.12" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#deliverable-10-pts-due-thursday-215-by-1159-pm"><i class="fa fa-check"></i><b>7.12</b> Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3: Statistics in hydrology (33 pts)</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-1-5-pts"><i class="fa fa-check"></i><b>8.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="8.2" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-2-5-pts"><i class="fa fa-check"></i><b>8.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="8.3" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-3-5-pts"><i class="fa fa-check"></i><b>8.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="8.4" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-4-5-pts"><i class="fa fa-check"></i><b>8.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="8.5" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-5-5-pts"><i class="fa fa-check"></i><b>8.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="8.6" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-6-5-pts"><i class="fa fa-check"></i><b>8.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="8.7" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#deliverable"><i class="fa fa-check"></i><b>8.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html"><i class="fa fa-check"></i><b>9</b> Hydrographs and rating curves (6 pts)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#overall-learning-objectives"><i class="fa fa-check"></i><b>9.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#reading"><i class="fa fa-check"></i><b>9.2</b> Reading</a></li>
+<li class="chapter" data-level="9.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#lecture"><i class="fa fa-check"></i><b>9.3</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves"><i class="fa fa-check"></i><b>9.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="9.3.2" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>9.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="9.3.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#field-measurements-of-area-velocity"><i class="fa fa-check"></i><b>9.3.3</b> Field Measurements of Area-Velocity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements"><i class="fa fa-check"></i><b>9.3.4</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="9.3.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>9.3.5</b> Applications of streamflow and stream gage</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>9.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="9.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-and-deliverable-6-pts"><i class="fa fa-check"></i><b>9.5</b> Summary questions and deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html"><i class="fa fa-check"></i><b>10</b> Lab 4: Rating cuve lab (15 pts)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-1"><i class="fa fa-check"></i><b>10.1</b> Problem 1</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q1.1.-3-pts"><i class="fa fa-check"></i><b>10.1.1</b> Q1.1. (3 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-2"><i class="fa fa-check"></i><b>10.2</b> Problem 2</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q2.1.-2-pt"><i class="fa fa-check"></i><b>10.2.1</b> Q2.1. (2 pt)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-3"><i class="fa fa-check"></i><b>10.3</b> Problem 3</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q3.1.-5-pts"><i class="fa fa-check"></i><b>10.3.1</b> Q3.1. (5 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-4"><i class="fa fa-check"></i><b>10.4</b> Problem 4</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html"><i class="fa fa-check"></i><b>11</b> Flow Duration Curves (12 pts)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#lecture-1"><i class="fa fa-check"></i><b>11.1</b> Lecture</a></li>
+<li class="chapter" data-level="11.2" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#reading-1"><i class="fa fa-check"></i><b>11.2</b> Reading</a></li>
+<li class="chapter" data-level="11.3" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#packages-and-coding"><i class="fa fa-check"></i><b>11.3</b> Packages and coding</a></li>
+<li class="chapter" data-level="11.4" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#get-data"><i class="fa fa-check"></i><b>11.4</b> Get data</a></li>
+<li class="chapter" data-level="11.5" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>11.5</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="11.6" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#ecdfs"><i class="fa fa-check"></i><b>11.6</b> ECDFs</a></li>
+<li class="chapter" data-level="11.7" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>11.7</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="11.8" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>11.8</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="11.9" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>11.9</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="11.10" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020."><i class="fa fa-check"></i><b>11.10</b> Module Question 1 (2 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.</a></li>
+<li class="chapter" data-level="11.11" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>11.11</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="11.12" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots"><i class="fa fa-check"></i><b>11.12</b> Module Question 2 (2 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?</a></li>
+<li class="chapter" data-level="11.13" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-12-pts"><i class="fa fa-check"></i><b>11.13</b> Module Summary Assignment: Examining flow regime change at the Grand Canyon (12 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html"><i class="fa fa-check"></i><b>12</b> Lab 5: Low Flow Analysis (15 pts)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#what-are-low-flow-statistics"><i class="fa fa-check"></i><b>12.1</b> What are low flow statistics?</a></li>
+<li class="chapter" data-level="12.2" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#get-data-1"><i class="fa fa-check"></i><b>12.2</b> Get data</a></li>
+<li class="chapter" data-level="12.3" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#create-the-x-days-average-flow-record"><i class="fa fa-check"></i><b>12.3</b> Create the X days average flow record</a></li>
+<li class="chapter" data-level="12.4" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#look-at-what-a-rolling-mean-does."><i class="fa fa-check"></i><b>12.4</b> Look at what a rolling mean does.</a></li>
+<li class="chapter" data-level="12.5" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#calculate-yearly-minimums"><i class="fa fa-check"></i><b>12.5</b> Calculate yearly minimums</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#challenge"><i class="fa fa-check"></i><b>12.5.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#calculate-return-interval"><i class="fa fa-check"></i><b>12.6</b> Calculate return interval</a></li>
+<li class="chapter" data-level="12.7" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#fit-to-pearson-type-iii-distribution"><i class="fa fa-check"></i><b>12.7</b> Fit to Pearson Type III distribution</a></li>
+<li class="chapter" data-level="12.8" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#deliverable---summary-questions-12-pts"><i class="fa fa-check"></i><b>12.8</b> Deliverable - Summary questions (12 pts)</a>
+<ul>
+<li class="chapter" data-level="12.8.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-1-6-pts"><i class="fa fa-check"></i><b>12.8.1</b> Question 1 (6 pts)</a></li>
+<li class="chapter" data-level="12.8.2" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-2-3-pts"><i class="fa fa-check"></i><b>12.8.2</b> Question 2 (3 pts)</a></li>
+<li class="chapter" data-level="12.8.3" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-3-6-pts"><i class="fa fa-check"></i><b>12.8.3</b> Question 3 (6 pts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>13</b> Functions</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="functions.html"><a href="functions.html#reading-on-functions-from-rds-by-hadley-wickham"><i class="fa fa-check"></i><b>13.1</b> Reading on functions from RDS by Hadley Wickham</a></li>
+<li class="chapter" data-level="13.2" data-path="functions.html"><a href="functions.html#tutorial"><i class="fa fa-check"></i><b>13.2</b> Tutorial</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html"><i class="fa fa-check"></i><b>14</b> Climate trend analysis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#summary-questions-and-deliverable"><i class="fa fa-check"></i><b>14.1</b> Summary questions and deliverable</a></li>
+<li class="chapter" data-level="14.2" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#new-packages"><i class="fa fa-check"></i><b>14.2</b> New packages</a></li>
+<li class="chapter" data-level="14.3" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#data-download-exploration-and-cleaning"><i class="fa fa-check"></i><b>14.3</b> Data download, exploration and cleaning</a></li>
+<li class="chapter" data-level="14.4" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#computing-annual-values"><i class="fa fa-check"></i><b>14.4</b> Computing annual values</a></li>
+<li class="chapter" data-level="14.5" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values"><i class="fa fa-check"></i><b>14.5</b> Exploratory data analysis (EDA) of annual values</a></li>
+<li class="chapter" data-level="14.6" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#trend-analysis-and-creating-table-1"><i class="fa fa-check"></i><b>14.6</b> Trend analysis and creating Table 1</a></li>
+<li class="chapter" data-level="14.7" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable."><i class="fa fa-check"></i><b>14.7</b> See summary section at top for questions to answer and deliverable.</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>15</b> For loops</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="for-loops.html"><a href="for-loops.html#libraries"><i class="fa fa-check"></i><b>15.1</b> Libraries</a></li>
+<li class="chapter" data-level="15.2" data-path="for-loops.html"><a href="for-loops.html#defining-parameters"><i class="fa fa-check"></i><b>15.2</b> Defining parameters</a></li>
+<li class="chapter" data-level="15.3" data-path="for-loops.html"><a href="for-loops.html#writing-the-for-loop"><i class="fa fa-check"></i><b>15.3</b> Writing the for loop</a></li>
+<li class="chapter" data-level="15.4" data-path="for-loops.html"><a href="for-loops.html#adding-second-for"><i class="fa fa-check"></i><b>15.4</b> Adding second for</a></li>
+<li class="chapter" data-level="15.5" data-path="for-loops.html"><a href="for-loops.html#removing-the-tmp-file"><i class="fa fa-check"></i><b>15.5</b> Removing the tmp file</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html"><i class="fa fa-check"></i><b>16</b> Downloading DEMs and delineating watersheds (5 pts)</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html#repo-here"><i class="fa fa-check"></i><b>16.1</b> Repo here</a></li>
+<li class="chapter" data-level="16.2" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html#streamstats"><i class="fa fa-check"></i><b>16.2</b> StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html"><i class="fa fa-check"></i><b>17</b> Lab 6: Modeling in hydrology</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#background"><i class="fa fa-check"></i><b>17.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#identifying-the-question"><i class="fa fa-check"></i><b>17.1.1</b> Identifying the question</a></li>
+<li class="chapter" data-level="17.1.2" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#modeling-approaches"><i class="fa fa-check"></i><b>17.1.2</b> Modeling approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.2</b> Question 1 (3 pts)</a></li>
+<li class="chapter" data-level="17.3" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.3</b> Download and explore flow data</a></li>
+<li class="chapter" data-level="17.4" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.4</b> Extract peak flow values</a></li>
+<li class="chapter" data-level="17.5" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.5</b> Choose Snotel Sites</a></li>
+<li class="chapter" data-level="17.6" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.6</b> Working with spatial data</a></li>
+<li class="chapter" data-level="17.7" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.7</b> Download and explore Snotel</a></li>
+<li class="chapter" data-level="17.8" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-2-3-points"><i class="fa fa-check"></i><b>17.8</b> Question 2 (3 points)</a></li>
+<li class="chapter" data-level="17.9" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.9</b> Extract peak SWE values</a></li>
+<li class="chapter" data-level="17.10" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.10</b> Peak SWE and Q</a></li>
+<li class="chapter" data-level="17.11" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-3-points"><i class="fa fa-check"></i><b>17.11</b> Question (3 points)</a></li>
+<li class="chapter" data-level="17.12" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#model-inputs"><i class="fa fa-check"></i><b>17.12</b> Model inputs</a></li>
+<li class="chapter" data-level="17.13" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#run-model"><i class="fa fa-check"></i><b>17.13</b> Run model</a></li>
+<li class="chapter" data-level="17.14" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-4-3-points"><i class="fa fa-check"></i><b>17.14</b> Question 4 (3 points)</a></li>
+<li class="chapter" data-level="17.15" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-5-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 5 (2 points)</a></li>
+<li class="chapter" data-level="17.16" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-6-1-point"><i class="fa fa-check"></i><b>17.16</b> Question 6 (1 point)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Watershed Analysis: ENSC 445/LRES 545</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lab-6-modeling-in-hydrology" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Lab 6: Modeling in hydrology<a href="lab-6-modeling-in-hydrology.html#lab-6-modeling-in-hydrology" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://github.com/tpcovino/22_predict_peak.git" target="_blank">Find repo here</a></p>
+<div id="background" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Background<a href="lab-6-modeling-in-hydrology.html#background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="identifying-the-question" class="section level3 hasAnchor" number="17.1.1">
+<h3><span class="header-section-number">17.1.1</span> Identifying the question<a href="lab-6-modeling-in-hydrology.html#identifying-the-question" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <a href="https://mfp.betterworld.org/giveaways/predict-peak-2024-yellowstone#rules" target="_blank">Predict the Peak Fundraiser</a> is run by the Montana Freshwater Partners, a nonprofit that preserves and restores streams and wetlands throughout the sate of Montana. The task is simple: predict the peak flow of the Yellowstone, Sun, or Gallatin River and win big! We’ll build a model to predict peak flows on each of those rivers, and students can opt in to submitting their modeled results if they so choose.</p>
+</div>
+<div id="modeling-approaches" class="section level3 hasAnchor" number="17.1.2">
+<h3><span class="header-section-number">17.1.2</span> Modeling approaches<a href="lab-6-modeling-in-hydrology.html#modeling-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Empirical Models</strong> are based on empirical analysis of observed inputs (e.g., rainfall) or outputs (ET, discharge). These simple models may not be transferable to other watersheds. Also, they may not reveal much about the physical processes influencing runoff. Therefore, these types of models may not be valid if the study area experiences land use or climate change.</p>
+<p><strong>Conceptual Models</strong> describe processes with simple mathematical equations. For example, we might use a simple linear equation to interpolate precipitation inputs over a watershed with a high elevation gradient using precipitation measurements from two points (high and low). This represents the basic relationship between precipitation and elevation, but does not capture all features that affect precipitation patterns (e.g. aspect, prevailing winds). The combined impact of these factors is probably negligible compared to the substantial amount of data required to accurately model them.</p>
+<p><strong>Physically Based Models</strong> These models offer deep insights into the processes governing runoff generation by relying on fundamental physical equations like mass conservation. However, they come with drawbacks. Their implementation often demands complex numerical solving methods and a significant volume of input data. Without empirical data to validate these techniques, there is a risk of introducing substantial uncertainty into our models, reducing their reliability and effectiveness.</p>
+<p>When modeling watersheds, we often use a mix of empirical, conceptual, and physically based models. The choice of model type depends on factors like the data we have, the time or computing resources we can allocate, and how we plan to use the model.</p>
+</div>
+</div>
+<div id="question-1-3-pts" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> Question 1 (3 pts)<a href="lab-6-modeling-in-hydrology.html#question-1-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What kind of data would you use to build a model that predicts peak streamflow in this part of Montana? Make a list of all of the data you’d like to add. Is all of this data feasible? How would you downscale the number of inputs to your model, balancing the need for data with the feasibility of getting that data?</p>
+</div>
+<div id="download-and-explore-flow-data" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Download and explore flow data<a href="lab-6-modeling-in-hydrology.html#download-and-explore-flow-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the purposes of this lab, we’ll see if we can model a relationship between peak SWE values and flow on the Yellowstone River. You’re welcome to adapt this code for the Sun or Gallatin Rivers if you’d like a challenge (or up your chance at winning a prize).</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="lab-6-modeling-in-hydrology.html#cb184-1" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb184-2"><a href="lab-6-modeling-in-hydrology.html#cb184-2" tabindex="-1"></a><span class="co"># library(dataRetrieval)</span></span>
+<span id="cb184-3"><a href="lab-6-modeling-in-hydrology.html#cb184-3" tabindex="-1"></a><span class="co"># library(snotelr)</span></span>
+<span id="cb184-4"><a href="lab-6-modeling-in-hydrology.html#cb184-4" tabindex="-1"></a><span class="co"># library(caret)</span></span>
+<span id="cb184-5"><a href="lab-6-modeling-in-hydrology.html#cb184-5" tabindex="-1"></a><span class="co"># library(randomForest)</span></span>
+<span id="cb184-6"><a href="lab-6-modeling-in-hydrology.html#cb184-6" tabindex="-1"></a><span class="co"># library(plotly)</span></span>
+<span id="cb184-7"><a href="lab-6-modeling-in-hydrology.html#cb184-7" tabindex="-1"></a><span class="co"># library(leaflet)</span></span>
+<span id="cb184-8"><a href="lab-6-modeling-in-hydrology.html#cb184-8" tabindex="-1"></a></span>
+<span id="cb184-9"><a href="lab-6-modeling-in-hydrology.html#cb184-9" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
+<p>First we’ll use the dataRetrieval package to download data from the Yellowstone Gauge near Livingston. This is the gauge they’ll be using to determine the 2024 peak flow value. We’ll use the past 30 years of data.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="lab-6-modeling-in-hydrology.html#cb185-1" tabindex="-1"></a><span class="co"># siteno &lt;-&quot;06192500&quot;</span></span>
+<span id="cb185-2"><a href="lab-6-modeling-in-hydrology.html#cb185-2" tabindex="-1"></a><span class="co"># startDate &lt;- &quot;1988-10-01&quot;</span></span>
+<span id="cb185-3"><a href="lab-6-modeling-in-hydrology.html#cb185-3" tabindex="-1"></a><span class="co"># endDate &lt;- &quot;2023-9-30&quot;</span></span>
+<span id="cb185-4"><a href="lab-6-modeling-in-hydrology.html#cb185-4" tabindex="-1"></a><span class="co"># parameter &lt;- &quot;00060&quot;</span></span>
+<span id="cb185-5"><a href="lab-6-modeling-in-hydrology.html#cb185-5" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb185-6"><a href="lab-6-modeling-in-hydrology.html#cb185-6" tabindex="-1"></a><span class="co"># Qdat &lt;- readNWISdv(siteno, parameter, startDate, endDate) %&gt;% </span></span>
+<span id="cb185-7"><a href="lab-6-modeling-in-hydrology.html#cb185-7" tabindex="-1"></a><span class="co">#   addWaterYear() %&gt;% </span></span>
+<span id="cb185-8"><a href="lab-6-modeling-in-hydrology.html#cb185-8" tabindex="-1"></a><span class="co">#   renameNWISColumns() %&gt;% </span></span>
+<span id="cb185-9"><a href="lab-6-modeling-in-hydrology.html#cb185-9" tabindex="-1"></a><span class="co">#   select(-agency_cd)</span></span>
+<span id="cb185-10"><a href="lab-6-modeling-in-hydrology.html#cb185-10" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb185-11"><a href="lab-6-modeling-in-hydrology.html#cb185-11" tabindex="-1"></a><span class="co"># Qdat$waterYear &lt;- as.character(Qdat$waterYear)</span></span>
+<span id="cb185-12"><a href="lab-6-modeling-in-hydrology.html#cb185-12" tabindex="-1"></a></span>
+<span id="cb185-13"><a href="lab-6-modeling-in-hydrology.html#cb185-13" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb185-14"><a href="lab-6-modeling-in-hydrology.html#cb185-14" tabindex="-1"></a><span class="co"># Qdat %&gt;% </span></span>
+<span id="cb185-15"><a href="lab-6-modeling-in-hydrology.html#cb185-15" tabindex="-1"></a><span class="co">#   ggplot(aes(x = Date, y = Flow)) +</span></span>
+<span id="cb185-16"><a href="lab-6-modeling-in-hydrology.html#cb185-16" tabindex="-1"></a><span class="co">#   geom_line()</span></span></code></pre></div>
+<p>This is helpful to see, but it can be hard to compare the variation from year to year on a yearly scale.</p>
+<p>Let’s stack each water year on top of each other so we can see the range of variation a bit better. Let’s also plot the median value as a blue line.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="lab-6-modeling-in-hydrology.html#cb186-1" tabindex="-1"></a><span class="co">#Extract just month and day </span></span>
+<span id="cb186-2"><a href="lab-6-modeling-in-hydrology.html#cb186-2" tabindex="-1"></a><span class="co"># Qdat &lt;- Qdat %&gt;%</span></span>
+<span id="cb186-3"><a href="lab-6-modeling-in-hydrology.html#cb186-3" tabindex="-1"></a><span class="co">#   mutate(month_day = paste(month(Date), day(Date), sep = &quot;-&quot;) %&gt;%</span></span>
+<span id="cb186-4"><a href="lab-6-modeling-in-hydrology.html#cb186-4" tabindex="-1"></a><span class="co">#            as.Date(format = &quot;%m-%d&quot;))</span></span>
+<span id="cb186-5"><a href="lab-6-modeling-in-hydrology.html#cb186-5" tabindex="-1"></a></span>
+<span id="cb186-6"><a href="lab-6-modeling-in-hydrology.html#cb186-6" tabindex="-1"></a><span class="co">#Plot the data </span></span>
+<span id="cb186-7"><a href="lab-6-modeling-in-hydrology.html#cb186-7" tabindex="-1"></a><span class="co"># ggplotly(</span></span>
+<span id="cb186-8"><a href="lab-6-modeling-in-hydrology.html#cb186-8" tabindex="-1"></a><span class="co"># Qdat %&gt;% </span></span>
+<span id="cb186-9"><a href="lab-6-modeling-in-hydrology.html#cb186-9" tabindex="-1"></a><span class="co">#   ggplot(aes(x = month_day, y = Flow, group = waterYear))+</span></span>
+<span id="cb186-10"><a href="lab-6-modeling-in-hydrology.html#cb186-10" tabindex="-1"></a><span class="co">#   geom_line(color=&#39;gray&#39;, alpha = 0.7)+</span></span>
+<span id="cb186-11"><a href="lab-6-modeling-in-hydrology.html#cb186-11" tabindex="-1"></a><span class="co">#   stat_summary(fun = median, geom = &quot;line&quot;, aes(group = 1), color = &#39;blue&#39;) +</span></span>
+<span id="cb186-12"><a href="lab-6-modeling-in-hydrology.html#cb186-12" tabindex="-1"></a><span class="co">#   scale_x_date(date_labels = &quot;%b %d&quot;, date_breaks = &quot;2 months&quot;)+</span></span>
+<span id="cb186-13"><a href="lab-6-modeling-in-hydrology.html#cb186-13" tabindex="-1"></a><span class="co">#   labs(x = &#39;Date&#39;, y = &quot;Flow (cfs)&quot;, title = &#39;Yearly Flow Patterns&#39;)</span></span>
+<span id="cb186-14"><a href="lab-6-modeling-in-hydrology.html#cb186-14" tabindex="-1"></a><span class="co"># ) </span></span></code></pre></div>
+</div>
+<div id="extract-peak-flow-values" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">17.4</span> Extract peak flow values<a href="lab-6-modeling-in-hydrology.html#extract-peak-flow-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To win the fundraiser, we need to predict the peak value. Let’s extract just the peak value from each year and explore the range.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="lab-6-modeling-in-hydrology.html#cb187-1" tabindex="-1"></a><span class="co">#Create new df with peak flow value for each water year</span></span>
+<span id="cb187-2"><a href="lab-6-modeling-in-hydrology.html#cb187-2" tabindex="-1"></a><span class="co"># peak_flow &lt;- Qdat %&gt;%</span></span>
+<span id="cb187-3"><a href="lab-6-modeling-in-hydrology.html#cb187-3" tabindex="-1"></a><span class="co">#   group_by(waterYear) %&gt;%</span></span>
+<span id="cb187-4"><a href="lab-6-modeling-in-hydrology.html#cb187-4" tabindex="-1"></a><span class="co">#   summarise(peak_flow = max(Flow, na.rm = T))</span></span>
+<span id="cb187-5"><a href="lab-6-modeling-in-hydrology.html#cb187-5" tabindex="-1"></a></span>
+<span id="cb187-6"><a href="lab-6-modeling-in-hydrology.html#cb187-6" tabindex="-1"></a><span class="co">#Calculate mean and median</span></span>
+<span id="cb187-7"><a href="lab-6-modeling-in-hydrology.html#cb187-7" tabindex="-1"></a><span class="co"># peak_mean &lt;- mean(peak_flow$peak_flow)</span></span>
+<span id="cb187-8"><a href="lab-6-modeling-in-hydrology.html#cb187-8" tabindex="-1"></a><span class="co"># peak_med &lt;- median(peak_flow$peak_flow)</span></span>
+<span id="cb187-9"><a href="lab-6-modeling-in-hydrology.html#cb187-9" tabindex="-1"></a></span>
+<span id="cb187-10"><a href="lab-6-modeling-in-hydrology.html#cb187-10" tabindex="-1"></a><span class="co">#Plot as pdf</span></span>
+<span id="cb187-11"><a href="lab-6-modeling-in-hydrology.html#cb187-11" tabindex="-1"></a><span class="co"># peak_flow %&gt;%</span></span>
+<span id="cb187-12"><a href="lab-6-modeling-in-hydrology.html#cb187-12" tabindex="-1"></a><span class="co">#   ggplot(aes(peak_flow))+</span></span>
+<span id="cb187-13"><a href="lab-6-modeling-in-hydrology.html#cb187-13" tabindex="-1"></a><span class="co">#   stat_density()+</span></span>
+<span id="cb187-14"><a href="lab-6-modeling-in-hydrology.html#cb187-14" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = median(peak_flow$peak_flow), linetype = &#39;dashed&#39;,  color = &#39;red&#39;)+</span></span>
+<span id="cb187-15"><a href="lab-6-modeling-in-hydrology.html#cb187-15" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean(peak_flow$peak_flow), linetype = &#39;dashed&#39;,  color = &#39;blue&#39;)+</span></span>
+<span id="cb187-16"><a href="lab-6-modeling-in-hydrology.html#cb187-16" tabindex="-1"></a><span class="co">#   labs(x = &quot;Peak flow (cfs)&quot;, y = &quot;Density&quot;)</span></span></code></pre></div>
+<p>That’s a pretty wide range of possible peak flow values! Looks like some basic stats aren’t enough to allow us to make an informed guess. We’ll need to correlate peak SWE to peak flow values.</p>
+</div>
+<div id="choose-snotel-sites" class="section level2 hasAnchor" number="17.5">
+<h2><span class="header-section-number">17.5</span> Choose Snotel Sites<a href="lab-6-modeling-in-hydrology.html#choose-snotel-sites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First let’s see what snotel sites exist in the region. I’ll filter for Teton and Park county in WY, which are both in Yellowstone NP.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="lab-6-modeling-in-hydrology.html#cb188-1" tabindex="-1"></a><span class="co"># snotel_sites &lt;- snotel_info()%&gt;%</span></span>
+<span id="cb188-2"><a href="lab-6-modeling-in-hydrology.html#cb188-2" tabindex="-1"></a><span class="co">#   filter(state == &quot;WY&quot;, county == c(&quot;Teton&quot;, &quot;Park&quot;))</span></span>
+<span id="cb188-3"><a href="lab-6-modeling-in-hydrology.html#cb188-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb188-4"><a href="lab-6-modeling-in-hydrology.html#cb188-4" tabindex="-1"></a><span class="co"># snotel_map &lt;- leaflet() %&gt;% </span></span>
+<span id="cb188-5"><a href="lab-6-modeling-in-hydrology.html#cb188-5" tabindex="-1"></a><span class="co">#   addProviderTiles(&quot;OpenStreetMap&quot;) %&gt;% </span></span>
+<span id="cb188-6"><a href="lab-6-modeling-in-hydrology.html#cb188-6" tabindex="-1"></a><span class="co">#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, </span></span>
+<span id="cb188-7"><a href="lab-6-modeling-in-hydrology.html#cb188-7" tabindex="-1"></a><span class="co">#                     popup = ~paste(&quot;Start:&quot;, start, &quot;&lt;br&gt;End date:&quot;, end, &quot;&lt;br&gt;Site:&quot;, description, &quot;&lt;br&gt;Site ID:&quot;, site_id)) </span></span>
+<span id="cb188-8"><a href="lab-6-modeling-in-hydrology.html#cb188-8" tabindex="-1"></a></span>
+<span id="cb188-9"><a href="lab-6-modeling-in-hydrology.html#cb188-9" tabindex="-1"></a><span class="co"># snotel_map</span></span></code></pre></div>
+<p>There are a lot in the area! How do we know which sites to choose? One approach could be to determine what the contributing area of our stream is (i.e. the watershed boundary) and use all of the snotel sites within the watershed.</p>
+</div>
+<div id="working-with-spatial-data" class="section level2 hasAnchor" number="17.6">
+<h2><span class="header-section-number">17.6</span> Working with spatial data<a href="lab-6-modeling-in-hydrology.html#working-with-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The USGS has a series of pre-defined watershed boundaries. Let’s explore them to see if we can find a good representation of this portion of the Yellowstone River. The huc_shape item will include every watershed in Montana.</p>
+<p>There are multiple packages for working with spatial data in R, but we’ll stick to the sf package for now. The sf package plays nicely with leaflet, and is nice for working with polygons (i.e. watersheds) and point data (i.e. snotel sites).</p>
+<p>We set up our leaflet map the same way that we’ve used it before to look at snotel sites. This time, we’ll use “addPolygons” to view our watershed boundaries.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="lab-6-modeling-in-hydrology.html#cb189-1" tabindex="-1"></a><span class="co"># library(sf)</span></span>
+<span id="cb189-2"><a href="lab-6-modeling-in-hydrology.html#cb189-2" tabindex="-1"></a><span class="co"># huc_shape&lt;-st_read(&#39;WBD_Shapefiles/WBDHU8.shp&#39;) #all MT watersheds</span></span>
+<span id="cb189-3"><a href="lab-6-modeling-in-hydrology.html#cb189-3" tabindex="-1"></a></span>
+<span id="cb189-4"><a href="lab-6-modeling-in-hydrology.html#cb189-4" tabindex="-1"></a><span class="co"># Reproject to WGS84 to work with leaflet</span></span>
+<span id="cb189-5"><a href="lab-6-modeling-in-hydrology.html#cb189-5" tabindex="-1"></a><span class="co"># huc_shape &lt;- st_transform(huc_shape, crs = st_crs(4326))</span></span>
+<span id="cb189-6"><a href="lab-6-modeling-in-hydrology.html#cb189-6" tabindex="-1"></a></span>
+<span id="cb189-7"><a href="lab-6-modeling-in-hydrology.html#cb189-7" tabindex="-1"></a><span class="co">#View map</span></span>
+<span id="cb189-8"><a href="lab-6-modeling-in-hydrology.html#cb189-8" tabindex="-1"></a><span class="co"># leaflet() %&gt;%</span></span>
+<span id="cb189-9"><a href="lab-6-modeling-in-hydrology.html#cb189-9" tabindex="-1"></a>  <span class="co"># addProviderTiles(&quot;OpenStreetMap.Mapnik&quot;) %&gt;%</span></span>
+<span id="cb189-10"><a href="lab-6-modeling-in-hydrology.html#cb189-10" tabindex="-1"></a>  <span class="co"># addPolygons(data = huc_shape, fillOpacity = 0.3, color = &quot;blue&quot;, weight = 2, </span></span>
+<span id="cb189-11"><a href="lab-6-modeling-in-hydrology.html#cb189-11" tabindex="-1"></a>  <span class="co">#             popup = ~Name)</span></span></code></pre></div>
+<p>Does one watershed represent the portion of the Yellowstone River we’re interested in? There’s not a perfect match, but I found one that is pretty close. Hover over the map to find the name of the watershed and filter huc_shape to extract just that watershed. Call this variable “yell_shape”</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="lab-6-modeling-in-hydrology.html#cb190-1" tabindex="-1"></a><span class="co"># yell_shape&lt;-</span></span></code></pre></div>
+<p>Let’s use leaflet again to map our isolated watershed boundary. We’ll add the snotel markers too.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="lab-6-modeling-in-hydrology.html#cb191-1" tabindex="-1"></a><span class="co">#View map</span></span>
+<span id="cb191-2"><a href="lab-6-modeling-in-hydrology.html#cb191-2" tabindex="-1"></a><span class="co"># leaflet() %&gt;%</span></span>
+<span id="cb191-3"><a href="lab-6-modeling-in-hydrology.html#cb191-3" tabindex="-1"></a><span class="co">#   addProviderTiles(&quot;OpenStreetMap.Mapnik&quot;) %&gt;%</span></span>
+<span id="cb191-4"><a href="lab-6-modeling-in-hydrology.html#cb191-4" tabindex="-1"></a><span class="co">#   addPolygons(data = yell_shape, fillOpacity = 0.3, color = &quot;blue&quot;, weight = 2, </span></span>
+<span id="cb191-5"><a href="lab-6-modeling-in-hydrology.html#cb191-5" tabindex="-1"></a><span class="co">#               popup = ~Name)%&gt;%</span></span>
+<span id="cb191-6"><a href="lab-6-modeling-in-hydrology.html#cb191-6" tabindex="-1"></a><span class="co">#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, </span></span>
+<span id="cb191-7"><a href="lab-6-modeling-in-hydrology.html#cb191-7" tabindex="-1"></a><span class="co">#                     popup = ~paste(&quot;Start:&quot;, start, &quot;&lt;br&gt;End date:&quot;, end, &quot;&lt;br&gt;Site:&quot;, description, &quot;&lt;br&gt;Site ID:&quot;, site_id)) </span></span></code></pre></div>
+<p>It looks like there are a few snotel sites in the contributing area. We could manually filter for those sites, but this can be tedious. A few lines of code can do this for us! st_as_sf() takes a dataframe with lat/long columns and by specifying these coordinates, allows R to understand and analyze the data as spatial.</p>
+<p>The command st_intersection() will extract all of the point data from within the watershed boundary.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="lab-6-modeling-in-hydrology.html#cb192-1" tabindex="-1"></a><span class="co">#Turn dataframe into spatial df by specifying lat and long. </span></span>
+<span id="cb192-2"><a href="lab-6-modeling-in-hydrology.html#cb192-2" tabindex="-1"></a><span class="co"># snotel_sf &lt;- st_as_sf(snotel_sites, coords = c(&quot;longitude&quot;, &quot;latitude&quot;), crs = 4326)</span></span>
+<span id="cb192-3"><a href="lab-6-modeling-in-hydrology.html#cb192-3" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="lab-6-modeling-in-hydrology.html#cb192-4" tabindex="-1"></a><span class="co">#Extract just snotel sites from within the watershed boundary </span></span>
+<span id="cb192-5"><a href="lab-6-modeling-in-hydrology.html#cb192-5" tabindex="-1"></a><span class="co"># sno_yell &lt;- st_intersection(snotel_sf, yell_shape)</span></span></code></pre></div>
+<p>Excellent. Now we have a df with just the snotel sites in the Yellowstone watershed. Now we can download the snotel data from these sites.</p>
+</div>
+<div id="download-and-explore-snotel" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> Download and explore Snotel<a href="lab-6-modeling-in-hydrology.html#download-and-explore-snotel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can directly plug your site_id column from the Yellowstone snotel df into the snotel_download function. This is savvier than hard-coding in the site numbers.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="lab-6-modeling-in-hydrology.html#cb193-1" tabindex="-1"></a><span class="co"># sno_dat &lt;- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %&gt;% </span></span>
+<span id="cb193-2"><a href="lab-6-modeling-in-hydrology.html#cb193-2" tabindex="-1"></a><span class="co">#   mutate(date = ymd(date)) %&gt;% </span></span>
+<span id="cb193-3"><a href="lab-6-modeling-in-hydrology.html#cb193-3" tabindex="-1"></a><span class="co">#   filter(date &gt; as_date(&quot;1988-10-01&quot;) &amp; date &lt; as_date(&quot;2023-09-30&quot;)) %&gt;% </span></span>
+<span id="cb193-4"><a href="lab-6-modeling-in-hydrology.html#cb193-4" tabindex="-1"></a><span class="co">#   mutate(wtr_yr = if_else(lubridate::month(date) &gt; 9, lubridate::year(date) + 1, lubridate::year(date))) %&gt;% </span></span>
+<span id="cb193-5"><a href="lab-6-modeling-in-hydrology.html#cb193-5" tabindex="-1"></a><span class="co">#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)</span></span></code></pre></div>
+<p>Let’s look at the data in the same manner as before, plotting all data over the 30 year time series. We’re interested in SWE (snow water equivalent), so let’s plot a facet plot for each of our snotel sites with peak SWE on the x axis and Date on the y axis.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="lab-6-modeling-in-hydrology.html#cb194-1" tabindex="-1"></a><span class="co">#Plot SWE timeseries as facet_plot with each snotel site</span></span></code></pre></div>
+<p>Now let’s make a plot with each year’s data on top of itself like we did with the flow data. You’ll need to extract the month and day to make a new column just like we did before.</p>
+<p>Create a ggplot showing all years as gray lines and add a blue line for the median. Use facet_wrap to plot each of the three snotel sites, and plotly to make the plot interactive such that the water year pops up when hovering over a line.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="lab-6-modeling-in-hydrology.html#cb195-1" tabindex="-1"></a><span class="co">#Extract just month and day </span></span>
+<span id="cb195-2"><a href="lab-6-modeling-in-hydrology.html#cb195-2" tabindex="-1"></a></span>
+<span id="cb195-3"><a href="lab-6-modeling-in-hydrology.html#cb195-3" tabindex="-1"></a><span class="co"># Plot all years on top of each other, add median SWE line and use facet wrap to plot each snotel site. Make sure to make the plot interactive and set the tooltip to show the water year. </span></span></code></pre></div>
+</div>
+<div id="question-2-3-points" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Question 2 (3 points)<a href="lab-6-modeling-in-hydrology.html#question-2-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What do you notice about yearly trends across the three sites? Pay attention to the y axis. Could you guess which of these sites is at the highest elevation? What about the lowest?</p>
+</div>
+<div id="extract-peak-swe-values" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> Extract peak SWE values<a href="lab-6-modeling-in-hydrology.html#extract-peak-swe-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just like before, we want to examine the yearly peak value. Let’s create a new df called peak_swe that outputs a peak SWE value corresponding with each water year.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="lab-6-modeling-in-hydrology.html#cb196-1" tabindex="-1"></a><span class="co"># peak_swe &lt;-</span></span></code></pre></div>
+<p>How greatly do these values vary from year to year?</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="lab-6-modeling-in-hydrology.html#cb197-1" tabindex="-1"></a><span class="co"># swe_summary&lt;-peak_swe%&gt;%</span></span>
+<span id="cb197-2"><a href="lab-6-modeling-in-hydrology.html#cb197-2" tabindex="-1"></a><span class="co">#   group_by(description)%&gt;%</span></span>
+<span id="cb197-3"><a href="lab-6-modeling-in-hydrology.html#cb197-3" tabindex="-1"></a><span class="co">#   summarize(mean = mean(peak_swe), median = median(peak_swe))</span></span>
+<span id="cb197-4"><a href="lab-6-modeling-in-hydrology.html#cb197-4" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb197-5"><a href="lab-6-modeling-in-hydrology.html#cb197-5" tabindex="-1"></a><span class="co"># peak_swe%&gt;%</span></span>
+<span id="cb197-6"><a href="lab-6-modeling-in-hydrology.html#cb197-6" tabindex="-1"></a><span class="co">#   ggplot(aes(peak_swe))+</span></span>
+<span id="cb197-7"><a href="lab-6-modeling-in-hydrology.html#cb197-7" tabindex="-1"></a><span class="co">#   stat_density(aes(color = description, fill = description), alpha = 0.3)+</span></span>
+<span id="cb197-8"><a href="lab-6-modeling-in-hydrology.html#cb197-8" tabindex="-1"></a><span class="co">#   labs(x = &quot;Peak swe (in)&quot;, y = &quot;Density&quot;)+</span></span>
+<span id="cb197-9"><a href="lab-6-modeling-in-hydrology.html#cb197-9" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = swe_summary$mean, color = c(&#39;red&#39;, &#39;green&#39;,&#39;blue&#39;))+</span></span>
+<span id="cb197-10"><a href="lab-6-modeling-in-hydrology.html#cb197-10" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = swe_summary$median, color = c(&#39;red&#39;, &#39;green&#39;,&#39;blue&#39;), linetype = &quot;dashed&quot;)</span></span></code></pre></div>
+</div>
+<div id="peak-swe-and-q" class="section level2 hasAnchor" number="17.10">
+<h2><span class="header-section-number">17.10</span> Peak SWE and Q<a href="lab-6-modeling-in-hydrology.html#peak-swe-and-q" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s see if peak SWE and peak Q correlate. Start by joining the peak flow and peak snowmelt dataframes by water year, calling this “peak_vals”. Next, plot the relationship between the two. Use ggplotly and set tooltip = waterYear to explore outlier data.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="lab-6-modeling-in-hydrology.html#cb198-1" tabindex="-1"></a><span class="co">#join peak_flow and peak_swe into one dataframe by water year.</span></span>
+<span id="cb198-2"><a href="lab-6-modeling-in-hydrology.html#cb198-2" tabindex="-1"></a><span class="co"># peak_vals&lt;-</span></span>
+<span id="cb198-3"><a href="lab-6-modeling-in-hydrology.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="lab-6-modeling-in-hydrology.html#cb198-4" tabindex="-1"></a><span class="co">#plot swe vs. flow among sites</span></span>
+<span id="cb198-5"><a href="lab-6-modeling-in-hydrology.html#cb198-5" tabindex="-1"></a><span class="co"># ggplotly(</span></span>
+<span id="cb198-6"><a href="lab-6-modeling-in-hydrology.html#cb198-6" tabindex="-1"></a><span class="co">#   peak_vals%&gt;%</span></span>
+<span id="cb198-7"><a href="lab-6-modeling-in-hydrology.html#cb198-7" tabindex="-1"></a><span class="co">#   ggplot(aes(x=peak_swe, y = peak_flow, label = waterYear))+</span></span>
+<span id="cb198-8"><a href="lab-6-modeling-in-hydrology.html#cb198-8" tabindex="-1"></a><span class="co">#   geom_point()+</span></span>
+<span id="cb198-9"><a href="lab-6-modeling-in-hydrology.html#cb198-9" tabindex="-1"></a><span class="co">#   geom_smooth(method = &#39;lm&#39;)+</span></span>
+<span id="cb198-10"><a href="lab-6-modeling-in-hydrology.html#cb198-10" tabindex="-1"></a><span class="co">#   labs(x = &#39;Peak SWE (in)&#39;, y = &#39;Peak Flow (cfs)&#39;)+</span></span>
+<span id="cb198-11"><a href="lab-6-modeling-in-hydrology.html#cb198-11" tabindex="-1"></a><span class="co">#   facet_wrap(~description, ncol= 1)</span></span>
+<span id="cb198-12"><a href="lab-6-modeling-in-hydrology.html#cb198-12" tabindex="-1"></a><span class="co"># , tooltip= &#39;waterYear&#39;)</span></span></code></pre></div>
+</div>
+<div id="question-3-points" class="section level2 hasAnchor" number="17.11">
+<h2><span class="header-section-number">17.11</span> Question (3 points)<a href="lab-6-modeling-in-hydrology.html#question-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should note one outlier in your SWE vs. Flow plots. What year did this outlier occur? What could have caused such high peak flow despite relatively low peak SWE?</p>
+</div>
+<div id="model-inputs" class="section level2 hasAnchor" number="17.12">
+<h2><span class="header-section-number">17.12</span> Model inputs<a href="lab-6-modeling-in-hydrology.html#model-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s reorganize the data to prepare it for our model.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="lab-6-modeling-in-hydrology.html#cb199-1" tabindex="-1"></a><span class="co"># model_df &lt;- peak_vals %&gt;%</span></span>
+<span id="cb199-2"><a href="lab-6-modeling-in-hydrology.html#cb199-2" tabindex="-1"></a><span class="co">#   spread(description, peak_swe) %&gt;%</span></span>
+<span id="cb199-3"><a href="lab-6-modeling-in-hydrology.html#cb199-3" tabindex="-1"></a><span class="co">#   rename(chipmunk= `Chipmunk Creek (100700010404)`, </span></span>
+<span id="cb199-4"><a href="lab-6-modeling-in-hydrology.html#cb199-4" tabindex="-1"></a><span class="co">#          pelican = `Lower Pelican Creek (100700010409)`, </span></span>
+<span id="cb199-5"><a href="lab-6-modeling-in-hydrology.html#cb199-5" tabindex="-1"></a><span class="co">#          slough = `Upper Slough Creek (100700010705)`)</span></span></code></pre></div>
+<p>This is where the model magic happens. The train() command is part of the caret package. We’ll tell the model that peak_flow is driven by our three snotel sites. The train command has a variety of different model types, but we want to run a random forest, “rf”.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="lab-6-modeling-in-hydrology.html#cb200-1" tabindex="-1"></a><span class="co"># rf_model &lt;- train(</span></span>
+<span id="cb200-2"><a href="lab-6-modeling-in-hydrology.html#cb200-2" tabindex="-1"></a><span class="co">#   peak_flow ~ chipmunk + pelican + slough,</span></span>
+<span id="cb200-3"><a href="lab-6-modeling-in-hydrology.html#cb200-3" tabindex="-1"></a><span class="co">#   data= model_df,</span></span>
+<span id="cb200-4"><a href="lab-6-modeling-in-hydrology.html#cb200-4" tabindex="-1"></a><span class="co">#   method = &quot;rf&quot;,</span></span>
+<span id="cb200-5"><a href="lab-6-modeling-in-hydrology.html#cb200-5" tabindex="-1"></a><span class="co">#   trControl = trainControl(method = &quot;cv&quot;, number = 10)</span></span>
+<span id="cb200-6"><a href="lab-6-modeling-in-hydrology.html#cb200-6" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb200-7"><a href="lab-6-modeling-in-hydrology.html#cb200-7" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb200-8"><a href="lab-6-modeling-in-hydrology.html#cb200-8" tabindex="-1"></a><span class="co"># print(rf_model)</span></span></code></pre></div>
+</div>
+<div id="run-model" class="section level2 hasAnchor" number="17.13">
+<h2><span class="header-section-number">17.13</span> Run model<a href="lab-6-modeling-in-hydrology.html#run-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now it’s time to predict peak flow for 2024. Let’s download the snotel data from this year and extract the peak SWE value from each site.</p>
+<p>We can use the predict() command and input our model and our 2024 data to calculate a flow value.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="lab-6-modeling-in-hydrology.html#cb201-1" tabindex="-1"></a><span class="co">#Download current data from snotel sites</span></span>
+<span id="cb201-2"><a href="lab-6-modeling-in-hydrology.html#cb201-2" tabindex="-1"></a><span class="co"># sno_24 &lt;- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %&gt;% </span></span>
+<span id="cb201-3"><a href="lab-6-modeling-in-hydrology.html#cb201-3" tabindex="-1"></a><span class="co">#   mutate(date = ymd(date)) %&gt;% </span></span>
+<span id="cb201-4"><a href="lab-6-modeling-in-hydrology.html#cb201-4" tabindex="-1"></a><span class="co">#   filter(date &gt; as_date(&quot;2024-01-01&quot;) &amp; date &lt; as_date(&quot;2024-05-30&quot;)) %&gt;% </span></span>
+<span id="cb201-5"><a href="lab-6-modeling-in-hydrology.html#cb201-5" tabindex="-1"></a><span class="co">#   mutate(wtr_yr = if_else(lubridate::month(date) &gt; 9, lubridate::year(date) + 1, lubridate::year(date))) %&gt;% </span></span>
+<span id="cb201-6"><a href="lab-6-modeling-in-hydrology.html#cb201-6" tabindex="-1"></a><span class="co">#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)</span></span>
+<span id="cb201-7"><a href="lab-6-modeling-in-hydrology.html#cb201-7" tabindex="-1"></a></span>
+<span id="cb201-8"><a href="lab-6-modeling-in-hydrology.html#cb201-8" tabindex="-1"></a><span class="co">#Find max value from each site</span></span>
+<span id="cb201-9"><a href="lab-6-modeling-in-hydrology.html#cb201-9" tabindex="-1"></a><span class="co"># swe_24 &lt;- sno_24 %&gt;%</span></span>
+<span id="cb201-10"><a href="lab-6-modeling-in-hydrology.html#cb201-10" tabindex="-1"></a><span class="co">#   group_by(description) %&gt;%</span></span>
+<span id="cb201-11"><a href="lab-6-modeling-in-hydrology.html#cb201-11" tabindex="-1"></a><span class="co">#   summarize(max_swe = max(swe)) %&gt;%</span></span>
+<span id="cb201-12"><a href="lab-6-modeling-in-hydrology.html#cb201-12" tabindex="-1"></a><span class="co">#   spread(description, max_swe) %&gt;%</span></span>
+<span id="cb201-13"><a href="lab-6-modeling-in-hydrology.html#cb201-13" tabindex="-1"></a><span class="co">#   rename(</span></span>
+<span id="cb201-14"><a href="lab-6-modeling-in-hydrology.html#cb201-14" tabindex="-1"></a><span class="co">#     chipmunk = `Chipmunk Creek (100700010404)`,</span></span>
+<span id="cb201-15"><a href="lab-6-modeling-in-hydrology.html#cb201-15" tabindex="-1"></a><span class="co">#     pelican = `Lower Pelican Creek (100700010409)`,</span></span>
+<span id="cb201-16"><a href="lab-6-modeling-in-hydrology.html#cb201-16" tabindex="-1"></a><span class="co">#     slough = `Upper Slough Creek (100700010705)`</span></span>
+<span id="cb201-17"><a href="lab-6-modeling-in-hydrology.html#cb201-17" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb201-18"><a href="lab-6-modeling-in-hydrology.html#cb201-18" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb201-19"><a href="lab-6-modeling-in-hydrology.html#cb201-19" tabindex="-1"></a><span class="co"># predict_flow&lt;-predict(rf_model, newdata= swe_24)</span></span>
+<span id="cb201-20"><a href="lab-6-modeling-in-hydrology.html#cb201-20" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb201-21"><a href="lab-6-modeling-in-hydrology.html#cb201-21" tabindex="-1"></a><span class="co"># predict_flow</span></span></code></pre></div>
+</div>
+<div id="question-4-3-points" class="section level2 hasAnchor" number="17.14">
+<h2><span class="header-section-number">17.14</span> Question 4 (3 points)<a href="lab-6-modeling-in-hydrology.html#question-4-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Compare the predicted flow to the mean and median peak values you calculated earlier. Is the predicted value smaller than or greater than the historic mean/median value? Plot this year’s SWE history on top of historic SWE data. Does the value make sense given the kind of snow year we’re having?</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="lab-6-modeling-in-hydrology.html#cb202-1" tabindex="-1"></a><span class="co">#Filter for 2024</span></span>
+<span id="cb202-2"><a href="lab-6-modeling-in-hydrology.html#cb202-2" tabindex="-1"></a><span class="co"># sno_dat_filt&lt;-sno_dat%&gt;%</span></span>
+<span id="cb202-3"><a href="lab-6-modeling-in-hydrology.html#cb202-3" tabindex="-1"></a><span class="co">#   filter(month_day &lt; ymd(&quot;2024-06-15&quot;) &amp; month_day &gt; ymd(&quot;2024-01-01&quot;))</span></span>
+<span id="cb202-4"><a href="lab-6-modeling-in-hydrology.html#cb202-4" tabindex="-1"></a></span>
+<span id="cb202-5"><a href="lab-6-modeling-in-hydrology.html#cb202-5" tabindex="-1"></a><span class="co">#Visualize this year&#39;s SWE</span></span>
+<span id="cb202-6"><a href="lab-6-modeling-in-hydrology.html#cb202-6" tabindex="-1"></a><span class="co"># ggplotly(  </span></span>
+<span id="cb202-7"><a href="lab-6-modeling-in-hydrology.html#cb202-7" tabindex="-1"></a><span class="co"># ggplot()+</span></span>
+<span id="cb202-8"><a href="lab-6-modeling-in-hydrology.html#cb202-8" tabindex="-1"></a><span class="co">#   geom_line(data=sno_dat_filt, aes(x = month_day, y = swe, group = wtr_yr), color =&#39;gray&#39;, alpha= 0.7)+</span></span>
+<span id="cb202-9"><a href="lab-6-modeling-in-hydrology.html#cb202-9" tabindex="-1"></a><span class="co">#   geom_line(data= sno_24,aes(x =date , y = swe),color=&#39;red&#39;)+</span></span>
+<span id="cb202-10"><a href="lab-6-modeling-in-hydrology.html#cb202-10" tabindex="-1"></a><span class="co">#   scale_x_date(date_labels = &quot;%b %d&quot;, date_breaks = &quot;2 months&quot;)+</span></span>
+<span id="cb202-11"><a href="lab-6-modeling-in-hydrology.html#cb202-11" tabindex="-1"></a><span class="co">#   labs(x = &#39;Date&#39;, y = &quot;Flow (cfs)&quot;)+ </span></span>
+<span id="cb202-12"><a href="lab-6-modeling-in-hydrology.html#cb202-12" tabindex="-1"></a><span class="co">#   facet_wrap(~ description, scales = &quot;free_y&quot;, ncol = 1)  </span></span>
+<span id="cb202-13"><a href="lab-6-modeling-in-hydrology.html#cb202-13" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div>
+<p>We can also visualize our prediction on a scatter plot of peak flow vs peak SWE data. Does the value still make sense?</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="lab-6-modeling-in-hydrology.html#cb203-1" tabindex="-1"></a><span class="co"># pred_val&lt;-cbind(swe_24, predict_flow)%&gt;%</span></span>
+<span id="cb203-2"><a href="lab-6-modeling-in-hydrology.html#cb203-2" tabindex="-1"></a><span class="co">#    pivot_longer(cols = c(chipmunk, pelican, slough), </span></span>
+<span id="cb203-3"><a href="lab-6-modeling-in-hydrology.html#cb203-3" tabindex="-1"></a><span class="co">#                names_to = &quot;description&quot;, </span></span>
+<span id="cb203-4"><a href="lab-6-modeling-in-hydrology.html#cb203-4" tabindex="-1"></a><span class="co">#                values_to = &quot;peak_swe&quot;)</span></span>
+<span id="cb203-5"><a href="lab-6-modeling-in-hydrology.html#cb203-5" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb203-6"><a href="lab-6-modeling-in-hydrology.html#cb203-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb203-7"><a href="lab-6-modeling-in-hydrology.html#cb203-7" tabindex="-1"></a><span class="co"># ggplot()+</span></span>
+<span id="cb203-8"><a href="lab-6-modeling-in-hydrology.html#cb203-8" tabindex="-1"></a><span class="co">#   geom_point(data=peak_vals,aes(x=peak_swe, y = peak_flow, color = description))+</span></span>
+<span id="cb203-9"><a href="lab-6-modeling-in-hydrology.html#cb203-9" tabindex="-1"></a><span class="co">#   geom_point(data= pred_val, aes(x= peak_swe, y = predict_flow), color= &#39;black&#39;)+</span></span>
+<span id="cb203-10"><a href="lab-6-modeling-in-hydrology.html#cb203-10" tabindex="-1"></a><span class="co">#   labs(x = &#39;Peak SWE (in)&#39;, y = &#39;Peak Flow (cfs)&#39;)</span></span></code></pre></div>
+</div>
+<div id="question-5-2-points" class="section level2 hasAnchor" number="17.15">
+<h2><span class="header-section-number">17.15</span> Question 5 (2 points)<a href="lab-6-modeling-in-hydrology.html#question-5-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It looks like the 2022 outlier data is really affecting our results. Go back in your code and filter out water year 2022 in model_df. Now rerun the code below and examine your model. Does your new number make more sense?</p>
+</div>
+<div id="question-6-1-point" class="section level2 hasAnchor" number="17.16">
+<h2><span class="header-section-number">17.16</span> Question 6 (1 point)<a href="lab-6-modeling-in-hydrology.html#question-6-1-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Is the number you calculated today representative of the peak flow? If no, what do we need to wait for to accurately predict the flow? Think about our input to the model and if we have enough data to predict the peak right now.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="downloading-dems-and-delineating-watersheds-5-pts.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/17_Lab_partial.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/17_Lab_partial.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
