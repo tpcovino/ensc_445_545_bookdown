@@ -35,18 +35,26 @@ df <- download_daymet(
 
 ## Here are the daymet variables:
 
-..$ year         : int [1:1095] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
-  ..$ yday         : int [1:1095] 1 2 3 4 5 6 7 8 9 10 ...
-  ..$ dayl..s.     : num [1:1095] 34571 34606 34644 34685 34729 ...
-  ..$ prcp..mm.day.: num [1:1095] 0 0 0 0 0 0 0 0 0 0 ...
-  ..$ srad..W.m.2. : num [1:1095] 334 231 148 319 338 ...
-  ..$ swe..kg.m.2. : num [1:1095] 18.2 15 13.6 13.6 13.6 ...
-  ..$ tmax..deg.c. : num [1:1095] 20.9 13.88 4.49 9.18 13.37 ...
-  ..$ tmin..deg.c. : num [1:1095] -2.73 1.69 -2.6 -10.16 -8.97 ...
-  ..$ vp..Pa.      : num [1:1095] 500 690 504 282 310 ...
- - attr(*, "class")= chr "daymetr"
+..$ year
+
+..$ yday         
+
+..$ dayl..s.     
+
+..$ prcp..mm.day.
+
+..$ srad..W.m.2.
+
+..$ swe..kg.m.2.  
+
+..$ tmax..deg.c. 
+
+..$ tmin..deg.c. 
+
+..$ vp..Pa.     
  
-Those are day length in seconds, precip in mm/day, solar radiation in w/m2, swe in kg/m2, tmax in C, tmin in C, and vapor pressure in Pascals. 
+ 
+Those variables are: year, day of yeat, day length in seconds, precip in mm/day, solar radiation in w/m2, swe in kg/m2, tmax in C, tmin in C, and vapor pressure in Pascals. 
  
 ## Make a date column and plot max temperature.  
 ```{r}
@@ -59,7 +67,7 @@ df %>%
   ggplot(aes(x = date, y = value)) +
   geom_line(color = "red") +
   theme_linedraw() +
-  labs(y = "Max T (C)", x = "")
+  labs(y = "Max T (\u00b0C)", x = "")
 ```
  
 ## Do the same for radiation.  
@@ -69,7 +77,7 @@ df %>%
   ggplot(aes(x = date, y = value)) +
   geom_line(color = "red") +
   theme_linedraw() +
-  labs(y = "Solar radiation (W/m2)", x = "")
+  labs(y = "Solar radiation"~(W/m^2), x = "")
 ```
 
 ## Stack 2 variables with patchwork. 
