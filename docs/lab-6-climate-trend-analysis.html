@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Lab 6: climate trend analysis | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 14 Lab 6: climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 14 Lab 6: Climate trend analysis | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 14 Lab 6: Climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Lab 6: climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 14 Lab 6: Climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Lab 6: climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 14 Lab 6: Climate trend analysis | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2024-03-25" />
+<meta name="date" content="2024-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,11 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
@@ -65,9 +66,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
 <script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
@@ -332,19 +333,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.1" data-path="functions.html"><a href="functions.html#reading-on-functions-from-rds-by-hadley-wickham"><i class="fa fa-check"></i><b>13.1</b> Reading on functions from RDS by Hadley Wickham</a></li>
 <li class="chapter" data-level="13.2" data-path="functions.html"><a href="functions.html#tutorial"><i class="fa fa-check"></i><b>13.2</b> Tutorial</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html"><i class="fa fa-check"></i><b>14</b> Lab 6: climate trend analysis</a>
+<li class="chapter" data-level="14" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html"><i class="fa fa-check"></i><b>14</b> Lab 6: Climate trend analysis</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#find-repo-here"><i class="fa fa-check"></i><b>14.1</b> Find repo here</a></li>
-<li class="chapter" data-level="14.2" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#summary-questions-and-deliverable"><i class="fa fa-check"></i><b>14.2</b> Summary questions and deliverable</a>
-<ul>
-<li class="chapter" data-level="14.2.1" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#new-packages"><i class="fa fa-check"></i><b>14.2.1</b> New packages</a></li>
-<li class="chapter" data-level="14.2.2" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#data-download-exploration-and-cleaning"><i class="fa fa-check"></i><b>14.2.2</b> Data download, exploration and cleaning</a></li>
-<li class="chapter" data-level="14.2.3" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#make-some-data-conversions."><i class="fa fa-check"></i><b>14.2.3</b> Make some data conversions.</a></li>
-<li class="chapter" data-level="14.2.4" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#computing-annual-values"><i class="fa fa-check"></i><b>14.2.4</b> Computing annual values</a></li>
-<li class="chapter" data-level="14.2.5" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values"><i class="fa fa-check"></i><b>14.2.5</b> Exploratory data analysis (EDA) of annual values</a></li>
-<li class="chapter" data-level="14.2.6" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#trend-analysis-and-creating-table-1"><i class="fa fa-check"></i><b>14.2.6</b> Trend analysis and creating Table 1</a></li>
-<li class="chapter" data-level="14.2.7" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable."><i class="fa fa-check"></i><b>14.2.7</b> See summary section at top for questions to answer and deliverable.</a></li>
-</ul></li>
+<li class="chapter" data-level="14.1" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#summary-questions-and-deliverable"><i class="fa fa-check"></i><b>14.1</b> Summary questions and deliverable</a></li>
+<li class="chapter" data-level="14.2" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#new-packages"><i class="fa fa-check"></i><b>14.2</b> New packages</a></li>
+<li class="chapter" data-level="14.3" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#data-download-exploration-and-cleaning"><i class="fa fa-check"></i><b>14.3</b> Data download, exploration and cleaning</a></li>
+<li class="chapter" data-level="14.4" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#computing-annual-values"><i class="fa fa-check"></i><b>14.4</b> Computing annual values</a></li>
+<li class="chapter" data-level="14.5" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values"><i class="fa fa-check"></i><b>14.5</b> Exploratory data analysis (EDA) of annual values</a></li>
+<li class="chapter" data-level="14.6" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#trend-analysis-and-creating-table-1"><i class="fa fa-check"></i><b>14.6</b> Trend analysis and creating Table 1</a></li>
+<li class="chapter" data-level="14.7" data-path="lab-6-climate-trend-analysis.html"><a href="lab-6-climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable."><i class="fa fa-check"></i><b>14.7</b> See summary section at top for questions to answer and deliverable.</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>15</b> For loops</a>
 <ul>
@@ -353,6 +350,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.3" data-path="for-loops.html"><a href="for-loops.html#writing-the-for-loop"><i class="fa fa-check"></i><b>15.3</b> Writing the for loop</a></li>
 <li class="chapter" data-level="15.4" data-path="for-loops.html"><a href="for-loops.html#adding-second-for"><i class="fa fa-check"></i><b>15.4</b> Adding second for</a></li>
 <li class="chapter" data-level="15.5" data-path="for-loops.html"><a href="for-loops.html#removing-the-tmp-file"><i class="fa fa-check"></i><b>15.5</b> Removing the tmp file</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html"><a href="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html"><i class="fa fa-check"></i><b>16</b> Lab 7: Downloading DEMs and delineating watersheds (5 pts)</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html"><a href="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html#repo-here"><i class="fa fa-check"></i><b>16.1</b> Repo here</a></li>
+<li class="chapter" data-level="16.2" data-path="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html"><a href="lab-7-downloading-dems-and-delineating-watersheds-5-pts.html#streamstats"><i class="fa fa-check"></i><b>16.2</b> StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html"><i class="fa fa-check"></i><b>17</b> Lab 8: Modeling in hydrology</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#background"><i class="fa fa-check"></i><b>17.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#identifying-the-question"><i class="fa fa-check"></i><b>17.1.1</b> Identifying the question</a></li>
+<li class="chapter" data-level="17.1.2" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#modeling-approaches"><i class="fa fa-check"></i><b>17.1.2</b> Modeling approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.2</b> Question 1 (3 pts)</a></li>
+<li class="chapter" data-level="17.3" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.3</b> Download and explore flow data</a></li>
+<li class="chapter" data-level="17.4" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.4</b> Extract peak flow values</a></li>
+<li class="chapter" data-level="17.5" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.5</b> Choose Snotel Sites</a></li>
+<li class="chapter" data-level="17.6" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.6</b> Working with spatial data</a></li>
+<li class="chapter" data-level="17.7" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.7</b> Download and explore Snotel</a></li>
+<li class="chapter" data-level="17.8" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-2-3-points"><i class="fa fa-check"></i><b>17.8</b> Question 2 (3 points)</a></li>
+<li class="chapter" data-level="17.9" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.9</b> Extract peak SWE values</a></li>
+<li class="chapter" data-level="17.10" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.10</b> Peak SWE and Q</a></li>
+<li class="chapter" data-level="17.11" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-3-points"><i class="fa fa-check"></i><b>17.11</b> Question (3 points)</a></li>
+<li class="chapter" data-level="17.12" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#model-inputs"><i class="fa fa-check"></i><b>17.12</b> Model inputs</a></li>
+<li class="chapter" data-level="17.13" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#run-model"><i class="fa fa-check"></i><b>17.13</b> Run model</a></li>
+<li class="chapter" data-level="17.14" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-4-3-points"><i class="fa fa-check"></i><b>17.14</b> Question 4 (3 points)</a></li>
+<li class="chapter" data-level="17.15" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-5-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 5 (2 points)</a></li>
+<li class="chapter" data-level="17.16" data-path="lab-8-modeling-in-hydrology.html"><a href="lab-8-modeling-in-hydrology.html#question-6-1-point"><i class="fa fa-check"></i><b>17.16</b> Question 6 (1 point)</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="daymetr.html"><a href="daymetr.html"><i class="fa fa-check"></i><b>18</b> daymetr</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="daymetr.html"><a href="daymetr.html#install-packages"><i class="fa fa-check"></i><b>18.1</b> Install Packages</a></li>
+<li class="chapter" data-level="18.2" data-path="daymetr.html"><a href="daymetr.html#download-daymet-for-a-specific-location."><i class="fa fa-check"></i><b>18.2</b> Download daymet for a specific location.</a></li>
+<li class="chapter" data-level="18.3" data-path="daymetr.html"><a href="daymetr.html#here-are-the-daymet-variables"><i class="fa fa-check"></i><b>18.3</b> Here are the daymet variables:</a></li>
+<li class="chapter" data-level="18.4" data-path="daymetr.html"><a href="daymetr.html#make-a-date-column-and-plot-max-temperature."><i class="fa fa-check"></i><b>18.4</b> Make a date column and plot max temperature.</a></li>
+<li class="chapter" data-level="18.5" data-path="daymetr.html"><a href="daymetr.html#do-the-same-for-radiation."><i class="fa fa-check"></i><b>18.5</b> Do the same for radiation.</a></li>
+<li class="chapter" data-level="18.6" data-path="daymetr.html"><a href="daymetr.html#stack-2-variables-with-patchwork."><i class="fa fa-check"></i><b>18.6</b> Stack 2 variables with patchwork.</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -374,53 +408,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="lab-6-climate-trend-analysis" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Lab 6: climate trend analysis<a href="lab-6-climate-trend-analysis.html#lab-6-climate-trend-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Due Friday 3/29/2024; 15 pts total</p>
-<div id="find-repo-here" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> <a href="https://github.com/tpcovino/lab_6_mk_sens.git" target="_blank">Find repo here</a><a href="lab-6-climate-trend-analysis.html#find-repo-here" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h1><span class="header-section-number">Chapter 14</span> Lab 6: Climate trend analysis<a href="lab-6-climate-trend-analysis.html#lab-6-climate-trend-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>15 pts total</p>
 <p>In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens’s slope.</p>
-</div>
-<div id="summary-questions-and-deliverable" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Summary questions and deliverable<a href="lab-6-climate-trend-analysis.html#summary-questions-and-deliverable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summary-questions-and-deliverable" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Summary questions and deliverable<a href="lab-6-climate-trend-analysis.html#summary-questions-and-deliverable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures.</p>
 <ol style="list-style-type: decimal">
 <li>Describe what the Mann-Kendall (MK) test does and what the Sen’s slope is and why they are appropriate for climate data. (5 pts)</li>
 </ol>
-<p><a href="https://up-rs-esp.github.io/mkt/#" class="uri">https://up-rs-esp.github.io/mkt/#</a></p>
+<p>ANSWER: The MK test is a test to determine if there is a significant trend in climate data. The Sen’s slope provides the slope of the trend. They are appropriate for non-normal data.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Provide a table (Table 1) of MK p-values and Sen’s slopes over the entire period (1900 – 2022). (2 pts)</p></li>
+<li><p>Provide a table (Table 1) of MK p-values and Sen’s slopes over the entire period (1900 – current). (2 pts)</p></li>
 <li><p>For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data “stat_smooth(method =”lm”)” (1 pt).</p></li>
 <li><p>Provide a table (Table 2) of MK p-values and Sen’s slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (2 pts)</p></li>
-<li><p>In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen’s slope) for the entire record (1900 - 2022) vs. the normal period (1990 - 2020). (5 pts)</p></li>
+<li><p>In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen’s slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (5 pts)</p></li>
 </ol>
-<div id="new-packages" class="section level3 hasAnchor" number="14.2.1">
-<h3><span class="header-section-number">14.2.1</span> New packages<a href="lab-6-climate-trend-analysis.html#new-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="new-packages" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> New packages<a href="lab-6-climate-trend-analysis.html#new-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will use the packages below. You will need to install the rnoaa package for downloading NOAA data, and the trend package for doing Mann-Kendall trend tests and computing the Sen’s slope.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="lab-6-climate-trend-analysis.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb151-2"><a href="lab-6-climate-trend-analysis.html#cb151-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb151-3"><a href="lab-6-climate-trend-analysis.html#cb151-3" tabindex="-1"></a><span class="fu">library</span>(rnoaa) <span class="co"># for downloading data from GHCN</span></span>
-<span id="cb151-4"><a href="lab-6-climate-trend-analysis.html#cb151-4" tabindex="-1"></a><span class="fu">library</span>(trend) <span class="co"># for Mann-Kendall trend analysis and Sen&#39;s slope</span></span></code></pre></div>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="lab-6-climate-trend-analysis.html#cb152-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;USC00241044&quot;</span></span>
-<span id="cb152-2"><a href="lab-6-climate-trend-analysis.html#cb152-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;prcp&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>)</span>
-<span id="cb152-3"><a href="lab-6-climate-trend-analysis.html#cb152-3" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="lab-6-climate-trend-analysis.html#cb157-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb157-2"><a href="lab-6-climate-trend-analysis.html#cb157-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb157-3"><a href="lab-6-climate-trend-analysis.html#cb157-3" tabindex="-1"></a><span class="fu">library</span>(rnoaa) <span class="co"># for downloading data from GHCN</span></span>
+<span id="cb157-4"><a href="lab-6-climate-trend-analysis.html#cb157-4" tabindex="-1"></a><span class="fu">library</span>(trend) <span class="co"># for Mann-Kendall trend analysis and Sen&#39;s slope</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="lab-6-climate-trend-analysis.html#cb158-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;USC00241044&quot;</span></span>
+<span id="cb158-2"><a href="lab-6-climate-trend-analysis.html#cb158-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;prcp&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>)</span>
+<span id="cb158-3"><a href="lab-6-climate-trend-analysis.html#cb158-3" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>)</span></code></pre></div>
 </div>
-<div id="data-download-exploration-and-cleaning" class="section level3 hasAnchor" number="14.2.2">
-<h3><span class="header-section-number">14.2.2</span> Data download, exploration and cleaning<a href="lab-6-climate-trend-analysis.html#data-download-exploration-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="lab-6-climate-trend-analysis.html#cb153-1" tabindex="-1"></a>met_data <span class="ot">&lt;-</span> <span class="fu">meteo_pull_monitors</span>(</span>
-<span id="cb153-2"><a href="lab-6-climate-trend-analysis.html#cb153-2" tabindex="-1"></a>  <span class="at">monitors =</span> site,</span>
-<span id="cb153-3"><a href="lab-6-climate-trend-analysis.html#cb153-3" tabindex="-1"></a>  <span class="at">keep_flags =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb153-4"><a href="lab-6-climate-trend-analysis.html#cb153-4" tabindex="-1"></a>  <span class="at">date_min =</span> <span class="cn">NULL</span>,</span>
-<span id="cb153-5"><a href="lab-6-climate-trend-analysis.html#cb153-5" tabindex="-1"></a>  <span class="at">date_max =</span> end,</span>
-<span id="cb153-6"><a href="lab-6-climate-trend-analysis.html#cb153-6" tabindex="-1"></a>  <span class="at">var =</span> vars</span>
-<span id="cb153-7"><a href="lab-6-climate-trend-analysis.html#cb153-7" tabindex="-1"></a>)</span></code></pre></div>
-</div>
-<div id="make-some-data-conversions." class="section level3 hasAnchor" number="14.2.3">
-<h3><span class="header-section-number">14.2.3</span> Make some data conversions.<a href="lab-6-climate-trend-analysis.html#make-some-data-conversions." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The units of these data are prcp = tenths of mm, snow = mm (we aren’t using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data. Have a look at the data in met_data, when you do so you will see that the P and T need to be divided by 10. So divide prcp, tmin, and tmax by 10. Then calculate tavg = (tmin + tmax)/2.</p>
+<div id="data-download-exploration-and-cleaning" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Data download, exploration and cleaning<a href="lab-6-climate-trend-analysis.html#data-download-exploration-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="lab-6-climate-trend-analysis.html#cb159-1" tabindex="-1"></a>met_data <span class="ot">&lt;-</span> <span class="fu">meteo_pull_monitors</span>(</span>
+<span id="cb159-2"><a href="lab-6-climate-trend-analysis.html#cb159-2" tabindex="-1"></a>  <span class="at">monitors =</span> site,</span>
+<span id="cb159-3"><a href="lab-6-climate-trend-analysis.html#cb159-3" tabindex="-1"></a>  <span class="at">keep_flags =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb159-4"><a href="lab-6-climate-trend-analysis.html#cb159-4" tabindex="-1"></a>  <span class="at">date_min =</span> <span class="cn">NULL</span>,</span>
+<span id="cb159-5"><a href="lab-6-climate-trend-analysis.html#cb159-5" tabindex="-1"></a>  <span class="at">date_max =</span> end,</span>
+<span id="cb159-6"><a href="lab-6-climate-trend-analysis.html#cb159-6" tabindex="-1"></a>  <span class="at">var =</span> vars</span>
+<span id="cb159-7"><a href="lab-6-climate-trend-analysis.html#cb159-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="lab-6-climate-trend-analysis.html#cb160-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data <span class="sc">%&gt;%</span> </span>
+<span id="cb160-2"><a href="lab-6-climate-trend-analysis.html#cb160-2" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">prcp =</span> prcp<span class="sc">/</span><span class="dv">10</span>, </span>
+<span id="cb160-3"><a href="lab-6-climate-trend-analysis.html#cb160-3" tabindex="-1"></a>          <span class="at">tmin =</span> tmin<span class="sc">/</span><span class="dv">10</span>, </span>
+<span id="cb160-4"><a href="lab-6-climate-trend-analysis.html#cb160-4" tabindex="-1"></a>          <span class="at">tmax =</span> tmax<span class="sc">/</span><span class="dv">10</span>, </span>
+<span id="cb160-5"><a href="lab-6-climate-trend-analysis.html#cb160-5" tabindex="-1"></a>          <span class="at">tavg =</span> ((tmin <span class="sc">+</span> tmax)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb160-6"><a href="lab-6-climate-trend-analysis.html#cb160-6" tabindex="-1"></a></span>
+<span id="cb160-7"><a href="lab-6-climate-trend-analysis.html#cb160-7" tabindex="-1"></a><span class="co"># The units of these data are prcp = tenths of mm, snow = mm (we aren&#39;t using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data.   </span></span></code></pre></div>
 <p>Add a water year and filter the data to start on 10/1/1900.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="lab-6-climate-trend-analysis.html#cb161-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb161-2"><a href="lab-6-climate-trend-analysis.html#cb161-2" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">&quot;1900-09-30&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-3"><a href="lab-6-climate-trend-analysis.html#cb161-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wtr_yr =</span> <span class="fu">if_else</span>(<span class="fu">month</span>(date) <span class="sc">&gt;</span> <span class="dv">9</span>,   </span>
+<span id="cb161-4"><a href="lab-6-climate-trend-analysis.html#cb161-4" tabindex="-1"></a>                          <span class="fu">year</span>(date) <span class="sc">+</span> <span class="dv">1</span>, </span>
+<span id="cb161-5"><a href="lab-6-climate-trend-analysis.html#cb161-5" tabindex="-1"></a>                          <span class="fu">year</span>(date))) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-6"><a href="lab-6-climate-trend-analysis.html#cb161-6" tabindex="-1"></a>  <span class="fu">select</span>(id, date, wtr_yr, <span class="fu">everything</span>())</span></code></pre></div>
 </div>
-<div id="computing-annual-values" class="section level3 hasAnchor" number="14.2.4">
-<h3><span class="header-section-number">14.2.4</span> Computing annual values<a href="lab-6-climate-trend-analysis.html#computing-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="computing-annual-values" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Computing annual values<a href="lab-6-climate-trend-analysis.html#computing-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that you have a cleaned data frame you will now begin the climate data analysis.</p>
 <p>The first step is to create a data frame that has annual values called met_data_an that includes:</p>
 <ul>
@@ -432,10 +473,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>the max of the maximum temperatures</p></li>
 <li><p>the mean of the average temperatures</p></li>
 </ul>
-<p>You can use group_by(wtr_yr) and then either summarize or reframe to make your annual calculations. Reframe is a more generalizable form of summarize.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="lab-6-climate-trend-analysis.html#cb162-1" tabindex="-1"></a>met_data_an <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
+<span id="cb162-2"><a href="lab-6-climate-trend-analysis.html#cb162-2" tabindex="-1"></a>  <span class="fu">group_by</span>(wtr_yr) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-3"><a href="lab-6-climate-trend-analysis.html#cb162-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">tot_p =</span> <span class="fu">sum</span>(prcp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. </span></span>
+<span id="cb162-4"><a href="lab-6-climate-trend-analysis.html#cb162-4" tabindex="-1"></a>            <span class="at">min_min_t =</span> <span class="fu">min</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb162-5"><a href="lab-6-climate-trend-analysis.html#cb162-5" tabindex="-1"></a>            <span class="at">max_min_t =</span> <span class="fu">max</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb162-6"><a href="lab-6-climate-trend-analysis.html#cb162-6" tabindex="-1"></a>            <span class="at">min_max_t =</span> <span class="fu">min</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb162-7"><a href="lab-6-climate-trend-analysis.html#cb162-7" tabindex="-1"></a>            <span class="at">max_max_t =</span> <span class="fu">max</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb162-8"><a href="lab-6-climate-trend-analysis.html#cb162-8" tabindex="-1"></a>            <span class="at">av_t =</span> <span class="fu">mean</span>(tavg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 </div>
-<div id="exploratory-data-analysis-eda-of-annual-values" class="section level3 hasAnchor" number="14.2.5">
-<h3><span class="header-section-number">14.2.5</span> Exploratory data analysis (EDA) of annual values<a href="lab-6-climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exploratory-data-analysis-eda-of-annual-values" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Exploratory data analysis (EDA) of annual values<a href="lab-6-climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For your own insight, make plots of the variables in met_data_an over time to see if there appear to be trends in any of the data.</p>
 <p>If you want practice making a function you can do so here. Remember functions look like:</p>
 <p>my_fun &lt;- function(x){
@@ -445,9 +493,25 @@ do_stuff()
 <p>my_fun &lt;- function(…){
 do_stuff()
 }</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="lab-6-climate-trend-analysis.html#cb163-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
+<span id="cb163-2"><a href="lab-6-climate-trend-analysis.html#cb163-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr)) <span class="sc">+</span></span>
+<span id="cb163-3"><a href="lab-6-climate-trend-analysis.html#cb163-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_min_t), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-4"><a href="lab-6-climate-trend-analysis.html#cb163-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_min_t), <span class="at">color =</span> <span class="st">&quot;cyan&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-5"><a href="lab-6-climate-trend-analysis.html#cb163-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_max_t), <span class="at">color =</span> <span class="st">&quot;pink&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-6"><a href="lab-6-climate-trend-analysis.html#cb163-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_max_t), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-7"><a href="lab-6-climate-trend-analysis.html#cb163-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> av_t), <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="lab-6-climate-trend-analysis.html#cb164-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
+<span id="cb164-2"><a href="lab-6-climate-trend-analysis.html#cb164-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr, <span class="at">y =</span> tot_p)) <span class="sc">+</span></span>
+<span id="cb164-3"><a href="lab-6-climate-trend-analysis.html#cb164-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb164-4"><a href="lab-6-climate-trend-analysis.html#cb164-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb164-5"><a href="lab-6-climate-trend-analysis.html#cb164-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
+<span id="cb164-6"><a href="lab-6-climate-trend-analysis.html#cb164-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Total annual P (mm)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Water year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb164-7"><a href="lab-6-climate-trend-analysis.html#cb164-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-153-2.png" width="672" /></p>
 </div>
-<div id="trend-analysis-and-creating-table-1" class="section level3 hasAnchor" number="14.2.6">
-<h3><span class="header-section-number">14.2.6</span> Trend analysis and creating Table 1<a href="lab-6-climate-trend-analysis.html#trend-analysis-and-creating-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="trend-analysis-and-creating-table-1" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Trend analysis and creating Table 1<a href="lab-6-climate-trend-analysis.html#trend-analysis-and-creating-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next, you will fill in a table. The table will have columns for:</p>
 <ul>
 <li><p>See the word doc handout for an example of the table that you will fill in.</p></li>
@@ -463,19 +527,53 @@ do_stuff()
 <li><p>the p-value for the Mann-Kendall test. We will use p &lt; 0.05 as an indicator of a significant trend.</p></li>
 <li><p>the slope of the trend as given by the Sen’s slope.</p></li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="lab-6-climate-trend-analysis.html#cb154-1" tabindex="-1"></a><span class="co">#t_sens_av_t &lt;- sens.slope(met_data_an$av_t) # this is how you would get the MK p-value and Sen&#39;s slope for one of the variables (av_t) in the data frame. Collaborate with your classmates, consult google, Stack Overflow, chatgpt (etc.) to explore how to use apply or map to do this for all the variables in the data frame. If you use code from chatgpt cite and critique it.   </span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="lab-6-climate-trend-analysis.html#cb165-1" tabindex="-1"></a>t_sens_tot_p <span class="ot">&lt;-</span> <span class="fu">sens.slope</span>(met_data_an<span class="sc">$</span>tot_p) <span class="co"># this is how you would get the MK p-value and Sen&#39;s slope for one of the variables (av_t) in the data frame. Can you use apply or map to do this for all the variables in the data frame?  </span></span>
+<span id="cb165-2"><a href="lab-6-climate-trend-analysis.html#cb165-2" tabindex="-1"></a></span>
+<span id="cb165-3"><a href="lab-6-climate-trend-analysis.html#cb165-3" tabindex="-1"></a>t_sens_tot_p[<span class="dv">3</span>]</span></code></pre></div>
 <p>Both apply and map return a list. “A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.”</p>
 <p>Here is a link with information about lists and how to access elements within the list <a href="https://data-flair.training/blogs/r-list-tutorial/" class="uri">https://data-flair.training/blogs/r-list-tutorial/</a></p>
-<p>The functions and iteration chapters in RDS are both very useful resources for functions and iteration (e.g., apply, map).</p>
-<p><a href="https://r4ds.had.co.nz/index.html" target="_blank">Link to RDS 1st edition</a></p>
-<p><a href="https://r4ds.hadley.nz/" target="_blank">Link to RDS 2nd edition</a></p>
-<p>The functions and iteration chapters in each are useful.</p>
+<p>Chapters 19 &amp; 21 in RDS are both very useful resources for functions and iteration (e.g., apply, map).</p>
 <p>In the next class I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="lab-6-climate-trend-analysis.html#cb166-1" tabindex="-1"></a>met_test_data <span class="ot">&lt;-</span> met_data_an <span class="sc">%&gt;%</span> </span>
+<span id="cb166-2"><a href="lab-6-climate-trend-analysis.html#cb166-2" tabindex="-1"></a>  <span class="fu">filter</span>(wtr_yr <span class="sc">&gt;</span> <span class="dv">1989</span> <span class="sc">&amp;</span> wtr_yr <span class="sc">&lt;</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-3"><a href="lab-6-climate-trend-analysis.html#cb166-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>wtr_yr)</span>
+<span id="cb166-4"><a href="lab-6-climate-trend-analysis.html#cb166-4" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="lab-6-climate-trend-analysis.html#cb166-5" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> met_test_data,    <span class="co"># The data frame you want to apply to</span></span>
+<span id="cb166-6"><a href="lab-6-climate-trend-analysis.html#cb166-6" tabindex="-1"></a>      <span class="at">FUN =</span> sens.slope,           <span class="co"># The function you want to run</span></span>
+<span id="cb166-7"><a href="lab-6-climate-trend-analysis.html#cb166-7" tabindex="-1"></a>      <span class="at">MARGIN =</span> <span class="dv">2</span>)                 <span class="co"># Margin (axis) to apply over 1 = rows, 2 = columns</span></span>
+<span id="cb166-8"><a href="lab-6-climate-trend-analysis.html#cb166-8" tabindex="-1"></a></span>
+<span id="cb166-9"><a href="lab-6-climate-trend-analysis.html#cb166-9" tabindex="-1"></a>test[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)]]</span>
+<span id="cb166-10"><a href="lab-6-climate-trend-analysis.html#cb166-10" tabindex="-1"></a></span>
+<span id="cb166-11"><a href="lab-6-climate-trend-analysis.html#cb166-11" tabindex="-1"></a>test_map <span class="ot">&lt;-</span> met_test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb166-12"><a href="lab-6-climate-trend-analysis.html#cb166-12" tabindex="-1"></a>  <span class="fu">map</span>(sens.slope)</span>
+<span id="cb166-13"><a href="lab-6-climate-trend-analysis.html#cb166-13" tabindex="-1"></a></span>
+<span id="cb166-14"><a href="lab-6-climate-trend-analysis.html#cb166-14" tabindex="-1"></a><span class="co">#Extract values from the list manually. </span></span>
+<span id="cb166-15"><a href="lab-6-climate-trend-analysis.html#cb166-15" tabindex="-1"></a></span>
+<span id="cb166-16"><a href="lab-6-climate-trend-analysis.html#cb166-16" tabindex="-1"></a>test_map[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]]</span>
+<span id="cb166-17"><a href="lab-6-climate-trend-analysis.html#cb166-17" tabindex="-1"></a></span>
+<span id="cb166-18"><a href="lab-6-climate-trend-analysis.html#cb166-18" tabindex="-1"></a><span class="co">#Extract values from the list using map. This part does the p-values. </span></span>
+<span id="cb166-19"><a href="lab-6-climate-trend-analysis.html#cb166-19" tabindex="-1"></a>p_vals <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb166-20"><a href="lab-6-climate-trend-analysis.html#cb166-20" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb166-21"><a href="lab-6-climate-trend-analysis.html#cb166-21" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb166-22"><a href="lab-6-climate-trend-analysis.html#cb166-22" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&quot;parameter&quot;</span>, </span>
+<span id="cb166-23"><a href="lab-6-climate-trend-analysis.html#cb166-23" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;p_value&quot;</span>,</span>
+<span id="cb166-24"><a href="lab-6-climate-trend-analysis.html#cb166-24" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>())</span>
+<span id="cb166-25"><a href="lab-6-climate-trend-analysis.html#cb166-25" tabindex="-1"></a></span>
+<span id="cb166-26"><a href="lab-6-climate-trend-analysis.html#cb166-26" tabindex="-1"></a><span class="co">#Same as above but for Sens&#39;s slopes. </span></span>
+<span id="cb166-27"><a href="lab-6-climate-trend-analysis.html#cb166-27" tabindex="-1"></a>sens <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
+<span id="cb166-28"><a href="lab-6-climate-trend-analysis.html#cb166-28" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb166-29"><a href="lab-6-climate-trend-analysis.html#cb166-29" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb166-30"><a href="lab-6-climate-trend-analysis.html#cb166-30" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">values_to =</span> <span class="st">&quot;sens_slope&quot;</span>,</span>
+<span id="cb166-31"><a href="lab-6-climate-trend-analysis.html#cb166-31" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb166-32"><a href="lab-6-climate-trend-analysis.html#cb166-32" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name)</span>
+<span id="cb166-33"><a href="lab-6-climate-trend-analysis.html#cb166-33" tabindex="-1"></a>  </span>
+<span id="cb166-34"><a href="lab-6-climate-trend-analysis.html#cb166-34" tabindex="-1"></a>  </span>
+<span id="cb166-35"><a href="lab-6-climate-trend-analysis.html#cb166-35" tabindex="-1"></a><span class="co">#Last, we bind the two data frames together so we have the p-values and the Sen&#39;s slopes both in one df. </span></span>
+<span id="cb166-36"><a href="lab-6-climate-trend-analysis.html#cb166-36" tabindex="-1"></a>sens_p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(p_vals, sens)</span></code></pre></div>
 </div>
-<div id="see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="section level3 hasAnchor" number="14.2.7">
-<h3><span class="header-section-number">14.2.7</span> See summary section at top for questions to answer and deliverable.<a href="lab-6-climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> See summary section at top for questions to answer and deliverable.<a href="lab-6-climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
-</div>
 </div>
 </div>
             </section>

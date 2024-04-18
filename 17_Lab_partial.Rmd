@@ -1,6 +1,6 @@
 
 
-# Lab 6: Modeling in hydrology
+# Lab 8: Modeling in hydrology
 
 [Find repo here](https://github.com/tpcovino/22_predict_peak.git){target="_blank"}
 
