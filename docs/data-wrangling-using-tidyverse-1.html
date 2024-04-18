@@ -4,25 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 19 Data wrangling using tidyverse | Hydrographs &amp; Rating Curves</title>
-  <meta name="description" content="Chapter 19 Data wrangling using tidyverse | Hydrographs &amp; Rating Curves" />
+  <title>Chapter 21 Data wrangling using tidyverse | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 21 Data wrangling using tidyverse | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 19 Data wrangling using tidyverse | Hydrographs &amp; Rating Curves" />
+  <meta property="og:title" content="Chapter 21 Data wrangling using tidyverse | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 19 Data wrangling using tidyverse | Hydrographs &amp; Rating Curves" />
+  <meta name="twitter:title" content="Chapter 21 Data wrangling using tidyverse | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
 
-<meta name="author" content="" />
+<meta name="author" content="Tim Covino" />
 
 
+<meta name="date" content="2024-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -30,7 +31,7 @@
   
   
 <link rel="prev" href="intro-to-data-visualization-1.html"/>
-<link rel="next" href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"/>
+<link rel="next" href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,11 +52,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
@@ -64,9 +66,9 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
 <script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
@@ -203,254 +205,418 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.16" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#thats-it-for-today"><i class="fa fa-check"></i><b>3.16</b> That’s it for today</a></li>
 <li class="chapter" data-level="3.17" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#exit-ticket-1"><i class="fa fa-check"></i><b>3.17</b> Exit ticket</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html"><i class="fa fa-check"></i><b>4</b> Lab 1: Data vis, wrangling, and programming (45 pts)</a>
+<li class="chapter" data-level="4" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html"><i class="fa fa-check"></i><b>4</b> Lab 1: Data vis, wrangling, and programming (12 pts)</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-1-5-pts"><i class="fa fa-check"></i><b>4.1</b> Problem 1 (5 pts)</a></li>
-<li class="chapter" data-level="4.2" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-2-10-pts"><i class="fa fa-check"></i><b>4.2</b> Problem 2 (10 pts)</a></li>
-<li class="chapter" data-level="4.3" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-3-10-pts"><i class="fa fa-check"></i><b>4.3</b> Problem 3 (10 pts)</a></li>
-<li class="chapter" data-level="4.4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-4-10-pts"><i class="fa fa-check"></i><b>4.4</b> Problem 4 (10 pts)</a></li>
-<li class="chapter" data-level="4.5" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-5-5-pts"><i class="fa fa-check"></i><b>4.5</b> Problem 5 (5 pts)</a></li>
-<li class="chapter" data-level="4.6" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#problem-6-5-pts"><i class="fa fa-check"></i><b>4.6</b> Problem 6 (5 pts)</a></li>
-<li class="chapter" data-level="4.7" data-path="lab-1-data-vis-wrangling-and-programming-45-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts.html#summary"><i class="fa fa-check"></i><b>4.7</b> Summary</a></li>
+<li class="chapter" data-level="4.1" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-1-1-pts"><i class="fa fa-check"></i><b>4.1</b> Problem 1 (1 pts)</a></li>
+<li class="chapter" data-level="4.2" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-2-1-pts"><i class="fa fa-check"></i><b>4.2</b> Problem 2 (1 pts)</a></li>
+<li class="chapter" data-level="4.3" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-3-2-pts"><i class="fa fa-check"></i><b>4.3</b> Problem 3 (2 pts)</a></li>
+<li class="chapter" data-level="4.4" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-4-2-pts"><i class="fa fa-check"></i><b>4.4</b> Problem 4 (2 pts)</a></li>
+<li class="chapter" data-level="4.5" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-5-2-pts"><i class="fa fa-check"></i><b>4.5</b> Problem 5 (2 pts)</a></li>
+<li class="chapter" data-level="4.6" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#problem-6-2-pts"><i class="fa fa-check"></i><b>4.6</b> Problem 6 (2 pts)</a></li>
+<li class="chapter" data-level="4.7" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#summary-2-pts"><i class="fa fa-check"></i><b>4.7</b> Summary (2 pts)</a></li>
+<li class="chapter" data-level="4.8" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#feeback"><i class="fa fa-check"></i><b>4.8</b> Feeback</a></li>
+<li class="chapter" data-level="4.9" data-path="lab-1-data-vis-wrangling-and-programming-12-pts.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts.html#deliverables"><i class="fa fa-check"></i><b>4.9</b> Deliverables</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html"><i class="fa fa-check"></i><b>5</b> Statistics in hydrology - Unit 3</a>
+<li class="chapter" data-level="5" data-path="dataretrieval.html"><a href="dataretrieval.html"><i class="fa fa-check"></i><b>5</b> dataRetrieval</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#learning-objectives-2"><i class="fa fa-check"></i><b>5.1</b> Learning objectives</a></li>
-<li class="chapter" data-level="5.2" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q1-2-pts"><i class="fa fa-check"></i><b>5.2</b> Homework Q1 (2 pts)</a></li>
-<li class="chapter" data-level="5.3" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#what-is-the-difference-between-a-sample-and-a-population"><i class="fa fa-check"></i><b>5.3</b> What is the difference between a sample and a population?</a></li>
-<li class="chapter" data-level="5.4" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q2-2-pts"><i class="fa fa-check"></i><b>5.4</b> Homework Q2 (2 pts)</a></li>
-<li class="chapter" data-level="5.5" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#measuring-our-sample-distribution-central-tendency"><i class="fa fa-check"></i><b>5.5</b> Measuring our sample distribution: central tendency</a></li>
-<li class="chapter" data-level="5.6" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#so-whats-a-weighted-average"><i class="fa fa-check"></i><b>5.6</b> So what’s a weighted average?</a></li>
-<li class="chapter" data-level="5.7" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#measures-of-variability"><i class="fa fa-check"></i><b>5.7</b> Measures of variability</a></li>
-<li class="chapter" data-level="5.8" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q3-2-pts"><i class="fa fa-check"></i><b>5.8</b> Homework Q3 (2 pts)</a></li>
-<li class="chapter" data-level="5.9" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one"><i class="fa fa-check"></i><b>5.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
-<li class="chapter" data-level="5.10" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q4-2-pts"><i class="fa fa-check"></i><b>5.10</b> Homework Q4 (2 pts)</a></li>
-<li class="chapter" data-level="5.11" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#homework-q5-2-pts"><i class="fa fa-check"></i><b>5.11</b> Homework Q5 (2 pts)</a></li>
-<li class="chapter" data-level="5.12" data-path="statistics-in-hydrology---unit-3.html"><a href="statistics-in-hydrology---unit-3.html#deliverable-10-pts-due-thursday-22-by-1159-pm"><i class="fa fa-check"></i><b>5.12</b> Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)</a></li>
+<li class="chapter" data-level="5.1" data-path="dataretrieval.html"><a href="dataretrieval.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="dataretrieval.html"><a href="dataretrieval.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>5.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="5.3" data-path="dataretrieval.html"><a href="dataretrieval.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>5.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="5.4" data-path="dataretrieval.html"><a href="dataretrieval.html#joins"><i class="fa fa-check"></i><b>5.4</b> Joins</a></li>
+<li class="chapter" data-level="5.5" data-path="dataretrieval.html"><a href="dataretrieval.html#join-practice-example"><i class="fa fa-check"></i><b>5.5</b> Join practice example</a></li>
+<li class="chapter" data-level="5.6" data-path="dataretrieval.html"><a href="dataretrieval.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>5.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html"><i class="fa fa-check"></i><b>6</b> Lab 2: Statistics in hydrology (30 pts)</a>
+<li class="chapter" data-level="6" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><i class="fa fa-check"></i><b>6</b> Lab 2: dataRetrieval and area normalized flows (20 pts)</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-1-5-pts-1"><i class="fa fa-check"></i><b>6.1</b> Problem 1 (5 pts)</a></li>
-<li class="chapter" data-level="6.2" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-2-5-pts"><i class="fa fa-check"></i><b>6.2</b> Problem 2 (5 pts)</a></li>
-<li class="chapter" data-level="6.3" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-3-5-pts"><i class="fa fa-check"></i><b>6.3</b> Problem 3 (5 pts)</a></li>
-<li class="chapter" data-level="6.4" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-4-5-pts"><i class="fa fa-check"></i><b>6.4</b> Problem 4 (5 pts)</a></li>
-<li class="chapter" data-level="6.5" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-5-5-pts-1"><i class="fa fa-check"></i><b>6.5</b> Problem 5 (5 pts)</a></li>
-<li class="chapter" data-level="6.6" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#problem-6-5-pts-1"><i class="fa fa-check"></i><b>6.6</b> Problem 6 (5 pts)</a></li>
-<li class="chapter" data-level="6.7" data-path="lab-2-statistics-in-hydrology-30-pts.html"><a href="lab-2-statistics-in-hydrology-30-pts.html#deliverable"><i class="fa fa-check"></i><b>6.7</b> Deliverable</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html"><i class="fa fa-check"></i><b>7</b> USGS dataRetrieval: Part 1</a>
+<li class="chapter" data-level="6.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#goals"><i class="fa fa-check"></i><b>7.1</b> Goals</a></li>
-<li class="chapter" data-level="7.2" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#exploring-what-dataretrieval-can-do"><i class="fa fa-check"></i><b>7.2</b> Exploring what dataRetrieval can do</a></li>
-<li class="chapter" data-level="7.3" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#first-lets-map-these-sites."><i class="fa fa-check"></i><b>7.3</b> First, let’s map these sites.</a></li>
-<li class="chapter" data-level="7.4" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#joins"><i class="fa fa-check"></i><b>7.4</b> Joins</a></li>
-<li class="chapter" data-level="7.5" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#join-practice-example"><i class="fa fa-check"></i><b>7.5</b> Join practice example</a></li>
-<li class="chapter" data-level="7.6" data-path="usgs-dataretrieval-part-1.html"><a href="usgs-dataretrieval-part-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>7.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+<li class="chapter" data-level="6.1.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)</a>
+<li class="chapter" data-level="6.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
+<li class="chapter" data-level="6.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html"><i class="fa fa-check"></i><b>7</b> Statistics in hydrology</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#summary-20-pts"><i class="fa fa-check"></i><b>8.1</b> Summary (20 pts)</a></li>
-<li class="chapter" data-level="8.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts.html#deliverable-1"><i class="fa fa-check"></i><b>8.2</b> Deliverable</a></li>
+<li class="chapter" data-level="7.1" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#learning-objectives-2"><i class="fa fa-check"></i><b>7.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q1-2-pts"><i class="fa fa-check"></i><b>7.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="7.3" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-the-difference-between-a-sample-and-a-population"><i class="fa fa-check"></i><b>7.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="7.4" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q2-2-pts"><i class="fa fa-check"></i><b>7.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="7.5" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measuring-our-sample-distribution-central-tendency"><i class="fa fa-check"></i><b>7.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="7.6" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#so-whats-a-weighted-average"><i class="fa fa-check"></i><b>7.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="7.7" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#measures-of-variability"><i class="fa fa-check"></i><b>7.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="7.8" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q3-2-pts"><i class="fa fa-check"></i><b>7.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="7.9" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one"><i class="fa fa-check"></i><b>7.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="7.10" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q4-2-pts"><i class="fa fa-check"></i><b>7.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="7.11" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#homework-q5-2-pts"><i class="fa fa-check"></i><b>7.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="7.12" data-path="statistics-in-hydrology.html"><a href="statistics-in-hydrology.html#deliverable-10-pts-due-thursday-215-by-1159-pm"><i class="fa fa-check"></i><b>7.12</b> Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html"><i class="fa fa-check"></i><b>9</b> Demo: dataRetrieval and StreamStats</a>
+<li class="chapter" data-level="8" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html"><i class="fa fa-check"></i><b>8</b> Lab 3: Statistics in hydrology (33 pts)</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#load-some-standard-packages."><i class="fa fa-check"></i><b>9.1</b> Load some standard packages.</a></li>
-<li class="chapter" data-level="9.2" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#define-parameters-for-dataretrieval."><i class="fa fa-check"></i><b>9.2</b> Define parameters for dataRetrieval.</a></li>
-<li class="chapter" data-level="9.3" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-look-for-sites-based-on-state-county-huc-site-number-etc."><i class="fa fa-check"></i><b>9.3</b> We can look for sites based on state, county, huc, site number, etc.</a></li>
-<li class="chapter" data-level="9.4" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data."><i class="fa fa-check"></i><b>9.4</b> We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data.</a></li>
-<li class="chapter" data-level="9.5" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#streamstats"><i class="fa fa-check"></i><b>9.5</b> StreamStats</a>
+<li class="chapter" data-level="8.1" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-1-5-pts"><i class="fa fa-check"></i><b>8.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="8.2" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-2-5-pts"><i class="fa fa-check"></i><b>8.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="8.3" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-3-5-pts"><i class="fa fa-check"></i><b>8.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="8.4" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-4-5-pts"><i class="fa fa-check"></i><b>8.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="8.5" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-5-5-pts"><i class="fa fa-check"></i><b>8.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="8.6" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#problem-6-5-pts"><i class="fa fa-check"></i><b>8.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="8.7" data-path="lab-3-statistics-in-hydrology-33-pts.html"><a href="lab-3-statistics-in-hydrology-33-pts.html#deliverable"><i class="fa fa-check"></i><b>8.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html"><i class="fa fa-check"></i><b>9</b> Hydrographs and rating curves (6 pts)</a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#delineate-one-watershed-in-streamstats"><i class="fa fa-check"></i><b>9.5.1</b> Delineate one watershed in StreamStats</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="demo-dataretrieval-and-streamstats.html"><a href="demo-dataretrieval-and-streamstats.html#lab-3-demo"><i class="fa fa-check"></i><b>9.6</b> Lab 3 Demo</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="exam-1-units-1---4.html"><a href="exam-1-units-1---4.html"><i class="fa fa-check"></i><b>10</b> Exam 1: Units 1 - 4</a></li>
-<li class="chapter" data-level="11" data-path="demo-on-calculating-flow-totals-in-mm..html"><a href="demo-on-calculating-flow-totals-in-mm..html"><i class="fa fa-check"></i><b>11</b> Demo on calculating flow totals in mm.</a></li>
-<li class="chapter" data-level="12" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><i class="fa fa-check"></i><b>12</b> Supplemental chapter on field methods in fluvial geomorphology</a>
+<li class="chapter" data-level="9.1" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#overall-learning-objectives"><i class="fa fa-check"></i><b>9.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#reading"><i class="fa fa-check"></i><b>9.2</b> Reading</a></li>
+<li class="chapter" data-level="9.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#lecture"><i class="fa fa-check"></i><b>9.3</b> Lecture</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#overall-learning-objectives"><i class="fa fa-check"></i><b>12.1</b> Overall Learning Objectives:</a></li>
-<li class="chapter" data-level="12.2" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#lecture"><i class="fa fa-check"></i><b>12.2</b> Lecture</a></li>
-<li class="chapter" data-level="12.3" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#stream-cross-section-and-gradient"><i class="fa fa-check"></i><b>12.3</b> Stream Cross Section and Gradient</a></li>
-<li class="chapter" data-level="12.4" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#wolman-pebble-count"><i class="fa fa-check"></i><b>12.4</b> Wolman Pebble Count</a></li>
-<li class="chapter" data-level="12.5" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#mannings-roughness-coefficient"><i class="fa fa-check"></i><b>12.5</b> Manning’s Roughness Coefficient</a></li>
-<li class="chapter" data-level="12.6" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#rosgen-stream-classification"><i class="fa fa-check"></i><b>12.6</b> Rosgen Stream Classification</a></li>
-<li class="chapter" data-level="12.7" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology.html#relative-bed-stability-rbs"><i class="fa fa-check"></i><b>12.7</b> Relative Bed Stability (RBS)</a></li>
+<li class="chapter" data-level="9.3.1" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#hydrographs-and-rating-curves"><i class="fa fa-check"></i><b>9.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="9.3.2" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>9.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="9.3.3" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#field-measurements-of-area-velocity"><i class="fa fa-check"></i><b>9.3.3</b> Field Measurements of Area-Velocity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#making-stage-measurements"><i class="fa fa-check"></i><b>9.3.4</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="9.3.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>9.3.5</b> Applications of streamflow and stream gage</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="lab-4---rating-curve-analysis.html"><a href="lab-4---rating-curve-analysis.html"><i class="fa fa-check"></i><b>13</b> Lab 4 - Rating curve analysis</a></li>
-<li class="chapter" data-level="14" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html"><i class="fa fa-check"></i><b>14</b> Hydrographs and rating curves</a>
+<li class="chapter" data-level="9.4" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>9.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="9.5" data-path="hydrographs-and-rating-curves-6-pts.html"><a href="hydrographs-and-rating-curves-6-pts.html#summary-questions-and-deliverable-6-pts"><i class="fa fa-check"></i><b>9.5</b> Summary questions and deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html"><i class="fa fa-check"></i><b>10</b> Lab 4: Rating cuve lab (15 pts)</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#overall-learning-objectives-1"><i class="fa fa-check"></i><b>14.1</b> Overall Learning Objectives</a></li>
-<li class="chapter" data-level="14.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#reading"><i class="fa fa-check"></i><b>14.2</b> Reading</a></li>
-<li class="chapter" data-level="14.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#lecture-1"><i class="fa fa-check"></i><b>14.3</b> Lecture</a>
+<li class="chapter" data-level="10.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-1"><i class="fa fa-check"></i><b>10.1</b> Problem 1</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#hydrographs-and-rating-curves-1"><i class="fa fa-check"></i><b>14.3.1</b> Hydrographs and Rating Curves</a></li>
-<li class="chapter" data-level="14.3.2" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#rain-versus-snow-dominated-systems"><i class="fa fa-check"></i><b>14.3.2</b> Rain versus Snow dominated systems</a></li>
-<li class="chapter" data-level="14.3.3" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#making-stage-measurements"><i class="fa fa-check"></i><b>14.3.3</b> Making Stage Measurements</a></li>
-<li class="chapter" data-level="14.3.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#applications-of-streamflow-and-stream-gage"><i class="fa fa-check"></i><b>14.3.4</b> Applications of streamflow and stream gage</a></li>
+<li class="chapter" data-level="10.1.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q1.1.-3-pts"><i class="fa fa-check"></i><b>10.1.1</b> Q1.1. (3 pts)</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#optional-activity-to-gain-deeper-understanding-of-rating-curve"><i class="fa fa-check"></i><b>14.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
-<li class="chapter" data-level="14.5" data-path="hydrographs-and-rating-curves.html"><a href="hydrographs-and-rating-curves.html#summary-questions"><i class="fa fa-check"></i><b>14.5</b> Summary questions</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html"><i class="fa fa-check"></i><b>15</b> Flow Duration Curves</a>
+<li class="chapter" data-level="10.2" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-2"><i class="fa fa-check"></i><b>10.2</b> Problem 2</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#get-data"><i class="fa fa-check"></i><b>15.1</b> Get data</a></li>
-<li class="chapter" data-level="15.2" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>15.2</b> Review: describe the distribution</a></li>
-<li class="chapter" data-level="15.3" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#ecdfs"><i class="fa fa-check"></i><b>15.3</b> ECDFs</a></li>
-<li class="chapter" data-level="15.4" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>15.4</b> Calculate flow exceedence probabilities</a></li>
-<li class="chapter" data-level="15.5" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>15.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
-<li class="chapter" data-level="15.6" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>15.6</b> Example use of an FDC</a></li>
-<li class="chapter" data-level="15.7" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>15.7</b> Compare to a boxplot of the same data</a></li>
-<li class="chapter" data-level="15.8" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#challenge-examining-flow-regime-change-at-the-grand-canyon"><i class="fa fa-check"></i><b>15.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
-<li class="chapter" data-level="15.9" data-path="flow-duration-curves.html"><a href="flow-duration-curves.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics."><i class="fa fa-check"></i><b>15.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+<li class="chapter" data-level="10.2.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q2.1.-2-pt"><i class="fa fa-check"></i><b>10.2.1</b> Q2.1. (2 pt)</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="lab-5---low-flow-analysis.html"><a href="lab-5---low-flow-analysis.html"><i class="fa fa-check"></i><b>16</b> Lab 5 - Low Flow Analysis</a></li>
-<li class="chapter" data-level="17" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>17</b> Introduction</a>
+<li class="chapter" data-level="10.3" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-3"><i class="fa fa-check"></i><b>10.3</b> Problem 3</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>17.1</b> Course overview and objectives</a></li>
-<li class="chapter" data-level="17.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>17.2</b> Structure</a></li>
-<li class="chapter" data-level="17.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>17.3</b> Tentative schedule, subject to change</a></li>
+<li class="chapter" data-level="10.3.1" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#q3.1.-5-pts"><i class="fa fa-check"></i><b>10.3.1</b> Q3.1. (5 pts)</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>18</b> Intro to data visualization</a>
+<li class="chapter" data-level="10.4" data-path="lab-4-rating-cuve-lab-15-pts.html"><a href="lab-4-rating-cuve-lab-15-pts.html#problem-4"><i class="fa fa-check"></i><b>10.4</b> Problem 4</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html"><i class="fa fa-check"></i><b>11</b> Flow Duration Curves (12 pts)</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>18.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="18.2" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#download-and-install-tidyverse-library-1"><i class="fa fa-check"></i><b>18.2</b> Download and install tidyverse library</a></li>
-<li class="chapter" data-level="18.3" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#reading-data-1"><i class="fa fa-check"></i><b>18.3</b> Reading data</a></li>
-<li class="chapter" data-level="18.4" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#our-first-ggplot-1"><i class="fa fa-check"></i><b>18.4</b> Our first ggplot</a></li>
-<li class="chapter" data-level="18.5" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#change-point-type-1"><i class="fa fa-check"></i><b>18.5</b> Change point type</a></li>
-<li class="chapter" data-level="18.6" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#set-colors-1"><i class="fa fa-check"></i><b>18.6</b> Set colors</a></li>
-<li class="chapter" data-level="18.7" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#controlling-color-with-a-third-variable-and-other-functions-1"><i class="fa fa-check"></i><b>18.7</b> Controlling color with a third variable and other functions</a></li>
-<li class="chapter" data-level="18.8" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#plotting-multiple-groups-adding-a-third-variable-1"><i class="fa fa-check"></i><b>18.8</b> Plotting multiple groups (adding a third variable)</a></li>
-<li class="chapter" data-level="18.9" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#facets-1"><i class="fa fa-check"></i><b>18.9</b> Facets</a></li>
-<li class="chapter" data-level="18.10" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#two-variable-faceting-1"><i class="fa fa-check"></i><b>18.10</b> Two variable faceting</a></li>
-<li class="chapter" data-level="18.11" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#boxplots-1"><i class="fa fa-check"></i><b>18.11</b> Boxplots</a></li>
-<li class="chapter" data-level="18.12" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#more-about-color-size-etc-1"><i class="fa fa-check"></i><b>18.12</b> More about color, size, etc</a></li>
-<li class="chapter" data-level="18.13" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#multiple-geoms-1"><i class="fa fa-check"></i><b>18.13</b> Multiple geoms</a></li>
-<li class="chapter" data-level="18.14" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#exit-ticket-2"><i class="fa fa-check"></i><b>18.14</b> Exit ticket</a></li>
+<li class="chapter" data-level="11.1" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#lecture-1"><i class="fa fa-check"></i><b>11.1</b> Lecture</a></li>
+<li class="chapter" data-level="11.2" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#reading-1"><i class="fa fa-check"></i><b>11.2</b> Reading</a></li>
+<li class="chapter" data-level="11.3" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#packages-and-coding"><i class="fa fa-check"></i><b>11.3</b> Packages and coding</a></li>
+<li class="chapter" data-level="11.4" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#get-data"><i class="fa fa-check"></i><b>11.4</b> Get data</a></li>
+<li class="chapter" data-level="11.5" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#review-describe-the-distribution"><i class="fa fa-check"></i><b>11.5</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="11.6" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#ecdfs"><i class="fa fa-check"></i><b>11.6</b> ECDFs</a></li>
+<li class="chapter" data-level="11.7" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#calculate-flow-exceedence-probabilities"><i class="fa fa-check"></i><b>11.7</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="11.8" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#plot-a-flow-duration-curve-using-the-probabilities"><i class="fa fa-check"></i><b>11.8</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="11.9" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#example-use-of-an-fdc"><i class="fa fa-check"></i><b>11.9</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="11.10" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020."><i class="fa fa-check"></i><b>11.10</b> Module Question 1 (2 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.</a></li>
+<li class="chapter" data-level="11.11" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#compare-to-a-boxplot-of-the-same-data"><i class="fa fa-check"></i><b>11.11</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="11.12" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots"><i class="fa fa-check"></i><b>11.12</b> Module Question 2 (2 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?</a></li>
+<li class="chapter" data-level="11.13" data-path="flow-duration-curves-12-pts.html"><a href="flow-duration-curves-12-pts.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-12-pts"><i class="fa fa-check"></i><b>11.13</b> Module Summary Assignment: Examining flow regime change at the Grand Canyon (12 pts)</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html"><i class="fa fa-check"></i><b>19</b> Data wrangling using tidyverse</a>
+<li class="chapter" data-level="12" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html"><i class="fa fa-check"></i><b>12</b> Lab 5: Low Flow Analysis (15 pts)</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#introduction-3"><i class="fa fa-check"></i><b>19.1</b> Introduction</a></li>
-<li class="chapter" data-level="19.2" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#learning-objectives-4"><i class="fa fa-check"></i><b>19.2</b> Learning objectives:</a></li>
-<li class="chapter" data-level="19.3" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-use-r-as-a-calculator-1"><i class="fa fa-check"></i><b>19.3</b> You can use R as a calculator</a></li>
-<li class="chapter" data-level="19.4" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-create-new-objects-using---1"><i class="fa fa-check"></i><b>19.4</b> You can create new objects using &lt;-</a></li>
-<li class="chapter" data-level="19.5" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#using-functions-1"><i class="fa fa-check"></i><b>19.5</b> Using functions</a></li>
-<li class="chapter" data-level="19.6" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#read-in-some-data-1"><i class="fa fa-check"></i><b>19.6</b> Read in some data</a></li>
-<li class="chapter" data-level="19.7" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#what-is-a-tibble-1"><i class="fa fa-check"></i><b>19.7</b> What is a tibble?</a></li>
-<li class="chapter" data-level="19.8" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#data-wrangling-in-dplyr-1"><i class="fa fa-check"></i><b>19.8</b> Data wrangling in dplyr</a></li>
-<li class="chapter" data-level="19.9" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#filter-1"><i class="fa fa-check"></i><b>19.9</b> Filter</a>
+<li class="chapter" data-level="12.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#what-are-low-flow-statistics"><i class="fa fa-check"></i><b>12.1</b> What are low flow statistics?</a></li>
+<li class="chapter" data-level="12.2" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#get-data-1"><i class="fa fa-check"></i><b>12.2</b> Get data</a></li>
+<li class="chapter" data-level="12.3" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#create-the-x-days-average-flow-record"><i class="fa fa-check"></i><b>12.3</b> Create the X days average flow record</a></li>
+<li class="chapter" data-level="12.4" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#look-at-what-a-rolling-mean-does."><i class="fa fa-check"></i><b>12.4</b> Look at what a rolling mean does.</a></li>
+<li class="chapter" data-level="12.5" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#calculate-yearly-minimums"><i class="fa fa-check"></i><b>12.5</b> Calculate yearly minimums</a>
 <ul>
-<li class="chapter" data-level="19.9.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-conditions-1"><i class="fa fa-check"></i><b>19.9.1</b> Multiple conditions</a></li>
+<li class="chapter" data-level="12.5.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#challenge"><i class="fa fa-check"></i><b>12.5.1</b> Challenge</a></li>
 </ul></li>
-<li class="chapter" data-level="19.10" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#arrange-1"><i class="fa fa-check"></i><b>19.10</b> Arrange</a></li>
-<li class="chapter" data-level="19.11" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#select-1"><i class="fa fa-check"></i><b>19.11</b> Select</a></li>
-<li class="chapter" data-level="19.12" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#mutate-1"><i class="fa fa-check"></i><b>19.12</b> Mutate</a></li>
-<li class="chapter" data-level="19.13" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#summarize-1"><i class="fa fa-check"></i><b>19.13</b> Summarize</a></li>
-<li class="chapter" data-level="19.14" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-operations-with-pipes-1"><i class="fa fa-check"></i><b>19.14</b> Multiple operations with pipes</a></li>
-<li class="chapter" data-level="19.15" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#a-final-comment-on-nas-1"><i class="fa fa-check"></i><b>19.15</b> A final comment on NAs</a></li>
-<li class="chapter" data-level="19.16" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#thats-it-for-today-1"><i class="fa fa-check"></i><b>19.16</b> That’s it for today</a></li>
-<li class="chapter" data-level="19.17" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#exit-ticket-3"><i class="fa fa-check"></i><b>19.17</b> Exit ticket</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><i class="fa fa-check"></i><b>20</b> Lab 1: Data vis, wrangling, and programming (45 pts)</a>
+<li class="chapter" data-level="12.6" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#calculate-return-interval"><i class="fa fa-check"></i><b>12.6</b> Calculate return interval</a></li>
+<li class="chapter" data-level="12.7" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#fit-to-pearson-type-iii-distribution"><i class="fa fa-check"></i><b>12.7</b> Fit to Pearson Type III distribution</a></li>
+<li class="chapter" data-level="12.8" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#deliverable---summary-questions-12-pts"><i class="fa fa-check"></i><b>12.8</b> Deliverable - Summary questions (12 pts)</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-1-5-pts-2"><i class="fa fa-check"></i><b>20.1</b> Problem 1 (5 pts)</a></li>
-<li class="chapter" data-level="20.2" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-2-10-pts-1"><i class="fa fa-check"></i><b>20.2</b> Problem 2 (10 pts)</a></li>
-<li class="chapter" data-level="20.3" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-3-10-pts-1"><i class="fa fa-check"></i><b>20.3</b> Problem 3 (10 pts)</a></li>
-<li class="chapter" data-level="20.4" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-4-10-pts-1"><i class="fa fa-check"></i><b>20.4</b> Problem 4 (10 pts)</a></li>
-<li class="chapter" data-level="20.5" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-5-5-pts-2"><i class="fa fa-check"></i><b>20.5</b> Problem 5 (5 pts)</a></li>
-<li class="chapter" data-level="20.6" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#problem-6-5-pts-2"><i class="fa fa-check"></i><b>20.6</b> Problem 6 (5 pts)</a></li>
-<li class="chapter" data-level="20.7" data-path="lab-1-data-vis-wrangling-and-programming-45-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html#summary-1"><i class="fa fa-check"></i><b>20.7</b> Summary</a></li>
+<li class="chapter" data-level="12.8.1" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-1-6-pts"><i class="fa fa-check"></i><b>12.8.1</b> Question 1 (6 pts)</a></li>
+<li class="chapter" data-level="12.8.2" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-2-3-pts"><i class="fa fa-check"></i><b>12.8.2</b> Question 2 (3 pts)</a></li>
+<li class="chapter" data-level="12.8.3" data-path="lab-5-low-flow-analysis-15-pts.html"><a href="lab-5-low-flow-analysis-15-pts.html#question-3-6-pts"><i class="fa fa-check"></i><b>12.8.3</b> Question 3 (6 pts)</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html"><i class="fa fa-check"></i><b>21</b> Statistics in hydrology - Unit 3</a>
+</ul></li>
+<li class="chapter" data-level="13" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>13</b> Functions</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#learning-objectives-5"><i class="fa fa-check"></i><b>21.1</b> Learning objectives</a></li>
-<li class="chapter" data-level="21.2" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q1-2-pts-1"><i class="fa fa-check"></i><b>21.2</b> Homework Q1 (2 pts)</a></li>
-<li class="chapter" data-level="21.3" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#what-is-the-difference-between-a-sample-and-a-population-1"><i class="fa fa-check"></i><b>21.3</b> What is the difference between a sample and a population?</a></li>
-<li class="chapter" data-level="21.4" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q2-2-pts-1"><i class="fa fa-check"></i><b>21.4</b> Homework Q2 (2 pts)</a></li>
-<li class="chapter" data-level="21.5" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#measuring-our-sample-distribution-central-tendency-1"><i class="fa fa-check"></i><b>21.5</b> Measuring our sample distribution: central tendency</a></li>
-<li class="chapter" data-level="21.6" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#so-whats-a-weighted-average-1"><i class="fa fa-check"></i><b>21.6</b> So what’s a weighted average?</a></li>
-<li class="chapter" data-level="21.7" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#measures-of-variability-1"><i class="fa fa-check"></i><b>21.7</b> Measures of variability</a></li>
-<li class="chapter" data-level="21.8" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q3-2-pts-1"><i class="fa fa-check"></i><b>21.8</b> Homework Q3 (2 pts)</a></li>
-<li class="chapter" data-level="21.9" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1"><i class="fa fa-check"></i><b>21.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
-<li class="chapter" data-level="21.10" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q4-2-pts-1"><i class="fa fa-check"></i><b>21.10</b> Homework Q4 (2 pts)</a></li>
-<li class="chapter" data-level="21.11" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#homework-q5-2-pts-1"><i class="fa fa-check"></i><b>21.11</b> Homework Q5 (2 pts)</a></li>
-<li class="chapter" data-level="21.12" data-path="statistics-in-hydrology---unit-3-1.html"><a href="statistics-in-hydrology---unit-3-1.html#deliverable-10-pts-due-thursday-22-by-1159-pm-1"><i class="fa fa-check"></i><b>21.12</b> Deliverable (10 pts, due Thursday 2/2 by 11:59 PM)</a></li>
+<li class="chapter" data-level="13.1" data-path="functions.html"><a href="functions.html#reading-on-functions-from-rds-by-hadley-wickham"><i class="fa fa-check"></i><b>13.1</b> Reading on functions from RDS by Hadley Wickham</a></li>
+<li class="chapter" data-level="13.2" data-path="functions.html"><a href="functions.html#tutorial"><i class="fa fa-check"></i><b>13.2</b> Tutorial</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html"><i class="fa fa-check"></i><b>22</b> Lab 2: Statistics in hydrology (30 pts)</a>
+<li class="chapter" data-level="14" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html"><i class="fa fa-check"></i><b>14</b> Climate trend analysis</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-1-5-pts-3"><i class="fa fa-check"></i><b>22.1</b> Problem 1 (5 pts)</a></li>
-<li class="chapter" data-level="22.2" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-2-5-pts-1"><i class="fa fa-check"></i><b>22.2</b> Problem 2 (5 pts)</a></li>
-<li class="chapter" data-level="22.3" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-3-5-pts-1"><i class="fa fa-check"></i><b>22.3</b> Problem 3 (5 pts)</a></li>
-<li class="chapter" data-level="22.4" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-4-5-pts-1"><i class="fa fa-check"></i><b>22.4</b> Problem 4 (5 pts)</a></li>
-<li class="chapter" data-level="22.5" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-5-5-pts-3"><i class="fa fa-check"></i><b>22.5</b> Problem 5 (5 pts)</a></li>
-<li class="chapter" data-level="22.6" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#problem-6-5-pts-3"><i class="fa fa-check"></i><b>22.6</b> Problem 6 (5 pts)</a></li>
-<li class="chapter" data-level="22.7" data-path="lab-2-statistics-in-hydrology-30-pts-1.html"><a href="lab-2-statistics-in-hydrology-30-pts-1.html#deliverable-2"><i class="fa fa-check"></i><b>22.7</b> Deliverable</a></li>
+<li class="chapter" data-level="14.1" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#summary-questions-and-deliverable"><i class="fa fa-check"></i><b>14.1</b> Summary questions and deliverable</a></li>
+<li class="chapter" data-level="14.2" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#new-packages"><i class="fa fa-check"></i><b>14.2</b> New packages</a></li>
+<li class="chapter" data-level="14.3" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#data-download-exploration-and-cleaning"><i class="fa fa-check"></i><b>14.3</b> Data download, exploration and cleaning</a></li>
+<li class="chapter" data-level="14.4" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#computing-annual-values"><i class="fa fa-check"></i><b>14.4</b> Computing annual values</a></li>
+<li class="chapter" data-level="14.5" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#exploratory-data-analysis-eda-of-annual-values"><i class="fa fa-check"></i><b>14.5</b> Exploratory data analysis (EDA) of annual values</a></li>
+<li class="chapter" data-level="14.6" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#trend-analysis-and-creating-table-1"><i class="fa fa-check"></i><b>14.6</b> Trend analysis and creating Table 1</a></li>
+<li class="chapter" data-level="14.7" data-path="climate-trend-analysis.html"><a href="climate-trend-analysis.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable."><i class="fa fa-check"></i><b>14.7</b> See summary section at top for questions to answer and deliverable.</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html"><i class="fa fa-check"></i><b>23</b> USGS dataRetrieval: Part 1</a>
+<li class="chapter" data-level="15" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>15</b> For loops</a>
 <ul>
-<li class="chapter" data-level="23.1" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#goals-1"><i class="fa fa-check"></i><b>23.1</b> Goals</a></li>
-<li class="chapter" data-level="23.2" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#exploring-what-dataretrieval-can-do-1"><i class="fa fa-check"></i><b>23.2</b> Exploring what dataRetrieval can do</a></li>
-<li class="chapter" data-level="23.3" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#first-lets-map-these-sites.-1"><i class="fa fa-check"></i><b>23.3</b> First, let’s map these sites.</a></li>
-<li class="chapter" data-level="23.4" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#joins-1"><i class="fa fa-check"></i><b>23.4</b> Joins</a></li>
-<li class="chapter" data-level="23.5" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#join-practice-example-1"><i class="fa fa-check"></i><b>23.5</b> Join practice example</a></li>
-<li class="chapter" data-level="23.6" data-path="usgs-dataretrieval-part-1-1.html"><a href="usgs-dataretrieval-part-1-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.-1"><i class="fa fa-check"></i><b>23.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+<li class="chapter" data-level="15.1" data-path="for-loops.html"><a href="for-loops.html#libraries"><i class="fa fa-check"></i><b>15.1</b> Libraries</a></li>
+<li class="chapter" data-level="15.2" data-path="for-loops.html"><a href="for-loops.html#defining-parameters"><i class="fa fa-check"></i><b>15.2</b> Defining parameters</a></li>
+<li class="chapter" data-level="15.3" data-path="for-loops.html"><a href="for-loops.html#writing-the-for-loop"><i class="fa fa-check"></i><b>15.3</b> Writing the for loop</a></li>
+<li class="chapter" data-level="15.4" data-path="for-loops.html"><a href="for-loops.html#adding-second-for"><i class="fa fa-check"></i><b>15.4</b> Adding second for</a></li>
+<li class="chapter" data-level="15.5" data-path="for-loops.html"><a href="for-loops.html#removing-the-tmp-file"><i class="fa fa-check"></i><b>15.5</b> Removing the tmp file</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><i class="fa fa-check"></i><b>24</b> Lab 3 - dataRetrieval and area normalized annual flows (20 pts)</a>
+<li class="chapter" data-level="16" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html"><i class="fa fa-check"></i><b>16</b> Downloading DEMs and delineating watersheds (5 pts)</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#summary-20-pts-1"><i class="fa fa-check"></i><b>24.1</b> Summary (20 pts)</a></li>
-<li class="chapter" data-level="24.2" data-path="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html"><a href="lab-3---dataretrieval-and-area-normalized-annual-flows-20-pts-1.html#deliverable-3"><i class="fa fa-check"></i><b>24.2</b> Deliverable</a></li>
+<li class="chapter" data-level="16.1" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html#repo-here"><i class="fa fa-check"></i><b>16.1</b> Repo here</a></li>
+<li class="chapter" data-level="16.2" data-path="downloading-dems-and-delineating-watersheds-5-pts.html"><a href="downloading-dems-and-delineating-watersheds-5-pts.html#streamstats"><i class="fa fa-check"></i><b>16.2</b> StreamStats</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html"><i class="fa fa-check"></i><b>25</b> Demo: dataRetrieval and StreamStats</a>
+<li class="chapter" data-level="17" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html"><i class="fa fa-check"></i><b>17</b> Lab 6: Modeling in hydrology</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#load-some-standard-packages.-1"><i class="fa fa-check"></i><b>25.1</b> Load some standard packages.</a></li>
-<li class="chapter" data-level="25.2" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#define-parameters-for-dataretrieval.-1"><i class="fa fa-check"></i><b>25.2</b> Define parameters for dataRetrieval.</a></li>
-<li class="chapter" data-level="25.3" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#we-can-look-for-sites-based-on-state-county-huc-site-number-etc.-1"><i class="fa fa-check"></i><b>25.3</b> We can look for sites based on state, county, huc, site number, etc.</a></li>
-<li class="chapter" data-level="25.4" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#we-can-use-dataretrieval-to-look-for-water-quality-data-in-the-water-quality-portal-wqp-and-we-can-search-for-groundwater-data.-1"><i class="fa fa-check"></i><b>25.4</b> We can use dataRetrieval to look for water quality data in the Water Quality Portal (WQP) and we can search for groundwater data.</a></li>
-<li class="chapter" data-level="25.5" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#streamstats-1"><i class="fa fa-check"></i><b>25.5</b> StreamStats</a>
+<li class="chapter" data-level="17.1" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#background"><i class="fa fa-check"></i><b>17.1</b> Background</a>
 <ul>
-<li class="chapter" data-level="25.5.1" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#delineate-one-watershed-in-streamstats-1"><i class="fa fa-check"></i><b>25.5.1</b> Delineate one watershed in StreamStats</a></li>
+<li class="chapter" data-level="17.1.1" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#identifying-the-question"><i class="fa fa-check"></i><b>17.1.1</b> Identifying the question</a></li>
+<li class="chapter" data-level="17.1.2" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#modeling-approaches"><i class="fa fa-check"></i><b>17.1.2</b> Modeling approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="25.6" data-path="demo-dataretrieval-and-streamstats-1.html"><a href="demo-dataretrieval-and-streamstats-1.html#lab-3-demo-1"><i class="fa fa-check"></i><b>25.6</b> Lab 3 Demo</a></li>
+<li class="chapter" data-level="17.2" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.2</b> Question 1 (3 pts)</a></li>
+<li class="chapter" data-level="17.3" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.3</b> Download and explore flow data</a></li>
+<li class="chapter" data-level="17.4" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.4</b> Extract peak flow values</a></li>
+<li class="chapter" data-level="17.5" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.5</b> Choose Snotel Sites</a></li>
+<li class="chapter" data-level="17.6" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.6</b> Working with spatial data</a></li>
+<li class="chapter" data-level="17.7" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.7</b> Download and explore Snotel</a></li>
+<li class="chapter" data-level="17.8" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-2-3-points"><i class="fa fa-check"></i><b>17.8</b> Question 2 (3 points)</a></li>
+<li class="chapter" data-level="17.9" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.9</b> Extract peak SWE values</a></li>
+<li class="chapter" data-level="17.10" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.10</b> Peak SWE and Q</a></li>
+<li class="chapter" data-level="17.11" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-3-points"><i class="fa fa-check"></i><b>17.11</b> Question (3 points)</a></li>
+<li class="chapter" data-level="17.12" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#model-inputs"><i class="fa fa-check"></i><b>17.12</b> Model inputs</a></li>
+<li class="chapter" data-level="17.13" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#run-model"><i class="fa fa-check"></i><b>17.13</b> Run model</a></li>
+<li class="chapter" data-level="17.14" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-4-3-points"><i class="fa fa-check"></i><b>17.14</b> Question 4 (3 points)</a></li>
+<li class="chapter" data-level="17.15" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-5-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 5 (2 points)</a></li>
+<li class="chapter" data-level="17.16" data-path="lab-6-modeling-in-hydrology.html"><a href="lab-6-modeling-in-hydrology.html#question-6-1-point"><i class="fa fa-check"></i><b>17.16</b> Question 6 (1 point)</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="exam-1-units-1---4-1.html"><a href="exam-1-units-1---4-1.html"><i class="fa fa-check"></i><b>26</b> Exam 1: Units 1 - 4</a></li>
-<li class="chapter" data-level="27" data-path="demo-on-calculating-flow-totals-in-mm.-1.html"><a href="demo-on-calculating-flow-totals-in-mm.-1.html"><i class="fa fa-check"></i><b>27</b> Demo on calculating flow totals in mm.</a></li>
-<li class="chapter" data-level="28" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><i class="fa fa-check"></i><b>28</b> Supplemental chapter on field methods in fluvial geomorphology</a>
+<li class="chapter" data-level="18" data-path="daymetr.html"><a href="daymetr.html"><i class="fa fa-check"></i><b>18</b> daymetr</a>
 <ul>
-<li class="chapter" data-level="28.1" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#overall-learning-objectives-2"><i class="fa fa-check"></i><b>28.1</b> Overall Learning Objectives:</a></li>
-<li class="chapter" data-level="28.2" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#lecture-2"><i class="fa fa-check"></i><b>28.2</b> Lecture</a></li>
-<li class="chapter" data-level="28.3" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#stream-cross-section-and-gradient-1"><i class="fa fa-check"></i><b>28.3</b> Stream Cross Section and Gradient</a></li>
-<li class="chapter" data-level="28.4" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#wolman-pebble-count-1"><i class="fa fa-check"></i><b>28.4</b> Wolman Pebble Count</a></li>
-<li class="chapter" data-level="28.5" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#mannings-roughness-coefficient-1"><i class="fa fa-check"></i><b>28.5</b> Manning’s Roughness Coefficient</a></li>
-<li class="chapter" data-level="28.6" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#rosgen-stream-classification-1"><i class="fa fa-check"></i><b>28.6</b> Rosgen Stream Classification</a></li>
-<li class="chapter" data-level="28.7" data-path="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html"><a href="supplemental-chapter-on-field-methods-in-fluvial-geomorphology-1.html#relative-bed-stability-rbs-1"><i class="fa fa-check"></i><b>28.7</b> Relative Bed Stability (RBS)</a></li>
+<li class="chapter" data-level="18.1" data-path="daymetr.html"><a href="daymetr.html#install-packages"><i class="fa fa-check"></i><b>18.1</b> Install Packages</a></li>
+<li class="chapter" data-level="18.2" data-path="daymetr.html"><a href="daymetr.html#download-daymet-for-a-specific-location."><i class="fa fa-check"></i><b>18.2</b> Download daymet for a specific location.</a></li>
+<li class="chapter" data-level="18.3" data-path="daymetr.html"><a href="daymetr.html#here-are-the-daymet-variables"><i class="fa fa-check"></i><b>18.3</b> Here are the daymet variables:</a></li>
+<li class="chapter" data-level="18.4" data-path="daymetr.html"><a href="daymetr.html#make-a-date-column-and-plot-max-temperature."><i class="fa fa-check"></i><b>18.4</b> Make a date column and plot max temperature.</a></li>
+<li class="chapter" data-level="18.5" data-path="daymetr.html"><a href="daymetr.html#do-the-same-for-radiation."><i class="fa fa-check"></i><b>18.5</b> Do the same for radiation.</a></li>
+<li class="chapter" data-level="18.6" data-path="daymetr.html"><a href="daymetr.html#stack-2-variables-with-patchwork."><i class="fa fa-check"></i><b>18.6</b> Stack 2 variables with patchwork.</a></li>
 </ul></li>
-<li class="chapter" data-level="29" data-path="lab-4---rating-curve-analysis-1.html"><a href="lab-4---rating-curve-analysis-1.html"><i class="fa fa-check"></i><b>29</b> Lab 4 - Rating curve analysis</a></li>
-<li class="chapter" data-level="30" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html"><i class="fa fa-check"></i><b>30</b> Hydrographs and rating curves</a>
+<li class="chapter" data-level="19" data-path="introduction-2.html"><a href="introduction-2.html"><i class="fa fa-check"></i><b>19</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="30.1" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#overall-learning-objectives-3"><i class="fa fa-check"></i><b>30.1</b> Overall Learning Objectives</a></li>
-<li class="chapter" data-level="30.2" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#reading-1"><i class="fa fa-check"></i><b>30.2</b> Reading</a></li>
-<li class="chapter" data-level="30.3" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#lecture-3"><i class="fa fa-check"></i><b>30.3</b> Lecture</a>
+<li class="chapter" data-level="19.1" data-path="introduction-2.html"><a href="introduction-2.html#course-overview-and-objectives-1"><i class="fa fa-check"></i><b>19.1</b> Course overview and objectives</a></li>
+<li class="chapter" data-level="19.2" data-path="introduction-2.html"><a href="introduction-2.html#structure-1"><i class="fa fa-check"></i><b>19.2</b> Structure</a></li>
+<li class="chapter" data-level="19.3" data-path="introduction-2.html"><a href="introduction-2.html#tentative-schedule-subject-to-change-1"><i class="fa fa-check"></i><b>19.3</b> Tentative schedule, subject to change</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html"><i class="fa fa-check"></i><b>20</b> Intro to data visualization</a>
 <ul>
-<li class="chapter" data-level="30.3.1" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#hydrographs-and-rating-curves-3"><i class="fa fa-check"></i><b>30.3.1</b> Hydrographs and Rating Curves</a></li>
-<li class="chapter" data-level="30.3.2" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#rain-versus-snow-dominated-systems-1"><i class="fa fa-check"></i><b>30.3.2</b> Rain versus Snow dominated systems</a></li>
-<li class="chapter" data-level="30.3.3" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#making-stage-measurements-1"><i class="fa fa-check"></i><b>30.3.3</b> Making Stage Measurements</a></li>
-<li class="chapter" data-level="30.3.4" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#applications-of-streamflow-and-stream-gage-1"><i class="fa fa-check"></i><b>30.3.4</b> Applications of streamflow and stream gage</a></li>
+<li class="chapter" data-level="20.1" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#learning-objectives-3"><i class="fa fa-check"></i><b>20.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="20.2" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#download-and-install-tidyverse-library-1"><i class="fa fa-check"></i><b>20.2</b> Download and install tidyverse library</a></li>
+<li class="chapter" data-level="20.3" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#reading-data-1"><i class="fa fa-check"></i><b>20.3</b> Reading data</a></li>
+<li class="chapter" data-level="20.4" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#our-first-ggplot-1"><i class="fa fa-check"></i><b>20.4</b> Our first ggplot</a></li>
+<li class="chapter" data-level="20.5" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#change-point-type-1"><i class="fa fa-check"></i><b>20.5</b> Change point type</a></li>
+<li class="chapter" data-level="20.6" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#set-colors-1"><i class="fa fa-check"></i><b>20.6</b> Set colors</a></li>
+<li class="chapter" data-level="20.7" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#controlling-color-with-a-third-variable-and-other-functions-1"><i class="fa fa-check"></i><b>20.7</b> Controlling color with a third variable and other functions</a></li>
+<li class="chapter" data-level="20.8" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#plotting-multiple-groups-adding-a-third-variable-1"><i class="fa fa-check"></i><b>20.8</b> Plotting multiple groups (adding a third variable)</a></li>
+<li class="chapter" data-level="20.9" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#facets-1"><i class="fa fa-check"></i><b>20.9</b> Facets</a></li>
+<li class="chapter" data-level="20.10" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#two-variable-faceting-1"><i class="fa fa-check"></i><b>20.10</b> Two variable faceting</a></li>
+<li class="chapter" data-level="20.11" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#boxplots-1"><i class="fa fa-check"></i><b>20.11</b> Boxplots</a></li>
+<li class="chapter" data-level="20.12" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#more-about-color-size-etc-1"><i class="fa fa-check"></i><b>20.12</b> More about color, size, etc</a></li>
+<li class="chapter" data-level="20.13" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#multiple-geoms-1"><i class="fa fa-check"></i><b>20.13</b> Multiple geoms</a></li>
+<li class="chapter" data-level="20.14" data-path="intro-to-data-visualization-1.html"><a href="intro-to-data-visualization-1.html#exit-ticket-2"><i class="fa fa-check"></i><b>20.14</b> Exit ticket</a></li>
 </ul></li>
-<li class="chapter" data-level="30.4" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#optional-activity-to-gain-deeper-understanding-of-rating-curve-1"><i class="fa fa-check"></i><b>30.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
-<li class="chapter" data-level="30.5" data-path="hydrographs-and-rating-curves-2.html"><a href="hydrographs-and-rating-curves-2.html#summary-questions-1"><i class="fa fa-check"></i><b>30.5</b> Summary questions</a></li>
-</ul></li>
-<li class="chapter" data-level="31" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html"><i class="fa fa-check"></i><b>31</b> Flow Duration Curves</a>
+<li class="chapter" data-level="21" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html"><i class="fa fa-check"></i><b>21</b> Data wrangling using tidyverse</a>
 <ul>
-<li class="chapter" data-level="31.1" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#get-data-1"><i class="fa fa-check"></i><b>31.1</b> Get data</a></li>
-<li class="chapter" data-level="31.2" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#review-describe-the-distribution-1"><i class="fa fa-check"></i><b>31.2</b> Review: describe the distribution</a></li>
-<li class="chapter" data-level="31.3" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#ecdfs-1"><i class="fa fa-check"></i><b>31.3</b> ECDFs</a></li>
-<li class="chapter" data-level="31.4" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#calculate-flow-exceedence-probabilities-1"><i class="fa fa-check"></i><b>31.4</b> Calculate flow exceedence probabilities</a></li>
-<li class="chapter" data-level="31.5" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#plot-a-flow-duration-curve-using-the-probabilities-1"><i class="fa fa-check"></i><b>31.5</b> Plot a Flow Duration Curve using the probabilities</a></li>
-<li class="chapter" data-level="31.6" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#example-use-of-an-fdc-1"><i class="fa fa-check"></i><b>31.6</b> Example use of an FDC</a></li>
-<li class="chapter" data-level="31.7" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#compare-to-a-boxplot-of-the-same-data-1"><i class="fa fa-check"></i><b>31.7</b> Compare to a boxplot of the same data</a></li>
-<li class="chapter" data-level="31.8" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#challenge-examining-flow-regime-change-at-the-grand-canyon-1"><i class="fa fa-check"></i><b>31.8</b> Challenge: Examining flow regime change at the Grand Canyon</a></li>
-<li class="chapter" data-level="31.9" data-path="flow-duration-curves-1.html"><a href="flow-duration-curves-1.html#thats-it-next-we-will-apply-some-of-these-principles-to-look-at-low-flow-statistics.-1"><i class="fa fa-check"></i><b>31.9</b> That’s it! Next we will apply some of these principles to look at low-flow statistics.</a></li>
+<li class="chapter" data-level="21.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#introduction-3"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#learning-objectives-4"><i class="fa fa-check"></i><b>21.2</b> Learning objectives:</a></li>
+<li class="chapter" data-level="21.3" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-use-r-as-a-calculator-1"><i class="fa fa-check"></i><b>21.3</b> You can use R as a calculator</a></li>
+<li class="chapter" data-level="21.4" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#you-can-create-new-objects-using---1"><i class="fa fa-check"></i><b>21.4</b> You can create new objects using &lt;-</a></li>
+<li class="chapter" data-level="21.5" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#using-functions-1"><i class="fa fa-check"></i><b>21.5</b> Using functions</a></li>
+<li class="chapter" data-level="21.6" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#read-in-some-data-1"><i class="fa fa-check"></i><b>21.6</b> Read in some data</a></li>
+<li class="chapter" data-level="21.7" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#what-is-a-tibble-1"><i class="fa fa-check"></i><b>21.7</b> What is a tibble?</a></li>
+<li class="chapter" data-level="21.8" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#data-wrangling-in-dplyr-1"><i class="fa fa-check"></i><b>21.8</b> Data wrangling in dplyr</a></li>
+<li class="chapter" data-level="21.9" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#filter-1"><i class="fa fa-check"></i><b>21.9</b> Filter</a>
+<ul>
+<li class="chapter" data-level="21.9.1" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-conditions-1"><i class="fa fa-check"></i><b>21.9.1</b> Multiple conditions</a></li>
 </ul></li>
-<li class="chapter" data-level="32" data-path="lab-5---low-flow-analysis-1.html"><a href="lab-5---low-flow-analysis-1.html"><i class="fa fa-check"></i><b>32</b> Lab 5 - Low Flow Analysis</a></li>
+<li class="chapter" data-level="21.10" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#arrange-1"><i class="fa fa-check"></i><b>21.10</b> Arrange</a></li>
+<li class="chapter" data-level="21.11" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#select-1"><i class="fa fa-check"></i><b>21.11</b> Select</a></li>
+<li class="chapter" data-level="21.12" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#mutate-1"><i class="fa fa-check"></i><b>21.12</b> Mutate</a></li>
+<li class="chapter" data-level="21.13" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#summarize-1"><i class="fa fa-check"></i><b>21.13</b> Summarize</a></li>
+<li class="chapter" data-level="21.14" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#multiple-operations-with-pipes-1"><i class="fa fa-check"></i><b>21.14</b> Multiple operations with pipes</a></li>
+<li class="chapter" data-level="21.15" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#a-final-comment-on-nas-1"><i class="fa fa-check"></i><b>21.15</b> A final comment on NAs</a></li>
+<li class="chapter" data-level="21.16" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#thats-it-for-today-1"><i class="fa fa-check"></i><b>21.16</b> That’s it for today</a></li>
+<li class="chapter" data-level="21.17" data-path="data-wrangling-using-tidyverse-1.html"><a href="data-wrangling-using-tidyverse-1.html#exit-ticket-3"><i class="fa fa-check"></i><b>21.17</b> Exit ticket</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><i class="fa fa-check"></i><b>22</b> Lab 1: Data vis, wrangling, and programming (12 pts)</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-1-1-pts-1"><i class="fa fa-check"></i><b>22.1</b> Problem 1 (1 pts)</a></li>
+<li class="chapter" data-level="22.2" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-2-1-pts-1"><i class="fa fa-check"></i><b>22.2</b> Problem 2 (1 pts)</a></li>
+<li class="chapter" data-level="22.3" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-3-2-pts-1"><i class="fa fa-check"></i><b>22.3</b> Problem 3 (2 pts)</a></li>
+<li class="chapter" data-level="22.4" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-4-2-pts-1"><i class="fa fa-check"></i><b>22.4</b> Problem 4 (2 pts)</a></li>
+<li class="chapter" data-level="22.5" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-5-2-pts-1"><i class="fa fa-check"></i><b>22.5</b> Problem 5 (2 pts)</a></li>
+<li class="chapter" data-level="22.6" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#problem-6-2-pts-1"><i class="fa fa-check"></i><b>22.6</b> Problem 6 (2 pts)</a></li>
+<li class="chapter" data-level="22.7" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#summary-2-pts-1"><i class="fa fa-check"></i><b>22.7</b> Summary (2 pts)</a></li>
+<li class="chapter" data-level="22.8" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#feeback-1"><i class="fa fa-check"></i><b>22.8</b> Feeback</a></li>
+<li class="chapter" data-level="22.9" data-path="lab-1-data-vis-wrangling-and-programming-12-pts-1.html"><a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html#deliverables-1"><i class="fa fa-check"></i><b>22.9</b> Deliverables</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html"><i class="fa fa-check"></i><b>23</b> dataRetrieval</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#goals-1"><i class="fa fa-check"></i><b>23.1</b> Goals</a></li>
+<li class="chapter" data-level="23.2" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#exploring-what-dataretrieval-can-do-1"><i class="fa fa-check"></i><b>23.2</b> Exploring what dataRetrieval can do</a></li>
+<li class="chapter" data-level="23.3" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#first-lets-map-these-sites.-1"><i class="fa fa-check"></i><b>23.3</b> First, let’s map these sites.</a></li>
+<li class="chapter" data-level="23.4" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#joins-1"><i class="fa fa-check"></i><b>23.4</b> Joins</a></li>
+<li class="chapter" data-level="23.5" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#join-practice-example-1"><i class="fa fa-check"></i><b>23.5</b> Join practice example</a></li>
+<li class="chapter" data-level="23.6" data-path="dataretrieval-1.html"><a href="dataretrieval-1.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.-1"><i class="fa fa-check"></i><b>23.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><i class="fa fa-check"></i><b>24</b> Lab 2: dataRetrieval and area normalized flows (20 pts)</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#intro-1"><i class="fa fa-check"></i><b>24.1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html.-1"><i class="fa fa-check"></i><b>24.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
+<li class="chapter" data-level="24.1.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#load-the-necessary-packages.-1"><i class="fa fa-check"></i><b>24.1.2</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="24.1.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#workflow-1"><i class="fa fa-check"></i><b>24.1.3</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#summary-14-pts-1"><i class="fa fa-check"></i><b>24.2</b> Summary (14 pts)</a></li>
+<li class="chapter" data-level="24.3" data-path="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html"><a href="lab-2-dataretrieval-and-area-normalized-flows-20-pts-1.html#deliverable-6-pts-1"><i class="fa fa-check"></i><b>24.3</b> Deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html"><i class="fa fa-check"></i><b>25</b> Statistics in hydrology</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#learning-objectives-5"><i class="fa fa-check"></i><b>25.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="25.2" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#homework-q1-2-pts-1"><i class="fa fa-check"></i><b>25.2</b> Homework Q1 (2 pts)</a></li>
+<li class="chapter" data-level="25.3" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#what-is-the-difference-between-a-sample-and-a-population-1"><i class="fa fa-check"></i><b>25.3</b> What is the difference between a sample and a population?</a></li>
+<li class="chapter" data-level="25.4" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#homework-q2-2-pts-1"><i class="fa fa-check"></i><b>25.4</b> Homework Q2 (2 pts)</a></li>
+<li class="chapter" data-level="25.5" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#measuring-our-sample-distribution-central-tendency-1"><i class="fa fa-check"></i><b>25.5</b> Measuring our sample distribution: central tendency</a></li>
+<li class="chapter" data-level="25.6" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#so-whats-a-weighted-average-1"><i class="fa fa-check"></i><b>25.6</b> So what’s a weighted average?</a></li>
+<li class="chapter" data-level="25.7" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#measures-of-variability-1"><i class="fa fa-check"></i><b>25.7</b> Measures of variability</a></li>
+<li class="chapter" data-level="25.8" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#homework-q3-2-pts-1"><i class="fa fa-check"></i><b>25.8</b> Homework Q3 (2 pts)</a></li>
+<li class="chapter" data-level="25.9" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one-1"><i class="fa fa-check"></i><b>25.9</b> What is a normal distribution and how can we determine if we have one?</a></li>
+<li class="chapter" data-level="25.10" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#homework-q4-2-pts-1"><i class="fa fa-check"></i><b>25.10</b> Homework Q4 (2 pts)</a></li>
+<li class="chapter" data-level="25.11" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#homework-q5-2-pts-1"><i class="fa fa-check"></i><b>25.11</b> Homework Q5 (2 pts)</a></li>
+<li class="chapter" data-level="25.12" data-path="statistics-in-hydrology-1.html"><a href="statistics-in-hydrology-1.html#deliverable-10-pts-due-thursday-215-by-1159-pm-1"><i class="fa fa-check"></i><b>25.12</b> Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html"><i class="fa fa-check"></i><b>26</b> Lab 3: Statistics in hydrology (33 pts)</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-1-5-pts-1"><i class="fa fa-check"></i><b>26.1</b> Problem 1 (5 pts)</a></li>
+<li class="chapter" data-level="26.2" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-2-5-pts-1"><i class="fa fa-check"></i><b>26.2</b> Problem 2 (5 pts)</a></li>
+<li class="chapter" data-level="26.3" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-3-5-pts-1"><i class="fa fa-check"></i><b>26.3</b> Problem 3 (5 pts)</a></li>
+<li class="chapter" data-level="26.4" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-4-5-pts-1"><i class="fa fa-check"></i><b>26.4</b> Problem 4 (5 pts)</a></li>
+<li class="chapter" data-level="26.5" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-5-5-pts-1"><i class="fa fa-check"></i><b>26.5</b> Problem 5 (5 pts)</a></li>
+<li class="chapter" data-level="26.6" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#problem-6-5-pts-1"><i class="fa fa-check"></i><b>26.6</b> Problem 6 (5 pts)</a></li>
+<li class="chapter" data-level="26.7" data-path="lab-3-statistics-in-hydrology-33-pts-1.html"><a href="lab-3-statistics-in-hydrology-33-pts-1.html#deliverable-1"><i class="fa fa-check"></i><b>26.7</b> Deliverable</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html"><i class="fa fa-check"></i><b>27</b> Hydrographs and rating curves (6 pts)</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#overall-learning-objectives-1"><i class="fa fa-check"></i><b>27.1</b> Overall Learning Objectives</a></li>
+<li class="chapter" data-level="27.2" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#reading-2"><i class="fa fa-check"></i><b>27.2</b> Reading</a></li>
+<li class="chapter" data-level="27.3" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#lecture-2"><i class="fa fa-check"></i><b>27.3</b> Lecture</a>
+<ul>
+<li class="chapter" data-level="27.3.1" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#hydrographs-and-rating-curves-1"><i class="fa fa-check"></i><b>27.3.1</b> Hydrographs and Rating Curves</a></li>
+<li class="chapter" data-level="27.3.2" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#rain-versus-snow-dominated-systems-1"><i class="fa fa-check"></i><b>27.3.2</b> Rain versus Snow dominated systems</a></li>
+<li class="chapter" data-level="27.3.3" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#field-measurements-of-area-velocity-1"><i class="fa fa-check"></i><b>27.3.3</b> Field Measurements of Area-Velocity</a></li>
+<li class="chapter" data-level="27.3.4" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#making-stage-measurements-1"><i class="fa fa-check"></i><b>27.3.4</b> Making Stage Measurements</a></li>
+<li class="chapter" data-level="27.3.5" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#applications-of-streamflow-and-stream-gage-1"><i class="fa fa-check"></i><b>27.3.5</b> Applications of streamflow and stream gage</a></li>
+</ul></li>
+<li class="chapter" data-level="27.4" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#optional-activity-to-gain-deeper-understanding-of-rating-curve-1"><i class="fa fa-check"></i><b>27.4</b> Optional activity to gain deeper understanding of rating curve</a></li>
+<li class="chapter" data-level="27.5" data-path="hydrographs-and-rating-curves-6-pts-1.html"><a href="hydrographs-and-rating-curves-6-pts-1.html#summary-questions-and-deliverable-6-pts-1"><i class="fa fa-check"></i><b>27.5</b> Summary questions and deliverable (6 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html"><i class="fa fa-check"></i><b>28</b> Lab 4: Rating cuve lab (15 pts)</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#problem-1-1"><i class="fa fa-check"></i><b>28.1</b> Problem 1</a>
+<ul>
+<li class="chapter" data-level="28.1.1" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#q1.1.-3-pts-1"><i class="fa fa-check"></i><b>28.1.1</b> Q1.1. (3 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="28.2" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#problem-2-1"><i class="fa fa-check"></i><b>28.2</b> Problem 2</a>
+<ul>
+<li class="chapter" data-level="28.2.1" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#q2.1.-2-pt-1"><i class="fa fa-check"></i><b>28.2.1</b> Q2.1. (2 pt)</a></li>
+</ul></li>
+<li class="chapter" data-level="28.3" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#problem-3-1"><i class="fa fa-check"></i><b>28.3</b> Problem 3</a>
+<ul>
+<li class="chapter" data-level="28.3.1" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#q3.1.-5-pts-1"><i class="fa fa-check"></i><b>28.3.1</b> Q3.1. (5 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="28.4" data-path="lab-4-rating-cuve-lab-15-pts-1.html"><a href="lab-4-rating-cuve-lab-15-pts-1.html#problem-4-1"><i class="fa fa-check"></i><b>28.4</b> Problem 4</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html"><i class="fa fa-check"></i><b>29</b> Flow Duration Curves (12 pts)</a>
+<ul>
+<li class="chapter" data-level="29.1" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#lecture-3"><i class="fa fa-check"></i><b>29.1</b> Lecture</a></li>
+<li class="chapter" data-level="29.2" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#reading-3"><i class="fa fa-check"></i><b>29.2</b> Reading</a></li>
+<li class="chapter" data-level="29.3" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#packages-and-coding-1"><i class="fa fa-check"></i><b>29.3</b> Packages and coding</a></li>
+<li class="chapter" data-level="29.4" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#get-data-2"><i class="fa fa-check"></i><b>29.4</b> Get data</a></li>
+<li class="chapter" data-level="29.5" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#review-describe-the-distribution-1"><i class="fa fa-check"></i><b>29.5</b> Review: describe the distribution</a></li>
+<li class="chapter" data-level="29.6" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#ecdfs-1"><i class="fa fa-check"></i><b>29.6</b> ECDFs</a></li>
+<li class="chapter" data-level="29.7" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#calculate-flow-exceedence-probabilities-1"><i class="fa fa-check"></i><b>29.7</b> Calculate flow exceedence probabilities</a></li>
+<li class="chapter" data-level="29.8" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#plot-a-flow-duration-curve-using-the-probabilities-1"><i class="fa fa-check"></i><b>29.8</b> Plot a Flow Duration Curve using the probabilities</a></li>
+<li class="chapter" data-level="29.9" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#example-use-of-an-fdc-1"><i class="fa fa-check"></i><b>29.9</b> Example use of an FDC</a></li>
+<li class="chapter" data-level="29.10" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#module-question-1-2-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.-1"><i class="fa fa-check"></i><b>29.10</b> Module Question 1 (2 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.</a></li>
+<li class="chapter" data-level="29.11" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#compare-to-a-boxplot-of-the-same-data-1"><i class="fa fa-check"></i><b>29.11</b> Compare to a boxplot of the same data</a></li>
+<li class="chapter" data-level="29.12" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#module-question-2-2-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots-1"><i class="fa fa-check"></i><b>29.12</b> Module Question 2 (2 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?</a></li>
+<li class="chapter" data-level="29.13" data-path="flow-duration-curves-12-pts-1.html"><a href="flow-duration-curves-12-pts-1.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-12-pts-1"><i class="fa fa-check"></i><b>29.13</b> Module Summary Assignment: Examining flow regime change at the Grand Canyon (12 pts)</a></li>
+</ul></li>
+<li class="chapter" data-level="30" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html"><i class="fa fa-check"></i><b>30</b> Lab 5: Low Flow Analysis (15 pts)</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#what-are-low-flow-statistics-1"><i class="fa fa-check"></i><b>30.1</b> What are low flow statistics?</a></li>
+<li class="chapter" data-level="30.2" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#get-data-3"><i class="fa fa-check"></i><b>30.2</b> Get data</a></li>
+<li class="chapter" data-level="30.3" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#create-the-x-days-average-flow-record-1"><i class="fa fa-check"></i><b>30.3</b> Create the X days average flow record</a></li>
+<li class="chapter" data-level="30.4" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#look-at-what-a-rolling-mean-does.-1"><i class="fa fa-check"></i><b>30.4</b> Look at what a rolling mean does.</a></li>
+<li class="chapter" data-level="30.5" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#calculate-yearly-minimums-1"><i class="fa fa-check"></i><b>30.5</b> Calculate yearly minimums</a>
+<ul>
+<li class="chapter" data-level="30.5.1" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#challenge-1"><i class="fa fa-check"></i><b>30.5.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="30.6" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#calculate-return-interval-1"><i class="fa fa-check"></i><b>30.6</b> Calculate return interval</a></li>
+<li class="chapter" data-level="30.7" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#fit-to-pearson-type-iii-distribution-1"><i class="fa fa-check"></i><b>30.7</b> Fit to Pearson Type III distribution</a></li>
+<li class="chapter" data-level="30.8" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#deliverable---summary-questions-12-pts-1"><i class="fa fa-check"></i><b>30.8</b> Deliverable - Summary questions (12 pts)</a>
+<ul>
+<li class="chapter" data-level="30.8.1" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#question-1-6-pts-1"><i class="fa fa-check"></i><b>30.8.1</b> Question 1 (6 pts)</a></li>
+<li class="chapter" data-level="30.8.2" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#question-2-3-pts-1"><i class="fa fa-check"></i><b>30.8.2</b> Question 2 (3 pts)</a></li>
+<li class="chapter" data-level="30.8.3" data-path="lab-5-low-flow-analysis-15-pts-1.html"><a href="lab-5-low-flow-analysis-15-pts-1.html#question-3-6-pts-1"><i class="fa fa-check"></i><b>30.8.3</b> Question 3 (6 pts)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>31</b> Functions</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="functions-1.html"><a href="functions-1.html#reading-on-functions-from-rds-by-hadley-wickham-1"><i class="fa fa-check"></i><b>31.1</b> Reading on functions from RDS by Hadley Wickham</a></li>
+<li class="chapter" data-level="31.2" data-path="functions-1.html"><a href="functions-1.html#tutorial-1"><i class="fa fa-check"></i><b>31.2</b> Tutorial</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html"><i class="fa fa-check"></i><b>32</b> Climate trend analysis</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#summary-questions-and-deliverable-1"><i class="fa fa-check"></i><b>32.1</b> Summary questions and deliverable</a></li>
+<li class="chapter" data-level="32.2" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#new-packages-1"><i class="fa fa-check"></i><b>32.2</b> New packages</a></li>
+<li class="chapter" data-level="32.3" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#data-download-exploration-and-cleaning-1"><i class="fa fa-check"></i><b>32.3</b> Data download, exploration and cleaning</a></li>
+<li class="chapter" data-level="32.4" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#computing-annual-values-1"><i class="fa fa-check"></i><b>32.4</b> Computing annual values</a></li>
+<li class="chapter" data-level="32.5" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#exploratory-data-analysis-eda-of-annual-values-1"><i class="fa fa-check"></i><b>32.5</b> Exploratory data analysis (EDA) of annual values</a></li>
+<li class="chapter" data-level="32.6" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#trend-analysis-and-creating-table-1-1"><i class="fa fa-check"></i><b>32.6</b> Trend analysis and creating Table 1</a></li>
+<li class="chapter" data-level="32.7" data-path="climate-trend-analysis-1.html"><a href="climate-trend-analysis-1.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable.-1"><i class="fa fa-check"></i><b>32.7</b> See summary section at top for questions to answer and deliverable.</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="for-loops-1.html"><a href="for-loops-1.html"><i class="fa fa-check"></i><b>33</b> For loops</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="for-loops-1.html"><a href="for-loops-1.html#libraries-1"><i class="fa fa-check"></i><b>33.1</b> Libraries</a></li>
+<li class="chapter" data-level="33.2" data-path="for-loops-1.html"><a href="for-loops-1.html#defining-parameters-1"><i class="fa fa-check"></i><b>33.2</b> Defining parameters</a></li>
+<li class="chapter" data-level="33.3" data-path="for-loops-1.html"><a href="for-loops-1.html#writing-the-for-loop-1"><i class="fa fa-check"></i><b>33.3</b> Writing the for loop</a></li>
+<li class="chapter" data-level="33.4" data-path="for-loops-1.html"><a href="for-loops-1.html#adding-second-for-1"><i class="fa fa-check"></i><b>33.4</b> Adding second for</a></li>
+<li class="chapter" data-level="33.5" data-path="for-loops-1.html"><a href="for-loops-1.html#removing-the-tmp-file-1"><i class="fa fa-check"></i><b>33.5</b> Removing the tmp file</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="downloading-dems-and-delineating-watersheds-5-pts-1.html"><a href="downloading-dems-and-delineating-watersheds-5-pts-1.html"><i class="fa fa-check"></i><b>34</b> Downloading DEMs and delineating watersheds (5 pts)</a>
+<ul>
+<li class="chapter" data-level="34.1" data-path="downloading-dems-and-delineating-watersheds-5-pts-1.html"><a href="downloading-dems-and-delineating-watersheds-5-pts-1.html#repo-here-1"><i class="fa fa-check"></i><b>34.1</b> Repo here</a></li>
+<li class="chapter" data-level="34.2" data-path="downloading-dems-and-delineating-watersheds-5-pts-1.html"><a href="downloading-dems-and-delineating-watersheds-5-pts-1.html#streamstats-1"><i class="fa fa-check"></i><b>34.2</b> StreamStats</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html"><i class="fa fa-check"></i><b>35</b> Lab 6: Modeling in hydrology</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#background-1"><i class="fa fa-check"></i><b>35.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="35.1.1" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#identifying-the-question-1"><i class="fa fa-check"></i><b>35.1.1</b> Identifying the question</a></li>
+<li class="chapter" data-level="35.1.2" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#modeling-approaches-1"><i class="fa fa-check"></i><b>35.1.2</b> Modeling approaches</a></li>
+</ul></li>
+<li class="chapter" data-level="35.2" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-1-3-pts-1"><i class="fa fa-check"></i><b>35.2</b> Question 1 (3 pts)</a></li>
+<li class="chapter" data-level="35.3" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#download-and-explore-flow-data-1"><i class="fa fa-check"></i><b>35.3</b> Download and explore flow data</a></li>
+<li class="chapter" data-level="35.4" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#extract-peak-flow-values-1"><i class="fa fa-check"></i><b>35.4</b> Extract peak flow values</a></li>
+<li class="chapter" data-level="35.5" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#choose-snotel-sites-1"><i class="fa fa-check"></i><b>35.5</b> Choose Snotel Sites</a></li>
+<li class="chapter" data-level="35.6" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#working-with-spatial-data-1"><i class="fa fa-check"></i><b>35.6</b> Working with spatial data</a></li>
+<li class="chapter" data-level="35.7" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#download-and-explore-snotel-1"><i class="fa fa-check"></i><b>35.7</b> Download and explore Snotel</a></li>
+<li class="chapter" data-level="35.8" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-2-3-points-1"><i class="fa fa-check"></i><b>35.8</b> Question 2 (3 points)</a></li>
+<li class="chapter" data-level="35.9" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#extract-peak-swe-values-1"><i class="fa fa-check"></i><b>35.9</b> Extract peak SWE values</a></li>
+<li class="chapter" data-level="35.10" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#peak-swe-and-q-1"><i class="fa fa-check"></i><b>35.10</b> Peak SWE and Q</a></li>
+<li class="chapter" data-level="35.11" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-3-points-1"><i class="fa fa-check"></i><b>35.11</b> Question (3 points)</a></li>
+<li class="chapter" data-level="35.12" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#model-inputs-1"><i class="fa fa-check"></i><b>35.12</b> Model inputs</a></li>
+<li class="chapter" data-level="35.13" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#run-model-1"><i class="fa fa-check"></i><b>35.13</b> Run model</a></li>
+<li class="chapter" data-level="35.14" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-4-3-points-1"><i class="fa fa-check"></i><b>35.14</b> Question 4 (3 points)</a></li>
+<li class="chapter" data-level="35.15" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-5-2-points-1"><i class="fa fa-check"></i><b>35.15</b> Question 5 (2 points)</a></li>
+<li class="chapter" data-level="35.16" data-path="lab-6-modeling-in-hydrology-1.html"><a href="lab-6-modeling-in-hydrology-1.html#question-6-1-point-1"><i class="fa fa-check"></i><b>35.16</b> Question 6 (1 point)</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="daymetr-1.html"><a href="daymetr-1.html"><i class="fa fa-check"></i><b>36</b> daymetr</a>
+<ul>
+<li class="chapter" data-level="36.1" data-path="daymetr-1.html"><a href="daymetr-1.html#install-packages-1"><i class="fa fa-check"></i><b>36.1</b> Install Packages</a></li>
+<li class="chapter" data-level="36.2" data-path="daymetr-1.html"><a href="daymetr-1.html#download-daymet-for-a-specific-location.-1"><i class="fa fa-check"></i><b>36.2</b> Download daymet for a specific location.</a></li>
+<li class="chapter" data-level="36.3" data-path="daymetr-1.html"><a href="daymetr-1.html#here-are-the-daymet-variables-1"><i class="fa fa-check"></i><b>36.3</b> Here are the daymet variables:</a></li>
+<li class="chapter" data-level="36.4" data-path="daymetr-1.html"><a href="daymetr-1.html#make-a-date-column-and-plot-max-temperature.-1"><i class="fa fa-check"></i><b>36.4</b> Make a date column and plot max temperature.</a></li>
+<li class="chapter" data-level="36.5" data-path="daymetr-1.html"><a href="daymetr-1.html#do-the-same-for-radiation.-1"><i class="fa fa-check"></i><b>36.5</b> Do the same for radiation.</a></li>
+<li class="chapter" data-level="36.6" data-path="daymetr-1.html"><a href="daymetr-1.html#stack-2-variables-with-patchwork.-1"><i class="fa fa-check"></i><b>36.6</b> Stack 2 variables with patchwork.</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -462,7 +628,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Hydrographs &amp; Rating Curves</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Watershed Analysis: ENSC 445/LRES 545</a>
           </h1>
         </div>
 
@@ -470,20 +636,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-wrangling-using-tidyverse-1" class="section level1 hasAnchor" number="19">
-<h1><span class="header-section-number">Chapter 19</span> Data wrangling using tidyverse<a href="data-wrangling-using-tidyverse-1.html#data-wrangling-using-tidyverse-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-wrangling-using-tidyverse-1" class="section level1 hasAnchor" number="21">
+<h1><span class="header-section-number">Chapter 21</span> Data wrangling using tidyverse<a href="data-wrangling-using-tidyverse-1.html#data-wrangling-using-tidyverse-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Follow this <a href="https://github.com/tpcovino/unit_2_data_wrangling" target="_blank">link</a> to download everything you need for this unit. When you get to GitHub click on “Code” (green button) and select “download zip”. You will then save this to a local folder where you should do all of your work for this class. You will work through the “_blank.Rmd”. Always be sure to read the README.md files in the GitHub repo.</p>
 <p>Once you have this folder saved where you would like it, open RStudio and navigate to the folder. Next, open the project (“.Rproj”). Doing so will set the folder as the working directory, make your life easier, and make everything generally work.</p>
-<div id="introduction-3" class="section level2 hasAnchor" number="19.1">
-<h2><span class="header-section-number">19.1</span> Introduction<a href="data-wrangling-using-tidyverse-1.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-3" class="section level2 hasAnchor" number="21.1">
+<h2><span class="header-section-number">21.1</span> Introduction<a href="data-wrangling-using-tidyverse-1.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have messed around with plotting a bit and you’ve seen a little of what R can do. So now let’s review or introduce you to some basics. Even if you have worked in R before, it is good to be remind of/practice with this stuff, so stay tuned in!</p>
 <p>Reading for this week:</p>
 <p><a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Chapter 2.1: Graphical analysis of single datasets</a> in SMWR</p>
-<p><a href="https://r4ds.had.co.nz/workflow-basics.html" target="_blank">Workflow: basics</a></p>
-<p><a href="https://r4ds.had.co.nz/transform.html" target="_blank">Data transformation</a></p>
+<p><a href="https://r4ds.hadley.nz/workflow-basics.html" target="_blank">Workflow: basics</a></p>
+<p><a href="https://r4ds.hadley.nz/data-transform.html" target="_blank">Data transformation</a></p>
 </div>
-<div id="learning-objectives-4" class="section level2 hasAnchor" number="19.2">
-<h2><span class="header-section-number">19.2</span> Learning objectives:<a href="data-wrangling-using-tidyverse-1.html#learning-objectives-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="learning-objectives-4" class="section level2 hasAnchor" number="21.2">
+<h2><span class="header-section-number">21.2</span> Learning objectives:<a href="data-wrangling-using-tidyverse-1.html#learning-objectives-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Working through this exercise will help students: <br>
 - become more familiar with the RStudio IDE <br>
 - get in the habit of running single lines of code <br>
@@ -491,19 +657,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - know what the assignment operator is <br>
 - begin using base and dplyr functions <br></p>
 </div>
-<div id="you-can-use-r-as-a-calculator-1" class="section level2 hasAnchor" number="19.3">
-<h2><span class="header-section-number">19.3</span> You can use R as a calculator<a href="data-wrangling-using-tidyverse-1.html#you-can-use-r-as-a-calculator-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="you-can-use-r-as-a-calculator-1" class="section level2 hasAnchor" number="21.3">
+<h2><span class="header-section-number">21.3</span> You can use R as a calculator<a href="data-wrangling-using-tidyverse-1.html#you-can-use-r-as-a-calculator-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you just type numbers and operators in, R will spit out the results.</p>
 <p>It is generally good to run one line of code at a time. In mac you do that by putting your cursor on the line and hitting command + enter. On windows/PC that is ctrl + enter.</p>
 <p><a href="https://support.posit.co/hc/en-us/articles/200484448-Editing-and-Executing-Code-in-the-RStudio-IDE" target="_blank">Here is a link to info on Editing and Executing code in RStudio</a></p>
 <p><a href="https://support.posit.co/hc/en-us/articles/200711853-Keyboard-Shortcuts" target="_blank">Very handy link to all keyboard shortcuts Windows, Linux and Mac</a></p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-wrangling-using-tidyverse-1.html#cb201-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-wrangling-using-tidyverse-1.html#cb203-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-wrangling-using-tidyverse-1.html#cb229-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb229-2"><a href="data-wrangling-using-tidyverse-1.html#cb229-2" tabindex="-1"></a></span>
+<span id="cb229-3"><a href="data-wrangling-using-tidyverse-1.html#cb229-3" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 </div>
-<div id="you-can-create-new-objects-using---1" class="section level2 hasAnchor" number="19.4">
-<h2><span class="header-section-number">19.4</span> You can create new objects using &lt;-<a href="data-wrangling-using-tidyverse-1.html#you-can-create-new-objects-using---1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="you-can-create-new-objects-using---1" class="section level2 hasAnchor" number="21.4">
+<h2><span class="header-section-number">21.4</span> You can create new objects using &lt;-<a href="data-wrangling-using-tidyverse-1.html#you-can-create-new-objects-using---1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Yes, = does the same thing. But use &lt;-. We will call &lt;- assignment or assignment operator. When we are coding in R we use &lt;- to assign values to objects and = to set values for parameters in functions/equations/etc. Using &lt;- helps us differentiate between the two. Norms for formatting are important because they help us understand what code is doing, especially when stuff gets complex.</p>
 <p>Oh, one more thing: Surround operators with spaces.</p>
 <p>x &lt;- 1 is easier to read than x&lt;-1</p>
@@ -512,130 +677,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>my_new_data &lt;- my_data</p>
 <p>You can then recall/print the values in an object by just typing the name by itself.</p>
 <p>In the code chunk below, assign a 3 to the object “y” and then print it out.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-wrangling-using-tidyverse-1.html#cb205-1" tabindex="-1"></a><span class="co"># This is a code chunk. </span></span>
-<span id="cb205-2"><a href="data-wrangling-using-tidyverse-1.html#cb205-2" tabindex="-1"></a><span class="co"># Putting a pound sign in here allows me to type text that is not code.</span></span>
-<span id="cb205-3"><a href="data-wrangling-using-tidyverse-1.html#cb205-3" tabindex="-1"></a><span class="co"># The stuff below is code. Not text. </span></span>
-<span id="cb205-4"><a href="data-wrangling-using-tidyverse-1.html#cb205-4" tabindex="-1"></a></span>
-<span id="cb205-5"><a href="data-wrangling-using-tidyverse-1.html#cb205-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb205-6"><a href="data-wrangling-using-tidyverse-1.html#cb205-6" tabindex="-1"></a>y</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-wrangling-using-tidyverse-1.html#cb230-1" tabindex="-1"></a><span class="co"># This is a code chunk. </span></span>
+<span id="cb230-2"><a href="data-wrangling-using-tidyverse-1.html#cb230-2" tabindex="-1"></a><span class="co"># Putting a pound sign in here allows me to type text that is not code.</span></span>
+<span id="cb230-3"><a href="data-wrangling-using-tidyverse-1.html#cb230-3" tabindex="-1"></a><span class="co"># The stuff below is code. Not text. </span></span>
+<span id="cb230-4"><a href="data-wrangling-using-tidyverse-1.html#cb230-4" tabindex="-1"></a></span>
+<span id="cb230-5"><a href="data-wrangling-using-tidyverse-1.html#cb230-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb230-6"><a href="data-wrangling-using-tidyverse-1.html#cb230-6" tabindex="-1"></a>y</span></code></pre></div>
 <p>If you want to assign multiple values, you have to put them in the function c() c means combine. R doesn’t know what to do if you just give it a bunch of values with space or commas, but if you put them as arguments in the combine function, it’ll make them into a vector.</p>
 <p>Any time you need to use several values, even passing as an argument to a function, you have to put them in c() or it won’t work.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-wrangling-using-tidyverse-1.html#cb207-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb207-2"><a href="data-wrangling-using-tidyverse-1.html#cb207-2" tabindex="-1"></a>a</span></code></pre></div>
-<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="data-wrangling-using-tidyverse-1.html#cb231-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb231-2"><a href="data-wrangling-using-tidyverse-1.html#cb231-2" tabindex="-1"></a>a</span></code></pre></div>
 <p>When you are creating objects, try to give them meaningful names so you can remember what they are. You can’t have spaces or operators that mean something else as part of a name. And remember, everything is case sensitive.</p>
 <p>Assign the value 5.4 to water_pH and then try to recall it by typing “water_ph”</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-wrangling-using-tidyverse-1.html#cb209-1" tabindex="-1"></a>water_pH <span class="ot">&lt;-</span> <span class="fl">5.4</span></span>
-<span id="cb209-2"><a href="data-wrangling-using-tidyverse-1.html#cb209-2" tabindex="-1"></a></span>
-<span id="cb209-3"><a href="data-wrangling-using-tidyverse-1.html#cb209-3" tabindex="-1"></a>water_pH</span></code></pre></div>
-<pre><code>## [1] 5.4</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-wrangling-using-tidyverse-1.html#cb232-1" tabindex="-1"></a>water_pH <span class="ot">&lt;-</span> <span class="fl">5.4</span></span>
+<span id="cb232-2"><a href="data-wrangling-using-tidyverse-1.html#cb232-2" tabindex="-1"></a></span>
+<span id="cb232-3"><a href="data-wrangling-using-tidyverse-1.html#cb232-3" tabindex="-1"></a>water_pH</span></code></pre></div>
 <p>If we want to remove something from the environment we can use rm(). Try to remove water_pH.</p>
 <p>You can also set objects equal to strings, or values that have letters in them. To do this you just have to put the value in quotes, otherwise R will think it is an object name and tell you it doesn’t exist.</p>
 <p>Try: name &lt;- “your name” and then name &lt;- your name</p>
 <p>What happens if you forget the ending parenthesis?</p>
 <p>R can be cryptic with it’s error messages or other responses, but once you get used to them, you know exactly what is wrong when they pop up.</p>
 <p>As a note - when you go to the internet for example code it will often say things like df &lt;- your_data, this is similar to what I’ve written above: name &lt;- “your name”. It means enter you name (or your data). As you progress you will get better at understanding example code and understanding error messages.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="data-wrangling-using-tidyverse-1.html#cb211-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Tim&quot;</span></span>
-<span id="cb211-2"><a href="data-wrangling-using-tidyverse-1.html#cb211-2" tabindex="-1"></a><span class="co">#name &lt;- Tim</span></span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="data-wrangling-using-tidyverse-1.html#cb233-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">&quot;Tim&quot;</span></span>
+<span id="cb233-2"><a href="data-wrangling-using-tidyverse-1.html#cb233-2" tabindex="-1"></a><span class="co">#name &lt;- Tim</span></span></code></pre></div>
 </div>
-<div id="using-functions-1" class="section level2 hasAnchor" number="19.5">
-<h2><span class="header-section-number">19.5</span> Using functions<a href="data-wrangling-using-tidyverse-1.html#using-functions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-functions-1" class="section level2 hasAnchor" number="21.5">
+<h2><span class="header-section-number">21.5</span> Using functions<a href="data-wrangling-using-tidyverse-1.html#using-functions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As an example, let’s try the seq() function, which creates a sequence of numbers.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="data-wrangling-using-tidyverse-1.html#cb212-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># these are base R functions</span></span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="data-wrangling-using-tidyverse-1.html#cb214-1" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb214-2"><a href="data-wrangling-using-tidyverse-1.html#cb214-2" tabindex="-1"></a></span>
-<span id="cb214-3"><a href="data-wrangling-using-tidyverse-1.html#cb214-3" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-wrangling-using-tidyverse-1.html#cb216-1" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb216-2"><a href="data-wrangling-using-tidyverse-1.html#cb216-2" tabindex="-1"></a></span>
-<span id="cb216-3"><a href="data-wrangling-using-tidyverse-1.html#cb216-3" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="data-wrangling-using-tidyverse-1.html#cb218-1" tabindex="-1"></a><span class="co"># Predict what this does</span></span>
-<span id="cb218-2"><a href="data-wrangling-using-tidyverse-1.html#cb218-2" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-wrangling-using-tidyverse-1.html#cb234-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>) <span class="co"># these are base R functions</span></span>
+<span id="cb234-2"><a href="data-wrangling-using-tidyverse-1.html#cb234-2" tabindex="-1"></a></span>
+<span id="cb234-3"><a href="data-wrangling-using-tidyverse-1.html#cb234-3" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb234-4"><a href="data-wrangling-using-tidyverse-1.html#cb234-4" tabindex="-1"></a></span>
+<span id="cb234-5"><a href="data-wrangling-using-tidyverse-1.html#cb234-5" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb234-6"><a href="data-wrangling-using-tidyverse-1.html#cb234-6" tabindex="-1"></a></span>
+<span id="cb234-7"><a href="data-wrangling-using-tidyverse-1.html#cb234-7" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb234-8"><a href="data-wrangling-using-tidyverse-1.html#cb234-8" tabindex="-1"></a></span>
+<span id="cb234-9"><a href="data-wrangling-using-tidyverse-1.html#cb234-9" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb234-10"><a href="data-wrangling-using-tidyverse-1.html#cb234-10" tabindex="-1"></a></span>
+<span id="cb234-11"><a href="data-wrangling-using-tidyverse-1.html#cb234-11" tabindex="-1"></a><span class="co"># Predict what this does</span></span>
+<span id="cb234-12"><a href="data-wrangling-using-tidyverse-1.html#cb234-12" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="read-in-some-data-1" class="section level2 hasAnchor" number="19.6">
-<h2><span class="header-section-number">19.6</span> Read in some data<a href="data-wrangling-using-tidyverse-1.html#read-in-some-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="read-in-some-data-1" class="section level2 hasAnchor" number="21.6">
+<h2><span class="header-section-number">21.6</span> Read in some data<a href="data-wrangling-using-tidyverse-1.html#read-in-some-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First we will load the tidyverse library, everything we have done so far today is in base R. Next, let’s load a few dataframes and have a look at them. We will load the “PINE_NFDR_Jan-Mar_2010.csv” and “flashy_dat_all.csv” files.</p>
 <p>Important: read_csv() is the tidyverse csv reading function, the base R function is read.csv(). read.csv() will not read your data in as a tibble, which is the format used by tidyverse functions. You should get in the habit of using the tidyverse versions such as read_csv().</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-wrangling-using-tidyverse-1.html#cb220-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb220-2"><a href="data-wrangling-using-tidyverse-1.html#cb220-2" tabindex="-1"></a></span>
-<span id="cb220-3"><a href="data-wrangling-using-tidyverse-1.html#cb220-3" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>)</span>
-<span id="cb220-4"><a href="data-wrangling-using-tidyverse-1.html#cb220-4" tabindex="-1"></a>rbi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;flashy_dat_all.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="data-wrangling-using-tidyverse-1.html#cb235-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb235-2"><a href="data-wrangling-using-tidyverse-1.html#cb235-2" tabindex="-1"></a></span>
+<span id="cb235-3"><a href="data-wrangling-using-tidyverse-1.html#cb235-3" tabindex="-1"></a>flow <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>)</span>
+<span id="cb235-4"><a href="data-wrangling-using-tidyverse-1.html#cb235-4" tabindex="-1"></a>rbi <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;flashy_dat_all.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="what-is-a-tibble-1" class="section level2 hasAnchor" number="19.7">
-<h2><span class="header-section-number">19.7</span> What is a tibble?<a href="data-wrangling-using-tidyverse-1.html#what-is-a-tibble-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-is-a-tibble-1" class="section level2 hasAnchor" number="21.7">
+<h2><span class="header-section-number">21.7</span> What is a tibble?<a href="data-wrangling-using-tidyverse-1.html#what-is-a-tibble-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Good question. It’s a fancy way to store data that works well with tidyverse functions. Let’s look at the flow tibble with “head” and “str”</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="data-wrangling-using-tidyverse-1.html#cb221-1" tabindex="-1"></a><span class="fu">head</span>(flow)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 8
-##   StationID   cfs surrogate datetime             year quarter month
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1
-## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1
-## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1
-## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1
-## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1
-## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1
-## # ℹ 1 more variable: day &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="data-wrangling-using-tidyverse-1.html#cb223-1" tabindex="-1"></a><span class="fu">str</span>(flow)</span></code></pre></div>
-<pre><code>## spc_tbl_ [4,320 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##  $ StationID: chr [1:4320] &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; &quot;PINE&quot; ...
-##  $ cfs      : num [1:4320] 11.6 11.6 11.2 11.2 11.2 ...
-##  $ surrogate: chr [1:4320] &quot;N&quot; &quot;N&quot; &quot;N&quot; &quot;N&quot; ...
-##  $ datetime : POSIXct[1:4320], format: &quot;2010-01-01 00:00:00&quot; ...
-##  $ year     : num [1:4320] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
-##  $ quarter  : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
-##  $ month    : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
-##  $ day      : num [1:4320] 1 1 1 1 1 1 1 1 1 1 ...
-##  - attr(*, &quot;spec&quot;)=
-##   .. cols(
-##   ..   StationID = col_character(),
-##   ..   cfs = col_double(),
-##   ..   surrogate = col_character(),
-##   ..   datetime = col_datetime(format = &quot;&quot;),
-##   ..   year = col_double(),
-##   ..   quarter = col_double(),
-##   ..   month = col_double(),
-##   ..   day = col_double()
-##   .. )
-##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-wrangling-using-tidyverse-1.html#cb236-1" tabindex="-1"></a><span class="fu">head</span>(flow)</span>
+<span id="cb236-2"><a href="data-wrangling-using-tidyverse-1.html#cb236-2" tabindex="-1"></a><span class="fu">str</span>(flow)</span></code></pre></div>
 <p>Now read in the same data with read.csv() which will NOT read the data as a tibble. How is it different? Output each one in the Console.</p>
 <p>Knowing the data type for each column is super helpful for a few reasons…. let’s talk about them.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="data-wrangling-using-tidyverse-1.html#cb225-1" tabindex="-1"></a>flow_NT <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>) <span class="co"># this is base R</span></span>
-<span id="cb225-2"><a href="data-wrangling-using-tidyverse-1.html#cb225-2" tabindex="-1"></a></span>
-<span id="cb225-3"><a href="data-wrangling-using-tidyverse-1.html#cb225-3" tabindex="-1"></a><span class="fu">head</span>(flow_NT)</span></code></pre></div>
-<pre><code>##   StationID   cfs surrogate             datetime year quarter
-## 1      PINE 11.58         N 2010-01-01T00:00:00Z 2010       1
-## 2      PINE 11.58         N 2010-01-01T01:00:00Z 2010       1
-## 3      PINE 11.24         N 2010-01-01T02:00:00Z 2010       1
-## 4      PINE 11.24         N 2010-01-01T03:00:00Z 2010       1
-## 5      PINE 11.24         N 2010-01-01T04:00:00Z 2010       1
-## 6      PINE 11.24         N 2010-01-01T05:00:00Z 2010       1
-##   month day
-## 1     1   1
-## 2     1   1
-## 3     1   1
-## 4     1   1
-## 5     1   1
-## 6     1   1</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="data-wrangling-using-tidyverse-1.html#cb227-1" tabindex="-1"></a><span class="fu">head</span>(flow)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 8
-##   StationID   cfs surrogate datetime             year quarter month
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 PINE       11.6 N         2010-01-01 00:00:00  2010       1     1
-## 2 PINE       11.6 N         2010-01-01 01:00:00  2010       1     1
-## 3 PINE       11.2 N         2010-01-01 02:00:00  2010       1     1
-## 4 PINE       11.2 N         2010-01-01 03:00:00  2010       1     1
-## 5 PINE       11.2 N         2010-01-01 04:00:00  2010       1     1
-## 6 PINE       11.2 N         2010-01-01 05:00:00  2010       1     1
-## # ℹ 1 more variable: day &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-wrangling-using-tidyverse-1.html#cb229-1" tabindex="-1"></a><span class="co"># We can remove the flow_NT dataframe from the enviroment with rm(flow_NT)</span></span>
-<span id="cb229-2"><a href="data-wrangling-using-tidyverse-1.html#cb229-2" tabindex="-1"></a><span class="fu">rm</span>(flow_NT)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-wrangling-using-tidyverse-1.html#cb237-1" tabindex="-1"></a>flow_NT <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;pine_nfdr_jan-mar_2010.csv&quot;</span>) <span class="co"># this is base R</span></span>
+<span id="cb237-2"><a href="data-wrangling-using-tidyverse-1.html#cb237-2" tabindex="-1"></a></span>
+<span id="cb237-3"><a href="data-wrangling-using-tidyverse-1.html#cb237-3" tabindex="-1"></a><span class="fu">head</span>(flow_NT)</span>
+<span id="cb237-4"><a href="data-wrangling-using-tidyverse-1.html#cb237-4" tabindex="-1"></a><span class="fu">head</span>(flow)</span>
+<span id="cb237-5"><a href="data-wrangling-using-tidyverse-1.html#cb237-5" tabindex="-1"></a></span>
+<span id="cb237-6"><a href="data-wrangling-using-tidyverse-1.html#cb237-6" tabindex="-1"></a><span class="co"># We can remove the flow_NT dataframe from the enviroment with rm(flow_NT)</span></span>
+<span id="cb237-7"><a href="data-wrangling-using-tidyverse-1.html#cb237-7" tabindex="-1"></a><span class="fu">rm</span>(flow_NT)</span></code></pre></div>
 </div>
-<div id="data-wrangling-in-dplyr-1" class="section level2 hasAnchor" number="19.8">
-<h2><span class="header-section-number">19.8</span> Data wrangling in dplyr<a href="data-wrangling-using-tidyverse-1.html#data-wrangling-in-dplyr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-wrangling-in-dplyr-1" class="section level2 hasAnchor" number="21.8">
+<h2><span class="header-section-number">21.8</span> Data wrangling in dplyr<a href="data-wrangling-using-tidyverse-1.html#data-wrangling-in-dplyr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you forget syntax or what the following functions do, here is a cheat sheet: <a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" target="_blank">https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
 <p>We will demo five functions below (these are tidyverse/dplyr functions):</p>
 <ul>
@@ -646,199 +753,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>summarize()</strong> - collapse groups of values into summary stats</li>
 </ul>
 </div>
-<div id="filter-1" class="section level2 hasAnchor" number="19.9">
-<h2><span class="header-section-number">19.9</span> Filter<a href="data-wrangling-using-tidyverse-1.html#filter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="filter-1" class="section level2 hasAnchor" number="21.9">
+<h2><span class="header-section-number">21.9</span> Filter<a href="data-wrangling-using-tidyverse-1.html#filter-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Write an expression that returns data in rbi for the state of Montana (MT)</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-wrangling-using-tidyverse-1.html#cb230-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 17 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6037500 0.0338       8 Madison River…     1126.  10U       44.7
-##  2  6043500 0.0724      61 Gallatin Rive…     2120.  10U       45.5
-##  3  6073500 0.104      123 Dearborn Rive…      835.  10U       47.2
-##  4  6154410 0.118      157 Little People…       33.4 10U       48.0
-##  5  6187915 0.110      143 Soda Butte Cr…       73.1 10U       45.0
-##  6  6191000 0.0627      46 Gardner River…      514.  10U       45.0
-##  7  6191500 0.0649      49 Yellowstone R…     6784.  10U       45.1
-##  8  6289000 0.0652      50 Little Bighor…      471.  10U       45.0
-##  9  6291500 0.0923      94 Lodge Grass C…      218   10U       45.1
-## 10 12358500 0.0922      93 Middle Fork F…     2939.  17        48.5
-## 11 12374250 0.0848      77 Mill Cr ab Ba…       50.8 17        47.8
-## 12 12375900 0.0985     113 South Crow Cr…       19.7 17        47.5
-## 13 12377150 0.118      153 Mission Cr ab…       32.2 17        47.3
-## 14 12381400 0.0698      55 South Fork Jo…      151.  17        47.2
-## 15 12383500 0.0470      19 Big Knife Cre…       17.7 17        47.1
-## 16 12388400 0.100      117 Revais Cr bl …       60.8 17        47.3
-## 17 12390700 0.0738      64 Prospect Cree…      470.  17        47.6
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-wrangling-using-tidyverse-1.html#cb238-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span></code></pre></div>
 <p>And one that keeps flows less than 100 cfs in the “flow” dataframe.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="data-wrangling-using-tidyverse-1.html#cb232-1" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 4,169 × 8
-##    StationID   cfs surrogate datetime             year quarter
-##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
-##  1 PINE       11.6 N         2010-01-01 00:00:00  2010       1
-##  2 PINE       11.6 N         2010-01-01 01:00:00  2010       1
-##  3 PINE       11.2 N         2010-01-01 02:00:00  2010       1
-##  4 PINE       11.2 N         2010-01-01 03:00:00  2010       1
-##  5 PINE       11.2 N         2010-01-01 04:00:00  2010       1
-##  6 PINE       11.2 N         2010-01-01 05:00:00  2010       1
-##  7 PINE       11.2 N         2010-01-01 06:00:00  2010       1
-##  8 PINE       11.2 N         2010-01-01 07:00:00  2010       1
-##  9 PINE       10.9 N         2010-01-01 08:00:00  2010       1
-## 10 PINE       10.9 N         2010-01-01 09:00:00  2010       1
-## # ℹ 4,159 more rows
-## # ℹ 2 more variables: month &lt;dbl&gt;, day &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-wrangling-using-tidyverse-1.html#cb239-1" tabindex="-1"></a><span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Above we just executed the operation, but didn’t save it. Let’s save that work using the assignment operator.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-wrangling-using-tidyverse-1.html#cb234-1" tabindex="-1"></a>rbi_mt <span class="ot">&lt;-</span> <span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span>
-<span id="cb234-2"><a href="data-wrangling-using-tidyverse-1.html#cb234-2" tabindex="-1"></a></span>
-<span id="cb234-3"><a href="data-wrangling-using-tidyverse-1.html#cb234-3" tabindex="-1"></a>low_flows <span class="ot">&lt;-</span> <span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
-<div id="multiple-conditions-1" class="section level3 hasAnchor" number="19.9.1">
-<h3><span class="header-section-number">19.9.1</span> Multiple conditions<a href="data-wrangling-using-tidyverse-1.html#multiple-conditions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-wrangling-using-tidyverse-1.html#cb240-1" tabindex="-1"></a>rbi_mt <span class="ot">&lt;-</span> <span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span>)</span>
+<span id="cb240-2"><a href="data-wrangling-using-tidyverse-1.html#cb240-2" tabindex="-1"></a></span>
+<span id="cb240-3"><a href="data-wrangling-using-tidyverse-1.html#cb240-3" tabindex="-1"></a>low_flows <span class="ot">&lt;-</span> <span class="fu">filter</span>(flow, cfs <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div>
+<div id="multiple-conditions-1" class="section level3 hasAnchor" number="21.9.1">
+<h3><span class="header-section-number">21.9.1</span> Multiple conditions<a href="data-wrangling-using-tidyverse-1.html#multiple-conditions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>How many gages are there in Montana with an rbi greater than 0.05</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="data-wrangling-using-tidyverse-1.html#cb235-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 15 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6043500 0.0724      61 Gallatin Rive…     2120.  10U       45.5
-##  2  6073500 0.104      123 Dearborn Rive…      835.  10U       47.2
-##  3  6154410 0.118      157 Little People…       33.4 10U       48.0
-##  4  6187915 0.110      143 Soda Butte Cr…       73.1 10U       45.0
-##  5  6191000 0.0627      46 Gardner River…      514.  10U       45.0
-##  6  6191500 0.0649      49 Yellowstone R…     6784.  10U       45.1
-##  7  6289000 0.0652      50 Little Bighor…      471.  10U       45.0
-##  8  6291500 0.0923      94 Lodge Grass C…      218   10U       45.1
-##  9 12358500 0.0922      93 Middle Fork F…     2939.  17        48.5
-## 10 12374250 0.0848      77 Mill Cr ab Ba…       50.8 17        47.8
-## 11 12375900 0.0985     113 South Crow Cr…       19.7 17        47.5
-## 12 12377150 0.118      153 Mission Cr ab…       32.2 17        47.3
-## 13 12381400 0.0698      55 South Fork Jo…      151.  17        47.2
-## 14 12388400 0.100      117 Revais Cr bl …       60.8 17        47.3
-## 15 12390700 0.0738      64 Prospect Cree…      470.  17        47.6
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;,
-## #   FLOWYRS_1990_2009 &lt;dbl&gt;, wy00_09 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-wrangling-using-tidyverse-1.html#cb241-1" tabindex="-1"></a><span class="fu">filter</span>(rbi, STATE <span class="sc">==</span> <span class="st">&quot;MT&quot;</span> <span class="sc">&amp;</span> RBI <span class="sc">&gt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <p>Challenge: Filter for flow less than 100 cfs just for the NFDR gauge in “flow”.</p>
 </div>
 </div>
-<div id="arrange-1" class="section level2 hasAnchor" number="19.10">
-<h2><span class="header-section-number">19.10</span> Arrange<a href="data-wrangling-using-tidyverse-1.html#arrange-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="arrange-1" class="section level2 hasAnchor" number="21.10">
+<h2><span class="header-section-number">21.10</span> Arrange<a href="data-wrangling-using-tidyverse-1.html#arrange-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Arrange sorts by a column in your dataset.</p>
 <p>Sort the rbi data by the RBI column in ascending and then descending order</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-wrangling-using-tidyverse-1.html#cb237-1" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span></code></pre></div>
-<pre><code>## # A tibble: 1,144 × 26
-##     site_no    RBI RBIrank STANAME        DRAIN_SQKM HUC02 LAT_GAGE
-##       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1  6408700 0.0108       1 RHOADS FORK N…       20.8 10U       44.1
-##  2  6430850 0.0192       2 LITTLE SPEARF…       71.8 10U       44.3
-##  3 10244950 0.0230       3 STEPTOE C NR …       28.2 16        39.2
-##  4  2267000 0.0286       4 CATFISH CREEK…      169.  3         28.0
-##  5  6775500 0.0300       5 MIDDLE LOUP R…     5460.  10L       41.8
-##  6  6430532 0.0303       6 CROW CREEK NE…      106.  10U       44.6
-##  7 14158500 0.0306       7 MCKENZIE RIVE…      237.  17        44.4
-##  8  6037500 0.0338       8 Madison River…     1126.  10U       44.7
-##  9 10109001 0.0382       9 COM F LOGAN R…      556.  16        41.7
-## 10 10243700 0.0391      10 CLEVE C NR EL…       83.5 16        39.2
-## # ℹ 1,134 more rows
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-wrangling-using-tidyverse-1.html#cb239-1" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
-<pre><code>## # A tibble: 1,144 × 26
-##    site_no   RBI RBIrank STANAME DRAIN_SQKM HUC02 LAT_GAGE LNG_GAGE
-##      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1  9.49e6  1.76    1144 CANADA…      675.  15        32.3   -111. 
-##  2  9.51e6  1.75    1143 SKUNK …      170.  15        33.7   -112. 
-##  3  8.40e6  1.62    1142 SOUTH …      534   13        32.6   -104. 
-##  4  9.49e6  1.58    1141 BRAWLE…     2028.  15        32.1   -111. 
-##  5  9.54e6  1.57    1140 SAN SI…     1483.  15        32.0   -112. 
-##  6  8.20e6  1.56    1139 Seco C…      435.  12        29.4    -99.3
-##  7  1.11e7  1.55    1138 Lytle …      365.  18        34.1   -117. 
-##  8  7.02e6  1.51    1137 Fishpo…       24.9 7         38.6    -90.5
-##  9  7.23e6  1.50    1136 Palo D…     2909.  11        36.2   -101. 
-## 10  6.85e6  1.40    1135 BEAVER…     4358.  10L       40.0   -101. 
-## # ℹ 1,134 more rows
-## # ℹ 18 more variables: STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-wrangling-using-tidyverse-1.html#cb242-1" tabindex="-1"></a><span class="fu">arrange</span>(rbi, RBI)</span>
+<span id="cb242-2"><a href="data-wrangling-using-tidyverse-1.html#cb242-2" tabindex="-1"></a></span>
+<span id="cb242-3"><a href="data-wrangling-using-tidyverse-1.html#cb242-3" tabindex="-1"></a></span>
+<span id="cb242-4"><a href="data-wrangling-using-tidyverse-1.html#cb242-4" tabindex="-1"></a><span class="fu">arrange</span>(rbi, <span class="fu">desc</span>(RBI))</span></code></pre></div>
 </div>
-<div id="select-1" class="section level2 hasAnchor" number="19.11">
-<h2><span class="header-section-number">19.11</span> Select<a href="data-wrangling-using-tidyverse-1.html#select-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="select-1" class="section level2 hasAnchor" number="21.11">
+<h2><span class="header-section-number">21.11</span> Select<a href="data-wrangling-using-tidyverse-1.html#select-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Look at the RBI dataframe. There are too many columns! You will often want to get rid of some columns and clean up the dataframe (df) for analysis.</p>
 <p>Select Site name, state, and RBI from the rbi data</p>
 <p>Note they come back in the order you put them in in the function, not the order they were in in the original data.</p>
 <p>You can do a lot more with select, especially when you need to select a bunch of columns but don’t want to type them all out. For example, if you want to select a group of columns you can specify the first and last with a colon in between (first:last) and it’ll return all of them. Select the rbi columns from site_no to DRAIN_SQKM. You can also remove one column with select(-column). Remove the “surrogate” column from flow.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-wrangling-using-tidyverse-1.html#cb241-1" tabindex="-1"></a>rbi_mt_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, STANAME, STATE, RBI)</span>
-<span id="cb241-2"><a href="data-wrangling-using-tidyverse-1.html#cb241-2" tabindex="-1"></a></span>
-<span id="cb241-3"><a href="data-wrangling-using-tidyverse-1.html#cb241-3" tabindex="-1"></a>rbi_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, site_no<span class="sc">:</span>DRAIN_SQKM)</span>
-<span id="cb241-4"><a href="data-wrangling-using-tidyverse-1.html#cb241-4" tabindex="-1"></a></span>
-<span id="cb241-5"><a href="data-wrangling-using-tidyverse-1.html#cb241-5" tabindex="-1"></a>flow_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(flow, <span class="sc">-</span>surrogate)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="data-wrangling-using-tidyverse-1.html#cb243-1" tabindex="-1"></a>rbi_mt_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, STANAME, STATE, RBI)</span>
+<span id="cb243-2"><a href="data-wrangling-using-tidyverse-1.html#cb243-2" tabindex="-1"></a></span>
+<span id="cb243-3"><a href="data-wrangling-using-tidyverse-1.html#cb243-3" tabindex="-1"></a>rbi_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(rbi, site_no<span class="sc">:</span>DRAIN_SQKM)</span>
+<span id="cb243-4"><a href="data-wrangling-using-tidyverse-1.html#cb243-4" tabindex="-1"></a></span>
+<span id="cb243-5"><a href="data-wrangling-using-tidyverse-1.html#cb243-5" tabindex="-1"></a>flow_thin <span class="ot">&lt;-</span> <span class="fu">select</span>(flow, <span class="sc">-</span>surrogate)</span></code></pre></div>
 </div>
-<div id="mutate-1" class="section level2 hasAnchor" number="19.12">
-<h2><span class="header-section-number">19.12</span> Mutate<a href="data-wrangling-using-tidyverse-1.html#mutate-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mutate-1" class="section level2 hasAnchor" number="21.12">
+<h2><span class="header-section-number">21.12</span> Mutate<a href="data-wrangling-using-tidyverse-1.html#mutate-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use mutate to add new columns based on additional ones. Common uses are to create a column of data in different units, or to calculate something based on two columns. You can also use it to just update a column, by naming the new column the same as the original one (but be careful because you’ll lose the original one!).</p>
 <p>Create a new column in rbi called T_RANGE by subtracting T_MIN_SITE from T_MAX_SITE</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="data-wrangling-using-tidyverse-1.html#cb242-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
-<pre><code>## # A tibble: 1,144 × 27
-##    site_no    RBI RBIrank STANAME         DRAIN_SQKM HUC02 LAT_GAGE
-##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River nea…     2253.  1         47.2
-##  2 1021480 0.208      300 Old Stream nea…       76.7 1         44.9
-##  3 1022500 0.198      286 Narraguagus Ri…      574.  1         44.6
-##  4 1029200 0.132      183 Seboeis River …      445.  1         46.1
-##  5 1030500 0.114      147 Mattawamkeag R…     3676.  1         45.5
-##  6 1031300 0.297      489 Piscataquis Ri…      304.  1         45.3
-##  7 1031500 0.320      545 Piscataquis Ri…      769   1         45.2
-##  8 1037380 0.318      537 Ducktrap River…       39   1         44.3
-##  9 1044550 0.242      360 Spencer Stream…      500.  1         45.3
-## 10 1047000 0.344      608 Carrabassett R…      909.  1         44.9
-## # ℹ 1,134 more rows
-## # ℹ 20 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-wrangling-using-tidyverse-1.html#cb244-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">T_RANGE =</span> T_MAX_SITE <span class="sc">-</span> T_MIN_SITE)</span></code></pre></div>
 <p>When downloading data from the USGS through R, you have to enter the gage ID as a character, even though they are all made up of numbers. So to practice doing this, update the site_no column to be a character datatype</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="data-wrangling-using-tidyverse-1.html#cb244-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
-<pre><code>## # A tibble: 1,144 × 26
-##    site_no    RBI RBIrank STANAME         DRAIN_SQKM HUC02 LAT_GAGE
-##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
-##  1 1013500 0.0584      35 Fish River nea…     2253.  1         47.2
-##  2 1021480 0.208      300 Old Stream nea…       76.7 1         44.9
-##  3 1022500 0.198      286 Narraguagus Ri…      574.  1         44.6
-##  4 1029200 0.132      183 Seboeis River …      445.  1         46.1
-##  5 1030500 0.114      147 Mattawamkeag R…     3676.  1         45.5
-##  6 1031300 0.297      489 Piscataquis Ri…      304.  1         45.3
-##  7 1031500 0.320      545 Piscataquis Ri…      769   1         45.2
-##  8 1037380 0.318      537 Ducktrap River…       39   1         44.3
-##  9 1044550 0.242      360 Spencer Stream…      500.  1         45.3
-## 10 1047000 0.344      608 Carrabassett R…      909.  1         44.9
-## # ℹ 1,134 more rows
-## # ℹ 19 more variables: LNG_GAGE &lt;dbl&gt;, STATE &lt;chr&gt;, CLASS &lt;chr&gt;,
-## #   AGGECOREGION &lt;chr&gt;, PPTAVG_BASIN &lt;dbl&gt;, PPTAVG_SITE &lt;dbl&gt;,
-## #   T_AVG_BASIN &lt;dbl&gt;, T_AVG_SITE &lt;dbl&gt;, T_MAX_BASIN &lt;dbl&gt;,
-## #   T_MAXSTD_BASIN &lt;dbl&gt;, T_MAX_SITE &lt;dbl&gt;, T_MIN_BASIN &lt;dbl&gt;,
-## #   T_MINSTD_BASIN &lt;dbl&gt;, T_MIN_SITE &lt;dbl&gt;, PET &lt;dbl&gt;,
-## #   SNOW_PCT_PRECIP &lt;dbl&gt;, PRECIP_SEAS_IND &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="data-wrangling-using-tidyverse-1.html#cb245-1" tabindex="-1"></a><span class="fu">mutate</span>(rbi, <span class="at">site_no =</span> <span class="fu">as.character</span>(site_no))</span></code></pre></div>
 </div>
-<div id="summarize-1" class="section level2 hasAnchor" number="19.13">
-<h2><span class="header-section-number">19.13</span> Summarize<a href="data-wrangling-using-tidyverse-1.html#summarize-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarize-1" class="section level2 hasAnchor" number="21.13">
+<h2><span class="header-section-number">21.13</span> Summarize<a href="data-wrangling-using-tidyverse-1.html#summarize-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Summarize will perform an operation on all of your data, or groups if you assign groups.</p>
 <p>Use summarize to compute the mean, min, and max rbi</p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-wrangling-using-tidyverse-1.html#cb246-1" tabindex="-1"></a>rbi_sum <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
@@ -847,8 +809,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb247-2"><a href="data-wrangling-using-tidyverse-1.html#cb247-2" tabindex="-1"></a></span>
 <span id="cb247-3"><a href="data-wrangling-using-tidyverse-1.html#cb247-3" tabindex="-1"></a>rbi_state <span class="ot">&lt;-</span> <span class="fu">summarize</span>(rbi_state, <span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
 </div>
-<div id="multiple-operations-with-pipes-1" class="section level2 hasAnchor" number="19.14">
-<h2><span class="header-section-number">19.14</span> Multiple operations with pipes<a href="data-wrangling-using-tidyverse-1.html#multiple-operations-with-pipes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="multiple-operations-with-pipes-1" class="section level2 hasAnchor" number="21.14">
+<h2><span class="header-section-number">21.14</span> Multiple operations with pipes<a href="data-wrangling-using-tidyverse-1.html#multiple-operations-with-pipes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You will note that your environment is filling up with objects. We can eliminate many of those by using pipes.</p>
 <p>The pipe operator %&gt;% allows you to perform multiple operations in a sequence without saving intermediate steps. Not only is this more efficient, but structuring operations with pipes is also more intuitive than nesting functions within functions (the other way you can do multiple operations).</p>
 <p>When you use the pipe, it basically takes whatever came out of the first function and puts it into the data argument for the next one, so:</p>
@@ -860,24 +822,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb248-2"><a href="data-wrangling-using-tidyverse-1.html#cb248-2" tabindex="-1"></a>  <span class="fu">group_by</span>(STATE) <span class="sc">%&gt;%</span></span>
 <span id="cb248-3"><a href="data-wrangling-using-tidyverse-1.html#cb248-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanrbi =</span> <span class="fu">mean</span>(RBI), <span class="at">maxrbi =</span> <span class="fu">max</span>(RBI), <span class="at">minrbi =</span> <span class="fu">min</span>(RBI))</span></code></pre></div>
 </div>
-<div id="a-final-comment-on-nas-1" class="section level2 hasAnchor" number="19.15">
-<h2><span class="header-section-number">19.15</span> A final comment on NAs<a href="data-wrangling-using-tidyverse-1.html#a-final-comment-on-nas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-final-comment-on-nas-1" class="section level2 hasAnchor" number="21.15">
+<h2><span class="header-section-number">21.15</span> A final comment on NAs<a href="data-wrangling-using-tidyverse-1.html#a-final-comment-on-nas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will talk more about this when we discuss stats, but some operations will fail if there are NA’s in the data. If appropriate, you can tell functions like mean() to ignore NAs by using na.rm = TRUE. You can also use drop_na() if you’re working with a tibble. But be aware if you use that and save the result, drop_na() gets rid of the whole row, not just the NA. Because what would you replace it with…. an NA?</p>
 <p>First, lets create a small data frame called x that includes: 1, 2, 3, 4, NA. How do we do that?</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data-wrangling-using-tidyverse-1.html#cb249-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="cn">NA</span>)</span></code></pre></div>
 <p>Next, lets take the mean of x.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-wrangling-using-tidyverse-1.html#cb250-1" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
-<pre><code>## [1] NA</code></pre>
 <p>How do you think we can fix this problem?</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-wrangling-using-tidyverse-1.html#cb252-1" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 2.5</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-wrangling-using-tidyverse-1.html#cb251-1" tabindex="-1"></a><span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="thats-it-for-today-1" class="section level2 hasAnchor" number="19.16">
-<h2><span class="header-section-number">19.16</span> That’s it for today<a href="data-wrangling-using-tidyverse-1.html#thats-it-for-today-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="thats-it-for-today-1" class="section level2 hasAnchor" number="21.16">
+<h2><span class="header-section-number">21.16</span> That’s it for today<a href="data-wrangling-using-tidyverse-1.html#thats-it-for-today-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Can you run all of the code in this unit? Do you get errors? If you are working on a lab computer have you gotten your folder management set up?</p>
 </div>
-<div id="exit-ticket-3" class="section level2 hasAnchor" number="19.17">
-<h2><span class="header-section-number">19.17</span> Exit ticket<a href="data-wrangling-using-tidyverse-1.html#exit-ticket-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exit-ticket-3" class="section level2 hasAnchor" number="21.17">
+<h2><span class="header-section-number">21.17</span> Exit ticket<a href="data-wrangling-using-tidyverse-1.html#exit-ticket-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you have an error or problem we need to manage - let me know. If not write NA!</p>
 
 </div>
@@ -888,7 +848,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="intro-to-data-visualization-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lab-1-data-vis-wrangling-and-programming-45-pts-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-1-data-vis-wrangling-and-programming-12-pts-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
