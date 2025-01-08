@@ -1,4 +1,4 @@
---- 
+---
 title: "Watershed Analysis: ENSC 445/LRES 545"
 author: "Tim Covino"
 date: "`r Sys.Date()`"
@@ -7,114 +7,62 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-This book provides the materials that we will use in Watershed Analysis (ENSC 445/545). In this class we will be learning the fundamentals of watershed analysis in R. 
+This book provides the materials that we will use in Watershed Analysis (ENSC 445/545). In this class we will be learning the fundamentals of watershed analysis in R.
 
 Instructor: Dr. Tim Covino\
 Class times: T 10:50 – 12:05; Th 10:50 – 12:05\
 Office hours: By appointment\
-Website: https://tpcovino.github.io/ensc_445_545_bookdown
+Website: <https://tpcovino.github.io/ensc_445_545_bookdown>
 
 ![](images/big-hole-river-lead.jpeg)
 
-## Course overview and objectives 
+## Course overview and objectives
 
-(1) provide theoretical understanding and practical experience with common analysis and modeling techniques relevant to watershed hydrology. 
+(1) provide theoretical understanding and practical experience with common analysis and modeling techniques relevant to watershed hydrology.
 
 (2) provide training in analyzing, simulating, and presenting scientific data in written and oral formats.
 
-## Structure 
-This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. We will generally have "lecture" on Tuesday, where we will talk about and work through various types of hydrological analyses. On Thursday's you will then put the content from Tuesday to work in a lab where you will complete a variety of hydrological analyses in R. 
+## Structure
 
+This class will be largely hands-on, and students will be conducting watershed analyses and modeling exercises. We will be doing our analysis and modeling in R and will do some R coding in each class session. Programming is best learned by doing it often. We will generally have "lecture" on Tuesday, where we will talk about and work through various types of hydrological analyses. On Thursday's you will then put the content from Tuesday to work in a lab where you will complete a variety of hydrological analyses in R.
 
-Philosophical approach and books & resources we will utilize 
-This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source [R](https://cran.rstudio.com/){target="_blank"} and [RStudio](https://posit.co/download/rstudio-desktop/){target="_blank"} software. Books and readings will include [R for Data Science](https://r4ds.hadley.nz/){target="_blank"} and [Statistical Methods in Water Resources](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}, but other readings will be made available on this bookdown page as needed. *We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis*.
- 
+Philosophical approach and books & resources we will utilize This course will use all online and open-source resources and will follow FAIR (findability, accessibility, interoperability, and reusability) data principles and promote sharing of hydrological education and research materials. Our computing will utilze open source [R](https://cran.rstudio.com/){target="_blank"} and [RStudio](https://posit.co/download/rstudio-desktop/){target="_blank"} software. Books and readings will include [R for Data Science](https://r4ds.hadley.nz/){target="_blank"} and [Statistical Methods in Water Resources](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}, but other readings will be made available on this bookdown page as needed. *We will promote an open, equitable, and collaborative environment such that we can all succeed and improve our skills in watershed analysis*.
+
 ## Tentative schedule, subject to change
 
-**Week 1**: <br> 
-- *Lecture (1/18)*: Introduction, review.\
+**Week 1**: <br> - *Lecture (1/14)*: Introduction, review.\
+*Work session (1/16)*: Getting started in R. 
 - *Reading*: [Chapters 1, 2, & 3](https://r4ds.had.co.nz/introduction.html){target="_blank"} 1-Welcome, 2-Introduction, & 3-Data visualization in R for Data Science (RDS).
 
-**Week 2**: <br>
-- *Lecture (1/23)*: Overview and data viz. <br>
-- *Work session (1/25)*: Data visualization, data wrangling, and programming. <br>
-- *Reading*: [Chapter 2.1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR).
-*AND* [Chapters 4 & 5](https://r4ds.had.co.nz/workflow-basics.html){target="_blank"} 4-Workflow: Basics & 5-Data transformation in RDS. <br>
+**Week 2**: <br> - *Lecture (1/21)*: Overview and data viz. <br> - *Work session (1/23)*: Data visualization, data wrangling, and programming. <br> - *Reading*: [Chapter 2.1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Graphical Analysis of Single Datasets in Statistical Methods in Water Resources (SMWR). *AND* [Chapters 4 & 5](https://r4ds.had.co.nz/workflow-basics.html){target="_blank"} 4-Workflow: Basics & 5-Data transformation in RDS. <br>
 
-**Week 3**: <br>
-- *Lab1 (1/30)*: Data viz, wrangling, and programming. <br>
-- *Lab 1 (2/1)*: Data viz, wrangling, and programming. <br>
+**Week 3**: <br> - *Lab1 (1/28)*: Data viz, wrangling, and programming. <br> - *Lab 1 (1/30)*: Data viz, wrangling, and programming. <br>
 
-**Week 4**: <br>
-- *Lecture (2/6)*: Downloading and shaping data frames.<br>
-- *Lab 2 (2/8)*: Downloading and shaping data frames. <br>
-- **Submit term project ideas** <br>
-- *Reading*: [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"}
-*AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
+**Week 4**: <br> - *Lecture (2/4)*: Downloading and shaping data frames.<br> - *Lab 2 (2/6)*: Downloading and shaping data frames. <br> - **Submit term project ideas** <br> - *Reading*: [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"} *AND* [Chapter 12 & 13 of R for Data Science](https://r4ds.had.co.nz/tidy-data.html){target="_blank"}
 
+**Week 5**: <br> - *Lecture (2/11)*: Statistics in hydrology. <br> - *Lab 2 (2/13)*: Statistics in hydrology. <br> - *Reading*: [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Summarizing Univariate Data in SMWR
 
-**Week 5**: <br> 
-- *Lecture (2/13)*: Statistics in hydrology. <br>
-- *Lab 2 (2/15)*: Statistics in hydrology. <br>
-- *Reading*: [Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Summarizing Univariate Data in SMWR 
+**Week 6**: <br> - *Lecture (2/18)*: Surface water: Rating curves and hydrographs.\
+- *Lab 4 (2/20)*: Rating curves and hydrographs. <br> - *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Hypothesis Tests in SMWR.
 
+**Week 7**: <br> - *Lecture (2/25)*: Term project work session. <br> - *Lab 4 (2/27)*: Term project work session <br>
 
-**Week 6**: <br> 
-- *Lecture (2/20)*: Surface water: Rating curves and hydrographs. \
-- *Lab 4 (2/22)*: Rating curves and hydrographs. <br>
-- *Reading*: [Chapter 4](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}: Hypothesis Tests in SMWR.
+**Week 8**: <br> - *Lab 5 (3/4)*: Flow frequency analysis (low flows) <br> - *Work session (3/6)*: Term project work session/guest lecture <br> - *Reading*: [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10){target="_blank"} in EPA Environmental Modeling Community of Practice
 
-**Week 7**: <br>
-- *Lecture (2/27)*: Term project work session. <br>
-- *Lab 4 (2/29)*: Term project work session <br>
- 
-**Week 8**: <br>
-- *Lab 5 (3/5)*: Flow frequency analysis (low flows) <br>
-- *Work session (3/7)*: Term project work session/guest lecture <br>
-- *Reading*: [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10){target="_blank"} in EPA Environmental Modeling Community of Practice
+**Week 9**: <br> - *Lecture (3/11)*: Cimate trend analysis <br> - *Lab 6 (3/13)*: Trend analysis <br> - *Reading*: [Chapters 12.1 & 12.2](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 12.1-General Structure of Trend Tests & 12.2-Trend Tests with No Exogenous Variables in SMWR.
 
-**Week 9: Spring break (3/12 & 3/14)** - no class!
+**Week 10: Spring break (3/18 & 3/20)** - no class!
 
-**Week 10**: <br>
-- *Lecture (3/19)*: Cimate trend analysis <br>
-- *Lab 6 (3/21)*: Trend analysis <br>
-- *Reading*: [Chapters 12.1 & 12.2](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"} 12.1-General Structure of Trend Tests & 12.2-Trend Tests with No Exogenous Variables in SMWR. 
+**Week 11**: <br> - *Work session (3/25)*: Term project work session <br> - *Lab 7 or work session (3/27)*: Precipitation analysis or work session <br>
 
-**Week 11**: <br>
-- *Work session (3/26)*: Term project work session <br>
-- *Lab 7 or work session (3/28)*: Precipitation analysis or work session <br>
+**Week 12**: <br> - *Lecture/lab (4/1)*: Geospatial hydrology in R <br> - *Lab 8 (4/3)*: Watershed delineation in R <br> - *Reading*: [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html){target="_blank"} <br> - *Reading*: [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html){target="_blank"}
 
-**Week 12**: <br>
-- *Lecture/lab (4/2)*: Geospatial hydrology in R <br>
-- *Lab 8 (4/4)*: Watershed delineation in R <br>
-- *Reading*: [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html){target="_blank"} <br>
-- *Reading*: [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html){target="_blank"}
+**Week 13**: <br> - *Lecture/lab (4/8)*: Term project work session <br> - *Lab (4/10)*: Term project update presentations <br> - *Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL){target="_blank"}
 
-**Week 13**: <br>
-- *Lecture/lab (4/9)*: Term project work session <br>
-- *Lab (4/11)*: Term project update presentations <br>
-- *Reading* [An Overview of Rainfall-Runoff Model Types](https://cfpub.epa.gov/si/si_public_record_report.cfm?dirEntryId=339328&Lab=NERL){target="_blank"}
+**Week 14**: <br> - *Lab (4/15)*: Term project work session <br> - *Lab (4/17)*: Hydrologic modeling <br>
 
-**Week 14**: <br>
-- *Lab (4/16)*: Term project work session <br>
-- *Lab (4/18)*: Hydrologic modeling <br>
+**Week 15**: <br> - *Lab (4/22)*: Term project work session <br> - *Lab (4/24)*: Term project work session
 
-**Week 15**: <br>
-- *Lab (4/23)*: Term project work session <br>
-- *Lab (4/25)*: Term project work session
-
-**Week 16**: Term project presentations (4/30 and 5/2)
+**Week 16**: Term project presentations (4/29 and 5/1)
 
 **Week 17 (finals week)**: Submit term project R Markdown
-
-
-
-
-
-
-
-
-
-
-
-
