@@ -23,7 +23,7 @@
 <meta name="author" content="Tim Covino" />
 
 
-<meta name="date" content="2024-04-18" />
+<meta name="date" content="2025-01-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -418,36 +418,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is a good opportunity to illustrate the usefulness of writing your own functions. When you install packages in R, you get a bunch of functions you can use. But you can also create these on your own to simplify your analyses!</p>
 <p>You do this with the following syntax: MyNewFunction &lt;- function(param1, param2){ &gt;code &gt;}</p>
 <p>Whatever the last line of the “code” portion of the function spits out, get’s returned from the function. So if you said X &lt;- mynewfunction(param1, parm2) X would now have it in whatever your function returned. See a simple example below: a function that adds 1 to any number we pass to it.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="functions.html#cb146-1" tabindex="-1"></a>add1 <span class="ot">&lt;-</span> <span class="cf">function</span>(number){</span>
-<span id="cb146-2"><a href="functions.html#cb146-2" tabindex="-1"></a>          number <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb146-3"><a href="functions.html#cb146-3" tabindex="-1"></a>          }</span>
-<span id="cb146-4"><a href="functions.html#cb146-4" tabindex="-1"></a></span>
-<span id="cb146-5"><a href="functions.html#cb146-5" tabindex="-1"></a><span class="fu">add1</span>(<span class="dv">14</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="functions.html#cb152-1" tabindex="-1"></a>add1 <span class="ot">&lt;-</span> <span class="cf">function</span>(number){</span>
+<span id="cb152-2"><a href="functions.html#cb152-2" tabindex="-1"></a>          number <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb152-3"><a href="functions.html#cb152-3" tabindex="-1"></a>          }</span>
+<span id="cb152-4"><a href="functions.html#cb152-4" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="functions.html#cb152-5" tabindex="-1"></a><span class="fu">add1</span>(<span class="dv">14</span>)</span></code></pre></div>
 <p>You can make a generic ggplot function. Here I make a geom_point function. You can adjust the ggplot details to whatever you want.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="functions.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="functions.html#cb148-1" tabindex="-1"></a>point_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
-<span id="cb148-2"><a href="functions.html#cb148-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> color)) <span class="sc">+</span></span>
-<span id="cb148-3"><a href="functions.html#cb148-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb148-4"><a href="functions.html#cb148-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab, <span class="at">title =</span> title, <span class="at">color =</span> color_lab)</span>
-<span id="cb148-5"><a href="functions.html#cb148-5" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="functions.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="functions.html#cb154-1" tabindex="-1"></a>point_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(...) {</span>
+<span id="cb154-2"><a href="functions.html#cb154-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> color)) <span class="sc">+</span></span>
+<span id="cb154-3"><a href="functions.html#cb154-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb154-4"><a href="functions.html#cb154-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab, <span class="at">title =</span> title, <span class="at">color =</span> color_lab)</span>
+<span id="cb154-5"><a href="functions.html#cb154-5" tabindex="-1"></a>}</span></code></pre></div>
 <p>Then you just tell it what the inputs are. If you don’t want to color by something you need to remove that from the function. If you don’t want a title you just say title &lt;- “”</p>
 <p>Of course you could make a variety of these. A line function. So on.</p>
 <p>The mtcars is just an example df that comes with R for demonstration.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="functions.html#cb149-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb149-2"><a href="functions.html#cb149-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp</span>
-<span id="cb149-3"><a href="functions.html#cb149-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
-<span id="cb149-4"><a href="functions.html#cb149-4" tabindex="-1"></a>x_lab <span class="ot">&lt;-</span> <span class="st">&quot;Horsepower&quot;</span></span>
-<span id="cb149-5"><a href="functions.html#cb149-5" tabindex="-1"></a>y_lab <span class="ot">&lt;-</span> <span class="st">&quot;MPG&quot;</span></span>
-<span id="cb149-6"><a href="functions.html#cb149-6" tabindex="-1"></a>color <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>cyl</span>
-<span id="cb149-7"><a href="functions.html#cb149-7" tabindex="-1"></a>color_lab <span class="ot">&lt;-</span> <span class="st">&quot;Cyl&quot;</span></span>
-<span id="cb149-8"><a href="functions.html#cb149-8" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="st">&quot;Plot title&quot;</span></span>
-<span id="cb149-9"><a href="functions.html#cb149-9" tabindex="-1"></a>  </span>
-<span id="cb149-10"><a href="functions.html#cb149-10" tabindex="-1"></a><span class="fu">point_fun</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="functions.html#cb155-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb155-2"><a href="functions.html#cb155-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>hp</span>
+<span id="cb155-3"><a href="functions.html#cb155-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>mpg</span>
+<span id="cb155-4"><a href="functions.html#cb155-4" tabindex="-1"></a>x_lab <span class="ot">&lt;-</span> <span class="st">&quot;Horsepower&quot;</span></span>
+<span id="cb155-5"><a href="functions.html#cb155-5" tabindex="-1"></a>y_lab <span class="ot">&lt;-</span> <span class="st">&quot;MPG&quot;</span></span>
+<span id="cb155-6"><a href="functions.html#cb155-6" tabindex="-1"></a>color <span class="ot">&lt;-</span> mtcars<span class="sc">$</span>cyl</span>
+<span id="cb155-7"><a href="functions.html#cb155-7" tabindex="-1"></a>color_lab <span class="ot">&lt;-</span> <span class="st">&quot;Cyl&quot;</span></span>
+<span id="cb155-8"><a href="functions.html#cb155-8" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="st">&quot;Plot title&quot;</span></span>
+<span id="cb155-9"><a href="functions.html#cb155-9" tabindex="-1"></a>  </span>
+<span id="cb155-10"><a href="functions.html#cb155-10" tabindex="-1"></a><span class="fu">point_fun</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>You could also save the plot as an object and adjust.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="functions.html#cb150-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">point_fun</span>()</span>
-<span id="cb150-2"><a href="functions.html#cb150-2" tabindex="-1"></a></span>
-<span id="cb150-3"><a href="functions.html#cb150-3" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_x_reverse</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="functions.html#cb156-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">point_fun</span>()</span>
+<span id="cb156-2"><a href="functions.html#cb156-2" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="functions.html#cb156-3" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_x_reverse</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>In general you should write a function for anything that you do repetitively. So if you have a particular analysis that you will do many times, rather that cutting and pasting or writing the code over and over again, just write a function, save that function, and call it when you need it.</p>
 <p>Next week will we look at for loops which are also useful for iterating something over and over again.</p>
