@@ -12,6 +12,7 @@ This book provides the materials that we will use in Watershed Analysis (ENSC 44
 Instructor: Dr. Tim Covino\
 Class times: T 10:50 – 12:05; Th 10:50 – 12:05\
 Office hours: By appointment\
+Email: timothy.covino@montana.edu\
 Website: <https://tpcovino.github.io/ensc_445_545_bookdown>
 
 ![](images/big-hole-river-lead.jpeg)
