@@ -42,7 +42,7 @@ Philosophical approach and books & resources we will utilize This course will us
 
 **Week 4**: <br> - *Lecture (2/4)*: Downloading and shaping data frames.<br> - *Lab 2 (2/6)*: Downloading and shaping data frames. <br> - **Submit term project ideas** <br> - *Reading*: [Introduction to the dataRetrieval package](https://cran.r-project.org/web/packages/dataRetrieval/vignettes/dataRetrieval.html){target="_blank"} *AND* [Chapter 4 of R for Data Science](https://r4ds.hadley.nz/workflow-style){target="_blank"}
 
-**Week 5**: <br> - *Lecture (2/11)*: Statistics in hydrology. <br> - *Lab 2 (2/13)*: Statistics in hydrology. <br> - *Reading*: [Chapter 1](https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf){target="_blank"}: Summarizing Data in SMWR *AND* [Chapter 5 in RDS](https://r4ds.hadley.nz/data-tidy){target="_blank"}
+**Week 5**: <br> - *Lecture (2/11)*: Statistics in hydrology. <br> - *Lab 3 (2/13)*: Statistics in hydrology. <br> - *Reading*: [Chapter 1](https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf){target="_blank"}: Summarizing Data in SMWR *AND* [Chapter 5 in RDS](https://r4ds.hadley.nz/data-tidy){target="_blank"}
 
 **Week 6**: <br> - *Lecture (2/18)*: Surface water: Rating curves and hydrographs.\
 - *Lab 4 (2/20)*: Rating curves and hydrographs. <br> - *Reading*: [Chapter 4](https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf){target="_blank"}: Hypothesis Tests in SMWR.
