@@ -200,3 +200,5 @@ question-4-points
 question-4-4-points
 question-5-3-points
 question-6-3-point
+lab-3-statistics-in-hydrology-27-pts
+problem-1-3-pts
