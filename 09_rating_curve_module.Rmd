@@ -1,5 +1,5 @@
 
-# Hydrographs and rating curves (6 pts)
+# Hydrographs and rating curves (10 pts)
 
 
 A stream’s volumetric flow rate, hereafter referred to as discharge, is a parameter of interest for scientists and practitioners in various areas of hydrology. However, producing a continuous record of discharge (i.e., hydrograph) involves obtaining a continuous record of stage (i.e., water depth), making discharge measurements over a range of stages, establishing and maintaining a relation between the stage and discharge, and applying the stage-discharge relation to the stage record.  A hydrograph can provide insight into the primary drivers of flow (i.e., rain vs snow) and can be tracked to ensure users have access to their water rights as well as be used in flooding risk assessments. 
@@ -84,7 +84,7 @@ f.	Plot your results for each water vessel separately. Put the depth of water on
 g.	Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?
 
 
-## Summary questions and deliverable (6 pts)
+## Summary questions and deliverable (10 pts)
 
 Submit your answers to these questions as a word doc on D2L. 
 
@@ -101,7 +101,7 @@ Submit your answers to these questions as a word doc on D2L.
   
  - What instrumentation would you use to collect continuous stage measurements.
  
-3. What causes the stage-discharge relationship (i.e., the rating curve) to change? 
+3. What causes the stage-discharge relationship (i.e., the rating curve) to change over time? 
     
 
 

@@ -1,7 +1,7 @@
 
-# Lab 6: Climate trend analysis
+# Lab 6: Climate trend analysis (25 pts)
 
-15 pts total
+
 
 In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope. 
 
@@ -10,17 +10,16 @@ In this lab you are going to work with weather / climate data from the MSU weath
 
 For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures. 
 
-1. Describe what the Mann-Kendall (MK) test does and what the Sen's slope is and why they are appropriate for climate data. (5 pts)
+1. Describe what the Mann-Kendall (MK) test does and what the Sen's slope is and why they are appropriate for climate data. (3 pts)
 
-ANSWER: The MK test is a test to determine if there is a significant trend in climate data. The Sen's slope provides the slope of the trend. They are appropriate for non-normal data. 
 
-2. Provide a table (Table 1) of MK p-values and Sen's slopes over the entire period (1900 – current). (2 pts)
+2. Provide a table (Table 1) of MK p-values and Sen's slopes over the entire period (1900 – current). (5 pts)
 
-3. For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data "stat_smooth(method = "lm")" (1 pt). 
+3. For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data "stat_smooth(method = "lm")" (2 pt). 
 
-4. Provide a table (Table 2) of MK p-values and Sen's slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (2 pts)
+4. Provide a table (Table 2) of MK p-values and Sen's slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)
 
-5. In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen's slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (5 pts)
+5. In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen's slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (10 pts)
 
 
 ## New packages

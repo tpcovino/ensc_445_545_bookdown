@@ -284,7 +284,7 @@ So, our 7Q10 flow in cfs for this gage is....
 #PearsonxQy
 ```
 
-## Deliverable - Summary questions (12 pts)
+## Deliverable - Summary questions (15 pts)
 
 - submit your answers to these questions as a word doc on D2L. 
 

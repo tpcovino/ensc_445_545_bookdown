@@ -1,6 +1,6 @@
 
 
-# Lab 4: Rating cuve lab (15 pts) 
+# Lab 4: Rating cuve lab (25 pts) 
 
 Download the repo for this lab [here](https://github.com/tpcovino/rating_curve_lab.git){target="_blank"}
 
@@ -41,7 +41,7 @@ A good first step is to plot a time series of Q vs date, and stage vs. date. Thi
 
 ```
 
-### Q1.1. (3 pts)
+### Q1.1. (5 pts)
 
 - comment on temporal patterns in stage and Q. What are some key aspects of these time series that jump out at you? Given that rating curves are non-stationary (i.e., they can change through time) can you make some initial judgements on temporal groupings that you might apply for developing rating curves?  
 
@@ -59,8 +59,8 @@ Feel free to play with colors to see what gives you good separation between low 
   
 ```
 
-### Q2.1. (2 pt)
-- what do you notice when you plot ALL of the rating curve data? 
+### Q2.1. (5 pt)
+- what do you notice when you plot ALL of the rating curve data? Do you notice any steps? What might be causing those steps?  
 
 
 ## Problem 3
@@ -89,7 +89,7 @@ When making these plots add a smooth line to aid in visually assessing the scatt
 
 ```
 
-Once you have ~3 groupings plot the rating curves, add geom_smooth to each, set the limits to 
+Once you have 3 groupings plot the rating curves, add geom_smooth to each, set the limits to 
 
 xlim(0, 11) +
 ylim(0, 40000) +
@@ -151,7 +151,7 @@ That can then be used to add the equation to the ggplot.
 
 
 
-Q4.1. (5 pts)
+Q4.1. (10 pts)
 
 - Please provide your paramater values (a, C, and n) for each of your rating curves (hint: you should have 3 rating curves for 3 time periods). 
 

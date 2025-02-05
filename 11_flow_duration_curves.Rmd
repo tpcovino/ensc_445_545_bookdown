@@ -1,6 +1,6 @@
 
 
-# Flow Duration Curves (12 pts)
+# Flow Duration Curves (13 pts)
 
 
 Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.
@@ -194,7 +194,7 @@ parameter <- "00060"
 
 Deliverables:
 
-1. Provide your answers to module questions 1 & 2 (4 pts)
+1. Provide your answers to module questions 1 & 2 (5 pts)
 
 2. Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (3 pts)
 

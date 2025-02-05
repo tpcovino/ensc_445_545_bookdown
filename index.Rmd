@@ -47,7 +47,7 @@ Philosophical approach and books & resources we will utilize This course will us
 **Week 6**: <br> - *Lecture (2/18)*: Surface water: Rating curves and hydrographs.\
 - *Lab 4 (2/20)*: Rating curves and hydrographs. <br> - *Reading*: [Chapter 4](https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf){target="_blank"}: Hypothesis Tests in SMWR.
 
-**Week 7**: <br> - *Lecture (2/25)*: Term project work session. <br> - *Lab 4 (2/27)*: Term project work session <br> - *Reading*: [Chapter 6 in RDS](https://r4ds.hadley.nz/workflow-scripts){target="_blank"}
+**Week 7**: <br> - *Work session (2/25)*: Term project work session. <br> - *Presentations (2/27)*: Term project updates <br> - *Reading*: [Chapter 6 in RDS](https://r4ds.hadley.nz/workflow-scripts){target="_blank"}
 
 **Week 8**: <br> - *Lab 5 (3/4)*: Flow frequency analysis (low flows) <br> - *Work session (3/6)*: Term project work session/guest lecture <br> - *Reading*: [Definitions and characteristics of low flows](https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10){target="_blank"} in EPA Environmental Modeling Community of Practice
 
@@ -55,7 +55,7 @@ Philosophical approach and books & resources we will utilize This course will us
 
 **Week 10: Spring break (3/18 & 3/20)** - no class!
 
-**Week 11**: <br> - *Work session (3/25)*: Term project work session <br> - *Lab 7 or work session (3/27)*: Precipitation analysis or work session <br> - *Reading*: [Chapters 10 and 11 in RDS](https://r4ds.hadley.nz/eda){target="_blank"}
+**Week 11**: <br> - *Lecture or Work session (3/25)*: Precipitation or Term project work session <br> - *Lab 7 or work session (3/27)*: Precipitation analysis or work session <br> - *Reading*: [Chapters 10 and 11 in RDS](https://r4ds.hadley.nz/eda){target="_blank"}
 
 **Week 12**: <br> - *Lecture/lab (4/1)*: Geospatial hydrology in R <br> - *Lab 8 (4/3)*: Watershed delineation in R <br> - *Reading*: [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html){target="_blank"} <br> - *Reading*: [Geospatial analysis in R](https://pjbartlein.github.io/REarthSysSci/geospatial.html){target="_blank"}
 

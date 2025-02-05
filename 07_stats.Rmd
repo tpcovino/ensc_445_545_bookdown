@@ -1,5 +1,5 @@
 
-# Statistics in hydrology
+# Statistics in hydrology (15 pts)
 
 You can find the repo for this activity [here](https://github.com/tpcovino/unit_3_stats){target="_blank"}
 
@@ -232,7 +232,7 @@ rnorm(300, mean = 0, sd = 1) %>%
   xlim(c(-30,30))
 ```
 
-## Homework Q3 (2 pts)
+## Homework Q3 (3 pts)
 - What happens to the shape of the distribution as the SD increases?
 - If you were to plot the pdf of two hydrographs, one that is flashy, one that isn't - predict what those distributions would look like. 
 
@@ -313,10 +313,10 @@ norm <- rnorm(n = 10, mean = 0, sd = 1) %>%
 qqnorm(norm$value)
 ```
 
-## Homework Q4 (2 pts)
+## Homework Q4 (4 pts)
 - Do the results change more from run to run when the n is high or low and why?
 
-## Homework Q5 (2 pts)
+## Homework Q5 (4 pts)
 
 Test your all_the_water, ExNorm, and sample_of_water data frames for normality using shapiro test and qqnorm.
 
@@ -344,7 +344,7 @@ ad.test(all_the_water$value)
 
 - According to the tests you've just performed, which datasets ARE and which datesets are NOT normal?
 
-## Deliverable (10 pts, due Thursday 2/15 by 11:59 PM)
+## Deliverable
 
 - Write up your answers to HW questions 1 - 5 in a word doc and submit on D2L. 
 

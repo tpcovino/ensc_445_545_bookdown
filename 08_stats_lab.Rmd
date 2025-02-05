@@ -1,6 +1,6 @@
 
 
-# Lab 3: Statistics in hydrology (33 pts)
+# Lab 3: Statistics in hydrology (25 pts)
 
 Reading for this lab:
 
@@ -51,7 +51,7 @@ Use patchwork to stack the NE and West ggplots.
 
 ```
 
-## Problem 2 (5 pts)
+## Problem 2 (3 pts)
 Calculate the SD and IQR for precipitation for the MtnsWest and Northeast ag-ecoregions. Using the SD, IQR and density plots from above, comment on the distributions of precipitation for the MtnsWest and Northeast ag-ecoregions. Which has a larger spread?  
 
 ```{r}
@@ -60,7 +60,7 @@ Calculate the SD and IQR for precipitation for the MtnsWest and Northeast ag-eco
 ```
 
 
-## Problem 3 (5 pts)
+## Problem 3 (4 pts)
 Next, make Q-Q plots and perform a Shapiro-Wilk test for normality on the precipitation data sets for the MtnsWest and Northeast ag-ecoregions. Using the results from these tests discuss whether or not the distributions are normal. Also if you based your decision as to whether the data sets were normal on the pdfs you developed in problem 1, the Q-Q test, and Shapiro-Wilk test would each lead you to same conclusion? Please comment. 
 
 ```{r}
