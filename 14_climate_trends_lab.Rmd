@@ -1,9 +1,7 @@
 
 # Lab 6: Climate trend analysis (25 pts)
 
-
-
-In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope. 
+In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope. Need to add something. 
 
 ## Summary questions and deliverable
 
