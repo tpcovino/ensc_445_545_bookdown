@@ -4,7 +4,7 @@
 
 Reading for this lab:
 
-[Statistical Methods in Water Resources: Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}
+[Statistical Methods in Water Resources: Chapter 1](https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf){target="_blank"}
 
 Questions from the reading (3 pts):
 
@@ -16,7 +16,7 @@ Questions from the reading (3 pts):
 
 Repo for this lab:
 
-[**The repo for this lab can be found here**](https://github.com/tpcovino/lab_2){target="_blank"}
+[**The repo for this lab can be found here**](https://github.com/tpcovino/stats_lab){target="_blank"}
 
 Address each of the questions in the code chunk below and/or by typing outside the chunk (for written answers).
 
