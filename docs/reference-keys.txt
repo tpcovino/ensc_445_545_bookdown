@@ -718,3 +718,4 @@ here-are-the-daymet-variables-3
 make-a-date-column-and-plot-max-temperature.-3
 do-the-same-for-radiation.-3
 stack-2-variables-with-patchwork.-3
+lab-3-statistics-in-hydrology-25-pts
