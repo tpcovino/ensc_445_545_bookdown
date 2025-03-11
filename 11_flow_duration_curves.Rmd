@@ -1,9 +1,5 @@
-
-
 # Flow Duration Curves (6 pts, peer grading)
 
-
-Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.
 
 ## Lecture
 
