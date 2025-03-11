@@ -405,41 +405,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As always let’s load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.</p>
 <p>We will also use theme_set() in this chunk so we don’t have to change the ggplot theme every time we make a plot.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching core tidyverse packages ────────────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
 ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
 ## ✔ purrr     1.0.2     
-## ── Conflicts ──────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
-<pre><code>## dataRetrieval 2.7.17
-## Extended Documentation: https://doi-usgs.github.io/dataRetrieval</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb5-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb5-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-4" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
-<span id="cb5-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-5" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
-<span id="cb5-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-6" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb3-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb3-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-3" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb3-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-5" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
+<span id="cb3-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-6" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
+<span id="cb3-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-7" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 </div>
 <div id="get-data" class="section level2 hasAnchor" number="11.4">
 <h2><span class="header-section-number">11.4</span> Get data<a href="flow-duration-curves-6-pts-peer-grading.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To start, let’s grab the USGS discharge data for the gage in Linville NC from 1960 to 2020.</p>
 <p>We will download the data using USGS dataRetrieval and look at a line plot.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
-<span id="cb6-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
-<span id="cb6-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
-<span id="cb6-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
-<span id="cb6-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-5" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
+<span id="cb4-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
+<span id="cb4-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb4-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb4-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb4-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?site=02138500&amp;format=waterml,1.1&amp;ParameterCd=00060&amp;StatCd=00003&amp;startDT=1960-01-01&amp;endDT=2020-01-01</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-1" tabindex="-1"></a><span class="co">#Look at the data</span></span>
-<span id="cb8-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-2" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
-<span id="cb8-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-3" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-1" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb6-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-2" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb6-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-3" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="review-describe-the-distribution" class="section level2 hasAnchor" number="11.5">
@@ -452,10 +450,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Could you pick that number off the plot?</li>
 <li>What about the flow the river is at or above only 5% of the time?</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
-<span id="cb9-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
-<span id="cb9-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb9-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb7-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb7-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb7-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb7-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb7-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb7-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="ecdfs" class="section level2 hasAnchor" number="11.6">
@@ -464,11 +462,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Look at this carefully, what does it show? How is it different from the pdf of the data?</p>
 <p>Plot the median again. Without the line on the plot, how would you tell where the median is?</p>
 <p>Given your answer to the question above, can you determine the flow the river is at or above only 25% of the time? Think carefully about what the y axis of the ECDF means.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
-<span id="cb10-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
-<span id="cb10-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
-<span id="cb10-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb10-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb8-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
+<span id="cb8-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb8-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="calculate-flow-exceedence-probabilities" class="section level2 hasAnchor" number="11.7">
@@ -483,11 +481,11 @@ n = total number of observations in data record</p>
 <p>Here’s a description of what we will do:
 &gt; Pass our Qdat data to mutate and create a new column that is equal to the ranks of the discharge column.
 &gt; Then pass that result to mutate again and create another column equal exceedence probability (P) * 100, which will give us %.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
-<span id="cb11-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
-<span id="cb11-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
+<span id="cb9-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
+<span id="cb9-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
 </div>
 <div id="plot-a-flow-duration-curve-using-the-probabilities" class="section level2 hasAnchor" number="11.8">
 <h2><span class="header-section-number">11.8</span> Plot a Flow Duration Curve using the probabilities<a href="flow-duration-curves-6-pts-peer-grading.html#plot-a-flow-duration-curve-using-the-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -497,11 +495,11 @@ n = total number of observations in data record</p>
 * How often is a flow of 100 cfs exceeded at this gage?
 * Is flow more variable for flows exceeded 0-25% or of the time or 75-100% * of the time?
 * How can you tell?</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
-<span id="cb12-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb12-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb12-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
-<span id="cb12-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb10-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb10-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb10-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="example-use-of-an-fdc" class="section level2 hasAnchor" number="11.9">
@@ -513,22 +511,22 @@ n = total number of observations in data record</p>
 </div>
 <div id="module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="section level2 hasAnchor" number="11.10">
 <h2><span class="header-section-number">11.10</span> Module Question 1 (1 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.<a href="flow-duration-curves-6-pts-peer-grading.html#module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
-<span id="cb13-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
-<span id="cb13-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
-<span id="cb13-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
-<span id="cb13-8"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
-<span id="cb13-9"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-10"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
-<span id="cb13-11"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-11" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
-<span id="cb13-13"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb13-14"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
-<span id="cb13-15"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
-<span id="cb13-16"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
+<span id="cb11-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
+<span id="cb11-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
+<span id="cb11-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
+<span id="cb11-11"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-11" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
+<span id="cb11-13"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb11-14"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb11-15"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb11-16"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="compare-to-a-boxplot-of-the-same-data" class="section level2 hasAnchor" number="11.11">
@@ -537,18 +535,18 @@ n = total number of observations in data record</p>
 </div>
 <div id="module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="section level2 hasAnchor" number="11.12">
 <h2><span class="header-section-number">11.12</span> Module Question 2 (1 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?<a href="flow-duration-curves-6-pts-peer-grading.html#module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb14-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb12-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-8-1.png" width="480" /></p>
 </div>
 <div id="module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts" class="section level2 hasAnchor" number="11.13">
 <h2><span class="header-section-number">11.13</span> Module Summary Assignment: Examining flow regime change at the Grand Canyon (4 pts)<a href="flow-duration-curves-6-pts-peer-grading.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The USGS Gage “Colorado River at Yuma, AZ” is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
-<span id="cb15-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
-<span id="cb15-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
-<span id="cb15-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
+<span id="cb13-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
+<span id="cb13-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
+<span id="cb13-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
 <p>Deliverables:</p>
 <ol style="list-style-type: decimal">
 <li><p>Provide your answers to module questions 1 &amp; 2 (2 pts)</p></li>
