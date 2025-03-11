@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Lab 6: Climate trend analysis (25 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 14 Lab 6: Climate trend analysis (25 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 11 Flow Duration Curves (6 pts, peer grading) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 11 Flow Duration Curves (6 pts, peer grading) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Lab 6: Climate trend analysis (25 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 11 Flow Duration Curves (6 pts, peer grading) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Lab 6: Climate trend analysis (25 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 11 Flow Duration Curves (6 pts, peer grading) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="functions.html"/>
-<link rel="next" href="for-loops.html"/>
+<link rel="prev" href="lab-4-rating-cuve-lab-25-pts.html"/>
+<link rel="next" href="lab-5-low-flow-analysis-15-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -388,24 +388,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lab-6-climate-trend-analysis-25-pts" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Lab 6: Climate trend analysis (25 pts)<a href="lab-6-climate-trend-analysis-25-pts.html#lab-6-climate-trend-analysis-25-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens’s slope. Need to add something.</p>
-<div id="summary-questions-and-deliverable" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Summary questions and deliverable<a href="lab-6-climate-trend-analysis-25-pts.html#summary-questions-and-deliverable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures.</p>
-<ol style="list-style-type: decimal">
-<li><p>Describe what the Mann-Kendall (MK) test does and what the Sen’s slope is and why they are appropriate for climate data. (3 pts)</p></li>
-<li><p>Provide a table (Table 1) of MK p-values and Sen’s slopes over the entire period (1900 – current). (5 pts)</p></li>
-<li><p>For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data “stat_smooth(method =”lm”)” (2 pt).</p></li>
-<li><p>Provide a table (Table 2) of MK p-values and Sen’s slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)</p></li>
-<li><p>In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen’s slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (10 pts)</p></li>
-</ol>
+<div id="flow-duration-curves-6-pts-peer-grading" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Flow Duration Curves (6 pts, peer grading)<a href="flow-duration-curves-6-pts-peer-grading.html#flow-duration-curves-6-pts-peer-grading" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Alright team. So far we have learned to wrangle data, make plots, and look at data distributions. Now it is time to put all that knowledge to use.</p>
+<div id="lecture-1" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Lecture<a href="flow-duration-curves-6-pts-peer-grading.html#lecture-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j3wniP1qHRo?si=xwNm5pRK5KhyuLzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 </div>
-<div id="new-packages" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> New packages<a href="lab-6-climate-trend-analysis-25-pts.html#new-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will use the packages below. You will need to install the rnoaa package for downloading NOAA data, and the trend package for doing Mann-Kendall trend tests and computing the Sen’s slope.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="reading-1" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Reading<a href="flow-duration-curves-6-pts-peer-grading.html#reading-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.epa.gov/snep/flow-duration-curves-new-model-envision-healthy-watersheds-and-resilient-communities" target="_blank">Flow Duration Curves: A new model to envision healthy watersheds and resilient communities</a></p>
+</div>
+<div id="packages-and-coding" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Packages and coding<a href="flow-duration-curves-6-pts-peer-grading.html#packages-and-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As always let’s load the packages we will use: tidyverse, dataRetrieval, lubridate, and patchwork. Patchwork will help us make a multi-panel graph in the last part of the exercise.</p>
+<p>We will also use theme_set() in this chunk so we don’t have to change the ggplot theme every time we make a plot.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ────────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
@@ -416,197 +415,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;plotly&#39;
-## 
-## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     last_plot
-## 
-## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter
-## 
-## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     layout</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(rnoaa) <span class="co"># for downloading data from GHCN</span></span></code></pre></div>
-<pre><code>## Registered S3 method overwritten by &#39;hoardr&#39;:
-##   method           from
-##   print.cache_info httr
-## The rnoaa package will soon be retired and archived because the underlying APIs have changed dramatically. The package currently works but does not pull the most recent data in all cases. A noaaWeather package is planned as a replacement but the functions will not be interchangeable.</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb7-1" tabindex="-1"></a><span class="co">#install.packages(&quot;remotes&quot;)</span></span>
-<span id="cb7-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb7-2" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;ropensci/rnoaa&quot;)</span></span>
-<span id="cb7-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb7-3" tabindex="-1"></a><span class="co">#install.packages(&quot;trend&quot;)</span></span>
-<span id="cb7-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb7-4" tabindex="-1"></a><span class="fu">library</span>(trend) <span class="co"># for Mann-Kendall trend analysis and Sen&#39;s slope</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb8-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;USC00241044&quot;</span></span>
-<span id="cb8-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb8-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;prcp&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>)</span>
-<span id="cb8-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb8-3" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
+<pre><code>## dataRetrieval 2.7.17
+## Extended Documentation: https://doi-usgs.github.io/dataRetrieval</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb5-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-4" tabindex="-1"></a><span class="co">#set plot theme for the document so we </span></span>
+<span id="cb5-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-5" tabindex="-1"></a><span class="co">#don&#39;t have to do it in every plot</span></span>
+<span id="cb5-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb5-6" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span></code></pre></div>
 </div>
-<div id="data-download-exploration-and-cleaning" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> Data download, exploration and cleaning<a href="lab-6-climate-trend-analysis-25-pts.html#data-download-exploration-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-1" tabindex="-1"></a>met_data <span class="ot">&lt;-</span> <span class="fu">meteo_pull_monitors</span>(</span>
-<span id="cb9-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-2" tabindex="-1"></a>  <span class="at">monitors =</span> site,</span>
-<span id="cb9-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-3" tabindex="-1"></a>  <span class="at">keep_flags =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb9-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-4" tabindex="-1"></a>  <span class="at">date_min =</span> <span class="cn">NULL</span>,</span>
-<span id="cb9-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-5" tabindex="-1"></a>  <span class="at">date_max =</span> end,</span>
-<span id="cb9-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-6" tabindex="-1"></a>  <span class="at">var =</span> vars</span>
-<span id="cb9-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb9-7" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## using cached file: /Users/timcovino/Library/Caches/org.R-project.R/R/rnoaa/noaa_ghcnd/USC00241044.dly</code></pre>
-<pre><code>## date created (size, mb): 2023-11-27 13:59:47.225981 (4.582)</code></pre>
-<pre><code>## file min/max dates: 1892-04-01 / 2023-11-30</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> met_data<span class="sc">$</span>date</span>
-<span id="cb13-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> met_data<span class="sc">$</span>tmax</span>
-<span id="cb13-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-4" tabindex="-1"></a>plot_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(...){</span>
-<span id="cb13-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-5" tabindex="-1"></a>  met_data <span class="sc">%&gt;%</span> </span>
-<span id="cb13-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-7" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb13-8"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-8" tabindex="-1"></a>}</span>
-<span id="cb13-9"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-9" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="lab-6-climate-trend-analysis-25-pts.html#cb13-10" tabindex="-1"></a><span class="fu">plot_fun</span>(x, y)</span></code></pre></div>
-<pre><code>## Warning: Removed 93 rows containing missing values or values outside the scale range
-## (`geom_point()`).</code></pre>
+<div id="get-data" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Get data<a href="flow-duration-curves-6-pts-peer-grading.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To start, let’s grab the USGS discharge data for the gage in Linville NC from 1960 to 2020.</p>
+<p>We will download the data using USGS dataRetrieval and look at a line plot.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-1" tabindex="-1"></a>siteno <span class="ot">&lt;-</span> <span class="st">&quot;02138500&quot;</span> <span class="co">#Linville NC</span></span>
+<span id="cb6-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1960-01-01&quot;</span></span>
+<span id="cb6-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb6-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb6-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb6-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?site=02138500&amp;format=waterml,1.1&amp;ParameterCd=00060&amp;StatCd=00003&amp;startDT=1960-01-01&amp;endDT=2020-01-01</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-1" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb8-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-2" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb8-3" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="review-describe-the-distribution" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Review: describe the distribution<a href="flow-duration-curves-6-pts-peer-grading.html#review-describe-the-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Make a plot to view the distribution of the discharge data.</p>
+<ul>
+<li>What is the median flow value?</li>
+<li>What does this tell us about flow at that river?</li>
+<li>How often is the river at or below that value?</li>
+<li>Could you pick that number off the plot?</li>
+<li>What about the flow the river is at or above only 5% of the time?</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb9-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-2" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb9-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb9-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="ecdfs" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> ECDFs<a href="flow-duration-curves-6-pts-peer-grading.html#ecdfs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s look at an Empirical Cumulative Density Function (ECDF) of the data.</p>
+<p>Look at this carefully, what does it show? How is it different from the pdf of the data?</p>
+<p>Plot the median again. Without the line on the plot, how would you tell where the median is?</p>
+<p>Given your answer to the question above, can you determine the flow the river is at or above only 25% of the time? Think carefully about what the y axis of the ECDF means.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(Flow))<span class="sc">+</span></span>
+<span id="cb10-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-2" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>()<span class="sc">+</span></span>
+<span id="cb10-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-3" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>()<span class="sc">+</span></span>
+<span id="cb10-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(Qdat<span class="sc">$</span>Flow), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb10-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb10-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">quantile</span>(Qdat<span class="sc">$</span>Flow)[<span class="dv">4</span>], <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-2" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">prcp =</span> prcp<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb15-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-3" tabindex="-1"></a>          <span class="at">tmin =</span> tmin<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb15-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-4" tabindex="-1"></a>          <span class="at">tmax =</span> tmax<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb15-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-5" tabindex="-1"></a>          <span class="at">tavg =</span> ((tmin <span class="sc">+</span> tmax)<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb15-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-6" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb15-7" tabindex="-1"></a><span class="co"># The units of these data are prcp = tenths of mm, snow = mm (we aren&#39;t using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data.   </span></span></code></pre></div>
-<p>Add a water year and filter the data to start on 10/1/1900.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-2" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">&quot;1900-09-30&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wtr_yr =</span> <span class="fu">if_else</span>(<span class="fu">month</span>(date) <span class="sc">&gt;</span> <span class="dv">9</span>,   </span>
-<span id="cb16-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-4" tabindex="-1"></a>                          <span class="fu">year</span>(date) <span class="sc">+</span> <span class="dv">1</span>, </span>
-<span id="cb16-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-5" tabindex="-1"></a>                          <span class="fu">year</span>(date))) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb16-6" tabindex="-1"></a>  <span class="fu">select</span>(id, date, wtr_yr, <span class="fu">everything</span>())</span></code></pre></div>
 </div>
-<div id="computing-annual-values" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> Computing annual values<a href="lab-6-climate-trend-analysis-25-pts.html#computing-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now that you have a cleaned data frame you will now begin the climate data analysis.</p>
-<p>The first step is to create a data frame that has annual values called met_data_an that includes:</p>
-<ul>
-<li><p>there are many others we could do, like the mean of the mins and the maxes, but we will just do the ones listed here for this project.</p></li>
-<li><p>total annual prcp</p></li>
-<li><p>the min of the minimum temperatures</p></li>
-<li><p>the max of the minimum teperatures</p></li>
-<li><p>the min of the maximum temperatures</p></li>
-<li><p>the max of the maximum temperatures</p></li>
-<li><p>the mean of the average temperatures</p></li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-1" tabindex="-1"></a>met_data_an <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-2" tabindex="-1"></a>  <span class="fu">group_by</span>(wtr_yr) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-3" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">tot_p =</span> <span class="fu">sum</span>(prcp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. </span></span>
-<span id="cb17-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-4" tabindex="-1"></a>            <span class="at">min_min_t =</span> <span class="fu">min</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-5" tabindex="-1"></a>            <span class="at">max_min_t =</span> <span class="fu">max</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-6" tabindex="-1"></a>            <span class="at">min_max_t =</span> <span class="fu">min</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-7" tabindex="-1"></a>            <span class="at">max_max_t =</span> <span class="fu">max</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-8"><a href="lab-6-climate-trend-analysis-25-pts.html#cb17-8" tabindex="-1"></a>            <span class="at">av_t =</span> <span class="fu">mean</span>(tavg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div id="calculate-flow-exceedence-probabilities" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Calculate flow exceedence probabilities<a href="flow-duration-curves-6-pts-peer-grading.html#calculate-flow-exceedence-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In hydrology, it is common to look at a similar representation of flow distributions, but with flow on the Y axis and “% time flow is equaled or exceeded” on the X axis. There are a number of ways we could make this plot: for example we could transform the axes of the plot above or we could use the function that results from the ECDF function in R to calculate exceedence probabilities at flow throughout our range of flows. But for our purposes, we are just going to calculate it manually.</p>
+<p>We are going to calculate our own exceedence probabilities because knowing how to do this will help us understand what a flow duration curve is AND we will need to do similar things in our high and low flow analyses.</p>
+<p>The formula for exceedence probability (P) is below. What do we need to calculate this?</p>
+<p>Exceedence probability (P), Probability a flow is equaled or exceeded</p>
+<p><span class="math inline">\(P = 100 * [M / (n + 1)]\)</span></p>
+<p>M = Ranked position of the flow
+n = total number of observations in data record</p>
+<p>Here’s a description of what we will do:
+&gt; Pass our Qdat data to mutate and create a new column that is equal to the ranks of the discharge column.
+&gt; Then pass that result to mutate again and create another column equal exceedence probability (P) * 100, which will give us %.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-1" tabindex="-1"></a><span class="co">#Flow is negative in rank() to make </span></span>
+<span id="cb11-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-2" tabindex="-1"></a><span class="co">#high flows ranked low (#1)</span></span>
+<span id="cb11-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-3" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb11-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow <span class="sc">+</span> <span class="dv">1</span>)))) </span></code></pre></div>
 </div>
-<div id="exploratory-data-analysis-eda-of-annual-values" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> Exploratory data analysis (EDA) of annual values<a href="lab-6-climate-trend-analysis-25-pts.html#exploratory-data-analysis-eda-of-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For your own insight, make plots of the variables in met_data_an over time to see if there appear to be trends in any of the data.</p>
-<p>If you want practice making a function you can do so here. Remember functions look like:</p>
-<p>my_fun &lt;- function(x){
-do_stuff()
-}</p>
-<p>Can also be written as</p>
-<p>my_fun &lt;- function(…){
-do_stuff()
-}</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb18-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_min_t), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_min_t), <span class="at">color =</span> <span class="st">&quot;cyan&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_max_t), <span class="at">color =</span> <span class="st">&quot;pink&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_max_t), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> av_t), <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb18-8"><a href="lab-6-climate-trend-analysis-25-pts.html#cb18-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Temp (C)&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr, <span class="at">y =</span> tot_p)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Total annual P (mm)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Water year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb19-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<div id="plot-a-flow-duration-curve-using-the-probabilities" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Plot a Flow Duration Curve using the probabilities<a href="flow-duration-curves-6-pts-peer-grading.html#plot-a-flow-duration-curve-using-the-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now construct the following plot: A line with P on the x axis and flow on the y axis. Name the x axis “% Time flow equaled or exceeded” and log the y axis.</p>
+<p>That’s a flow duration curve!</p>
+<p>Questions about the flow duration curve:
+* How often is a flow of 100 cfs exceeded at this gage?
+* Is flow more variable for flows exceeded 0-25% or of the time or 75-100% * of the time?
+* How can you tell?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow))<span class="sc">+</span></span>
+<span id="cb12-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb12-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb12-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb12-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb12-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="trend-analysis-and-creating-table-1" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> Trend analysis and creating Table 1<a href="lab-6-climate-trend-analysis-25-pts.html#trend-analysis-and-creating-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Next, you will fill in a table. The table will have columns for:</p>
-<ul>
-<li><p>See the word doc handout for an example of the table that you will fill in.</p></li>
-<li><p>total annual prcp</p></li>
-<li><p>the min of the minimum temperatures</p></li>
-<li><p>the max of the minimum temperatures</p></li>
-<li><p>the min of the maximum temperatures</p></li>
-<li><p>the max of the maximum temperatures</p></li>
-<li><p>the mean of the average temperatures</p></li>
-</ul>
-<p>And values for:</p>
-<ul>
-<li><p>the p-value for the Mann-Kendall test. We will use p &lt; 0.05 as an indicator of a significant trend.</p></li>
-<li><p>the slope of the trend as given by the Sen’s slope.</p></li>
-</ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb21-1" tabindex="-1"></a>t_sens_tot_p <span class="ot">&lt;-</span> <span class="fu">sens.slope</span>(met_data_an<span class="sc">$</span>tot_p) <span class="co"># this is how you would get the MK p-value and Sen&#39;s slope for one of the variables (av_t) in the data frame. Can you use apply or map to do this for all the variables in the data frame?  </span></span>
-<span id="cb21-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb21-3" tabindex="-1"></a>t_sens_tot_p[<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## $p.value
-## [1] 0.006937417</code></pre>
-<p>Both apply and map return a list. “A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.”</p>
-<p>Here is a link with information about lists and how to access elements within the list <a href="https://data-flair.training/blogs/r-list-tutorial/" class="uri">https://data-flair.training/blogs/r-list-tutorial/</a></p>
-<p>Chapters 19 &amp; 21 in RDS are both very useful resources for functions and iteration (e.g., apply, map).</p>
-<p>In the next class I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-1" tabindex="-1"></a>met_test_data <span class="ot">&lt;-</span> met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb23-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-2" tabindex="-1"></a>  <span class="fu">filter</span>(wtr_yr <span class="sc">&gt;</span> <span class="dv">1989</span> <span class="sc">&amp;</span> wtr_yr <span class="sc">&lt;</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>wtr_yr)</span>
-<span id="cb23-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-4" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-5" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> met_test_data,    <span class="co"># The data frame you want to apply to</span></span>
-<span id="cb23-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-6" tabindex="-1"></a>      <span class="at">FUN =</span> sens.slope,           <span class="co"># The function you want to run</span></span>
-<span id="cb23-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-7" tabindex="-1"></a>      <span class="at">MARGIN =</span> <span class="dv">2</span>)                 <span class="co"># Margin (axis) to apply over 1 = rows, 2 = columns</span></span>
-<span id="cb23-8"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-8" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="lab-6-climate-trend-analysis-25-pts.html#cb23-9" tabindex="-1"></a>test[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)]]</span></code></pre></div>
-<pre><code>## Sen&#39;s slope 
-##    1.683333</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-1" tabindex="-1"></a>test_map <span class="ot">&lt;-</span> met_test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb25-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-2" tabindex="-1"></a>  <span class="fu">map</span>(sens.slope)</span>
-<span id="cb25-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-3" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-4" tabindex="-1"></a><span class="co">#Extract values from the list manually. </span></span>
-<span id="cb25-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-5" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb25-6" tabindex="-1"></a>test_map[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]]</span></code></pre></div>
-<pre><code>## [1] 0.5406231</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-1" tabindex="-1"></a><span class="co">#Extract values from the list using map. This part does the p-values. </span></span>
-<span id="cb27-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-2" tabindex="-1"></a>p_vals <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-3" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-4" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-5"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&quot;parameter&quot;</span>, </span>
-<span id="cb27-6"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-6" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;p_value&quot;</span>,</span>
-<span id="cb27-7"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-7" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>())</span>
-<span id="cb27-8"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-8" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-9" tabindex="-1"></a><span class="co">#Same as above but for Sens&#39;s slopes. </span></span>
-<span id="cb27-10"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-10" tabindex="-1"></a>sens <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
-<span id="cb27-11"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-11" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-12"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-12" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb27-13"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-13" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">values_to =</span> <span class="st">&quot;sens_slope&quot;</span>,</span>
-<span id="cb27-14"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-14" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-15"><a href="lab-6-climate-trend-analysis-25-pts.html#cb27-15" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name)</span></code></pre></div>
-<pre><code>## New names:
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...1`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...2`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...3`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...4`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...5`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...6`</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="lab-6-climate-trend-analysis-25-pts.html#cb29-1" tabindex="-1"></a><span class="co">#Last, we bind the two data frames together so we have the p-values and the Sen&#39;s slopes both in one df. </span></span>
-<span id="cb29-2"><a href="lab-6-climate-trend-analysis-25-pts.html#cb29-2" tabindex="-1"></a>sens_p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(p_vals, sens)</span></code></pre></div>
+<div id="example-use-of-an-fdc" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Example use of an FDC<a href="flow-duration-curves-6-pts-peer-grading.html#example-use-of-an-fdc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s explore one potential use of flow duration curves: examining the differences between two sets of flow data.</p>
+<p>From the line plot of the discharge, it looked like the flow regime may have shifted a bit in the data between the early years and newer data. Let’s use flow duration curves to examine potential differences. We can come up with groups and then use group_by to run the analysis by groups instead of the whole dataset.</p>
+<p>We are introducing a new function here called case_when(). This allows you to assign values to a new column based on values in another column. In our case, we are going to name different time periods in our data.</p>
+<p>We will then group the data by these periods and calculate exceedence probabilities for each. The procedure works the same, except we add a group_by statement to group by our time period column before we create the rank and P columns. Then, when we plot, we can just tell ggplot to create different colored lines based on the time period names and it will plot a separate flow duration curve for each. Tidyverse FOR THE WIN!</p>
 </div>
-<div id="see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> See summary section at top for questions to answer and deliverable.<a href="lab-6-climate-trend-analysis-25-pts.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Module Question 1 (1 pts): Describe the differences in flow regime you see between the three periods of 1960-1980, 1980-2000, and 2000-2020.<a href="flow-duration-curves-6-pts-peer-grading.html#module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-1" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(Date)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">case_when</span>( year <span class="sc">&lt;=</span> <span class="dv">1980</span> <span class="sc">~</span> <span class="st">&quot;1960-1980&quot;</span>,</span>
+<span id="cb13-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-4" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">1980</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;1980-2000&quot;</span>,</span>
+<span id="cb13-5"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-5" tabindex="-1"></a>                             year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">~</span> <span class="st">&quot;2000-2020&quot;</span>))</span>
+<span id="cb13-6"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-6" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-7" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> Qdat <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-8" tabindex="-1"></a>  <span class="fu">group_by</span>(period) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-9" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">rank</span>(<span class="sc">-</span>Flow)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-10"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">100</span> <span class="sc">*</span> (rank <span class="sc">/</span> (<span class="fu">length</span>(Flow) <span class="sc">+</span> <span class="dv">1</span>)))</span>
+<span id="cb13-11"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-12" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> P, <span class="at">y =</span> Flow, <span class="at">color =</span> period))<span class="sc">+</span></span>
+<span id="cb13-13"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-13" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb13-14"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-14" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
+<span id="cb13-15"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-15" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;% Time flow equalled or exceeded&quot;</span>)<span class="sc">+</span></span>
+<span id="cb13-16"><a href="flow-duration-curves-6-pts-peer-grading.html#cb13-16" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Q (cfs)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="compare-to-a-boxplot-of-the-same-data" class="section level2 hasAnchor" number="11.11">
+<h2><span class="header-section-number">11.11</span> Compare to a boxplot of the same data<a href="flow-duration-curves-6-pts-peer-grading.html#compare-to-a-boxplot-of-the-same-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are really just looking at the data distribution here. Remember another good way to compare distributions is a boxplot. Let’s create a boxplot showing flows from these time periods. (we will also mess with the dimensions of the plot so the boxes aren’t so wide using fig.width and fig.height in the ``` header above the code chunk)</p>
+</div>
+<div id="module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="section level2 hasAnchor" number="11.12">
+<h2><span class="header-section-number">11.12</span> Module Question 2 (1 pts): What are the advantages/disadvantages of the flow duration curves vs. boxplots?<a href="flow-duration-curves-6-pts-peer-grading.html#module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-1" tabindex="-1"></a>Qdat <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> period, <span class="at">y =</span> Flow)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb14-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb14-3" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-8-1.png" width="480" /></p>
+</div>
+<div id="module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts" class="section level2 hasAnchor" number="11.13">
+<h2><span class="header-section-number">11.13</span> Module Summary Assignment: Examining flow regime change at the Grand Canyon (4 pts)<a href="flow-duration-curves-6-pts-peer-grading.html#module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The USGS Gage “Colorado River at Yuma, AZ” is below the Hoover dam. The Hoover Dam closed in 1936, changing the flow of the Colorado River below. Using the dataRetrieval package, load average daily discharge data from 10-01-1905 to 10-01-1965 from the Yuma gage.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-1" tabindex="-1"></a>siteid <span class="ot">&lt;-</span> <span class="st">&quot;09521000&quot;</span></span>
+<span id="cb15-2"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="st">&quot;1905-10-01&quot;</span></span>
+<span id="cb15-3"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="st">&quot;1965-10-01&quot;</span></span>
+<span id="cb15-4"><a href="flow-duration-curves-6-pts-peer-grading.html#cb15-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span></code></pre></div>
+<p>Deliverables:</p>
+<ol style="list-style-type: decimal">
+<li><p>Provide your answers to module questions 1 &amp; 2 (2 pts)</p></li>
+<li><p>Create a line plot of discharge and flow duration curves to examine the differences in discharge for the periods: 1905 - 1936, 1937 - 1965. Use patchwork to place the figures side-by-side. (2 pts)</p></li>
+<li><p>Describe what the FDCs for the two periods tell you about the flows in the river. Be specific and quantitative in your description. (2 pts)</p></li>
+</ol>
 
 </div>
 </div>
@@ -615,8 +563,8 @@ do_stuff()
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="for-loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="lab-4-rating-cuve-lab-25-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lab-5-low-flow-analysis-15-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -647,7 +595,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/14_climate_trends_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/11_flow_duration_curves.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -655,7 +603,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/14_climate_trends_lab.Rmd",
+"link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/11_flow_duration_curves.Rmd",
 "text": null
 },
 "download": null,
@@ -670,6 +618,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -665,3 +665,16 @@ here-are-the-daymet-variables-3
 make-a-date-column-and-plot-max-temperature.-3
 do-the-same-for-radiation.-3
 stack-2-variables-with-patchwork.-3
+flow-duration-curves-6-pts-peer-grading
+module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.
+module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots
+module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts
+module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.-1
+module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots-1
+module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts-1
+module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.-2
+module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots-2
+module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts-2
+module-question-1-1-pts-describe-the-differences-in-flow-regime-you-see-between-the-three-periods-of-1960-1980-1980-2000-and-2000-2020.-3
+module-question-2-1-pts-what-are-the-advantagesdisadvantages-of-the-flow-duration-curves-vs.-boxplots-3
+module-summary-assignment-examining-flow-regime-change-at-the-grand-canyon-4-pts-3

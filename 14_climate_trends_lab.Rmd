@@ -1,6 +1,7 @@
 
 # Lab 6: Climate trend analysis (25 pts)
 
+
 In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope. Need to add something. 
 
 ## Summary questions and deliverable
@@ -9,6 +10,7 @@ In this lab you are going to work with weather / climate data from the MSU weath
 For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures. 
 
 1. Describe what the Mann-Kendall (MK) test does and what the Sen's slope is and why they are appropriate for climate data. (3 pts)
+
 
 
 2. Provide a table (Table 1) of MK p-values and Sen's slopes over the entire period (1900 – current). (5 pts)
@@ -28,6 +30,9 @@ We will use the packages below. You will need to install the rnoaa package for d
 library(tidyverse)
 library(plotly)
 library(rnoaa) # for downloading data from GHCN
+#install.packages("remotes")
+#remotes::install_github("ropensci/rnoaa")
+#install.packages("trend")
 library(trend) # for Mann-Kendall trend analysis and Sen's slope
 
 ```
@@ -49,6 +54,24 @@ met_data <- meteo_pull_monitors(
 )
 
 ```
+
+```{r}
+x <- met_data$date
+y <- met_data$tmax
+
+plot_fun <- function(...){
+  met_data %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point()
+}
+
+plot_fun(x, y)
+
+
+```
+
+
+
 
 ```{r}
 met_data_adj <- met_data %>% 
@@ -91,7 +114,7 @@ The first step is to create a data frame that has annual values called met_data_
 
 met_data_an <- met_data_adj %>% 
   group_by(wtr_yr) %>% 
-  summarize(tot_p = sum(prcp, na.rm = TRUE), # Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. 
+  reframe(tot_p = sum(prcp, na.rm = TRUE), # Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. 
             min_min_t = min(tmin, na.rm = TRUE),
             max_min_t = max(tmin, na.rm = TRUE),
             min_max_t = min(tmax, na.rm = TRUE),
@@ -122,7 +145,9 @@ met_data_an %>%
   geom_line(aes(y = max_min_t), color = "cyan") +
   geom_line(aes(y = min_max_t), color = "pink") +
   geom_line(aes(y = max_max_t), color = "red") +
-  geom_line(aes(y = av_t), color = "green") 
+  geom_line(aes(y = av_t), color = "green") +
+  labs(x = "", y = "Temp (C)")
+
 
 met_data_an %>% 
   ggplot(aes(x = wtr_yr, y = tot_p)) +
