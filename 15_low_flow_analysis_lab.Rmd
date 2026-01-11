@@ -286,7 +286,7 @@ So, our 7Q10 flow in cfs for this gage is....
 
 ## Deliverable - Summary questions (15 pts)
 
-- submit your answers to these questions as a word doc on D2L. 
+- submit your answers to these questions as a word doc on Canvas. 
 
 ### Question 1 (6 pts)
 - Interpret your plots of minQ vs return interval and minQ vs exceedence probability. What does each tell you? Using these figures estimate the probability of having a year with minimum annual flow ~ 250 cfs. What return interval would you estimate for a year with miminum annual flow ~ 250 cfs? 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 15 Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 15 Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 17 Modeling in hydrology (16 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 17 Modeling in hydrology (16 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 15 Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 17 Modeling in hydrology (16 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 15 Low Flow Analysis (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 17 Modeling in hydrology (16 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="climate-trend-analysis-18-pts.html"/>
-<link rel="next" href="downloading-dems-and-delineating-watersheds.html"/>
+<link rel="prev" href="downloading-dems-and-delineating-watersheds.html"/>
+<link rel="next" href="flow-duration-curves-6-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -392,212 +392,282 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="low-flow-analysis-15-pts" class="section level1 hasAnchor" number="15">
-<h1><span class="header-section-number">Chapter 15</span> Low Flow Analysis (15 pts)<a href="low-flow-analysis-15-pts.html#low-flow-analysis-15-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this lab I am giving you most of the code. Your task will be to use that code to analyze low flows at the Gallatin Gateway gage and answer the summary questions at the end of this markdown. For you deliverable submit your answers to the summary questions in a word doc.</p>
-<p><a href="https://github.com/tpcovino/lab_5" target="_blank">Link to repo here</a></p>
-<p><strong>Reading:</strong>
-<a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows" target="_blank">Definitions and characteristics of low flows</a> in EPA Environmental Modeling Community of Practice</p>
-<p><em>Load packages for analysis. zoo will allow us to easily perform rolling means, and moments will allow easy calculation of skewness.</em></p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="low-flow-analysis-15-pts.html#cb165-1" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb165-2"><a href="low-flow-analysis-15-pts.html#cb165-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb165-3"><a href="low-flow-analysis-15-pts.html#cb165-3" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
-<span id="cb165-4"><a href="low-flow-analysis-15-pts.html#cb165-4" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
-<span id="cb165-5"><a href="low-flow-analysis-15-pts.html#cb165-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb165-6"><a href="low-flow-analysis-15-pts.html#cb165-6" tabindex="-1"></a></span>
-<span id="cb165-7"><a href="low-flow-analysis-15-pts.html#cb165-7" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
-<div id="what-are-low-flow-statistics" class="section level2 hasAnchor" number="15.1">
-<h2><span class="header-section-number">15.1</span> What are low flow statistics?<a href="low-flow-analysis-15-pts.html#what-are-low-flow-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Low flow design flows can be specified based on hydrological or biological data. Biological methods look more at water quality standards relevant to biota. The hydrologic method just looks at the statistical distribution of low flows over a period of time.</p>
-<ul>
-<li>Just from this simple definition, can you think of a management situation where it would make sense to use the biological method? The hydrologic method? What are the advantages to each?</li>
-</ul>
-<p>We will focus on hydrologic methods. You will most frequently see low flow stats in the format of xQy. So for example 7Q10 or 1Q10 are common design flows. Let’s look at the EPA definition of these and then break them down.</p>
-<p>“The 1Q10 and 7Q10 are both hydrologically based design flows. The 1Q10 is the lowest 1-day average flow that occurs (on average) once every 10 years. The 7Q10 is the lowest 7-day average flow that occurs (on average) once every 10 years.” -EPA <a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10" class="uri">https://www.epa.gov/ceam/definition-and-characteristics-low-flows#1Q10</a></p>
-<p>So the first number, <strong>the 7 in 7Q10</strong> is how many days we will average flow over to calculate the statistic. Why does does this matter? Why not always use a 1 day flow record?</p>
-<p>Then the second number is the return-interval of the flow, or the probability that a flow of that magnitude or lower will occur any given year. <strong>The 10 in 7Q10</strong> means there is a 10 percent chance that the associated 7-day average flow or below will occur in any given year. Another way of saying this is that a flow of that magnitude or below occurs on average once every 10 years. <strong>However</strong> expressing it this way can be dangerous, especially with the opposite type of extreme flows: Floods. Why do you think it could be dangerous to say a flow of this magnitude or below will happen on average once every 10 years?</p>
-<p><strong>So, to calculate a 7Q10</strong> we need:
-* 7-day mean-daily flows
-* The minumum value per year of those 7-day mean-daily flows
-* The return intervals of those flows minimum yearly flows</p>
-<p><strong>Because a 7Q10 flow means</strong>
-* There is a 10% chance (return interval = 10) that a river will have a average weekly flow of that level or below in a given year.</p>
+<div id="modeling-in-hydrology-16-pts" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Modeling in hydrology (16 pts)<a href="modeling-in-hydrology-16-pts.html#modeling-in-hydrology-16-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://github.com/tpcovino/22_predict_peak.git" target="_blank">Find repo here</a></p>
+<div id="note-you-are-given-the-code-but-will-need-to-update-it-to-be-current-i.e.-data-and-predictions-run-until-the-end-of-the-last-water-year." class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Note: You are given the code but will need to update it to be current (i.e., data and predictions run until the end of the last water year).<a href="modeling-in-hydrology-16-pts.html#note-you-are-given-the-code-but-will-need-to-update-it-to-be-current-i.e.-data-and-predictions-run-until-the-end-of-the-last-water-year." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
-<div id="get-data" class="section level2 hasAnchor" number="15.2">
-<h2><span class="header-section-number">15.2</span> Get data<a href="low-flow-analysis-15-pts.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will calculate the 7Q10 low flow statistic for the Gallatin Gateway USGS gage (06043500) using daily discharge data from 1990-2022. (parameter = 00060)</p>
-<p>In the code below you will see that I have added a line of code to add a water year (addWaterYear). This allows us to start doing our analyes on the water year (Oct - Oct) as opposed to calendar year like we have in the past.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="low-flow-analysis-15-pts.html#cb166-1" tabindex="-1"></a>site_no <span class="ot">&lt;-</span> <span class="st">&quot;06043500&quot;</span></span>
-<span id="cb166-2"><a href="low-flow-analysis-15-pts.html#cb166-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
-<span id="cb166-3"><a href="low-flow-analysis-15-pts.html#cb166-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
-<span id="cb166-4"><a href="low-flow-analysis-15-pts.html#cb166-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
-<span id="cb166-5"><a href="low-flow-analysis-15-pts.html#cb166-5" tabindex="-1"></a></span>
-<span id="cb166-6"><a href="low-flow-analysis-15-pts.html#cb166-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(<span class="at">site =</span> site_no, <span class="at">parameterCd =</span> parameter, <span class="at">startDate =</span> startDate, <span class="at">endDate =</span> endDate) <span class="sc">%&gt;%</span></span>
-<span id="cb166-7"><a href="low-flow-analysis-15-pts.html#cb166-7" tabindex="-1"></a>  <span class="fu">addWaterYear</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb166-8"><a href="low-flow-analysis-15-pts.html#cb166-8" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb166-9"><a href="low-flow-analysis-15-pts.html#cb166-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agency_cd)</span></code></pre></div>
+<div id="background" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> Background<a href="modeling-in-hydrology-16-pts.html#background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="identifying-the-question" class="section level3 hasAnchor" number="17.2.1">
+<h3><span class="header-section-number">17.2.1</span> Identifying the question<a href="modeling-in-hydrology-16-pts.html#identifying-the-question" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <a href="https://mfp.betterworld.org/giveaways/predict-peak-2024-yellowstone#rules" target="_blank">Predict the Peak Fundraiser</a> is run by the Montana Freshwater Partners, a nonprofit that preserves and restores streams and wetlands throughout the sate of Montana. The task is simple: predict the peak flow of the Yellowstone, Sun, or Gallatin River and win big! We’ll build a model to predict peak flows on each of those rivers, and students can opt in to submitting their modeled results if they so choose.</p>
 </div>
-<div id="create-the-x-days-average-flow-record" class="section level2 hasAnchor" number="15.3">
-<h2><span class="header-section-number">15.3</span> Create the X days average flow record<a href="low-flow-analysis-15-pts.html#create-the-x-days-average-flow-record" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Remember the 7 in 7Q10 means we are looking at the 7-day average flow. We just have daily values from the USGS gage, so we need to create this data record.</p>
-<p>To do this we will calculate a rolling average, also called a moving-window average. This just means you grab the first 7 days, average them, then move the window of the days you are averaging forward a day, and average again… all the way through the record.</p>
-<p>For your rolling mean you can have the window look forward, backward, or forward and backward. For example, a forward window takes the average of X number of records and places the value at the beginning. Backward places that value at the end, and both would put it in the middle. In the function we will use to do this, forward is a left align, backward is right align, and both is centered.</p>
-<p><strong>For example</strong></p>
-<blockquote>
-<p>data window = 1, 2, 3, 4, 5 (lots of values before and after this)</p>
-</blockquote>
-<blockquote>
-<p>mean = 3</p>
-</blockquote>
-<blockquote>
-<p>forward window/left align: 3, NA, NA, NA, NA</p>
-</blockquote>
-<blockquote>
-<p>backward window/right align: NA, NA, NA, NA, 3</p>
-</blockquote>
-<blockquote>
-<p>both/center align: NA, NA, 3, NA, NA</p>
-</blockquote>
-<p>We could certainly set up some code to calculate this, but there is a nice and fast function in the zoo package for calculating rolling means. It is called rollmean().</p>
-<p>As we write the code to do this analysis, we are going to keep in mind that we may want to calculate a different type of low flow, like a 1Q10, so we are going to store the x and y of the xQy low flow statistic as objects rather than including them several places in the code. That way we can just change them in one place and run the analysis to compute a different statistic.</p>
-<p>Use rollmean() to create a column called xdaymean that is the 7-day rolling average.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="low-flow-analysis-15-pts.html#cb167-1" tabindex="-1"></a><span class="co">#set x and y for xQy design flow</span></span>
-<span id="cb167-2"><a href="low-flow-analysis-15-pts.html#cb167-2" tabindex="-1"></a>Xday <span class="ot">&lt;-</span> <span class="dv">7</span></span>
-<span id="cb167-3"><a href="low-flow-analysis-15-pts.html#cb167-3" tabindex="-1"></a>YrecInt <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb167-4"><a href="low-flow-analysis-15-pts.html#cb167-4" tabindex="-1"></a></span>
-<span id="cb167-5"><a href="low-flow-analysis-15-pts.html#cb167-5" tabindex="-1"></a><span class="co">#X day rolling mean, don&#39;t fill the ends of the timeseries,</span></span>
-<span id="cb167-6"><a href="low-flow-analysis-15-pts.html#cb167-6" tabindex="-1"></a><span class="co">#don&#39;t ignore NAs, use a backward-looking window (right align)</span></span></code></pre></div>
-</div>
-<div id="look-at-what-a-rolling-mean-does." class="section level2 hasAnchor" number="15.4">
-<h2><span class="header-section-number">15.4</span> Look at what a rolling mean does.<a href="low-flow-analysis-15-pts.html#look-at-what-a-rolling-mean-does." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We just added a new column with the rolling mean, so let’s plot it and see what it did to the discharge record.</p>
-<p>Let’s look at June-August 1991. You can’t see too well what is going on in the full record.</p>
-<p>Create a line plot (geom_line) of daily flow and rolling mean flow for 6/1/1991 to 9/1/1991.</p>
-<p>What’s the rolling mean doing?</p>
-</div>
-<div id="calculate-yearly-minimums" class="section level2 hasAnchor" number="15.5">
-<h2><span class="header-section-number">15.5</span> Calculate yearly minimums<a href="low-flow-analysis-15-pts.html#calculate-yearly-minimums" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Okay, we have our X-day rolling mean. Now we need to calculate the probability that a given magnitude flow or below will happen in a given year. Because we are concerned with <em>a given year</em> we need the lowest flow per year.</p>
-<p>We will calculate minimum flow per year by gouping by the <em>waterYear</em> column, and using the summarize function to calculate the minimum flow per water year.</p>
-<div id="challenge" class="section level3 hasAnchor" number="15.5.1">
-<h3><span class="header-section-number">15.5.1</span> Challenge<a href="low-flow-analysis-15-pts.html#challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>create a new df called Q_yearly_mins that has year and minimum annual Q calculated from your 7-day rolling mean.</li>
-</ul>
+<div id="modeling-approaches" class="section level3 hasAnchor" number="17.2.2">
+<h3><span class="header-section-number">17.2.2</span> Modeling approaches<a href="modeling-in-hydrology-16-pts.html#modeling-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Empirical Models</strong> are based on empirical analysis of observed inputs (e.g., rainfall) or outputs (ET, discharge). These simple models may not be transferable to other watersheds. Also, they may not reveal much about the physical processes influencing runoff. Therefore, these types of models may not be valid if the study area experiences land use or climate change.</p>
+<p><strong>Conceptual Models</strong> describe processes with simple mathematical equations. For example, we might use a simple linear equation to interpolate precipitation inputs over a watershed with a high elevation gradient using precipitation measurements from two points (high and low). This represents the basic relationship between precipitation and elevation, but does not capture all features that affect precipitation patterns (e.g. aspect, prevailing winds). The combined impact of these factors is probably negligible compared to the substantial amount of data required to accurately model them.</p>
+<p><strong>Physically Based Models</strong> These models offer deep insights into the processes governing runoff generation by relying on fundamental physical equations like mass conservation. However, they come with drawbacks. Their implementation often demands complex numerical solving methods and a significant volume of input data. Without empirical data to validate these techniques, there is a risk of introducing substantial uncertainty into our models, reducing their reliability and effectiveness.</p>
+<p>When modeling watersheds, we often use a mix of empirical, conceptual, and physically based models. The choice of model type depends on factors like the data we have, the time or computing resources we can allocate, and how we plan to use the model.</p>
 </div>
 </div>
-<div id="calculate-return-interval" class="section level2 hasAnchor" number="15.6">
-<h2><span class="header-section-number">15.6</span> Calculate return interval<a href="low-flow-analysis-15-pts.html#calculate-return-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now that we have a df that contains our yearly minimum flows, we can calculate the return interval as</p>
-<p><span class="math inline">\(Return Interval = (n + 1) / rank\)</span></p>
-<p>Where n is the number of records in the data (number of years) and rank is the rank of each year’s low flow (lowest flow = rank 1 and so on). We can calculate the rank with the rank() function in base R. In the rank function we will specify that in the case of a tie, the first value gets the lower rank using ties.method = “first”. That code will look like:</p>
-<p>mutate(rank = rank(minQ, ties.method = “first”))</p>
-<p>You will also need to create a column of return interval with:</p>
-<p>mutate(ReturnInterval = (length(rank) + 1)/rank)</p>
-<ul>
-<li>the length() function returns the length (n) of the column.</li>
-</ul>
-<p>We can then transform that to an exceedence probability as</p>
-<p><span class="math inline">\(Exceedence Probability = 1 / Return Interval\)</span></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="low-flow-analysis-15-pts.html#cb168-1" tabindex="-1"></a><span class="co"># add rank column and return interval column (uncomment the code below)</span></span>
-<span id="cb168-2"><a href="low-flow-analysis-15-pts.html#cb168-2" tabindex="-1"></a></span>
-<span id="cb168-3"><a href="low-flow-analysis-15-pts.html#cb168-3" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
-<span id="cb168-4"><a href="low-flow-analysis-15-pts.html#cb168-4" tabindex="-1"></a><span class="co">#                 mutate(rank = rank(minQ, ties.method = &quot;first&quot;)) %&gt;%</span></span>
-<span id="cb168-5"><a href="low-flow-analysis-15-pts.html#cb168-5" tabindex="-1"></a><span class="co">#                 mutate(ReturnInterval = (length(rank) + 1)/rank) %&gt;%</span></span>
-<span id="cb168-6"><a href="low-flow-analysis-15-pts.html#cb168-6" tabindex="-1"></a><span class="co">#                 mutate(ExceedProb = 1 / ReturnInterval)</span></span></code></pre></div>
-<ul>
-<li>use patchwork to create a figure with minQ on the y and return on the x and another with minQ on the y and exceedence probability on the x.</li>
-</ul>
+<div id="question-1-3-pts" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Question 1 (3 pts)<a href="modeling-in-hydrology-16-pts.html#question-1-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What kind of data would you use to build a model that predicts peak streamflow in this part of Montana? Make a list of all of the data you’d like to add. Is all of this data feasible? How would you downscale the number of inputs to your model, balancing the need for data with the feasibility of getting that data?</p>
 </div>
-<div id="fit-to-pearson-type-iii-distribution" class="section level2 hasAnchor" number="15.7">
-<h2><span class="header-section-number">15.7</span> Fit to Pearson Type III distribution<a href="low-flow-analysis-15-pts.html#fit-to-pearson-type-iii-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Source for these calculations:
-<a href="https://water.usgs.gov/osw/bulletin17b/dl_flow.pdf" class="uri">https://water.usgs.gov/osw/bulletin17b/dl_flow.pdf</a></p>
-<p>We now have everything we need to calculate what the 10-year return interval flow is (the 0.1 probability flow). To do this, we have to fit a distribution to our data and then use that fitted distribution to predict the value of the 10-year return interval flow.</p>
-<p>This may sound a little complex, but let’s think about it this way:</p>
-<ul>
-<li>You have some data, let’s say: heights of students</li>
-<li>You did some tests on it and know it is a normal distribution</li>
-<li>If you measure the mean and standard deviation of that distribution, you could create a “fitted” representation of your distrubtion by generating a normal distribution with the same mean and standard deviation with the rnorm() function.</li>
-<li>Now you could plot that fitted, synthetic distribution as an ECDF and read the plot to determine, say, 10% of students (0.1 probability) are at or above what height?</li>
-</ul>
-<p>Assume the average height from your data was 65 inches and the standard deviation was 6 inches (this is 100% made up), let’s look at it.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="low-flow-analysis-15-pts.html#cb169-1" tabindex="-1"></a><span class="co"># fitteddistribution &lt;- rnorm(1000, mean = 65, sd = 6) %&gt;%</span></span>
-<span id="cb169-2"><a href="low-flow-analysis-15-pts.html#cb169-2" tabindex="-1"></a><span class="co">#   as_tibble()</span></span>
-<span id="cb169-3"><a href="low-flow-analysis-15-pts.html#cb169-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb169-4"><a href="low-flow-analysis-15-pts.html#cb169-4" tabindex="-1"></a><span class="co"># ggplot(fitteddistribution, aes(x = value))+</span></span>
-<span id="cb169-5"><a href="low-flow-analysis-15-pts.html#cb169-5" tabindex="-1"></a><span class="co">#   stat_ecdf()+</span></span>
-<span id="cb169-6"><a href="low-flow-analysis-15-pts.html#cb169-6" tabindex="-1"></a><span class="co">#   xlab(&quot;height (in)&quot;)+</span></span>
-<span id="cb169-7"><a href="low-flow-analysis-15-pts.html#cb169-7" tabindex="-1"></a><span class="co">#   ylab(&quot;probability&quot;)</span></span></code></pre></div>
-<p>To get our 10 year return period (0.1 exceedence probability) we are going to do the same thing, except we know the distribution of the data isn’t normal, so we have to use a different distribution.</p>
-<p>There are a bunch of “extreme value” distributions used in these types of analyses. When we talk about floods we will use the Gumbel distribution, for example. For this type of analysis, it is common to use the Pearson Type III distribution.</p>
-<p>When we used the normal distribution example, we let R produce the distribution that fit our data. In this case we will use the equation that describes the Person Type III distribution. To predict flow at a given recurrence interval we will need the mean of the logged discharges (Xbar), the frequency factor (K), the standard deviation of the log discharges (S), skewness (g), and the standard normal variate (z). We will first compute this for all of the values in our dataset to see how the fitted values fit our calculated values.</p>
-<p><strong>Pearson Type III</strong></p>
-<p><span class="math inline">\(Flow = exp(Xbar + KS)\)</span></p>
-<p>where:</p>
-<p>Xbar = mean of the log discharge you are investigating</p>
-<p>K = frequency factor</p>
-<p>S = standard deviation of log discharges</p>
-<p><strong>Frequency Factor</strong></p>
-<p><span class="math inline">\(K = (2 / g) * ((1 +( g * z)) / 6 - ((g ^ 2) / 36)) ^ 3 - 1)\)</span></p>
-<p><strong>Skewness</strong></p>
-<p>g = skewness() from moments package</p>
-<p><strong>Standard normal variate</strong></p>
-<p><span class="math inline">\(z = 4.91 * ((1 / y) ^ {0.14} - (1 - (1 / y)) ^ {0.14})\)</span></p>
-<p>y = recurrence interval</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="low-flow-analysis-15-pts.html#cb170-1" tabindex="-1"></a><span class="co">#Measures of the distribution</span></span>
-<span id="cb170-2"><a href="low-flow-analysis-15-pts.html#cb170-2" tabindex="-1"></a><span class="co"># Xbar &lt;- mean(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb170-3"><a href="low-flow-analysis-15-pts.html#cb170-3" tabindex="-1"></a><span class="co"># S    &lt;- sd(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb170-4"><a href="low-flow-analysis-15-pts.html#cb170-4" tabindex="-1"></a><span class="co"># g    &lt;- skewness(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb170-5"><a href="low-flow-analysis-15-pts.html#cb170-5" tabindex="-1"></a> </span>
-<span id="cb170-6"><a href="low-flow-analysis-15-pts.html#cb170-6" tabindex="-1"></a><span class="co">#calculate z, K, to plot the fitted Pearson Type III (uncomment the code below)</span></span>
-<span id="cb170-7"><a href="low-flow-analysis-15-pts.html#cb170-7" tabindex="-1"></a></span>
-<span id="cb170-8"><a href="low-flow-analysis-15-pts.html#cb170-8" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
-<span id="cb170-9"><a href="low-flow-analysis-15-pts.html#cb170-9" tabindex="-1"></a><span class="co">#   mutate(z = 4.91 * ((1 / ReturnInterval) ^ 0.14 - (1 - 1 / ReturnInterval) ^ 0.14)) %&gt;%</span></span>
-<span id="cb170-10"><a href="low-flow-analysis-15-pts.html#cb170-10" tabindex="-1"></a><span class="co">#   mutate(K = (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) ) %&gt;%</span></span>
-<span id="cb170-11"><a href="low-flow-analysis-15-pts.html#cb170-11" tabindex="-1"></a><span class="co">#   mutate(Qfit = exp(Xbar + K * S))</span></span></code></pre></div>
-<p>Let’s look our results and see how they fit. Plot the return interval on the x axis and flow on the y. Plot minQ, the minimum Q data, and Qfit, the “data” from the the model fit.</p>
-<p>Above we calculated z, K and the flow for each return interval in our data record to see how the distribution fit our data. We can see it fits quite well.</p>
-<p>We can use the same calculations as we used on the entire record to calculate a specific return period of interest. In our case, the 10 year return period for the 7Q10.</p>
-<p>We will set y equal to YrecInt, which we set above. This way we can just change it at the top of the code to run whatever xQy metric we want.</p>
-<p>Here I am giving you the code, for fitting these models but look at the code above where we fit the distribution to all the data and the code below where we are specfically calculating the 7Q10 and be sure you understand what the code is doing. If you don’t, reach out to me so we can step through it.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="low-flow-analysis-15-pts.html#cb171-1" tabindex="-1"></a><span class="co">#xQy ei: 7Q10</span></span>
-<span id="cb171-2"><a href="low-flow-analysis-15-pts.html#cb171-2" tabindex="-1"></a><span class="co"># y = YrecInt</span></span>
-<span id="cb171-3"><a href="low-flow-analysis-15-pts.html#cb171-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb171-4"><a href="low-flow-analysis-15-pts.html#cb171-4" tabindex="-1"></a><span class="co"># #Find these values based on established relationships</span></span>
-<span id="cb171-5"><a href="low-flow-analysis-15-pts.html#cb171-5" tabindex="-1"></a><span class="co"># z    &lt;- 4.91 * ((1 / y) ^ 0.14 - (1 - 1 / y) ^ 0.14)</span></span>
-<span id="cb171-6"><a href="low-flow-analysis-15-pts.html#cb171-6" tabindex="-1"></a><span class="co"># K    &lt;- (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) </span></span>
-<span id="cb171-7"><a href="low-flow-analysis-15-pts.html#cb171-7" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb171-8"><a href="low-flow-analysis-15-pts.html#cb171-8" tabindex="-1"></a><span class="co"># PearsonxQy &lt;- exp(Xbar + K * S)</span></span></code></pre></div>
-<p>So, our 7Q10 flow in cfs for this gage is….</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="low-flow-analysis-15-pts.html#cb172-1" tabindex="-1"></a><span class="co">#Low flow stat (7Q10 in this case)</span></span>
-<span id="cb172-2"><a href="low-flow-analysis-15-pts.html#cb172-2" tabindex="-1"></a><span class="co">#PearsonxQy</span></span></code></pre></div>
+<div id="download-and-explore-flow-data" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">17.4</span> Download and explore flow data<a href="modeling-in-hydrology-16-pts.html#download-and-explore-flow-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the purposes of this lab, we’ll see if we can model a relationship between peak SWE values and flow on the Yellowstone River. You’re welcome to adapt this code for the Sun or Gallatin Rivers if you’d like a challenge (or up your chance at winning a prize).</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="modeling-in-hydrology-16-pts.html#cb191-1" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb191-2"><a href="modeling-in-hydrology-16-pts.html#cb191-2" tabindex="-1"></a><span class="co"># library(dataRetrieval)</span></span>
+<span id="cb191-3"><a href="modeling-in-hydrology-16-pts.html#cb191-3" tabindex="-1"></a><span class="co"># library(snotelr)</span></span>
+<span id="cb191-4"><a href="modeling-in-hydrology-16-pts.html#cb191-4" tabindex="-1"></a><span class="co"># library(caret)</span></span>
+<span id="cb191-5"><a href="modeling-in-hydrology-16-pts.html#cb191-5" tabindex="-1"></a><span class="co"># library(randomForest)</span></span>
+<span id="cb191-6"><a href="modeling-in-hydrology-16-pts.html#cb191-6" tabindex="-1"></a><span class="co"># library(plotly)</span></span>
+<span id="cb191-7"><a href="modeling-in-hydrology-16-pts.html#cb191-7" tabindex="-1"></a><span class="co"># library(leaflet)</span></span>
+<span id="cb191-8"><a href="modeling-in-hydrology-16-pts.html#cb191-8" tabindex="-1"></a></span>
+<span id="cb191-9"><a href="modeling-in-hydrology-16-pts.html#cb191-9" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
+<p>First we’ll use the dataRetrieval package to download data from the Yellowstone Gauge near Livingston. This is the gauge they’ll be using to determine the 2024 peak flow value. We’ll use the past 30 years of data.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modeling-in-hydrology-16-pts.html#cb192-1" tabindex="-1"></a><span class="co"># siteno &lt;-&quot;06192500&quot;</span></span>
+<span id="cb192-2"><a href="modeling-in-hydrology-16-pts.html#cb192-2" tabindex="-1"></a><span class="co"># startDate &lt;- &quot;1988-10-01&quot;</span></span>
+<span id="cb192-3"><a href="modeling-in-hydrology-16-pts.html#cb192-3" tabindex="-1"></a><span class="co"># endDate &lt;- &quot;2023-9-30&quot;</span></span>
+<span id="cb192-4"><a href="modeling-in-hydrology-16-pts.html#cb192-4" tabindex="-1"></a><span class="co"># parameter &lt;- &quot;00060&quot;</span></span>
+<span id="cb192-5"><a href="modeling-in-hydrology-16-pts.html#cb192-5" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb192-6"><a href="modeling-in-hydrology-16-pts.html#cb192-6" tabindex="-1"></a><span class="co"># Qdat &lt;- readNWISdv(siteno, parameter, startDate, endDate) %&gt;% </span></span>
+<span id="cb192-7"><a href="modeling-in-hydrology-16-pts.html#cb192-7" tabindex="-1"></a><span class="co">#   addWaterYear() %&gt;% </span></span>
+<span id="cb192-8"><a href="modeling-in-hydrology-16-pts.html#cb192-8" tabindex="-1"></a><span class="co">#   renameNWISColumns() %&gt;% </span></span>
+<span id="cb192-9"><a href="modeling-in-hydrology-16-pts.html#cb192-9" tabindex="-1"></a><span class="co">#   select(-agency_cd)</span></span>
+<span id="cb192-10"><a href="modeling-in-hydrology-16-pts.html#cb192-10" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb192-11"><a href="modeling-in-hydrology-16-pts.html#cb192-11" tabindex="-1"></a><span class="co"># Qdat$waterYear &lt;- as.character(Qdat$waterYear)</span></span>
+<span id="cb192-12"><a href="modeling-in-hydrology-16-pts.html#cb192-12" tabindex="-1"></a></span>
+<span id="cb192-13"><a href="modeling-in-hydrology-16-pts.html#cb192-13" tabindex="-1"></a><span class="co">#Look at the data</span></span>
+<span id="cb192-14"><a href="modeling-in-hydrology-16-pts.html#cb192-14" tabindex="-1"></a><span class="co"># Qdat %&gt;% </span></span>
+<span id="cb192-15"><a href="modeling-in-hydrology-16-pts.html#cb192-15" tabindex="-1"></a><span class="co">#   ggplot(aes(x = Date, y = Flow)) +</span></span>
+<span id="cb192-16"><a href="modeling-in-hydrology-16-pts.html#cb192-16" tabindex="-1"></a><span class="co">#   geom_line()</span></span></code></pre></div>
+<p>This is helpful to see, but it can be hard to compare the variation from year to year on a yearly scale.</p>
+<p>Let’s stack each water year on top of each other so we can see the range of variation a bit better. Let’s also plot the median value as a blue line.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="modeling-in-hydrology-16-pts.html#cb193-1" tabindex="-1"></a><span class="co">#Extract just month and day </span></span>
+<span id="cb193-2"><a href="modeling-in-hydrology-16-pts.html#cb193-2" tabindex="-1"></a><span class="co"># Qdat &lt;- Qdat %&gt;%</span></span>
+<span id="cb193-3"><a href="modeling-in-hydrology-16-pts.html#cb193-3" tabindex="-1"></a><span class="co">#   mutate(month_day = paste(month(Date), day(Date), sep = &quot;-&quot;) %&gt;%</span></span>
+<span id="cb193-4"><a href="modeling-in-hydrology-16-pts.html#cb193-4" tabindex="-1"></a><span class="co">#            as.Date(format = &quot;%m-%d&quot;))</span></span>
+<span id="cb193-5"><a href="modeling-in-hydrology-16-pts.html#cb193-5" tabindex="-1"></a></span>
+<span id="cb193-6"><a href="modeling-in-hydrology-16-pts.html#cb193-6" tabindex="-1"></a><span class="co">#Plot the data </span></span>
+<span id="cb193-7"><a href="modeling-in-hydrology-16-pts.html#cb193-7" tabindex="-1"></a><span class="co"># ggplotly(</span></span>
+<span id="cb193-8"><a href="modeling-in-hydrology-16-pts.html#cb193-8" tabindex="-1"></a><span class="co"># Qdat %&gt;% </span></span>
+<span id="cb193-9"><a href="modeling-in-hydrology-16-pts.html#cb193-9" tabindex="-1"></a><span class="co">#   ggplot(aes(x = month_day, y = Flow, group = waterYear))+</span></span>
+<span id="cb193-10"><a href="modeling-in-hydrology-16-pts.html#cb193-10" tabindex="-1"></a><span class="co">#   geom_line(color=&#39;gray&#39;, alpha = 0.7)+</span></span>
+<span id="cb193-11"><a href="modeling-in-hydrology-16-pts.html#cb193-11" tabindex="-1"></a><span class="co">#   stat_summary(fun = median, geom = &quot;line&quot;, aes(group = 1), color = &#39;blue&#39;) +</span></span>
+<span id="cb193-12"><a href="modeling-in-hydrology-16-pts.html#cb193-12" tabindex="-1"></a><span class="co">#   scale_x_date(date_labels = &quot;%b %d&quot;, date_breaks = &quot;2 months&quot;)+</span></span>
+<span id="cb193-13"><a href="modeling-in-hydrology-16-pts.html#cb193-13" tabindex="-1"></a><span class="co">#   labs(x = &#39;Date&#39;, y = &quot;Flow (cfs)&quot;, title = &#39;Yearly Flow Patterns&#39;)</span></span>
+<span id="cb193-14"><a href="modeling-in-hydrology-16-pts.html#cb193-14" tabindex="-1"></a><span class="co"># ) </span></span></code></pre></div>
 </div>
-<div id="deliverable---summary-questions-15-pts" class="section level2 hasAnchor" number="15.8">
-<h2><span class="header-section-number">15.8</span> Deliverable - Summary questions (15 pts)<a href="low-flow-analysis-15-pts.html#deliverable---summary-questions-15-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>submit your answers to these questions as a word doc on Canvas.</li>
-</ul>
-<div id="question-1-6-pts" class="section level3 hasAnchor" number="15.8.1">
-<h3><span class="header-section-number">15.8.1</span> Question 1 (6 pts)<a href="low-flow-analysis-15-pts.html#question-1-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Interpret your plots of minQ vs return interval and minQ vs exceedence probability. What does each tell you? Using these figures estimate the probability of having a year with minimum annual flow ~ 250 cfs. What return interval would you estimate for a year with miminum annual flow ~ 250 cfs?</li>
-</ul>
+<div id="extract-peak-flow-values" class="section level2 hasAnchor" number="17.5">
+<h2><span class="header-section-number">17.5</span> Extract peak flow values<a href="modeling-in-hydrology-16-pts.html#extract-peak-flow-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To win the fundraiser, we need to predict the peak value. Let’s extract just the peak value from each year and explore the range.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="modeling-in-hydrology-16-pts.html#cb194-1" tabindex="-1"></a><span class="co">#Create new df with peak flow value for each water year</span></span>
+<span id="cb194-2"><a href="modeling-in-hydrology-16-pts.html#cb194-2" tabindex="-1"></a><span class="co"># peak_flow &lt;- Qdat %&gt;%</span></span>
+<span id="cb194-3"><a href="modeling-in-hydrology-16-pts.html#cb194-3" tabindex="-1"></a><span class="co">#   group_by(waterYear) %&gt;%</span></span>
+<span id="cb194-4"><a href="modeling-in-hydrology-16-pts.html#cb194-4" tabindex="-1"></a><span class="co">#   summarise(peak_flow = max(Flow, na.rm = T))</span></span>
+<span id="cb194-5"><a href="modeling-in-hydrology-16-pts.html#cb194-5" tabindex="-1"></a></span>
+<span id="cb194-6"><a href="modeling-in-hydrology-16-pts.html#cb194-6" tabindex="-1"></a><span class="co">#Calculate mean and median</span></span>
+<span id="cb194-7"><a href="modeling-in-hydrology-16-pts.html#cb194-7" tabindex="-1"></a><span class="co"># peak_mean &lt;- mean(peak_flow$peak_flow)</span></span>
+<span id="cb194-8"><a href="modeling-in-hydrology-16-pts.html#cb194-8" tabindex="-1"></a><span class="co"># peak_med &lt;- median(peak_flow$peak_flow)</span></span>
+<span id="cb194-9"><a href="modeling-in-hydrology-16-pts.html#cb194-9" tabindex="-1"></a></span>
+<span id="cb194-10"><a href="modeling-in-hydrology-16-pts.html#cb194-10" tabindex="-1"></a><span class="co">#Plot as pdf</span></span>
+<span id="cb194-11"><a href="modeling-in-hydrology-16-pts.html#cb194-11" tabindex="-1"></a><span class="co"># peak_flow %&gt;%</span></span>
+<span id="cb194-12"><a href="modeling-in-hydrology-16-pts.html#cb194-12" tabindex="-1"></a><span class="co">#   ggplot(aes(peak_flow))+</span></span>
+<span id="cb194-13"><a href="modeling-in-hydrology-16-pts.html#cb194-13" tabindex="-1"></a><span class="co">#   stat_density()+</span></span>
+<span id="cb194-14"><a href="modeling-in-hydrology-16-pts.html#cb194-14" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = median(peak_flow$peak_flow), linetype = &#39;dashed&#39;,  color = &#39;red&#39;)+</span></span>
+<span id="cb194-15"><a href="modeling-in-hydrology-16-pts.html#cb194-15" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = mean(peak_flow$peak_flow), linetype = &#39;dashed&#39;,  color = &#39;blue&#39;)+</span></span>
+<span id="cb194-16"><a href="modeling-in-hydrology-16-pts.html#cb194-16" tabindex="-1"></a><span class="co">#   labs(x = &quot;Peak flow (cfs)&quot;, y = &quot;Density&quot;)</span></span></code></pre></div>
+<p>That’s a pretty wide range of possible peak flow values! Looks like some basic stats aren’t enough to allow us to make an informed guess. We’ll need to correlate peak SWE to peak flow values.</p>
 </div>
-<div id="question-2-3-pts" class="section level3 hasAnchor" number="15.8.2">
-<h3><span class="header-section-number">15.8.2</span> Question 2 (3 pts)<a href="low-flow-analysis-15-pts.html#question-2-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>what is your 7Q10?</li>
-<li>In the context of low flows, describe what the 7Q10 is and how it might be used in water resource management.</li>
-</ul>
+<div id="choose-snotel-sites" class="section level2 hasAnchor" number="17.6">
+<h2><span class="header-section-number">17.6</span> Choose Snotel Sites<a href="modeling-in-hydrology-16-pts.html#choose-snotel-sites" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First let’s see what snotel sites exist in the region. I’ll filter for Teton and Park county in WY, which are both in Yellowstone NP.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="modeling-in-hydrology-16-pts.html#cb195-1" tabindex="-1"></a><span class="co"># snotel_sites &lt;- snotel_info()%&gt;%</span></span>
+<span id="cb195-2"><a href="modeling-in-hydrology-16-pts.html#cb195-2" tabindex="-1"></a><span class="co">#   filter(state == &quot;WY&quot;, county == c(&quot;Teton&quot;, &quot;Park&quot;))</span></span>
+<span id="cb195-3"><a href="modeling-in-hydrology-16-pts.html#cb195-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb195-4"><a href="modeling-in-hydrology-16-pts.html#cb195-4" tabindex="-1"></a><span class="co"># snotel_map &lt;- leaflet() %&gt;% </span></span>
+<span id="cb195-5"><a href="modeling-in-hydrology-16-pts.html#cb195-5" tabindex="-1"></a><span class="co">#   addProviderTiles(&quot;OpenStreetMap&quot;) %&gt;% </span></span>
+<span id="cb195-6"><a href="modeling-in-hydrology-16-pts.html#cb195-6" tabindex="-1"></a><span class="co">#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, </span></span>
+<span id="cb195-7"><a href="modeling-in-hydrology-16-pts.html#cb195-7" tabindex="-1"></a><span class="co">#                     popup = ~paste(&quot;Start:&quot;, start, &quot;&lt;br&gt;End date:&quot;, end, &quot;&lt;br&gt;Site:&quot;, description, &quot;&lt;br&gt;Site ID:&quot;, site_id)) </span></span>
+<span id="cb195-8"><a href="modeling-in-hydrology-16-pts.html#cb195-8" tabindex="-1"></a></span>
+<span id="cb195-9"><a href="modeling-in-hydrology-16-pts.html#cb195-9" tabindex="-1"></a><span class="co"># snotel_map</span></span></code></pre></div>
+<p>There are a lot in the area! How do we know which sites to choose? One approach could be to determine what the contributing area of our stream is (i.e. the watershed boundary) and use all of the snotel sites within the watershed.</p>
 </div>
-<div id="question-3-6-pts" class="section level3 hasAnchor" number="15.8.3">
-<h3><span class="header-section-number">15.8.3</span> Question 3 (6 pts)<a href="low-flow-analysis-15-pts.html#question-3-6-pts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>You are a water resource planner for the city of Bozeman. Part of your job is to monitor low flows. You have noticed that the 7-day moving average has dropped below the 7Q10. What does this tell you? And what recommendations would you make to the city regarding water use?</li>
-</ul>
+<div id="working-with-spatial-data" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> Working with spatial data<a href="modeling-in-hydrology-16-pts.html#working-with-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The USGS has a series of pre-defined watershed boundaries. Let’s explore them to see if we can find a good representation of this portion of the Yellowstone River. The huc_shape item will include every watershed in Montana.</p>
+<p>There are multiple packages for working with spatial data in R, but we’ll stick to the sf package for now. The sf package plays nicely with leaflet, and is nice for working with polygons (i.e. watersheds) and point data (i.e. snotel sites).</p>
+<p>We set up our leaflet map the same way that we’ve used it before to look at snotel sites. This time, we’ll use “addPolygons” to view our watershed boundaries.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modeling-in-hydrology-16-pts.html#cb196-1" tabindex="-1"></a><span class="co"># library(sf)</span></span>
+<span id="cb196-2"><a href="modeling-in-hydrology-16-pts.html#cb196-2" tabindex="-1"></a><span class="co"># huc_shape&lt;-st_read(&#39;WBD_Shapefiles/WBDHU8.shp&#39;) #all MT watersheds</span></span>
+<span id="cb196-3"><a href="modeling-in-hydrology-16-pts.html#cb196-3" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="modeling-in-hydrology-16-pts.html#cb196-4" tabindex="-1"></a><span class="co"># Reproject to WGS84 to work with leaflet</span></span>
+<span id="cb196-5"><a href="modeling-in-hydrology-16-pts.html#cb196-5" tabindex="-1"></a><span class="co"># huc_shape &lt;- st_transform(huc_shape, crs = st_crs(4326))</span></span>
+<span id="cb196-6"><a href="modeling-in-hydrology-16-pts.html#cb196-6" tabindex="-1"></a></span>
+<span id="cb196-7"><a href="modeling-in-hydrology-16-pts.html#cb196-7" tabindex="-1"></a><span class="co">#View map</span></span>
+<span id="cb196-8"><a href="modeling-in-hydrology-16-pts.html#cb196-8" tabindex="-1"></a><span class="co"># leaflet() %&gt;%</span></span>
+<span id="cb196-9"><a href="modeling-in-hydrology-16-pts.html#cb196-9" tabindex="-1"></a>  <span class="co"># addProviderTiles(&quot;OpenStreetMap.Mapnik&quot;) %&gt;%</span></span>
+<span id="cb196-10"><a href="modeling-in-hydrology-16-pts.html#cb196-10" tabindex="-1"></a>  <span class="co"># addPolygons(data = huc_shape, fillOpacity = 0.3, color = &quot;blue&quot;, weight = 2, </span></span>
+<span id="cb196-11"><a href="modeling-in-hydrology-16-pts.html#cb196-11" tabindex="-1"></a>  <span class="co">#             popup = ~Name)</span></span></code></pre></div>
+<p>Does one watershed represent the portion of the Yellowstone River we’re interested in? There’s not a perfect match, but I found one that is pretty close. Hover over the map to find the name of the watershed and filter huc_shape to extract just that watershed. Call this variable “yell_shape”</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="modeling-in-hydrology-16-pts.html#cb197-1" tabindex="-1"></a><span class="co"># yell_shape&lt;-</span></span></code></pre></div>
+<p>Let’s use leaflet again to map our isolated watershed boundary. We’ll add the snotel markers too.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="modeling-in-hydrology-16-pts.html#cb198-1" tabindex="-1"></a><span class="co">#View map</span></span>
+<span id="cb198-2"><a href="modeling-in-hydrology-16-pts.html#cb198-2" tabindex="-1"></a><span class="co"># leaflet() %&gt;%</span></span>
+<span id="cb198-3"><a href="modeling-in-hydrology-16-pts.html#cb198-3" tabindex="-1"></a><span class="co">#   addProviderTiles(&quot;OpenStreetMap.Mapnik&quot;) %&gt;%</span></span>
+<span id="cb198-4"><a href="modeling-in-hydrology-16-pts.html#cb198-4" tabindex="-1"></a><span class="co">#   addPolygons(data = yell_shape, fillOpacity = 0.3, color = &quot;blue&quot;, weight = 2, </span></span>
+<span id="cb198-5"><a href="modeling-in-hydrology-16-pts.html#cb198-5" tabindex="-1"></a><span class="co">#               popup = ~Name)%&gt;%</span></span>
+<span id="cb198-6"><a href="modeling-in-hydrology-16-pts.html#cb198-6" tabindex="-1"></a><span class="co">#   addAwesomeMarkers(data = snotel_sites, lat = ~latitude, lng = ~longitude, label = ~elev, </span></span>
+<span id="cb198-7"><a href="modeling-in-hydrology-16-pts.html#cb198-7" tabindex="-1"></a><span class="co">#                     popup = ~paste(&quot;Start:&quot;, start, &quot;&lt;br&gt;End date:&quot;, end, &quot;&lt;br&gt;Site:&quot;, description, &quot;&lt;br&gt;Site ID:&quot;, site_id)) </span></span></code></pre></div>
+<p>It looks like there are a few snotel sites in the contributing area. We could manually filter for those sites, but this can be tedious. A few lines of code can do this for us! st_as_sf() takes a dataframe with lat/long columns and by specifying these coordinates, allows R to understand and analyze the data as spatial.</p>
+<p>The command st_intersection() will extract all of the point data from within the watershed boundary.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modeling-in-hydrology-16-pts.html#cb199-1" tabindex="-1"></a><span class="co">#Turn dataframe into spatial df by specifying lat and long. </span></span>
+<span id="cb199-2"><a href="modeling-in-hydrology-16-pts.html#cb199-2" tabindex="-1"></a><span class="co"># snotel_sf &lt;- st_as_sf(snotel_sites, coords = c(&quot;longitude&quot;, &quot;latitude&quot;), crs = 4326)</span></span>
+<span id="cb199-3"><a href="modeling-in-hydrology-16-pts.html#cb199-3" tabindex="-1"></a></span>
+<span id="cb199-4"><a href="modeling-in-hydrology-16-pts.html#cb199-4" tabindex="-1"></a><span class="co">#Extract just snotel sites from within the watershed boundary </span></span>
+<span id="cb199-5"><a href="modeling-in-hydrology-16-pts.html#cb199-5" tabindex="-1"></a><span class="co"># sno_yell &lt;- st_intersection(snotel_sf, yell_shape)</span></span></code></pre></div>
+<p>Excellent. Now we have a df with just the snotel sites in the Yellowstone watershed. Now we can download the snotel data from these sites.</p>
+</div>
+<div id="download-and-explore-snotel" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Download and explore Snotel<a href="modeling-in-hydrology-16-pts.html#download-and-explore-snotel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can directly plug your site_id column from the Yellowstone snotel df into the snotel_download function. This is savvier than hard-coding in the site numbers.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modeling-in-hydrology-16-pts.html#cb200-1" tabindex="-1"></a><span class="co"># sno_dat &lt;- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %&gt;% </span></span>
+<span id="cb200-2"><a href="modeling-in-hydrology-16-pts.html#cb200-2" tabindex="-1"></a><span class="co">#   mutate(date = ymd(date)) %&gt;% </span></span>
+<span id="cb200-3"><a href="modeling-in-hydrology-16-pts.html#cb200-3" tabindex="-1"></a><span class="co">#   filter(date &gt; as_date(&quot;1988-10-01&quot;) &amp; date &lt; as_date(&quot;2023-09-30&quot;)) %&gt;% </span></span>
+<span id="cb200-4"><a href="modeling-in-hydrology-16-pts.html#cb200-4" tabindex="-1"></a><span class="co">#   mutate(wtr_yr = if_else(lubridate::month(date) &gt; 9, lubridate::year(date) + 1, lubridate::year(date))) %&gt;% </span></span>
+<span id="cb200-5"><a href="modeling-in-hydrology-16-pts.html#cb200-5" tabindex="-1"></a><span class="co">#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)</span></span></code></pre></div>
+<p>Let’s look at the data in the same manner as before, plotting all data over the 30 year time series. We’re interested in SWE (snow water equivalent), so let’s plot a facet plot for each of our snotel sites with peak SWE on the x axis and Date on the y axis.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modeling-in-hydrology-16-pts.html#cb201-1" tabindex="-1"></a><span class="co">#Plot SWE timeseries as facet_plot with each snotel site</span></span></code></pre></div>
+<p>Now let’s make a plot with each year’s data on top of itself like we did with the flow data. You’ll need to extract the month and day to make a new column just like we did before.</p>
+<p>Create a ggplot showing all years as gray lines and add a blue line for the median. Use facet_wrap to plot each of the three snotel sites, and plotly to make the plot interactive such that the water year pops up when hovering over a line.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modeling-in-hydrology-16-pts.html#cb202-1" tabindex="-1"></a><span class="co">#Extract just month and day </span></span>
+<span id="cb202-2"><a href="modeling-in-hydrology-16-pts.html#cb202-2" tabindex="-1"></a></span>
+<span id="cb202-3"><a href="modeling-in-hydrology-16-pts.html#cb202-3" tabindex="-1"></a><span class="co"># Plot all years on top of each other, add median SWE line and use facet wrap to plot each snotel site. Make sure to make the plot interactive and set the tooltip to show the water year. </span></span></code></pre></div>
+</div>
+<div id="question-2-3-points" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> Question 2 (3 points)<a href="modeling-in-hydrology-16-pts.html#question-2-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What do you notice about yearly trends across the three sites? Pay attention to the y axis. Could you guess which of these sites is at the highest elevation? What about the lowest?</p>
+</div>
+<div id="extract-peak-swe-values" class="section level2 hasAnchor" number="17.10">
+<h2><span class="header-section-number">17.10</span> Extract peak SWE values<a href="modeling-in-hydrology-16-pts.html#extract-peak-swe-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just like before, we want to examine the yearly peak value. Let’s create a new df called peak_swe that outputs a peak SWE value corresponding with each water year.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="modeling-in-hydrology-16-pts.html#cb203-1" tabindex="-1"></a><span class="co"># peak_swe &lt;-</span></span></code></pre></div>
+<p>How greatly do these values vary from year to year?</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modeling-in-hydrology-16-pts.html#cb204-1" tabindex="-1"></a><span class="co"># swe_summary&lt;-peak_swe%&gt;%</span></span>
+<span id="cb204-2"><a href="modeling-in-hydrology-16-pts.html#cb204-2" tabindex="-1"></a><span class="co">#   group_by(description)%&gt;%</span></span>
+<span id="cb204-3"><a href="modeling-in-hydrology-16-pts.html#cb204-3" tabindex="-1"></a><span class="co">#   summarize(mean = mean(peak_swe), median = median(peak_swe))</span></span>
+<span id="cb204-4"><a href="modeling-in-hydrology-16-pts.html#cb204-4" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb204-5"><a href="modeling-in-hydrology-16-pts.html#cb204-5" tabindex="-1"></a><span class="co"># peak_swe%&gt;%</span></span>
+<span id="cb204-6"><a href="modeling-in-hydrology-16-pts.html#cb204-6" tabindex="-1"></a><span class="co">#   ggplot(aes(peak_swe))+</span></span>
+<span id="cb204-7"><a href="modeling-in-hydrology-16-pts.html#cb204-7" tabindex="-1"></a><span class="co">#   stat_density(aes(color = description, fill = description), alpha = 0.3)+</span></span>
+<span id="cb204-8"><a href="modeling-in-hydrology-16-pts.html#cb204-8" tabindex="-1"></a><span class="co">#   labs(x = &quot;Peak swe (in)&quot;, y = &quot;Density&quot;)+</span></span>
+<span id="cb204-9"><a href="modeling-in-hydrology-16-pts.html#cb204-9" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = swe_summary$mean, color = c(&#39;red&#39;, &#39;green&#39;,&#39;blue&#39;))+</span></span>
+<span id="cb204-10"><a href="modeling-in-hydrology-16-pts.html#cb204-10" tabindex="-1"></a><span class="co">#   geom_vline(xintercept = swe_summary$median, color = c(&#39;red&#39;, &#39;green&#39;,&#39;blue&#39;), linetype = &quot;dashed&quot;)</span></span></code></pre></div>
+</div>
+<div id="peak-swe-and-q" class="section level2 hasAnchor" number="17.11">
+<h2><span class="header-section-number">17.11</span> Peak SWE and Q<a href="modeling-in-hydrology-16-pts.html#peak-swe-and-q" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s see if peak SWE and peak Q correlate. Start by joining the peak flow and peak snowmelt dataframes by water year, calling this “peak_vals”. Next, plot the relationship between the two. Use ggplotly and set tooltip = waterYear to explore outlier data.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="modeling-in-hydrology-16-pts.html#cb205-1" tabindex="-1"></a><span class="co">#join peak_flow and peak_swe into one dataframe by water year.</span></span>
+<span id="cb205-2"><a href="modeling-in-hydrology-16-pts.html#cb205-2" tabindex="-1"></a><span class="co"># peak_vals&lt;-</span></span>
+<span id="cb205-3"><a href="modeling-in-hydrology-16-pts.html#cb205-3" tabindex="-1"></a></span>
+<span id="cb205-4"><a href="modeling-in-hydrology-16-pts.html#cb205-4" tabindex="-1"></a><span class="co">#plot swe vs. flow among sites</span></span>
+<span id="cb205-5"><a href="modeling-in-hydrology-16-pts.html#cb205-5" tabindex="-1"></a><span class="co"># ggplotly(</span></span>
+<span id="cb205-6"><a href="modeling-in-hydrology-16-pts.html#cb205-6" tabindex="-1"></a><span class="co">#   peak_vals%&gt;%</span></span>
+<span id="cb205-7"><a href="modeling-in-hydrology-16-pts.html#cb205-7" tabindex="-1"></a><span class="co">#   ggplot(aes(x=peak_swe, y = peak_flow, label = waterYear))+</span></span>
+<span id="cb205-8"><a href="modeling-in-hydrology-16-pts.html#cb205-8" tabindex="-1"></a><span class="co">#   geom_point()+</span></span>
+<span id="cb205-9"><a href="modeling-in-hydrology-16-pts.html#cb205-9" tabindex="-1"></a><span class="co">#   geom_smooth(method = &#39;lm&#39;)+</span></span>
+<span id="cb205-10"><a href="modeling-in-hydrology-16-pts.html#cb205-10" tabindex="-1"></a><span class="co">#   labs(x = &#39;Peak SWE (in)&#39;, y = &#39;Peak Flow (cfs)&#39;)+</span></span>
+<span id="cb205-11"><a href="modeling-in-hydrology-16-pts.html#cb205-11" tabindex="-1"></a><span class="co">#   facet_wrap(~description, ncol= 1)</span></span>
+<span id="cb205-12"><a href="modeling-in-hydrology-16-pts.html#cb205-12" tabindex="-1"></a><span class="co"># , tooltip= &#39;waterYear&#39;)</span></span></code></pre></div>
+</div>
+<div id="question-2-points" class="section level2 hasAnchor" number="17.12">
+<h2><span class="header-section-number">17.12</span> Question (2 points)<a href="modeling-in-hydrology-16-pts.html#question-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should note one outlier in your SWE vs. Flow plots. What year did this outlier occur? What could have caused such high peak flow despite relatively low peak SWE?</p>
+</div>
+<div id="model-inputs" class="section level2 hasAnchor" number="17.13">
+<h2><span class="header-section-number">17.13</span> Model inputs<a href="modeling-in-hydrology-16-pts.html#model-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s reorganize the data to prepare it for our model.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="modeling-in-hydrology-16-pts.html#cb206-1" tabindex="-1"></a><span class="co"># model_df &lt;- peak_vals %&gt;%</span></span>
+<span id="cb206-2"><a href="modeling-in-hydrology-16-pts.html#cb206-2" tabindex="-1"></a><span class="co">#   spread(description, peak_swe) %&gt;%</span></span>
+<span id="cb206-3"><a href="modeling-in-hydrology-16-pts.html#cb206-3" tabindex="-1"></a><span class="co">#   rename(chipmunk= `Chipmunk Creek (100700010404)`, </span></span>
+<span id="cb206-4"><a href="modeling-in-hydrology-16-pts.html#cb206-4" tabindex="-1"></a><span class="co">#          pelican = `Lower Pelican Creek (100700010409)`, </span></span>
+<span id="cb206-5"><a href="modeling-in-hydrology-16-pts.html#cb206-5" tabindex="-1"></a><span class="co">#          slough = `Upper Slough Creek (100700010705)`)</span></span></code></pre></div>
+<p>This is where the model magic happens. The train() command is part of the caret package. We’ll tell the model that peak_flow is driven by our three snotel sites. The train command has a variety of different model types, but we want to run a random forest, “rf”.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="modeling-in-hydrology-16-pts.html#cb207-1" tabindex="-1"></a><span class="co"># rf_model &lt;- train(</span></span>
+<span id="cb207-2"><a href="modeling-in-hydrology-16-pts.html#cb207-2" tabindex="-1"></a><span class="co">#   peak_flow ~ chipmunk + pelican + slough,</span></span>
+<span id="cb207-3"><a href="modeling-in-hydrology-16-pts.html#cb207-3" tabindex="-1"></a><span class="co">#   data= model_df,</span></span>
+<span id="cb207-4"><a href="modeling-in-hydrology-16-pts.html#cb207-4" tabindex="-1"></a><span class="co">#   method = &quot;rf&quot;,</span></span>
+<span id="cb207-5"><a href="modeling-in-hydrology-16-pts.html#cb207-5" tabindex="-1"></a><span class="co">#   trControl = trainControl(method = &quot;cv&quot;, number = 10)</span></span>
+<span id="cb207-6"><a href="modeling-in-hydrology-16-pts.html#cb207-6" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb207-7"><a href="modeling-in-hydrology-16-pts.html#cb207-7" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb207-8"><a href="modeling-in-hydrology-16-pts.html#cb207-8" tabindex="-1"></a><span class="co"># print(rf_model)</span></span></code></pre></div>
+</div>
+<div id="run-model" class="section level2 hasAnchor" number="17.14">
+<h2><span class="header-section-number">17.14</span> Run model<a href="modeling-in-hydrology-16-pts.html#run-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now it’s time to predict peak flow for 2024. Let’s download the snotel data from this year and extract the peak SWE value from each site.</p>
+<p>We can use the predict() command and input our model and our 2024 data to calculate a flow value.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="modeling-in-hydrology-16-pts.html#cb208-1" tabindex="-1"></a><span class="co">#Download current data from snotel sites</span></span>
+<span id="cb208-2"><a href="modeling-in-hydrology-16-pts.html#cb208-2" tabindex="-1"></a><span class="co"># sno_24 &lt;- as_tibble(snotel_download(site_id = sno_yell$site_id, internal = TRUE)) %&gt;% </span></span>
+<span id="cb208-3"><a href="modeling-in-hydrology-16-pts.html#cb208-3" tabindex="-1"></a><span class="co">#   mutate(date = ymd(date)) %&gt;% </span></span>
+<span id="cb208-4"><a href="modeling-in-hydrology-16-pts.html#cb208-4" tabindex="-1"></a><span class="co">#   filter(date &gt; as_date(&quot;2024-01-01&quot;) &amp; date &lt; as_date(&quot;2024-05-30&quot;)) %&gt;% </span></span>
+<span id="cb208-5"><a href="modeling-in-hydrology-16-pts.html#cb208-5" tabindex="-1"></a><span class="co">#   mutate(wtr_yr = if_else(lubridate::month(date) &gt; 9, lubridate::year(date) + 1, lubridate::year(date))) %&gt;% </span></span>
+<span id="cb208-6"><a href="modeling-in-hydrology-16-pts.html#cb208-6" tabindex="-1"></a><span class="co">#   select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)</span></span>
+<span id="cb208-7"><a href="modeling-in-hydrology-16-pts.html#cb208-7" tabindex="-1"></a></span>
+<span id="cb208-8"><a href="modeling-in-hydrology-16-pts.html#cb208-8" tabindex="-1"></a><span class="co">#Find max value from each site</span></span>
+<span id="cb208-9"><a href="modeling-in-hydrology-16-pts.html#cb208-9" tabindex="-1"></a><span class="co"># swe_24 &lt;- sno_24 %&gt;%</span></span>
+<span id="cb208-10"><a href="modeling-in-hydrology-16-pts.html#cb208-10" tabindex="-1"></a><span class="co">#   group_by(description) %&gt;%</span></span>
+<span id="cb208-11"><a href="modeling-in-hydrology-16-pts.html#cb208-11" tabindex="-1"></a><span class="co">#   summarize(max_swe = max(swe)) %&gt;%</span></span>
+<span id="cb208-12"><a href="modeling-in-hydrology-16-pts.html#cb208-12" tabindex="-1"></a><span class="co">#   spread(description, max_swe) %&gt;%</span></span>
+<span id="cb208-13"><a href="modeling-in-hydrology-16-pts.html#cb208-13" tabindex="-1"></a><span class="co">#   rename(</span></span>
+<span id="cb208-14"><a href="modeling-in-hydrology-16-pts.html#cb208-14" tabindex="-1"></a><span class="co">#     chipmunk = `Chipmunk Creek (100700010404)`,</span></span>
+<span id="cb208-15"><a href="modeling-in-hydrology-16-pts.html#cb208-15" tabindex="-1"></a><span class="co">#     pelican = `Lower Pelican Creek (100700010409)`,</span></span>
+<span id="cb208-16"><a href="modeling-in-hydrology-16-pts.html#cb208-16" tabindex="-1"></a><span class="co">#     slough = `Upper Slough Creek (100700010705)`</span></span>
+<span id="cb208-17"><a href="modeling-in-hydrology-16-pts.html#cb208-17" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb208-18"><a href="modeling-in-hydrology-16-pts.html#cb208-18" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb208-19"><a href="modeling-in-hydrology-16-pts.html#cb208-19" tabindex="-1"></a><span class="co"># predict_flow&lt;-predict(rf_model, newdata= swe_24)</span></span>
+<span id="cb208-20"><a href="modeling-in-hydrology-16-pts.html#cb208-20" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb208-21"><a href="modeling-in-hydrology-16-pts.html#cb208-21" tabindex="-1"></a><span class="co"># predict_flow</span></span></code></pre></div>
+</div>
+<div id="question-4-2-points" class="section level2 hasAnchor" number="17.15">
+<h2><span class="header-section-number">17.15</span> Question 4 (2 points)<a href="modeling-in-hydrology-16-pts.html#question-4-2-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Compare the predicted flow to the mean and median peak values you calculated earlier. Is the predicted value smaller than or greater than the historic mean/median value? Plot this year’s SWE history on top of historic SWE data. Does the value make sense given the kind of snow year we’re having?</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="modeling-in-hydrology-16-pts.html#cb209-1" tabindex="-1"></a><span class="co">#Filter for 2024</span></span>
+<span id="cb209-2"><a href="modeling-in-hydrology-16-pts.html#cb209-2" tabindex="-1"></a><span class="co"># sno_dat_filt&lt;-sno_dat%&gt;%</span></span>
+<span id="cb209-3"><a href="modeling-in-hydrology-16-pts.html#cb209-3" tabindex="-1"></a><span class="co">#   filter(month_day &lt; ymd(&quot;2024-06-15&quot;) &amp; month_day &gt; ymd(&quot;2024-01-01&quot;))</span></span>
+<span id="cb209-4"><a href="modeling-in-hydrology-16-pts.html#cb209-4" tabindex="-1"></a></span>
+<span id="cb209-5"><a href="modeling-in-hydrology-16-pts.html#cb209-5" tabindex="-1"></a><span class="co">#Visualize this year&#39;s SWE</span></span>
+<span id="cb209-6"><a href="modeling-in-hydrology-16-pts.html#cb209-6" tabindex="-1"></a><span class="co"># ggplotly(  </span></span>
+<span id="cb209-7"><a href="modeling-in-hydrology-16-pts.html#cb209-7" tabindex="-1"></a><span class="co"># ggplot()+</span></span>
+<span id="cb209-8"><a href="modeling-in-hydrology-16-pts.html#cb209-8" tabindex="-1"></a><span class="co">#   geom_line(data=sno_dat_filt, aes(x = month_day, y = swe, group = wtr_yr), color =&#39;gray&#39;, alpha= 0.7)+</span></span>
+<span id="cb209-9"><a href="modeling-in-hydrology-16-pts.html#cb209-9" tabindex="-1"></a><span class="co">#   geom_line(data= sno_24,aes(x =date , y = swe),color=&#39;red&#39;)+</span></span>
+<span id="cb209-10"><a href="modeling-in-hydrology-16-pts.html#cb209-10" tabindex="-1"></a><span class="co">#   scale_x_date(date_labels = &quot;%b %d&quot;, date_breaks = &quot;2 months&quot;)+</span></span>
+<span id="cb209-11"><a href="modeling-in-hydrology-16-pts.html#cb209-11" tabindex="-1"></a><span class="co">#   labs(x = &#39;Date&#39;, y = &quot;Flow (cfs)&quot;)+ </span></span>
+<span id="cb209-12"><a href="modeling-in-hydrology-16-pts.html#cb209-12" tabindex="-1"></a><span class="co">#   facet_wrap(~ description, scales = &quot;free_y&quot;, ncol = 1)  </span></span>
+<span id="cb209-13"><a href="modeling-in-hydrology-16-pts.html#cb209-13" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div>
+<p>We can also visualize our prediction on a scatter plot of peak flow vs peak SWE data. Does the value still make sense?</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="modeling-in-hydrology-16-pts.html#cb210-1" tabindex="-1"></a><span class="co"># pred_val&lt;-cbind(swe_24, predict_flow)%&gt;%</span></span>
+<span id="cb210-2"><a href="modeling-in-hydrology-16-pts.html#cb210-2" tabindex="-1"></a><span class="co">#    pivot_longer(cols = c(chipmunk, pelican, slough), </span></span>
+<span id="cb210-3"><a href="modeling-in-hydrology-16-pts.html#cb210-3" tabindex="-1"></a><span class="co">#                names_to = &quot;description&quot;, </span></span>
+<span id="cb210-4"><a href="modeling-in-hydrology-16-pts.html#cb210-4" tabindex="-1"></a><span class="co">#                values_to = &quot;peak_swe&quot;)</span></span>
+<span id="cb210-5"><a href="modeling-in-hydrology-16-pts.html#cb210-5" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb210-6"><a href="modeling-in-hydrology-16-pts.html#cb210-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb210-7"><a href="modeling-in-hydrology-16-pts.html#cb210-7" tabindex="-1"></a><span class="co"># ggplot()+</span></span>
+<span id="cb210-8"><a href="modeling-in-hydrology-16-pts.html#cb210-8" tabindex="-1"></a><span class="co">#   geom_point(data=peak_vals,aes(x=peak_swe, y = peak_flow, color = description))+</span></span>
+<span id="cb210-9"><a href="modeling-in-hydrology-16-pts.html#cb210-9" tabindex="-1"></a><span class="co">#   geom_point(data= pred_val, aes(x= peak_swe, y = predict_flow), color= &#39;black&#39;)+</span></span>
+<span id="cb210-10"><a href="modeling-in-hydrology-16-pts.html#cb210-10" tabindex="-1"></a><span class="co">#   labs(x = &#39;Peak SWE (in)&#39;, y = &#39;Peak Flow (cfs)&#39;)</span></span></code></pre></div>
+</div>
+<div id="question-5-3-points" class="section level2 hasAnchor" number="17.16">
+<h2><span class="header-section-number">17.16</span> Question 5 (3 points)<a href="modeling-in-hydrology-16-pts.html#question-5-3-points" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It looks like the 2022 outlier data is really affecting our results. Go back in your code and filter out water year 2022 in model_df. Now rerun the code below and examine your model. Does your new number make more sense?</p>
+</div>
+<div id="question-6-3-point" class="section level2 hasAnchor" number="17.17">
+<h2><span class="header-section-number">17.17</span> Question 6 (3 point)<a href="modeling-in-hydrology-16-pts.html#question-6-3-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Is the number you calculated today representative of the peak flow? If no, what do we need to wait for to accurately predict the flow? Think about our input to the model and if we have enough data to predict the peak right now.</p>
 
-</div>
 </div>
 </div>
             </section>
@@ -605,8 +675,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="climate-trend-analysis-18-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="downloading-dems-and-delineating-watersheds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="downloading-dems-and-delineating-watersheds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="flow-duration-curves-6-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -637,7 +707,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/15_low_flow_analysis_lab.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/17_predict_peak_lab.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -645,7 +715,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/15_low_flow_analysis_lab.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/17_predict_peak_lab.Rmd",
     "text": null
   },
   "download": null,

@@ -135,7 +135,7 @@ PET Reading:
 - Is there anything in particular you would like more practice with?
 
 ## Deliverables
-- Knit this .Rmd as an .html and submit your lab_1_YOUR_NAME.Rmd and lab_1_YOUR_NAME.html on D2L. 
+- Knit this .Rmd as an .html and submit your lab_1_YOUR_NAME.Rmd and lab_1_YOUR_NAME.html on Canvas. 
 
 
 

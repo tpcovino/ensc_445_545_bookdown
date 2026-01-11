@@ -94,4 +94,4 @@ Compute 3 measures of spread and 2 measures of central tendency for the PINE and
 
 ## Deliverable
 
-Please knit this .Rmd as .html and submit both on D2L. 
+Please knit this .Rmd as .html and submit both on Canvas. 

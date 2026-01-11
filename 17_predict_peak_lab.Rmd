@@ -1,6 +1,8 @@
-# Modeling in hydrology (20 pts)
+# Modeling in hydrology (16 pts)
 
 [Find repo here](https://github.com/tpcovino/22_predict_peak.git){target="_blank"}
+
+## Note: You are given the code but will need to update it to be current (i.e., data and predictions run until the end of the last water year).
 
 ## Background
 
@@ -257,7 +259,7 @@ Let's see if peak SWE and peak Q correlate. Start by joining the peak flow and p
 # , tooltip= 'waterYear')
 ```
 
-## Question (4 points)
+## Question (2 points)
 
 You should note one outlier in your SWE vs. Flow plots. What year did this outlier occur? What could have caused such high peak flow despite relatively low peak SWE?
 
@@ -316,7 +318,7 @@ We can use the predict() command and input our model and our 2024 data to calcul
 # predict_flow
 ```
 
-## Question 4 (4 points)
+## Question 4 (2 points)
 
 Compare the predicted flow to the mean and median peak values you calculated earlier. Is the predicted value smaller than or greater than the historic mean/median value? Plot this year's SWE history on top of historic SWE data. Does the value make sense given the kind of snow year we're having?
 

@@ -175,7 +175,7 @@ Use your plots of mm/year to comment on:\
 
 ## Deliverable (6 pts)
 
-Knit this .Rmd to .html and upload both on D2L. If you can't get to knit, just upload .Rmd. 
+Knit this .Rmd to .html and upload both on Canvas. If you can't get to knit, just upload .Rmd. 
 
 Points for clarity and commenting of .Rmd and clarity of figures. 
 
