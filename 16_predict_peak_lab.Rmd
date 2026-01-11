@@ -1,6 +1,4 @@
-
-
-# Lab 8: Modeling in hydrology (20 pts)
+# Modeling in hydrology (20 pts)
 
 [Find repo here](https://github.com/tpcovino/22_predict_peak.git){target="_blank"}
 

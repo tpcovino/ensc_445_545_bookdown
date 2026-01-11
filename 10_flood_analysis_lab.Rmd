@@ -1,0 +1,11 @@
+# Flood analysis lab (10 pts)
+
+Project repo <https://github.com/tpcovino/lab_6_flood_analysis>
+
+In this lab we will calculate the exceedence probabilties for high flows at the Corwin Springs gage on the Yellowstone. We will calculate the exceedence probabilities using the Gringorten plotting position and we will fit a Gumbel distribution to the data. The Gumbel is an extreme value distribution, so we will essentially fit a model to the data to calculate the probability of any flow or, conversely, the flow at any given probability. The lab will follow this CUAHSI module <https://serc.carleton.edu/hydromodules/steps/166250.html>
+
+Background on the flood here <https://www.usgs.gov/observatories/yvo/news/how-2022-yellowstone-flood-affected-a-monitoring-site-gardner-river#:~:text=The%20flooding%20of%20June%2013,and%20warning%20of%20flood%20events.>
+
+Corwin Springs gage here <https://waterdata.usgs.gov/monitoring-location/06191500/#parameterCode=00065&period=P7D>
+
+The deliverable for this lab is to complete a flood frequency analysis and determine the probability of the June 2022 flood. Then you will read a USGS flyer about floods and provide your expert opinion to your bosses at USGS and the National Flood Insurance Program.

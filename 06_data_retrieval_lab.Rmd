@@ -1,5 +1,5 @@
 
-# Lab 2: dataRetrieval and area normalized flows (20 pts)
+# dataRetrieval and area normalized flows (20 pts)
 
 [**Repo here**](https://github.com/tpcovino/lab_3){target="_blank"}
 

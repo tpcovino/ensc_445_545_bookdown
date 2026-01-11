@@ -1,6 +1,6 @@
 
 
-# Lab 1: Data vis, wrangling, and programming (12 pts)
+# Data vis, wrangling, and programming (12 pts)
 
 [**You can find the repo for this lab here**](https://github.com/tpcovino/lab_1){target="_blank"}
 

@@ -1,6 +1,6 @@
 
 
-# Lab 3: Statistics in hydrology (25 pts)
+# Statistics in hydrology (25 pts)
 
 Reading for this lab:
 

@@ -69,7 +69,7 @@ p <- exhist/expdf
 p + labs(caption = "Figure 1. Comparison of histogram (top) and probability density function (bottom) of a synthetic data set generated with\n the rnorm function, 1000 samples, and a mean of 5.") + theme(plot.caption = element_text(hjust = 0))
 ```
 
-## Homework Q1 (2 pts) 
+## Questions: disuss these with a partner and then we will discuss together as a group. 
 
 - What is the difference between a histogram and a pdf?\
 - What features of the histogram are preserved? Which are lost?
@@ -112,7 +112,7 @@ sample_hist/population_hist
 
 ```
 
-## Homework Q2 (2 pts)
+## Questions: disuss these with a partner and then we will discuss together as a group. 
 
 - How does your sample distribution look similar or different from the population?\
 - Why does the sample change every time you run it?\
@@ -232,7 +232,7 @@ rnorm(300, mean = 0, sd = 1) %>%
   xlim(c(-30,30))
 ```
 
-## Homework Q3 (3 pts)
+## Questions: disuss these with a partner and then we will discuss together as a group. 
 - What happens to the shape of the distribution as the SD increases?
 - If you were to plot the pdf of two hydrographs, one that is flashy, one that isn't - predict what those distributions would look like. 
 
@@ -313,10 +313,10 @@ norm <- rnorm(n = 10, mean = 0, sd = 1) %>%
 qqnorm(norm$value)
 ```
 
-## Homework Q4 (4 pts)
+## Questions: disuss these with a partner and then we will discuss together as a group. 
 - Do the results change more from run to run when the n is high or low and why?
 
-## Homework Q5 (4 pts)
+## Questions: disuss these with a partner and then we will discuss together as a group. 
 
 Test your all_the_water, ExNorm, and sample_of_water data frames for normality using shapiro test and qqnorm.
 
@@ -341,12 +341,11 @@ ad.test(all_the_water$value)
 
 ```
 
+## Question: Discuss with partner. We will report as group. 
 
 - According to the tests you've just performed, which datasets ARE and which datesets are NOT normal?
 
-## Deliverable
 
-- Write up your answers to HW questions 1 - 5 in a word doc and submit on D2L. 
 
 
 

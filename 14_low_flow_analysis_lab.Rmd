@@ -1,4 +1,4 @@
-# Lab 5: Low Flow Analysis (15 pts)
+# Low Flow Analysis (15 pts)
 
 In this lab I am giving you most of the code. Your task will be to use that code to analyze low flows at the Gallatin Gateway gage and answer the summary questions at the end of this markdown. For you deliverable submit your answers to the summary questions in a word doc. 
 

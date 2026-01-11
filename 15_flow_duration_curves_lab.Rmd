@@ -1,4 +1,4 @@
-# Flow Duration Curves (6 pts, peer grading)
+# Flow Duration Curves (6 pts)
 
 
 ## Lecture
