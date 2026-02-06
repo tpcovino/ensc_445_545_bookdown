@@ -4,7 +4,7 @@ Readings: Introduction to the dataRetrieval package <https://cran.r-project.org/
 
 Chapter 12 & 13 of R for Data Science <https://r4ds.had.co.nz/tidy-data.html>{target="_blank"}
 
-Repo for this module can be found [here](https://github.com/tpcovino/05_data_retrieval.git){target="_blank"}
+Repo for this module can be found [here](https://github.com/tpcovino/05_data_retrieval_module){target="_blank"}
 
 ## Goals
 

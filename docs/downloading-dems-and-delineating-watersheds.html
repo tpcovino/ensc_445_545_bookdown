@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 16 Downloading DEMs and delineating watersheds | Watershed Analysis: ENSC 445/LRES 545</title>
   <meta name="description" content="Chapter 16 Downloading DEMs and delineating watersheds | Watershed Analysis: ENSC 445/LRES 545" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 16 Downloading DEMs and delineating watersheds | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
@@ -51,28 +51,29 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
 <script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -229,9 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
-<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
-<li class="chapter" data-level="6.1.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.1</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
 <li class="chapter" data-level="6.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
@@ -341,21 +341,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2.1" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#identifying-the-question"><i class="fa fa-check"></i><b>17.2.1</b> Identifying the question</a></li>
 <li class="chapter" data-level="17.2.2" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#modeling-approaches"><i class="fa fa-check"></i><b>17.2.2</b> Modeling approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.3</b> Question 1 (3 pts)</a></li>
-<li class="chapter" data-level="17.4" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.4</b> Download and explore flow data</a></li>
-<li class="chapter" data-level="17.5" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.5</b> Extract peak flow values</a></li>
-<li class="chapter" data-level="17.6" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.6</b> Choose Snotel Sites</a></li>
-<li class="chapter" data-level="17.7" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.7</b> Working with spatial data</a></li>
-<li class="chapter" data-level="17.8" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.8</b> Download and explore Snotel</a></li>
-<li class="chapter" data-level="17.9" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-3-points"><i class="fa fa-check"></i><b>17.9</b> Question 2 (3 points)</a></li>
-<li class="chapter" data-level="17.10" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.10</b> Extract peak SWE values</a></li>
-<li class="chapter" data-level="17.11" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.11</b> Peak SWE and Q</a></li>
-<li class="chapter" data-level="17.12" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-points"><i class="fa fa-check"></i><b>17.12</b> Question (2 points)</a></li>
-<li class="chapter" data-level="17.13" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#model-inputs"><i class="fa fa-check"></i><b>17.13</b> Model inputs</a></li>
-<li class="chapter" data-level="17.14" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#run-model"><i class="fa fa-check"></i><b>17.14</b> Run model</a></li>
-<li class="chapter" data-level="17.15" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-4-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 4 (2 points)</a></li>
-<li class="chapter" data-level="17.16" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-5-3-points"><i class="fa fa-check"></i><b>17.16</b> Question 5 (3 points)</a></li>
-<li class="chapter" data-level="17.17" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-6-3-point"><i class="fa fa-check"></i><b>17.17</b> Question 6 (3 point)</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="flow-duration-curves-6-pts.html"><a href="flow-duration-curves-6-pts.html"><i class="fa fa-check"></i><b>18</b> Flow Duration Curves (6 pts)</a>
 <ul>
@@ -402,248 +387,248 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.2</span> StreamStats<a href="downloading-dems-and-delineating-watersheds.html#streamstats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are lots of ways we can delineate watersheds. A particularly easy one is to use the Stream Stats package. Stream Stats is a USGS webpage where you can delineate to a point on a stream. It doesn’t work (hasn’t been developed) in every state (e.g., Wyoming). So it is good to know how to delineate with other packages (e.g., Whitebox).</p>
 <p>Let’s first do a watershed delineation using StreamStats. <a href="https://streamstats.usgs.gov/ss/">Here</a> is the link to the StreamStats GUI.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="downloading-dems-and-delineating-watersheds.html#cb173-1" tabindex="-1"></a><span class="co">#knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)</span></span>
-<span id="cb173-2"><a href="downloading-dems-and-delineating-watersheds.html#cb173-2" tabindex="-1"></a></span>
-<span id="cb173-3"><a href="downloading-dems-and-delineating-watersheds.html#cb173-3" tabindex="-1"></a><span class="co">#devtools::install_github(&quot;https://github.com/giswqs/whiteboxR&quot;)</span></span>
-<span id="cb173-4"><a href="downloading-dems-and-delineating-watersheds.html#cb173-4" tabindex="-1"></a></span>
-<span id="cb173-5"><a href="downloading-dems-and-delineating-watersheds.html#cb173-5" tabindex="-1"></a><span class="co"># library(terra)</span></span>
-<span id="cb173-6"><a href="downloading-dems-and-delineating-watersheds.html#cb173-6" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
-<span id="cb173-7"><a href="downloading-dems-and-delineating-watersheds.html#cb173-7" tabindex="-1"></a><span class="co"># library(dataRetrieval)</span></span>
-<span id="cb173-8"><a href="downloading-dems-and-delineating-watersheds.html#cb173-8" tabindex="-1"></a><span class="co"># library(whitebox)</span></span>
-<span id="cb173-9"><a href="downloading-dems-and-delineating-watersheds.html#cb173-9" tabindex="-1"></a><span class="co"># whitebox::wbt_init()</span></span>
-<span id="cb173-10"><a href="downloading-dems-and-delineating-watersheds.html#cb173-10" tabindex="-1"></a><span class="co"># library(leaflet)</span></span>
-<span id="cb173-11"><a href="downloading-dems-and-delineating-watersheds.html#cb173-11" tabindex="-1"></a><span class="co"># library(sf)</span></span>
-<span id="cb173-12"><a href="downloading-dems-and-delineating-watersheds.html#cb173-12" tabindex="-1"></a><span class="co"># library(viridis)</span></span>
-<span id="cb173-13"><a href="downloading-dems-and-delineating-watersheds.html#cb173-13" tabindex="-1"></a><span class="co"># library(terrainr)</span></span>
-<span id="cb173-14"><a href="downloading-dems-and-delineating-watersheds.html#cb173-14" tabindex="-1"></a><span class="co"># library(tmap)</span></span>
-<span id="cb173-15"><a href="downloading-dems-and-delineating-watersheds.html#cb173-15" tabindex="-1"></a><span class="co"># library(elevatr)</span></span>
-<span id="cb173-16"><a href="downloading-dems-and-delineating-watersheds.html#cb173-16" tabindex="-1"></a><span class="co"># library(ggnewscale)</span></span>
-<span id="cb173-17"><a href="downloading-dems-and-delineating-watersheds.html#cb173-17" tabindex="-1"></a><span class="co"># library(tidyterra)</span></span>
-<span id="cb173-18"><a href="downloading-dems-and-delineating-watersheds.html#cb173-18" tabindex="-1"></a><span class="co"># library(stars)</span></span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="downloading-dems-and-delineating-watersheds.html#cb270-1" tabindex="-1"></a><span class="co">#knitr::opts_chunk$set(echo = TRUE, include = TRUE, message = FALSE, warning = FALSE)</span></span>
+<span id="cb270-2"><a href="downloading-dems-and-delineating-watersheds.html#cb270-2" tabindex="-1"></a></span>
+<span id="cb270-3"><a href="downloading-dems-and-delineating-watersheds.html#cb270-3" tabindex="-1"></a><span class="co">#devtools::install_github(&quot;https://github.com/giswqs/whiteboxR&quot;)</span></span>
+<span id="cb270-4"><a href="downloading-dems-and-delineating-watersheds.html#cb270-4" tabindex="-1"></a></span>
+<span id="cb270-5"><a href="downloading-dems-and-delineating-watersheds.html#cb270-5" tabindex="-1"></a><span class="co"># library(terra)</span></span>
+<span id="cb270-6"><a href="downloading-dems-and-delineating-watersheds.html#cb270-6" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb270-7"><a href="downloading-dems-and-delineating-watersheds.html#cb270-7" tabindex="-1"></a><span class="co"># library(dataRetrieval)</span></span>
+<span id="cb270-8"><a href="downloading-dems-and-delineating-watersheds.html#cb270-8" tabindex="-1"></a><span class="co"># library(whitebox)</span></span>
+<span id="cb270-9"><a href="downloading-dems-and-delineating-watersheds.html#cb270-9" tabindex="-1"></a><span class="co"># whitebox::wbt_init()</span></span>
+<span id="cb270-10"><a href="downloading-dems-and-delineating-watersheds.html#cb270-10" tabindex="-1"></a><span class="co"># library(leaflet)</span></span>
+<span id="cb270-11"><a href="downloading-dems-and-delineating-watersheds.html#cb270-11" tabindex="-1"></a><span class="co"># library(sf)</span></span>
+<span id="cb270-12"><a href="downloading-dems-and-delineating-watersheds.html#cb270-12" tabindex="-1"></a><span class="co"># library(viridis)</span></span>
+<span id="cb270-13"><a href="downloading-dems-and-delineating-watersheds.html#cb270-13" tabindex="-1"></a><span class="co"># library(terrainr)</span></span>
+<span id="cb270-14"><a href="downloading-dems-and-delineating-watersheds.html#cb270-14" tabindex="-1"></a><span class="co"># library(tmap)</span></span>
+<span id="cb270-15"><a href="downloading-dems-and-delineating-watersheds.html#cb270-15" tabindex="-1"></a><span class="co"># library(elevatr)</span></span>
+<span id="cb270-16"><a href="downloading-dems-and-delineating-watersheds.html#cb270-16" tabindex="-1"></a><span class="co"># library(ggnewscale)</span></span>
+<span id="cb270-17"><a href="downloading-dems-and-delineating-watersheds.html#cb270-17" tabindex="-1"></a><span class="co"># library(tidyterra)</span></span>
+<span id="cb270-18"><a href="downloading-dems-and-delineating-watersheds.html#cb270-18" tabindex="-1"></a><span class="co"># library(stars)</span></span></code></pre></div>
 <p>The gauge we will delineate to today is USGS 06047500 Bozeman Creek near Bozeman MT</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="downloading-dems-and-delineating-watersheds.html#cb174-1" tabindex="-1"></a><span class="co">#gage_info &lt;- readNWISsite(site = &quot;06047500&quot;)</span></span>
-<span id="cb174-2"><a href="downloading-dems-and-delineating-watersheds.html#cb174-2" tabindex="-1"></a></span>
-<span id="cb174-3"><a href="downloading-dems-and-delineating-watersheds.html#cb174-3" tabindex="-1"></a><span class="co">#xlocation &lt;- gage_info$dec_long_va</span></span>
-<span id="cb174-4"><a href="downloading-dems-and-delineating-watersheds.html#cb174-4" tabindex="-1"></a><span class="co">#ylocation &lt;- gage_info$dec_lat_va</span></span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="downloading-dems-and-delineating-watersheds.html#cb271-1" tabindex="-1"></a><span class="co">#gage_info &lt;- readNWISsite(site = &quot;06047500&quot;)</span></span>
+<span id="cb271-2"><a href="downloading-dems-and-delineating-watersheds.html#cb271-2" tabindex="-1"></a></span>
+<span id="cb271-3"><a href="downloading-dems-and-delineating-watersheds.html#cb271-3" tabindex="-1"></a><span class="co">#xlocation &lt;- gage_info$dec_long_va</span></span>
+<span id="cb271-4"><a href="downloading-dems-and-delineating-watersheds.html#cb271-4" tabindex="-1"></a><span class="co">#ylocation &lt;- gage_info$dec_lat_va</span></span></code></pre></div>
 <p>Now we can use the shapefile we just got from StreamStats to download a DEM. We will start by writing the shapefile. Next, we will load the shapefile. And then use that shapefile to download DEMs using terrainr.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="downloading-dems-and-delineating-watersheds.html#cb175-1" tabindex="-1"></a><span class="co"># Read in the shape file using library(sf)</span></span>
-<span id="cb175-2"><a href="downloading-dems-and-delineating-watersheds.html#cb175-2" tabindex="-1"></a></span>
-<span id="cb175-3"><a href="downloading-dems-and-delineating-watersheds.html#cb175-3" tabindex="-1"></a><span class="co">#boundary &lt;- st_read(&quot;stream_stat/layers/globalwatershed.shp&quot;) </span></span>
-<span id="cb175-4"><a href="downloading-dems-and-delineating-watersheds.html#cb175-4" tabindex="-1"></a></span>
-<span id="cb175-5"><a href="downloading-dems-and-delineating-watersheds.html#cb175-5" tabindex="-1"></a><span class="co"># Look at the boundary using library(tmap)</span></span>
-<span id="cb175-6"><a href="downloading-dems-and-delineating-watersheds.html#cb175-6" tabindex="-1"></a></span>
-<span id="cb175-7"><a href="downloading-dems-and-delineating-watersheds.html#cb175-7" tabindex="-1"></a><span class="co">#tm_shape(boundary) +</span></span>
-<span id="cb175-8"><a href="downloading-dems-and-delineating-watersheds.html#cb175-8" tabindex="-1"></a> <span class="co"># tm_polygons()</span></span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="downloading-dems-and-delineating-watersheds.html#cb272-1" tabindex="-1"></a><span class="co"># Read in the shape file using library(sf)</span></span>
+<span id="cb272-2"><a href="downloading-dems-and-delineating-watersheds.html#cb272-2" tabindex="-1"></a></span>
+<span id="cb272-3"><a href="downloading-dems-and-delineating-watersheds.html#cb272-3" tabindex="-1"></a><span class="co">#boundary &lt;- st_read(&quot;stream_stat/layers/globalwatershed.shp&quot;) </span></span>
+<span id="cb272-4"><a href="downloading-dems-and-delineating-watersheds.html#cb272-4" tabindex="-1"></a></span>
+<span id="cb272-5"><a href="downloading-dems-and-delineating-watersheds.html#cb272-5" tabindex="-1"></a><span class="co"># Look at the boundary using library(tmap)</span></span>
+<span id="cb272-6"><a href="downloading-dems-and-delineating-watersheds.html#cb272-6" tabindex="-1"></a></span>
+<span id="cb272-7"><a href="downloading-dems-and-delineating-watersheds.html#cb272-7" tabindex="-1"></a><span class="co">#tm_shape(boundary) +</span></span>
+<span id="cb272-8"><a href="downloading-dems-and-delineating-watersheds.html#cb272-8" tabindex="-1"></a> <span class="co"># tm_polygons()</span></span></code></pre></div>
 <p>Download USGS DEM with terrainr.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="downloading-dems-and-delineating-watersheds.html#cb176-1" tabindex="-1"></a><span class="co"># We could put the coordinates of the gage in and download. We already have the shapefile so we will use that instead. But the commented out code below would do it. </span></span>
-<span id="cb176-2"><a href="downloading-dems-and-delineating-watersheds.html#cb176-2" tabindex="-1"></a><span class="co"># location_of_interest &lt;- data.frame(</span></span>
-<span id="cb176-3"><a href="downloading-dems-and-delineating-watersheds.html#cb176-3" tabindex="-1"></a><span class="co">#   x = xlocation,</span></span>
-<span id="cb176-4"><a href="downloading-dems-and-delineating-watersheds.html#cb176-4" tabindex="-1"></a><span class="co">#   y = ylocation</span></span>
-<span id="cb176-5"><a href="downloading-dems-and-delineating-watersheds.html#cb176-5" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb176-6"><a href="downloading-dems-and-delineating-watersheds.html#cb176-6" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb176-7"><a href="downloading-dems-and-delineating-watersheds.html#cb176-7" tabindex="-1"></a><span class="co"># location_of_interest &lt;- st_as_sf(</span></span>
-<span id="cb176-8"><a href="downloading-dems-and-delineating-watersheds.html#cb176-8" tabindex="-1"></a><span class="co">#   location_of_interest, </span></span>
-<span id="cb176-9"><a href="downloading-dems-and-delineating-watersheds.html#cb176-9" tabindex="-1"></a><span class="co">#   coords = c(&quot;x&quot;, &quot;y&quot;), </span></span>
-<span id="cb176-10"><a href="downloading-dems-and-delineating-watersheds.html#cb176-10" tabindex="-1"></a><span class="co">#   crs = 4326</span></span>
-<span id="cb176-11"><a href="downloading-dems-and-delineating-watersheds.html#cb176-11" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb176-12"><a href="downloading-dems-and-delineating-watersheds.html#cb176-12" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb176-13"><a href="downloading-dems-and-delineating-watersheds.html#cb176-13" tabindex="-1"></a><span class="co"># box_of_interest &lt;- set_bbox_side_length(location_of_interest, 20000)</span></span>
-<span id="cb176-14"><a href="downloading-dems-and-delineating-watersheds.html#cb176-14" tabindex="-1"></a></span>
-<span id="cb176-15"><a href="downloading-dems-and-delineating-watersheds.html#cb176-15" tabindex="-1"></a><span class="co"># output_tiles &lt;- get_tiles(boundary,</span></span>
-<span id="cb176-16"><a href="downloading-dems-and-delineating-watersheds.html#cb176-16" tabindex="-1"></a><span class="co">#                           services = c(&quot;elevation&quot;),</span></span>
-<span id="cb176-17"><a href="downloading-dems-and-delineating-watersheds.html#cb176-17" tabindex="-1"></a><span class="co">#                           resolution = 10 # pixel side length in meters</span></span>
-<span id="cb176-18"><a href="downloading-dems-and-delineating-watersheds.html#cb176-18" tabindex="-1"></a><span class="co">#                           )</span></span>
-<span id="cb176-19"><a href="downloading-dems-and-delineating-watersheds.html#cb176-19" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb176-20"><a href="downloading-dems-and-delineating-watersheds.html#cb176-20" tabindex="-1"></a><span class="co"># output_tiles &lt;- rast(output_tiles[[&quot;elevation&quot;]])</span></span>
-<span id="cb176-21"><a href="downloading-dems-and-delineating-watersheds.html#cb176-21" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb176-22"><a href="downloading-dems-and-delineating-watersheds.html#cb176-22" tabindex="-1"></a><span class="co"># writeRaster(output_tiles, &quot;dem/output_tiles.tif&quot;, overwrite = TRUE)</span></span>
-<span id="cb176-23"><a href="downloading-dems-and-delineating-watersheds.html#cb176-23" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb176-24"><a href="downloading-dems-and-delineating-watersheds.html#cb176-24" tabindex="-1"></a><span class="co"># tm_shape(output_tiles) +</span></span>
-<span id="cb176-25"><a href="downloading-dems-and-delineating-watersheds.html#cb176-25" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-viridis&quot;, legend.show = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="downloading-dems-and-delineating-watersheds.html#cb273-1" tabindex="-1"></a><span class="co"># We could put the coordinates of the gage in and download. We already have the shapefile so we will use that instead. But the commented out code below would do it. </span></span>
+<span id="cb273-2"><a href="downloading-dems-and-delineating-watersheds.html#cb273-2" tabindex="-1"></a><span class="co"># location_of_interest &lt;- data.frame(</span></span>
+<span id="cb273-3"><a href="downloading-dems-and-delineating-watersheds.html#cb273-3" tabindex="-1"></a><span class="co">#   x = xlocation,</span></span>
+<span id="cb273-4"><a href="downloading-dems-and-delineating-watersheds.html#cb273-4" tabindex="-1"></a><span class="co">#   y = ylocation</span></span>
+<span id="cb273-5"><a href="downloading-dems-and-delineating-watersheds.html#cb273-5" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb273-6"><a href="downloading-dems-and-delineating-watersheds.html#cb273-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb273-7"><a href="downloading-dems-and-delineating-watersheds.html#cb273-7" tabindex="-1"></a><span class="co"># location_of_interest &lt;- st_as_sf(</span></span>
+<span id="cb273-8"><a href="downloading-dems-and-delineating-watersheds.html#cb273-8" tabindex="-1"></a><span class="co">#   location_of_interest, </span></span>
+<span id="cb273-9"><a href="downloading-dems-and-delineating-watersheds.html#cb273-9" tabindex="-1"></a><span class="co">#   coords = c(&quot;x&quot;, &quot;y&quot;), </span></span>
+<span id="cb273-10"><a href="downloading-dems-and-delineating-watersheds.html#cb273-10" tabindex="-1"></a><span class="co">#   crs = 4326</span></span>
+<span id="cb273-11"><a href="downloading-dems-and-delineating-watersheds.html#cb273-11" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb273-12"><a href="downloading-dems-and-delineating-watersheds.html#cb273-12" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb273-13"><a href="downloading-dems-and-delineating-watersheds.html#cb273-13" tabindex="-1"></a><span class="co"># box_of_interest &lt;- set_bbox_side_length(location_of_interest, 20000)</span></span>
+<span id="cb273-14"><a href="downloading-dems-and-delineating-watersheds.html#cb273-14" tabindex="-1"></a></span>
+<span id="cb273-15"><a href="downloading-dems-and-delineating-watersheds.html#cb273-15" tabindex="-1"></a><span class="co"># output_tiles &lt;- get_tiles(boundary,</span></span>
+<span id="cb273-16"><a href="downloading-dems-and-delineating-watersheds.html#cb273-16" tabindex="-1"></a><span class="co">#                           services = c(&quot;elevation&quot;),</span></span>
+<span id="cb273-17"><a href="downloading-dems-and-delineating-watersheds.html#cb273-17" tabindex="-1"></a><span class="co">#                           resolution = 10 # pixel side length in meters</span></span>
+<span id="cb273-18"><a href="downloading-dems-and-delineating-watersheds.html#cb273-18" tabindex="-1"></a><span class="co">#                           )</span></span>
+<span id="cb273-19"><a href="downloading-dems-and-delineating-watersheds.html#cb273-19" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb273-20"><a href="downloading-dems-and-delineating-watersheds.html#cb273-20" tabindex="-1"></a><span class="co"># output_tiles &lt;- rast(output_tiles[[&quot;elevation&quot;]])</span></span>
+<span id="cb273-21"><a href="downloading-dems-and-delineating-watersheds.html#cb273-21" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb273-22"><a href="downloading-dems-and-delineating-watersheds.html#cb273-22" tabindex="-1"></a><span class="co"># writeRaster(output_tiles, &quot;dem/output_tiles.tif&quot;, overwrite = TRUE)</span></span>
+<span id="cb273-23"><a href="downloading-dems-and-delineating-watersheds.html#cb273-23" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb273-24"><a href="downloading-dems-and-delineating-watersheds.html#cb273-24" tabindex="-1"></a><span class="co"># tm_shape(output_tiles) +</span></span>
+<span id="cb273-25"><a href="downloading-dems-and-delineating-watersheds.html#cb273-25" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-viridis&quot;, legend.show = TRUE)</span></span></code></pre></div>
 <p>Now we can run some Whitebox algorithms like fill sinks, flow accumulation, flow direction, and stream extraction.</p>
 <p>We always start hydro-analysis with filling/breaching sinks.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="downloading-dems-and-delineating-watersheds.html#cb177-1" tabindex="-1"></a><span class="co"># wbt_breach_depressions_least_cost(</span></span>
-<span id="cb177-2"><a href="downloading-dems-and-delineating-watersheds.html#cb177-2" tabindex="-1"></a><span class="co">#   dem = &quot;dem/output_tiles.tif&quot;,</span></span>
-<span id="cb177-3"><a href="downloading-dems-and-delineating-watersheds.html#cb177-3" tabindex="-1"></a><span class="co">#   output = &quot;dem/bzn_crk_breached.tif&quot;,</span></span>
-<span id="cb177-4"><a href="downloading-dems-and-delineating-watersheds.html#cb177-4" tabindex="-1"></a><span class="co">#   dist = 10,</span></span>
-<span id="cb177-5"><a href="downloading-dems-and-delineating-watersheds.html#cb177-5" tabindex="-1"></a><span class="co">#   fill = TRUE)</span></span>
-<span id="cb177-6"><a href="downloading-dems-and-delineating-watersheds.html#cb177-6" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb177-7"><a href="downloading-dems-and-delineating-watersheds.html#cb177-7" tabindex="-1"></a><span class="co"># wbt_fill_depressions_wang_and_liu(</span></span>
-<span id="cb177-8"><a href="downloading-dems-and-delineating-watersheds.html#cb177-8" tabindex="-1"></a><span class="co">#   dem = &quot;dem/bzn_crk_breached.tif&quot;,</span></span>
-<span id="cb177-9"><a href="downloading-dems-and-delineating-watersheds.html#cb177-9" tabindex="-1"></a><span class="co">#   output = &quot;dem/bzn_filled_breached.tif&quot;</span></span>
-<span id="cb177-10"><a href="downloading-dems-and-delineating-watersheds.html#cb177-10" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="downloading-dems-and-delineating-watersheds.html#cb274-1" tabindex="-1"></a><span class="co"># wbt_breach_depressions_least_cost(</span></span>
+<span id="cb274-2"><a href="downloading-dems-and-delineating-watersheds.html#cb274-2" tabindex="-1"></a><span class="co">#   dem = &quot;dem/output_tiles.tif&quot;,</span></span>
+<span id="cb274-3"><a href="downloading-dems-and-delineating-watersheds.html#cb274-3" tabindex="-1"></a><span class="co">#   output = &quot;dem/bzn_crk_breached.tif&quot;,</span></span>
+<span id="cb274-4"><a href="downloading-dems-and-delineating-watersheds.html#cb274-4" tabindex="-1"></a><span class="co">#   dist = 10,</span></span>
+<span id="cb274-5"><a href="downloading-dems-and-delineating-watersheds.html#cb274-5" tabindex="-1"></a><span class="co">#   fill = TRUE)</span></span>
+<span id="cb274-6"><a href="downloading-dems-and-delineating-watersheds.html#cb274-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb274-7"><a href="downloading-dems-and-delineating-watersheds.html#cb274-7" tabindex="-1"></a><span class="co"># wbt_fill_depressions_wang_and_liu(</span></span>
+<span id="cb274-8"><a href="downloading-dems-and-delineating-watersheds.html#cb274-8" tabindex="-1"></a><span class="co">#   dem = &quot;dem/bzn_crk_breached.tif&quot;,</span></span>
+<span id="cb274-9"><a href="downloading-dems-and-delineating-watersheds.html#cb274-9" tabindex="-1"></a><span class="co">#   output = &quot;dem/bzn_filled_breached.tif&quot;</span></span>
+<span id="cb274-10"><a href="downloading-dems-and-delineating-watersheds.html#cb274-10" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div>
 <p>Next, we create flow accumulation and pointer rasters.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="downloading-dems-and-delineating-watersheds.html#cb178-1" tabindex="-1"></a><span class="co"># wbt_d8_flow_accumulation(input = &quot;dem/bzn_filled_breached.tif&quot;,</span></span>
-<span id="cb178-2"><a href="downloading-dems-and-delineating-watersheds.html#cb178-2" tabindex="-1"></a><span class="co">#                          output = &quot;dem/D8FA.tif&quot;)</span></span>
-<span id="cb178-3"><a href="downloading-dems-and-delineating-watersheds.html#cb178-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb178-4"><a href="downloading-dems-and-delineating-watersheds.html#cb178-4" tabindex="-1"></a><span class="co"># wbt_d8_pointer(dem = &quot;dem/bzn_filled_breached.tif&quot;,</span></span>
-<span id="cb178-5"><a href="downloading-dems-and-delineating-watersheds.html#cb178-5" tabindex="-1"></a><span class="co">#                output = &quot;dem/D8pointer.tif&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="downloading-dems-and-delineating-watersheds.html#cb275-1" tabindex="-1"></a><span class="co"># wbt_d8_flow_accumulation(input = &quot;dem/bzn_filled_breached.tif&quot;,</span></span>
+<span id="cb275-2"><a href="downloading-dems-and-delineating-watersheds.html#cb275-2" tabindex="-1"></a><span class="co">#                          output = &quot;dem/D8FA.tif&quot;)</span></span>
+<span id="cb275-3"><a href="downloading-dems-and-delineating-watersheds.html#cb275-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb275-4"><a href="downloading-dems-and-delineating-watersheds.html#cb275-4" tabindex="-1"></a><span class="co"># wbt_d8_pointer(dem = &quot;dem/bzn_filled_breached.tif&quot;,</span></span>
+<span id="cb275-5"><a href="downloading-dems-and-delineating-watersheds.html#cb275-5" tabindex="-1"></a><span class="co">#                output = &quot;dem/D8pointer.tif&quot;)</span></span></code></pre></div>
 <p>Now, we set a pour point and make it a shape file.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="downloading-dems-and-delineating-watersheds.html#cb179-1" tabindex="-1"></a><span class="co"># ppoints &lt;- tribble(</span></span>
-<span id="cb179-2"><a href="downloading-dems-and-delineating-watersheds.html#cb179-2" tabindex="-1"></a><span class="co">#           ~Lon, ~Lat,</span></span>
-<span id="cb179-3"><a href="downloading-dems-and-delineating-watersheds.html#cb179-3" tabindex="-1"></a><span class="co">#           xlocation, ylocation</span></span>
-<span id="cb179-4"><a href="downloading-dems-and-delineating-watersheds.html#cb179-4" tabindex="-1"></a><span class="co">#           )</span></span>
-<span id="cb179-5"><a href="downloading-dems-and-delineating-watersheds.html#cb179-5" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb179-6"><a href="downloading-dems-and-delineating-watersheds.html#cb179-6" tabindex="-1"></a><span class="co"># ppointsSP &lt;- st_as_sf(ppoints, coords = c(&quot;Lon&quot;, &quot;Lat&quot;), crs = 4326)</span></span>
-<span id="cb179-7"><a href="downloading-dems-and-delineating-watersheds.html#cb179-7" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb179-8"><a href="downloading-dems-and-delineating-watersheds.html#cb179-8" tabindex="-1"></a><span class="co"># write_sf(ppointsSP, &quot;dem/pourpoints.shp&quot;, overwrite = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="downloading-dems-and-delineating-watersheds.html#cb276-1" tabindex="-1"></a><span class="co"># ppoints &lt;- tribble(</span></span>
+<span id="cb276-2"><a href="downloading-dems-and-delineating-watersheds.html#cb276-2" tabindex="-1"></a><span class="co">#           ~Lon, ~Lat,</span></span>
+<span id="cb276-3"><a href="downloading-dems-and-delineating-watersheds.html#cb276-3" tabindex="-1"></a><span class="co">#           xlocation, ylocation</span></span>
+<span id="cb276-4"><a href="downloading-dems-and-delineating-watersheds.html#cb276-4" tabindex="-1"></a><span class="co">#           )</span></span>
+<span id="cb276-5"><a href="downloading-dems-and-delineating-watersheds.html#cb276-5" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb276-6"><a href="downloading-dems-and-delineating-watersheds.html#cb276-6" tabindex="-1"></a><span class="co"># ppointsSP &lt;- st_as_sf(ppoints, coords = c(&quot;Lon&quot;, &quot;Lat&quot;), crs = 4326)</span></span>
+<span id="cb276-7"><a href="downloading-dems-and-delineating-watersheds.html#cb276-7" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb276-8"><a href="downloading-dems-and-delineating-watersheds.html#cb276-8" tabindex="-1"></a><span class="co"># write_sf(ppointsSP, &quot;dem/pourpoints.shp&quot;, overwrite = TRUE)</span></span></code></pre></div>
 <p>Now we can extract the streams like we did last week.</p>
 <p>You can play with the threshold to see how it affects the drainage density. This threshold requires some knowledge of the watershed, climate, etc. We will also plot the point and the streams to make sure the point of the gauge falls on the stream as modeled by whitebox.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="downloading-dems-and-delineating-watersheds.html#cb180-1" tabindex="-1"></a><span class="co"># wbt_extract_streams(flow_accum = &quot;dem/D8FA.tif&quot;,</span></span>
-<span id="cb180-2"><a href="downloading-dems-and-delineating-watersheds.html#cb180-2" tabindex="-1"></a><span class="co">#                     output = &quot;dem/raster_streams.tif&quot;,</span></span>
-<span id="cb180-3"><a href="downloading-dems-and-delineating-watersheds.html#cb180-3" tabindex="-1"></a><span class="co">#                     threshold = 8000)</span></span>
-<span id="cb180-4"><a href="downloading-dems-and-delineating-watersheds.html#cb180-4" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb180-5"><a href="downloading-dems-and-delineating-watersheds.html#cb180-5" tabindex="-1"></a><span class="co"># wbt_jenson_snap_pour_points(pour_pts = &quot;dem/pourpoints.shp&quot;,</span></span>
-<span id="cb180-6"><a href="downloading-dems-and-delineating-watersheds.html#cb180-6" tabindex="-1"></a><span class="co">#                             streams = &quot;dem/raster_streams.tif&quot;,</span></span>
-<span id="cb180-7"><a href="downloading-dems-and-delineating-watersheds.html#cb180-7" tabindex="-1"></a><span class="co">#                             output = &quot;dem/snappedpp.shp&quot;,</span></span>
-<span id="cb180-8"><a href="downloading-dems-and-delineating-watersheds.html#cb180-8" tabindex="-1"></a><span class="co">#                             snap_dist = 0.0010) #careful with this! Know the units of your data</span></span>
-<span id="cb180-9"><a href="downloading-dems-and-delineating-watersheds.html#cb180-9" tabindex="-1"></a><span class="co"># tmap_mode(&quot;view&quot;)</span></span>
-<span id="cb180-10"><a href="downloading-dems-and-delineating-watersheds.html#cb180-10" tabindex="-1"></a></span>
-<span id="cb180-11"><a href="downloading-dems-and-delineating-watersheds.html#cb180-11" tabindex="-1"></a><span class="co"># pp &lt;- read_sf(&quot;dem/snappedpp.shp&quot;)</span></span>
-<span id="cb180-12"><a href="downloading-dems-and-delineating-watersheds.html#cb180-12" tabindex="-1"></a><span class="co"># streams &lt;- rast(&quot;dem/raster_streams.tif&quot;)</span></span>
-<span id="cb180-13"><a href="downloading-dems-and-delineating-watersheds.html#cb180-13" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb180-14"><a href="downloading-dems-and-delineating-watersheds.html#cb180-14" tabindex="-1"></a><span class="co"># tm_shape(streams)+</span></span>
-<span id="cb180-15"><a href="downloading-dems-and-delineating-watersheds.html#cb180-15" tabindex="-1"></a><span class="co">#   tm_raster(legend.show = TRUE, palette = &quot;darkblue&quot;)+</span></span>
-<span id="cb180-16"><a href="downloading-dems-and-delineating-watersheds.html#cb180-16" tabindex="-1"></a><span class="co"># tm_shape(pp)+</span></span>
-<span id="cb180-17"><a href="downloading-dems-and-delineating-watersheds.html#cb180-17" tabindex="-1"></a><span class="co">#   tm_dots(col = &quot;red&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="downloading-dems-and-delineating-watersheds.html#cb277-1" tabindex="-1"></a><span class="co"># wbt_extract_streams(flow_accum = &quot;dem/D8FA.tif&quot;,</span></span>
+<span id="cb277-2"><a href="downloading-dems-and-delineating-watersheds.html#cb277-2" tabindex="-1"></a><span class="co">#                     output = &quot;dem/raster_streams.tif&quot;,</span></span>
+<span id="cb277-3"><a href="downloading-dems-and-delineating-watersheds.html#cb277-3" tabindex="-1"></a><span class="co">#                     threshold = 8000)</span></span>
+<span id="cb277-4"><a href="downloading-dems-and-delineating-watersheds.html#cb277-4" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb277-5"><a href="downloading-dems-and-delineating-watersheds.html#cb277-5" tabindex="-1"></a><span class="co"># wbt_jenson_snap_pour_points(pour_pts = &quot;dem/pourpoints.shp&quot;,</span></span>
+<span id="cb277-6"><a href="downloading-dems-and-delineating-watersheds.html#cb277-6" tabindex="-1"></a><span class="co">#                             streams = &quot;dem/raster_streams.tif&quot;,</span></span>
+<span id="cb277-7"><a href="downloading-dems-and-delineating-watersheds.html#cb277-7" tabindex="-1"></a><span class="co">#                             output = &quot;dem/snappedpp.shp&quot;,</span></span>
+<span id="cb277-8"><a href="downloading-dems-and-delineating-watersheds.html#cb277-8" tabindex="-1"></a><span class="co">#                             snap_dist = 0.0010) #careful with this! Know the units of your data</span></span>
+<span id="cb277-9"><a href="downloading-dems-and-delineating-watersheds.html#cb277-9" tabindex="-1"></a><span class="co"># tmap_mode(&quot;view&quot;)</span></span>
+<span id="cb277-10"><a href="downloading-dems-and-delineating-watersheds.html#cb277-10" tabindex="-1"></a></span>
+<span id="cb277-11"><a href="downloading-dems-and-delineating-watersheds.html#cb277-11" tabindex="-1"></a><span class="co"># pp &lt;- read_sf(&quot;dem/snappedpp.shp&quot;)</span></span>
+<span id="cb277-12"><a href="downloading-dems-and-delineating-watersheds.html#cb277-12" tabindex="-1"></a><span class="co"># streams &lt;- rast(&quot;dem/raster_streams.tif&quot;)</span></span>
+<span id="cb277-13"><a href="downloading-dems-and-delineating-watersheds.html#cb277-13" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb277-14"><a href="downloading-dems-and-delineating-watersheds.html#cb277-14" tabindex="-1"></a><span class="co"># tm_shape(streams)+</span></span>
+<span id="cb277-15"><a href="downloading-dems-and-delineating-watersheds.html#cb277-15" tabindex="-1"></a><span class="co">#   tm_raster(legend.show = TRUE, palette = &quot;darkblue&quot;)+</span></span>
+<span id="cb277-16"><a href="downloading-dems-and-delineating-watersheds.html#cb277-16" tabindex="-1"></a><span class="co"># tm_shape(pp)+</span></span>
+<span id="cb277-17"><a href="downloading-dems-and-delineating-watersheds.html#cb277-17" tabindex="-1"></a><span class="co">#   tm_dots(col = &quot;red&quot;)</span></span></code></pre></div>
 <p>Now, we can delineate the watershed. This is the whitebox watershed delineation tool. We already did this with the stream stats GUI, but this is good to know how to do as well.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="downloading-dems-and-delineating-watersheds.html#cb181-1" tabindex="-1"></a><span class="co"># Delineate the watershed. </span></span>
-<span id="cb181-2"><a href="downloading-dems-and-delineating-watersheds.html#cb181-2" tabindex="-1"></a><span class="co"># wbt_watershed(d8_pntr = &quot;dem/D8pointer.tif&quot;,</span></span>
-<span id="cb181-3"><a href="downloading-dems-and-delineating-watersheds.html#cb181-3" tabindex="-1"></a>              <span class="co"># pour_pts = &quot;dem/snappedpp.shp&quot;,</span></span>
-<span id="cb181-4"><a href="downloading-dems-and-delineating-watersheds.html#cb181-4" tabindex="-1"></a>              <span class="co"># output = &quot;dem/bzn_crk_watershed.tif&quot;)</span></span>
-<span id="cb181-5"><a href="downloading-dems-and-delineating-watersheds.html#cb181-5" tabindex="-1"></a></span>
-<span id="cb181-6"><a href="downloading-dems-and-delineating-watersheds.html#cb181-6" tabindex="-1"></a></span>
-<span id="cb181-7"><a href="downloading-dems-and-delineating-watersheds.html#cb181-7" tabindex="-1"></a><span class="co"># Write the watershed raster. </span></span>
-<span id="cb181-8"><a href="downloading-dems-and-delineating-watersheds.html#cb181-8" tabindex="-1"></a><span class="co"># ws &lt;- rast(&quot;dem/bzn_crk_watershed.tif&quot;)</span></span>
-<span id="cb181-9"><a href="downloading-dems-and-delineating-watersheds.html#cb181-9" tabindex="-1"></a></span>
-<span id="cb181-10"><a href="downloading-dems-and-delineating-watersheds.html#cb181-10" tabindex="-1"></a><span class="co"># View the watershed raster. </span></span>
-<span id="cb181-11"><a href="downloading-dems-and-delineating-watersheds.html#cb181-11" tabindex="-1"></a><span class="co"># tm_shape(ws) +</span></span>
-<span id="cb181-12"><a href="downloading-dems-and-delineating-watersheds.html#cb181-12" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-viridis&quot;, legend.show = TRUE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="downloading-dems-and-delineating-watersheds.html#cb278-1" tabindex="-1"></a><span class="co"># Delineate the watershed. </span></span>
+<span id="cb278-2"><a href="downloading-dems-and-delineating-watersheds.html#cb278-2" tabindex="-1"></a><span class="co"># wbt_watershed(d8_pntr = &quot;dem/D8pointer.tif&quot;,</span></span>
+<span id="cb278-3"><a href="downloading-dems-and-delineating-watersheds.html#cb278-3" tabindex="-1"></a>              <span class="co"># pour_pts = &quot;dem/snappedpp.shp&quot;,</span></span>
+<span id="cb278-4"><a href="downloading-dems-and-delineating-watersheds.html#cb278-4" tabindex="-1"></a>              <span class="co"># output = &quot;dem/bzn_crk_watershed.tif&quot;)</span></span>
+<span id="cb278-5"><a href="downloading-dems-and-delineating-watersheds.html#cb278-5" tabindex="-1"></a></span>
+<span id="cb278-6"><a href="downloading-dems-and-delineating-watersheds.html#cb278-6" tabindex="-1"></a></span>
+<span id="cb278-7"><a href="downloading-dems-and-delineating-watersheds.html#cb278-7" tabindex="-1"></a><span class="co"># Write the watershed raster. </span></span>
+<span id="cb278-8"><a href="downloading-dems-and-delineating-watersheds.html#cb278-8" tabindex="-1"></a><span class="co"># ws &lt;- rast(&quot;dem/bzn_crk_watershed.tif&quot;)</span></span>
+<span id="cb278-9"><a href="downloading-dems-and-delineating-watersheds.html#cb278-9" tabindex="-1"></a></span>
+<span id="cb278-10"><a href="downloading-dems-and-delineating-watersheds.html#cb278-10" tabindex="-1"></a><span class="co"># View the watershed raster. </span></span>
+<span id="cb278-11"><a href="downloading-dems-and-delineating-watersheds.html#cb278-11" tabindex="-1"></a><span class="co"># tm_shape(ws) +</span></span>
+<span id="cb278-12"><a href="downloading-dems-and-delineating-watersheds.html#cb278-12" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-viridis&quot;, legend.show = TRUE)</span></span></code></pre></div>
 <p>We have now delineated the watershed. We can now make a hillshade for visualization.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="downloading-dems-and-delineating-watersheds.html#cb182-1" tabindex="-1"></a><span class="co"># wbt_hillshade(dem = &quot;dem/output_tiles.tif&quot;,</span></span>
-<span id="cb182-2"><a href="downloading-dems-and-delineating-watersheds.html#cb182-2" tabindex="-1"></a><span class="co">#               output = &quot;dem/bzn_creek_hillshade.tif&quot;,</span></span>
-<span id="cb182-3"><a href="downloading-dems-and-delineating-watersheds.html#cb182-3" tabindex="-1"></a><span class="co">#               azimuth = 315)</span></span>
-<span id="cb182-4"><a href="downloading-dems-and-delineating-watersheds.html#cb182-4" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb182-5"><a href="downloading-dems-and-delineating-watersheds.html#cb182-5" tabindex="-1"></a><span class="co"># hillshade &lt;- rast(&quot;dem/bzn_creek_hillshade.tif&quot;)</span></span>
-<span id="cb182-6"><a href="downloading-dems-and-delineating-watersheds.html#cb182-6" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb182-7"><a href="downloading-dems-and-delineating-watersheds.html#cb182-7" tabindex="-1"></a><span class="co"># tm_shape(hillshade) +</span></span>
-<span id="cb182-8"><a href="downloading-dems-and-delineating-watersheds.html#cb182-8" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-Greys&quot;, legend.show = FALSE)</span></span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="downloading-dems-and-delineating-watersheds.html#cb279-1" tabindex="-1"></a><span class="co"># wbt_hillshade(dem = &quot;dem/output_tiles.tif&quot;,</span></span>
+<span id="cb279-2"><a href="downloading-dems-and-delineating-watersheds.html#cb279-2" tabindex="-1"></a><span class="co">#               output = &quot;dem/bzn_creek_hillshade.tif&quot;,</span></span>
+<span id="cb279-3"><a href="downloading-dems-and-delineating-watersheds.html#cb279-3" tabindex="-1"></a><span class="co">#               azimuth = 315)</span></span>
+<span id="cb279-4"><a href="downloading-dems-and-delineating-watersheds.html#cb279-4" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb279-5"><a href="downloading-dems-and-delineating-watersheds.html#cb279-5" tabindex="-1"></a><span class="co"># hillshade &lt;- rast(&quot;dem/bzn_creek_hillshade.tif&quot;)</span></span>
+<span id="cb279-6"><a href="downloading-dems-and-delineating-watersheds.html#cb279-6" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb279-7"><a href="downloading-dems-and-delineating-watersheds.html#cb279-7" tabindex="-1"></a><span class="co"># tm_shape(hillshade) +</span></span>
+<span id="cb279-8"><a href="downloading-dems-and-delineating-watersheds.html#cb279-8" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-Greys&quot;, legend.show = FALSE)</span></span></code></pre></div>
 <p>But let’s clip that hillshade to the delineated watershed.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="downloading-dems-and-delineating-watersheds.html#cb183-1" tabindex="-1"></a><span class="co"># clip_dem &lt;- ws * output_tiles</span></span>
-<span id="cb183-2"><a href="downloading-dems-and-delineating-watersheds.html#cb183-2" tabindex="-1"></a><span class="co"># clip_dem_df &lt;- as.data.frame(clip_dem, xy = TRUE)</span></span>
-<span id="cb183-3"><a href="downloading-dems-and-delineating-watersheds.html#cb183-3" tabindex="-1"></a><span class="co"># colnames(clip_dem_df)[3] &lt;- &quot;elevation&quot;</span></span>
-<span id="cb183-4"><a href="downloading-dems-and-delineating-watersheds.html#cb183-4" tabindex="-1"></a></span>
-<span id="cb183-5"><a href="downloading-dems-and-delineating-watersheds.html#cb183-5" tabindex="-1"></a><span class="co"># remove rows of data frame with one or more NA&#39;s,using complete.cases</span></span>
-<span id="cb183-6"><a href="downloading-dems-and-delineating-watersheds.html#cb183-6" tabindex="-1"></a><span class="co"># clip_dem_df &lt;- clip_dem_df[complete.cases(clip_dem_df), ]</span></span>
-<span id="cb183-7"><a href="downloading-dems-and-delineating-watersheds.html#cb183-7" tabindex="-1"></a></span>
-<span id="cb183-8"><a href="downloading-dems-and-delineating-watersheds.html#cb183-8" tabindex="-1"></a><span class="co"># do same for hillshade</span></span>
-<span id="cb183-9"><a href="downloading-dems-and-delineating-watersheds.html#cb183-9" tabindex="-1"></a><span class="co"># clip_hillshade &lt;- ws * hillshade</span></span>
-<span id="cb183-10"><a href="downloading-dems-and-delineating-watersheds.html#cb183-10" tabindex="-1"></a><span class="co"># clip_hillshade_df &lt;- as.data.frame(clip_hillshade, xy = TRUE)</span></span>
-<span id="cb183-11"><a href="downloading-dems-and-delineating-watersheds.html#cb183-11" tabindex="-1"></a><span class="co"># colnames(clip_hillshade_df)[3] &lt;- &quot;hillshade&quot;</span></span>
-<span id="cb183-12"><a href="downloading-dems-and-delineating-watersheds.html#cb183-12" tabindex="-1"></a><span class="co"># clip_hillshade_df &lt;- clip_hillshade_df[complete.cases(clip_hillshade_df), ]</span></span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="downloading-dems-and-delineating-watersheds.html#cb280-1" tabindex="-1"></a><span class="co"># clip_dem &lt;- ws * output_tiles</span></span>
+<span id="cb280-2"><a href="downloading-dems-and-delineating-watersheds.html#cb280-2" tabindex="-1"></a><span class="co"># clip_dem_df &lt;- as_data.frame(clip_dem, xy = TRUE)</span></span>
+<span id="cb280-3"><a href="downloading-dems-and-delineating-watersheds.html#cb280-3" tabindex="-1"></a><span class="co"># colnames(clip_dem_df)[3] &lt;- &quot;elevation&quot;</span></span>
+<span id="cb280-4"><a href="downloading-dems-and-delineating-watersheds.html#cb280-4" tabindex="-1"></a></span>
+<span id="cb280-5"><a href="downloading-dems-and-delineating-watersheds.html#cb280-5" tabindex="-1"></a><span class="co"># remove rows of data frame with one or more NA&#39;s,using complete.cases</span></span>
+<span id="cb280-6"><a href="downloading-dems-and-delineating-watersheds.html#cb280-6" tabindex="-1"></a><span class="co"># clip_dem_df &lt;- clip_dem_df[complete.cases(clip_dem_df), ]</span></span>
+<span id="cb280-7"><a href="downloading-dems-and-delineating-watersheds.html#cb280-7" tabindex="-1"></a></span>
+<span id="cb280-8"><a href="downloading-dems-and-delineating-watersheds.html#cb280-8" tabindex="-1"></a><span class="co"># do same for hillshade</span></span>
+<span id="cb280-9"><a href="downloading-dems-and-delineating-watersheds.html#cb280-9" tabindex="-1"></a><span class="co"># clip_hillshade &lt;- ws * hillshade</span></span>
+<span id="cb280-10"><a href="downloading-dems-and-delineating-watersheds.html#cb280-10" tabindex="-1"></a><span class="co"># clip_hillshade_df &lt;- as.data.frame(clip_hillshade, xy = TRUE)</span></span>
+<span id="cb280-11"><a href="downloading-dems-and-delineating-watersheds.html#cb280-11" tabindex="-1"></a><span class="co"># colnames(clip_hillshade_df)[3] &lt;- &quot;hillshade&quot;</span></span>
+<span id="cb280-12"><a href="downloading-dems-and-delineating-watersheds.html#cb280-12" tabindex="-1"></a><span class="co"># clip_hillshade_df &lt;- clip_hillshade_df[complete.cases(clip_hillshade_df), ]</span></span></code></pre></div>
 <p>Make map with ggplot.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="downloading-dems-and-delineating-watersheds.html#cb184-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
-<span id="cb184-2"><a href="downloading-dems-and-delineating-watersheds.html#cb184-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df, aes(x = x, y = y, fill = elevation)) +</span></span>
-<span id="cb184-3"><a href="downloading-dems-and-delineating-watersheds.html#cb184-3" tabindex="-1"></a><span class="co">#   geom_sf(data = boundary, fill = NA, color = &quot;white&quot;) +</span></span>
-<span id="cb184-4"><a href="downloading-dems-and-delineating-watersheds.html#cb184-4" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
-<span id="cb184-5"><a href="downloading-dems-and-delineating-watersheds.html#cb184-5" tabindex="-1"></a><span class="co">#   scale_fill_viridis_c() +</span></span>
-<span id="cb184-6"><a href="downloading-dems-and-delineating-watersheds.html#cb184-6" tabindex="-1"></a><span class="co">#   labs(title = &quot;Bozeman Creek Watershed&quot;, x = &quot;Longitude&quot;, y = &quot;Latitude&quot;, fill = &quot;Elevation (meters)&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="downloading-dems-and-delineating-watersheds.html#cb281-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
+<span id="cb281-2"><a href="downloading-dems-and-delineating-watersheds.html#cb281-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df, aes(x = x, y = y, fill = elevation)) +</span></span>
+<span id="cb281-3"><a href="downloading-dems-and-delineating-watersheds.html#cb281-3" tabindex="-1"></a><span class="co">#   geom_sf(data = boundary, fill = NA, color = &quot;white&quot;) +</span></span>
+<span id="cb281-4"><a href="downloading-dems-and-delineating-watersheds.html#cb281-4" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
+<span id="cb281-5"><a href="downloading-dems-and-delineating-watersheds.html#cb281-5" tabindex="-1"></a><span class="co">#   scale_fill_viridis_c() +</span></span>
+<span id="cb281-6"><a href="downloading-dems-and-delineating-watersheds.html#cb281-6" tabindex="-1"></a><span class="co">#   labs(title = &quot;Bozeman Creek Watershed&quot;, x = &quot;Longitude&quot;, y = &quot;Latitude&quot;, fill = &quot;Elevation (meters)&quot;)</span></span></code></pre></div>
 <p>Let’s add the pour point, hillshade, and streams to the figure.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="downloading-dems-and-delineating-watersheds.html#cb185-1" tabindex="-1"></a><span class="co"># Make streams a data frame then shape. </span></span>
-<span id="cb185-2"><a href="downloading-dems-and-delineating-watersheds.html#cb185-2" tabindex="-1"></a><span class="co"># clip_streams &lt;- ws * streams</span></span>
-<span id="cb185-3"><a href="downloading-dems-and-delineating-watersheds.html#cb185-3" tabindex="-1"></a><span class="co"># clip_streams_df &lt;- as.data.frame(clip_streams, xy = TRUE)</span></span>
-<span id="cb185-4"><a href="downloading-dems-and-delineating-watersheds.html#cb185-4" tabindex="-1"></a><span class="co"># colnames(clip_streams_df)[3] &lt;- &quot;elevation&quot;</span></span>
-<span id="cb185-5"><a href="downloading-dems-and-delineating-watersheds.html#cb185-5" tabindex="-1"></a><span class="co"># clip_streams_df &lt;- clip_streams_df[complete.cases(clip_streams_df), ]</span></span>
-<span id="cb185-6"><a href="downloading-dems-and-delineating-watersheds.html#cb185-6" tabindex="-1"></a><span class="co"># writeRaster(clip_streams, &quot;dem/clip_streams.tif&quot;, overwrite = TRUE)</span></span>
-<span id="cb185-7"><a href="downloading-dems-and-delineating-watersheds.html#cb185-7" tabindex="-1"></a></span>
-<span id="cb185-8"><a href="downloading-dems-and-delineating-watersheds.html#cb185-8" tabindex="-1"></a><span class="co"># wbt_raster_streams_to_vector(streams = &quot;dem/clip_streams.tif&quot;,</span></span>
-<span id="cb185-9"><a href="downloading-dems-and-delineating-watersheds.html#cb185-9" tabindex="-1"></a><span class="co">#                              d8_pntr = &quot;dem/D8pointer.tif&quot;,</span></span>
-<span id="cb185-10"><a href="downloading-dems-and-delineating-watersheds.html#cb185-10" tabindex="-1"></a><span class="co">#                              output = &quot;dem/streams.shp&quot;)</span></span>
-<span id="cb185-11"><a href="downloading-dems-and-delineating-watersheds.html#cb185-11" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb185-12"><a href="downloading-dems-and-delineating-watersheds.html#cb185-12" tabindex="-1"></a><span class="co"># streams_shp &lt;- st_read(&quot;dem/streams.shp&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="downloading-dems-and-delineating-watersheds.html#cb282-1" tabindex="-1"></a><span class="co"># Make streams a data frame then shape. </span></span>
+<span id="cb282-2"><a href="downloading-dems-and-delineating-watersheds.html#cb282-2" tabindex="-1"></a><span class="co"># clip_streams &lt;- ws * streams</span></span>
+<span id="cb282-3"><a href="downloading-dems-and-delineating-watersheds.html#cb282-3" tabindex="-1"></a><span class="co"># clip_streams_df &lt;- as.data.frame(clip_streams, xy = TRUE)</span></span>
+<span id="cb282-4"><a href="downloading-dems-and-delineating-watersheds.html#cb282-4" tabindex="-1"></a><span class="co"># colnames(clip_streams_df)[3] &lt;- &quot;elevation&quot;</span></span>
+<span id="cb282-5"><a href="downloading-dems-and-delineating-watersheds.html#cb282-5" tabindex="-1"></a><span class="co"># clip_streams_df &lt;- clip_streams_df[complete.cases(clip_streams_df), ]</span></span>
+<span id="cb282-6"><a href="downloading-dems-and-delineating-watersheds.html#cb282-6" tabindex="-1"></a><span class="co"># writeRaster(clip_streams, &quot;dem/clip_streams.tif&quot;, overwrite = TRUE)</span></span>
+<span id="cb282-7"><a href="downloading-dems-and-delineating-watersheds.html#cb282-7" tabindex="-1"></a></span>
+<span id="cb282-8"><a href="downloading-dems-and-delineating-watersheds.html#cb282-8" tabindex="-1"></a><span class="co"># wbt_raster_streams_to_vector(streams = &quot;dem/clip_streams.tif&quot;,</span></span>
+<span id="cb282-9"><a href="downloading-dems-and-delineating-watersheds.html#cb282-9" tabindex="-1"></a><span class="co">#                              d8_pntr = &quot;dem/D8pointer.tif&quot;,</span></span>
+<span id="cb282-10"><a href="downloading-dems-and-delineating-watersheds.html#cb282-10" tabindex="-1"></a><span class="co">#                              output = &quot;dem/streams.shp&quot;)</span></span>
+<span id="cb282-11"><a href="downloading-dems-and-delineating-watersheds.html#cb282-11" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb282-12"><a href="downloading-dems-and-delineating-watersheds.html#cb282-12" tabindex="-1"></a><span class="co"># streams_shp &lt;- st_read(&quot;dem/streams.shp&quot;)</span></span></code></pre></div>
 <p>Make a map with ggplot, add streams and pour point.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="downloading-dems-and-delineating-watersheds.html#cb186-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
-<span id="cb186-2"><a href="downloading-dems-and-delineating-watersheds.html#cb186-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df, aes(x = x, y = y, fill = elevation)) +</span></span>
-<span id="cb186-3"><a href="downloading-dems-and-delineating-watersheds.html#cb186-3" tabindex="-1"></a><span class="co">#   geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
-<span id="cb186-4"><a href="downloading-dems-and-delineating-watersheds.html#cb186-4" tabindex="-1"></a><span class="co">#   geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) + </span></span>
-<span id="cb186-5"><a href="downloading-dems-and-delineating-watersheds.html#cb186-5" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
-<span id="cb186-6"><a href="downloading-dems-and-delineating-watersheds.html#cb186-6" tabindex="-1"></a><span class="co">#   scale_fill_viridis_c() +</span></span>
-<span id="cb186-7"><a href="downloading-dems-and-delineating-watersheds.html#cb186-7" tabindex="-1"></a><span class="co">#   labs(title = &quot;Bozeman Creek Watershed&quot;, x = &quot;Longitude&quot;, y = &quot;Latitude&quot;, fill = &quot;Elevation (meters)&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="downloading-dems-and-delineating-watersheds.html#cb283-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
+<span id="cb283-2"><a href="downloading-dems-and-delineating-watersheds.html#cb283-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df, aes(x = x, y = y, fill = elevation)) +</span></span>
+<span id="cb283-3"><a href="downloading-dems-and-delineating-watersheds.html#cb283-3" tabindex="-1"></a><span class="co">#   geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
+<span id="cb283-4"><a href="downloading-dems-and-delineating-watersheds.html#cb283-4" tabindex="-1"></a><span class="co">#   geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) + </span></span>
+<span id="cb283-5"><a href="downloading-dems-and-delineating-watersheds.html#cb283-5" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
+<span id="cb283-6"><a href="downloading-dems-and-delineating-watersheds.html#cb283-6" tabindex="-1"></a><span class="co">#   scale_fill_viridis_c() +</span></span>
+<span id="cb283-7"><a href="downloading-dems-and-delineating-watersheds.html#cb283-7" tabindex="-1"></a><span class="co">#   labs(title = &quot;Bozeman Creek Watershed&quot;, x = &quot;Longitude&quot;, y = &quot;Latitude&quot;, fill = &quot;Elevation (meters)&quot;)</span></span></code></pre></div>
 <p>Add hillshade.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="downloading-dems-and-delineating-watersheds.html#cb187-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
-<span id="cb187-2"><a href="downloading-dems-and-delineating-watersheds.html#cb187-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
-<span id="cb187-3"><a href="downloading-dems-and-delineating-watersheds.html#cb187-3" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
-<span id="cb187-4"><a href="downloading-dems-and-delineating-watersheds.html#cb187-4" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
-<span id="cb187-5"><a href="downloading-dems-and-delineating-watersheds.html#cb187-5" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
-<span id="cb187-6"><a href="downloading-dems-and-delineating-watersheds.html#cb187-6" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
-<span id="cb187-7"><a href="downloading-dems-and-delineating-watersheds.html#cb187-7" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
-<span id="cb187-8"><a href="downloading-dems-and-delineating-watersheds.html#cb187-8" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
-<span id="cb187-9"><a href="downloading-dems-and-delineating-watersheds.html#cb187-9" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
-<span id="cb187-10"><a href="downloading-dems-and-delineating-watersheds.html#cb187-10" tabindex="-1"></a>  <span class="co"># scale_fill_distiller(palette = &quot;GnBu&quot;) +</span></span>
-<span id="cb187-11"><a href="downloading-dems-and-delineating-watersheds.html#cb187-11" tabindex="-1"></a>  <span class="co"># geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
-<span id="cb187-12"><a href="downloading-dems-and-delineating-watersheds.html#cb187-12" tabindex="-1"></a>  <span class="co"># geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
-<span id="cb187-13"><a href="downloading-dems-and-delineating-watersheds.html#cb187-13" tabindex="-1"></a>  <span class="co"># guides(fill = guide_colorsteps(barwidth = 20,</span></span>
-<span id="cb187-14"><a href="downloading-dems-and-delineating-watersheds.html#cb187-14" tabindex="-1"></a>  <span class="co">#                                barheight = .5,</span></span>
-<span id="cb187-15"><a href="downloading-dems-and-delineating-watersheds.html#cb187-15" tabindex="-1"></a>  <span class="co">#                                title.position = &quot;right&quot;)) +</span></span>
-<span id="cb187-16"><a href="downloading-dems-and-delineating-watersheds.html#cb187-16" tabindex="-1"></a>  <span class="co"># labs(fill = &quot;m&quot;) +</span></span>
-<span id="cb187-17"><a href="downloading-dems-and-delineating-watersheds.html#cb187-17" tabindex="-1"></a>  <span class="co"># coord_sf() +</span></span>
-<span id="cb187-18"><a href="downloading-dems-and-delineating-watersheds.html#cb187-18" tabindex="-1"></a>  <span class="co"># theme_void() +</span></span>
-<span id="cb187-19"><a href="downloading-dems-and-delineating-watersheds.html#cb187-19" tabindex="-1"></a>  <span class="co"># theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="downloading-dems-and-delineating-watersheds.html#cb284-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
+<span id="cb284-2"><a href="downloading-dems-and-delineating-watersheds.html#cb284-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
+<span id="cb284-3"><a href="downloading-dems-and-delineating-watersheds.html#cb284-3" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
+<span id="cb284-4"><a href="downloading-dems-and-delineating-watersheds.html#cb284-4" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
+<span id="cb284-5"><a href="downloading-dems-and-delineating-watersheds.html#cb284-5" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
+<span id="cb284-6"><a href="downloading-dems-and-delineating-watersheds.html#cb284-6" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
+<span id="cb284-7"><a href="downloading-dems-and-delineating-watersheds.html#cb284-7" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
+<span id="cb284-8"><a href="downloading-dems-and-delineating-watersheds.html#cb284-8" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
+<span id="cb284-9"><a href="downloading-dems-and-delineating-watersheds.html#cb284-9" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
+<span id="cb284-10"><a href="downloading-dems-and-delineating-watersheds.html#cb284-10" tabindex="-1"></a>  <span class="co"># scale_fill_distiller(palette = &quot;GnBu&quot;) +</span></span>
+<span id="cb284-11"><a href="downloading-dems-and-delineating-watersheds.html#cb284-11" tabindex="-1"></a>  <span class="co"># geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
+<span id="cb284-12"><a href="downloading-dems-and-delineating-watersheds.html#cb284-12" tabindex="-1"></a>  <span class="co"># geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
+<span id="cb284-13"><a href="downloading-dems-and-delineating-watersheds.html#cb284-13" tabindex="-1"></a>  <span class="co"># guides(fill = guide_colorsteps(barwidth = 20,</span></span>
+<span id="cb284-14"><a href="downloading-dems-and-delineating-watersheds.html#cb284-14" tabindex="-1"></a>  <span class="co">#                                barheight = .5,</span></span>
+<span id="cb284-15"><a href="downloading-dems-and-delineating-watersheds.html#cb284-15" tabindex="-1"></a>  <span class="co">#                                title.position = &quot;right&quot;)) +</span></span>
+<span id="cb284-16"><a href="downloading-dems-and-delineating-watersheds.html#cb284-16" tabindex="-1"></a>  <span class="co"># labs(fill = &quot;m&quot;) +</span></span>
+<span id="cb284-17"><a href="downloading-dems-and-delineating-watersheds.html#cb284-17" tabindex="-1"></a>  <span class="co"># coord_sf() +</span></span>
+<span id="cb284-18"><a href="downloading-dems-and-delineating-watersheds.html#cb284-18" tabindex="-1"></a>  <span class="co"># theme_void() +</span></span>
+<span id="cb284-19"><a href="downloading-dems-and-delineating-watersheds.html#cb284-19" tabindex="-1"></a>  <span class="co"># theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
 <p>Play with colors in. Here change to cold_humid color.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="downloading-dems-and-delineating-watersheds.html#cb188-1" tabindex="-1"></a><span class="co"># library(ggnewscale)</span></span>
-<span id="cb188-2"><a href="downloading-dems-and-delineating-watersheds.html#cb188-2" tabindex="-1"></a><span class="co"># library(tidyterra)</span></span>
-<span id="cb188-3"><a href="downloading-dems-and-delineating-watersheds.html#cb188-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb188-4"><a href="downloading-dems-and-delineating-watersheds.html#cb188-4" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
-<span id="cb188-5"><a href="downloading-dems-and-delineating-watersheds.html#cb188-5" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
-<span id="cb188-6"><a href="downloading-dems-and-delineating-watersheds.html#cb188-6" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
-<span id="cb188-7"><a href="downloading-dems-and-delineating-watersheds.html#cb188-7" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
-<span id="cb188-8"><a href="downloading-dems-and-delineating-watersheds.html#cb188-8" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
-<span id="cb188-9"><a href="downloading-dems-and-delineating-watersheds.html#cb188-9" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
-<span id="cb188-10"><a href="downloading-dems-and-delineating-watersheds.html#cb188-10" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
-<span id="cb188-11"><a href="downloading-dems-and-delineating-watersheds.html#cb188-11" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
-<span id="cb188-12"><a href="downloading-dems-and-delineating-watersheds.html#cb188-12" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
-<span id="cb188-13"><a href="downloading-dems-and-delineating-watersheds.html#cb188-13" tabindex="-1"></a><span class="co">#   scale_fill_cross_blended_c(palette = &quot;cold_humid&quot;) +</span></span>
-<span id="cb188-14"><a href="downloading-dems-and-delineating-watersheds.html#cb188-14" tabindex="-1"></a><span class="co">#   geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
-<span id="cb188-15"><a href="downloading-dems-and-delineating-watersheds.html#cb188-15" tabindex="-1"></a><span class="co">#   geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
-<span id="cb188-16"><a href="downloading-dems-and-delineating-watersheds.html#cb188-16" tabindex="-1"></a><span class="co">#   guides(fill = guide_colorsteps(barwidth = 20,</span></span>
-<span id="cb188-17"><a href="downloading-dems-and-delineating-watersheds.html#cb188-17" tabindex="-1"></a><span class="co">#                                  barheight = .5,</span></span>
-<span id="cb188-18"><a href="downloading-dems-and-delineating-watersheds.html#cb188-18" tabindex="-1"></a><span class="co">#                                  title.position = &quot;right&quot;)) +</span></span>
-<span id="cb188-19"><a href="downloading-dems-and-delineating-watersheds.html#cb188-19" tabindex="-1"></a><span class="co">#   labs(fill = &quot;m&quot;) +</span></span>
-<span id="cb188-20"><a href="downloading-dems-and-delineating-watersheds.html#cb188-20" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
-<span id="cb188-21"><a href="downloading-dems-and-delineating-watersheds.html#cb188-21" tabindex="-1"></a><span class="co">#   theme_void() +</span></span>
-<span id="cb188-22"><a href="downloading-dems-and-delineating-watersheds.html#cb188-22" tabindex="-1"></a><span class="co">#   theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="downloading-dems-and-delineating-watersheds.html#cb285-1" tabindex="-1"></a><span class="co"># library(ggnewscale)</span></span>
+<span id="cb285-2"><a href="downloading-dems-and-delineating-watersheds.html#cb285-2" tabindex="-1"></a><span class="co"># library(tidyterra)</span></span>
+<span id="cb285-3"><a href="downloading-dems-and-delineating-watersheds.html#cb285-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb285-4"><a href="downloading-dems-and-delineating-watersheds.html#cb285-4" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
+<span id="cb285-5"><a href="downloading-dems-and-delineating-watersheds.html#cb285-5" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
+<span id="cb285-6"><a href="downloading-dems-and-delineating-watersheds.html#cb285-6" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
+<span id="cb285-7"><a href="downloading-dems-and-delineating-watersheds.html#cb285-7" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
+<span id="cb285-8"><a href="downloading-dems-and-delineating-watersheds.html#cb285-8" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
+<span id="cb285-9"><a href="downloading-dems-and-delineating-watersheds.html#cb285-9" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
+<span id="cb285-10"><a href="downloading-dems-and-delineating-watersheds.html#cb285-10" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
+<span id="cb285-11"><a href="downloading-dems-and-delineating-watersheds.html#cb285-11" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
+<span id="cb285-12"><a href="downloading-dems-and-delineating-watersheds.html#cb285-12" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
+<span id="cb285-13"><a href="downloading-dems-and-delineating-watersheds.html#cb285-13" tabindex="-1"></a><span class="co">#   scale_fill_cross_blended_c(palette = &quot;cold_humid&quot;) +</span></span>
+<span id="cb285-14"><a href="downloading-dems-and-delineating-watersheds.html#cb285-14" tabindex="-1"></a><span class="co">#   geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
+<span id="cb285-15"><a href="downloading-dems-and-delineating-watersheds.html#cb285-15" tabindex="-1"></a><span class="co">#   geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
+<span id="cb285-16"><a href="downloading-dems-and-delineating-watersheds.html#cb285-16" tabindex="-1"></a><span class="co">#   guides(fill = guide_colorsteps(barwidth = 20,</span></span>
+<span id="cb285-17"><a href="downloading-dems-and-delineating-watersheds.html#cb285-17" tabindex="-1"></a><span class="co">#                                  barheight = .5,</span></span>
+<span id="cb285-18"><a href="downloading-dems-and-delineating-watersheds.html#cb285-18" tabindex="-1"></a><span class="co">#                                  title.position = &quot;right&quot;)) +</span></span>
+<span id="cb285-19"><a href="downloading-dems-and-delineating-watersheds.html#cb285-19" tabindex="-1"></a><span class="co">#   labs(fill = &quot;m&quot;) +</span></span>
+<span id="cb285-20"><a href="downloading-dems-and-delineating-watersheds.html#cb285-20" tabindex="-1"></a><span class="co">#   coord_sf() +</span></span>
+<span id="cb285-21"><a href="downloading-dems-and-delineating-watersheds.html#cb285-21" tabindex="-1"></a><span class="co">#   theme_void() +</span></span>
+<span id="cb285-22"><a href="downloading-dems-and-delineating-watersheds.html#cb285-22" tabindex="-1"></a><span class="co">#   theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
 <p>Here change to viridis color.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="downloading-dems-and-delineating-watersheds.html#cb189-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
-<span id="cb189-2"><a href="downloading-dems-and-delineating-watersheds.html#cb189-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
-<span id="cb189-3"><a href="downloading-dems-and-delineating-watersheds.html#cb189-3" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
-<span id="cb189-4"><a href="downloading-dems-and-delineating-watersheds.html#cb189-4" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
-<span id="cb189-5"><a href="downloading-dems-and-delineating-watersheds.html#cb189-5" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
-<span id="cb189-6"><a href="downloading-dems-and-delineating-watersheds.html#cb189-6" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
-<span id="cb189-7"><a href="downloading-dems-and-delineating-watersheds.html#cb189-7" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
-<span id="cb189-8"><a href="downloading-dems-and-delineating-watersheds.html#cb189-8" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
-<span id="cb189-9"><a href="downloading-dems-and-delineating-watersheds.html#cb189-9" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
-<span id="cb189-10"><a href="downloading-dems-and-delineating-watersheds.html#cb189-10" tabindex="-1"></a><span class="co">#   scale_fill_continuous(type = &quot;viridis&quot;) +</span></span>
-<span id="cb189-11"><a href="downloading-dems-and-delineating-watersheds.html#cb189-11" tabindex="-1"></a>  <span class="co"># geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
-<span id="cb189-12"><a href="downloading-dems-and-delineating-watersheds.html#cb189-12" tabindex="-1"></a>  <span class="co"># geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
-<span id="cb189-13"><a href="downloading-dems-and-delineating-watersheds.html#cb189-13" tabindex="-1"></a>  <span class="co"># labs(fill = &quot;Elevation (m)&quot;) +</span></span>
-<span id="cb189-14"><a href="downloading-dems-and-delineating-watersheds.html#cb189-14" tabindex="-1"></a>  <span class="co"># coord_sf() +</span></span>
-<span id="cb189-15"><a href="downloading-dems-and-delineating-watersheds.html#cb189-15" tabindex="-1"></a>  <span class="co"># theme_void() +</span></span>
-<span id="cb189-16"><a href="downloading-dems-and-delineating-watersheds.html#cb189-16" tabindex="-1"></a>  <span class="co"># theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="downloading-dems-and-delineating-watersheds.html#cb286-1" tabindex="-1"></a><span class="co"># ggplot() +</span></span>
+<span id="cb286-2"><a href="downloading-dems-and-delineating-watersheds.html#cb286-2" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_hillshade_df,</span></span>
+<span id="cb286-3"><a href="downloading-dems-and-delineating-watersheds.html#cb286-3" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = hillshade),</span></span>
+<span id="cb286-4"><a href="downloading-dems-and-delineating-watersheds.html#cb286-4" tabindex="-1"></a><span class="co">#               show.legend = FALSE) +</span></span>
+<span id="cb286-5"><a href="downloading-dems-and-delineating-watersheds.html#cb286-5" tabindex="-1"></a><span class="co">#   scale_fill_distiller(palette = &quot;Greys&quot;) +</span></span>
+<span id="cb286-6"><a href="downloading-dems-and-delineating-watersheds.html#cb286-6" tabindex="-1"></a><span class="co">#   new_scale_fill() +</span></span>
+<span id="cb286-7"><a href="downloading-dems-and-delineating-watersheds.html#cb286-7" tabindex="-1"></a><span class="co">#   geom_raster(data = clip_dem_df,</span></span>
+<span id="cb286-8"><a href="downloading-dems-and-delineating-watersheds.html#cb286-8" tabindex="-1"></a><span class="co">#               aes(x = x, y = y, fill = elevation),</span></span>
+<span id="cb286-9"><a href="downloading-dems-and-delineating-watersheds.html#cb286-9" tabindex="-1"></a><span class="co">#               alpha = .7) +</span></span>
+<span id="cb286-10"><a href="downloading-dems-and-delineating-watersheds.html#cb286-10" tabindex="-1"></a><span class="co">#   scale_fill_continuous(type = &quot;viridis&quot;) +</span></span>
+<span id="cb286-11"><a href="downloading-dems-and-delineating-watersheds.html#cb286-11" tabindex="-1"></a>  <span class="co"># geom_sf(data = streams_shp, color = &quot;blue&quot;) +</span></span>
+<span id="cb286-12"><a href="downloading-dems-and-delineating-watersheds.html#cb286-12" tabindex="-1"></a>  <span class="co"># geom_point(data = ppoints, aes(x = Lon, y = Lat), color = &quot;red&quot;) +</span></span>
+<span id="cb286-13"><a href="downloading-dems-and-delineating-watersheds.html#cb286-13" tabindex="-1"></a>  <span class="co"># labs(fill = &quot;Elevation (m)&quot;) +</span></span>
+<span id="cb286-14"><a href="downloading-dems-and-delineating-watersheds.html#cb286-14" tabindex="-1"></a>  <span class="co"># coord_sf() +</span></span>
+<span id="cb286-15"><a href="downloading-dems-and-delineating-watersheds.html#cb286-15" tabindex="-1"></a>  <span class="co"># theme_void() +</span></span>
+<span id="cb286-16"><a href="downloading-dems-and-delineating-watersheds.html#cb286-16" tabindex="-1"></a>  <span class="co"># theme(legend.position = &quot;bottom&quot;)</span></span></code></pre></div>
 <p>You can also make this map with tmap.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="downloading-dems-and-delineating-watersheds.html#cb190-1" tabindex="-1"></a><span class="co"># tmap_mode(&quot;plot&quot;)</span></span>
-<span id="cb190-2"><a href="downloading-dems-and-delineating-watersheds.html#cb190-2" tabindex="-1"></a></span>
-<span id="cb190-3"><a href="downloading-dems-and-delineating-watersheds.html#cb190-3" tabindex="-1"></a><span class="co"># tm_shape(clip_hillshade) +</span></span>
-<span id="cb190-4"><a href="downloading-dems-and-delineating-watersheds.html#cb190-4" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-Greys&quot;, legend.show = FALSE) +</span></span>
-<span id="cb190-5"><a href="downloading-dems-and-delineating-watersheds.html#cb190-5" tabindex="-1"></a><span class="co">#   tm_scale_bar() +</span></span>
-<span id="cb190-6"><a href="downloading-dems-and-delineating-watersheds.html#cb190-6" tabindex="-1"></a><span class="co">#   tm_shape(clip_dem) +</span></span>
-<span id="cb190-7"><a href="downloading-dems-and-delineating-watersheds.html#cb190-7" tabindex="-1"></a><span class="co">#   tm_raster(legend.show = FALSE, palette = &quot;-viridis&quot;, alpha = 0.5) +</span></span>
-<span id="cb190-8"><a href="downloading-dems-and-delineating-watersheds.html#cb190-8" tabindex="-1"></a><span class="co">#   tm_shape(streams_shp) + </span></span>
-<span id="cb190-9"><a href="downloading-dems-and-delineating-watersheds.html#cb190-9" tabindex="-1"></a><span class="co">#   tm_lines(col = &quot;blue&quot;, lwd = 2) +</span></span>
-<span id="cb190-10"><a href="downloading-dems-and-delineating-watersheds.html#cb190-10" tabindex="-1"></a><span class="co">#   tm_scale_bar() +</span></span>
-<span id="cb190-11"><a href="downloading-dems-and-delineating-watersheds.html#cb190-11" tabindex="-1"></a><span class="co">#   tm_shape(pp) +</span></span>
-<span id="cb190-12"><a href="downloading-dems-and-delineating-watersheds.html#cb190-12" tabindex="-1"></a><span class="co">#   tm_dots(col = &quot;red&quot;, size = 0.25) +</span></span>
-<span id="cb190-13"><a href="downloading-dems-and-delineating-watersheds.html#cb190-13" tabindex="-1"></a><span class="co">#   tm_layout(title = &quot;Bozeman Creek \nWatershed&quot;) +</span></span>
-<span id="cb190-14"><a href="downloading-dems-and-delineating-watersheds.html#cb190-14" tabindex="-1"></a><span class="co">#   tm_compass(type = &quot;arrow&quot;, position = c(&quot;center&quot;, &quot;bottom&quot;))</span></span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="downloading-dems-and-delineating-watersheds.html#cb287-1" tabindex="-1"></a><span class="co"># tmap_mode(&quot;plot&quot;)</span></span>
+<span id="cb287-2"><a href="downloading-dems-and-delineating-watersheds.html#cb287-2" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="downloading-dems-and-delineating-watersheds.html#cb287-3" tabindex="-1"></a><span class="co"># tm_shape(clip_hillshade) +</span></span>
+<span id="cb287-4"><a href="downloading-dems-and-delineating-watersheds.html#cb287-4" tabindex="-1"></a><span class="co">#   tm_raster(style = &quot;cont&quot;, palette = &quot;-Greys&quot;, legend.show = FALSE) +</span></span>
+<span id="cb287-5"><a href="downloading-dems-and-delineating-watersheds.html#cb287-5" tabindex="-1"></a><span class="co">#   tm_scale_bar() +</span></span>
+<span id="cb287-6"><a href="downloading-dems-and-delineating-watersheds.html#cb287-6" tabindex="-1"></a><span class="co">#   tm_shape(clip_dem) +</span></span>
+<span id="cb287-7"><a href="downloading-dems-and-delineating-watersheds.html#cb287-7" tabindex="-1"></a><span class="co">#   tm_raster(legend.show = FALSE, palette = &quot;-viridis&quot;, alpha = 0.5) +</span></span>
+<span id="cb287-8"><a href="downloading-dems-and-delineating-watersheds.html#cb287-8" tabindex="-1"></a><span class="co">#   tm_shape(streams_shp) + </span></span>
+<span id="cb287-9"><a href="downloading-dems-and-delineating-watersheds.html#cb287-9" tabindex="-1"></a><span class="co">#   tm_lines(col = &quot;blue&quot;, lwd = 2) +</span></span>
+<span id="cb287-10"><a href="downloading-dems-and-delineating-watersheds.html#cb287-10" tabindex="-1"></a><span class="co">#   tm_scale_bar() +</span></span>
+<span id="cb287-11"><a href="downloading-dems-and-delineating-watersheds.html#cb287-11" tabindex="-1"></a><span class="co">#   tm_shape(pp) +</span></span>
+<span id="cb287-12"><a href="downloading-dems-and-delineating-watersheds.html#cb287-12" tabindex="-1"></a><span class="co">#   tm_dots(col = &quot;red&quot;, size = 0.25) +</span></span>
+<span id="cb287-13"><a href="downloading-dems-and-delineating-watersheds.html#cb287-13" tabindex="-1"></a><span class="co">#   tm_layout(title = &quot;Bozeman Creek \nWatershed&quot;) +</span></span>
+<span id="cb287-14"><a href="downloading-dems-and-delineating-watersheds.html#cb287-14" tabindex="-1"></a><span class="co">#   tm_compass(type = &quot;arrow&quot;, position = c(&quot;center&quot;, &quot;bottom&quot;))</span></span></code></pre></div>
 
 </div>
 </div>

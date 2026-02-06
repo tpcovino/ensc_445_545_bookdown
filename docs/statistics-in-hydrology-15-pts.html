@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Statistics in hydrology (15 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
   <meta name="description" content="Chapter 7 Statistics in hydrology (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Statistics in hydrology (15 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
@@ -51,28 +51,29 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
 <script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -229,9 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
-<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
-<li class="chapter" data-level="6.1.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.1</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
 <li class="chapter" data-level="6.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
@@ -341,21 +341,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2.1" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#identifying-the-question"><i class="fa fa-check"></i><b>17.2.1</b> Identifying the question</a></li>
 <li class="chapter" data-level="17.2.2" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#modeling-approaches"><i class="fa fa-check"></i><b>17.2.2</b> Modeling approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.3</b> Question 1 (3 pts)</a></li>
-<li class="chapter" data-level="17.4" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.4</b> Download and explore flow data</a></li>
-<li class="chapter" data-level="17.5" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.5</b> Extract peak flow values</a></li>
-<li class="chapter" data-level="17.6" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.6</b> Choose Snotel Sites</a></li>
-<li class="chapter" data-level="17.7" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.7</b> Working with spatial data</a></li>
-<li class="chapter" data-level="17.8" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.8</b> Download and explore Snotel</a></li>
-<li class="chapter" data-level="17.9" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-3-points"><i class="fa fa-check"></i><b>17.9</b> Question 2 (3 points)</a></li>
-<li class="chapter" data-level="17.10" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.10</b> Extract peak SWE values</a></li>
-<li class="chapter" data-level="17.11" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.11</b> Peak SWE and Q</a></li>
-<li class="chapter" data-level="17.12" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-points"><i class="fa fa-check"></i><b>17.12</b> Question (2 points)</a></li>
-<li class="chapter" data-level="17.13" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#model-inputs"><i class="fa fa-check"></i><b>17.13</b> Model inputs</a></li>
-<li class="chapter" data-level="17.14" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#run-model"><i class="fa fa-check"></i><b>17.14</b> Run model</a></li>
-<li class="chapter" data-level="17.15" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-4-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 4 (2 points)</a></li>
-<li class="chapter" data-level="17.16" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-5-3-points"><i class="fa fa-check"></i><b>17.16</b> Question 5 (3 points)</a></li>
-<li class="chapter" data-level="17.17" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-6-3-point"><i class="fa fa-check"></i><b>17.17</b> Question 6 (3 point)</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="flow-duration-curves-6-pts.html"><a href="flow-duration-curves-6-pts.html"><i class="fa fa-check"></i><b>18</b> Flow Duration Curves (6 pts)</a>
 <ul>
@@ -406,44 +391,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Reading for this section</p>
 <p><a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" target="_blank">Statistical Methods in Water Resources: Chapter 1</a></p>
 <p>Today will use a new package called patchwork that is an extension to ggplot. See <a href="https://exts.ggplot2.tidyverse.org/gallery/" target="_blank">here</a> for ggplot extensions including patchwork.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="statistics-in-hydrology-15-pts.html#cb122-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb122-2"><a href="statistics-in-hydrology-15-pts.html#cb122-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="statistics-in-hydrology-15-pts.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb147-2"><a href="statistics-in-hydrology-15-pts.html#cb147-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
 <p>First let’s generate some synthetic data and talk about how to visualize it.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="statistics-in-hydrology-15-pts.html#cb123-1" tabindex="-1"></a><span class="co"># generate a normal distribution</span></span>
-<span id="cb123-2"><a href="statistics-in-hydrology-15-pts.html#cb123-2" tabindex="-1"></a>ExNorm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb123-3"><a href="statistics-in-hydrology-15-pts.html#cb123-3" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
-<span id="cb123-4"><a href="statistics-in-hydrology-15-pts.html#cb123-4" tabindex="-1"></a></span>
-<span id="cb123-5"><a href="statistics-in-hydrology-15-pts.html#cb123-5" tabindex="-1"></a><span class="co"># look at distributions</span></span>
-<span id="cb123-6"><a href="statistics-in-hydrology-15-pts.html#cb123-6" tabindex="-1"></a><span class="co"># first using a histogram</span></span>
-<span id="cb123-7"><a href="statistics-in-hydrology-15-pts.html#cb123-7" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
-<span id="cb123-8"><a href="statistics-in-hydrology-15-pts.html#cb123-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb123-9"><a href="statistics-in-hydrology-15-pts.html#cb123-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="statistics-in-hydrology-15-pts.html#cb124-1" tabindex="-1"></a><span class="co"># next using the pdf</span></span>
-<span id="cb124-2"><a href="statistics-in-hydrology-15-pts.html#cb124-2" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
-<span id="cb124-3"><a href="statistics-in-hydrology-15-pts.html#cb124-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb124-4"><a href="statistics-in-hydrology-15-pts.html#cb124-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-90-2.png" width="672" /></p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="statistics-in-hydrology-15-pts.html#cb125-1" tabindex="-1"></a><span class="co">#Let&#39;s generate a plot that makes comparing these two easier</span></span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="statistics-in-hydrology-15-pts.html#cb148-1" tabindex="-1"></a><span class="co"># generate a normal distribution</span></span>
+<span id="cb148-2"><a href="statistics-in-hydrology-15-pts.html#cb148-2" tabindex="-1"></a>ExNorm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb148-3"><a href="statistics-in-hydrology-15-pts.html#cb148-3" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb148-4"><a href="statistics-in-hydrology-15-pts.html#cb148-4" tabindex="-1"></a></span>
+<span id="cb148-5"><a href="statistics-in-hydrology-15-pts.html#cb148-5" tabindex="-1"></a><span class="co"># look at distributions</span></span>
+<span id="cb148-6"><a href="statistics-in-hydrology-15-pts.html#cb148-6" tabindex="-1"></a><span class="co"># first using a histogram</span></span>
+<span id="cb148-7"><a href="statistics-in-hydrology-15-pts.html#cb148-7" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb148-8"><a href="statistics-in-hydrology-15-pts.html#cb148-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb148-9"><a href="statistics-in-hydrology-15-pts.html#cb148-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-89-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="statistics-in-hydrology-15-pts.html#cb150-1" tabindex="-1"></a><span class="co"># next using the pdf</span></span>
+<span id="cb150-2"><a href="statistics-in-hydrology-15-pts.html#cb150-2" tabindex="-1"></a>ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb150-3"><a href="statistics-in-hydrology-15-pts.html#cb150-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb150-4"><a href="statistics-in-hydrology-15-pts.html#cb150-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-89-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="statistics-in-hydrology-15-pts.html#cb151-1" tabindex="-1"></a><span class="co">#Let&#39;s generate a plot that makes comparing these two easier</span></span></code></pre></div>
 <p>Stack plots to compare histogram and pdf</p>
 <p>We will save each plot as “ggplot object” and then output them using the patchwork package (loaded in the setup chunk).</p>
 <p>We have made other objects, like data frames or values, how do you think you would make a ggplot object?</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="statistics-in-hydrology-15-pts.html#cb126-1" tabindex="-1"></a><span class="co"># histogram</span></span>
-<span id="cb126-2"><a href="statistics-in-hydrology-15-pts.html#cb126-2" tabindex="-1"></a>exhist <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
-<span id="cb126-3"><a href="statistics-in-hydrology-15-pts.html#cb126-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb126-4"><a href="statistics-in-hydrology-15-pts.html#cb126-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb126-5"><a href="statistics-in-hydrology-15-pts.html#cb126-5" tabindex="-1"></a></span>
-<span id="cb126-6"><a href="statistics-in-hydrology-15-pts.html#cb126-6" tabindex="-1"></a><span class="co"># pdf</span></span>
-<span id="cb126-7"><a href="statistics-in-hydrology-15-pts.html#cb126-7" tabindex="-1"></a>expdf <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span></span>
-<span id="cb126-8"><a href="statistics-in-hydrology-15-pts.html#cb126-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb126-9"><a href="statistics-in-hydrology-15-pts.html#cb126-9" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span>
-<span id="cb126-10"><a href="statistics-in-hydrology-15-pts.html#cb126-10" tabindex="-1"></a></span>
-<span id="cb126-11"><a href="statistics-in-hydrology-15-pts.html#cb126-11" tabindex="-1"></a><span class="co"># put the plots side by side with + or on top of each other with /</span></span>
-<span id="cb126-12"><a href="statistics-in-hydrology-15-pts.html#cb126-12" tabindex="-1"></a><span class="co"># I&#39;ve also shown how to put a caption into a patchwork figure that has multiple panels. </span></span>
-<span id="cb126-13"><a href="statistics-in-hydrology-15-pts.html#cb126-13" tabindex="-1"></a></span>
-<span id="cb126-14"><a href="statistics-in-hydrology-15-pts.html#cb126-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> exhist<span class="sc">/</span>expdf</span>
-<span id="cb126-15"><a href="statistics-in-hydrology-15-pts.html#cb126-15" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">&quot;Figure 1. Comparison of histogram (top) and probability density function (bottom) of a synthetic data set generated with</span><span class="sc">\n</span><span class="st"> the rnorm function, 1000 samples, and a mean of 5.&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="statistics-in-hydrology-15-pts.html#cb152-1" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb152-2"><a href="statistics-in-hydrology-15-pts.html#cb152-2" tabindex="-1"></a>exhist <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
+<span id="cb152-3"><a href="statistics-in-hydrology-15-pts.html#cb152-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb152-4"><a href="statistics-in-hydrology-15-pts.html#cb152-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb152-5"><a href="statistics-in-hydrology-15-pts.html#cb152-5" tabindex="-1"></a></span>
+<span id="cb152-6"><a href="statistics-in-hydrology-15-pts.html#cb152-6" tabindex="-1"></a><span class="co"># pdf</span></span>
+<span id="cb152-7"><a href="statistics-in-hydrology-15-pts.html#cb152-7" tabindex="-1"></a>expdf <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span></span>
+<span id="cb152-8"><a href="statistics-in-hydrology-15-pts.html#cb152-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb152-9"><a href="statistics-in-hydrology-15-pts.html#cb152-9" tabindex="-1"></a>  <span class="fu">stat_density</span>()</span>
+<span id="cb152-10"><a href="statistics-in-hydrology-15-pts.html#cb152-10" tabindex="-1"></a></span>
+<span id="cb152-11"><a href="statistics-in-hydrology-15-pts.html#cb152-11" tabindex="-1"></a><span class="co"># put the plots side by side with + or on top of each other with /</span></span>
+<span id="cb152-12"><a href="statistics-in-hydrology-15-pts.html#cb152-12" tabindex="-1"></a><span class="co"># I&#39;ve also shown how to put a caption into a patchwork figure that has multiple panels. </span></span>
+<span id="cb152-13"><a href="statistics-in-hydrology-15-pts.html#cb152-13" tabindex="-1"></a></span>
+<span id="cb152-14"><a href="statistics-in-hydrology-15-pts.html#cb152-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> exhist<span class="sc">/</span>expdf</span>
+<span id="cb152-15"><a href="statistics-in-hydrology-15-pts.html#cb152-15" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">&quot;Figure 1. Comparison of histogram (top) and probability density function (bottom) of a synthetic data set generated with</span><span class="sc">\n</span><span class="st"> the rnorm function, 1000 samples, and a mean of 5.&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-90-1.png" alt="" width="672" /></p>
 </div>
 <div id="questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group." class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Questions: disuss these with a partner and then we will discuss together as a group.<a href="statistics-in-hydrology-15-pts.html#questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group." class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -459,28 +448,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s write some code for an example:</p>
 <p>We will create a POPULATION that is a large set of numbers. Think of this is as the concentration of Calcium in every bit of water in a lake. Then we will create a SAMPLE by randomly grabbing values from the POPULATION. This simulates us going around in a boat and taking grab samples in an effort to figure out the concentration of calcium in the lake.</p>
 <p>We can then run this code a bunch of times, you’ll get a different sample each time. You can also take a smaller or larger number of samples by changing “size” in the sample() function.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="statistics-in-hydrology-15-pts.html#cb127-1" tabindex="-1"></a>all_the_water <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb127-2"><a href="statistics-in-hydrology-15-pts.html#cb127-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
-<span id="cb127-3"><a href="statistics-in-hydrology-15-pts.html#cb127-3" tabindex="-1"></a></span>
-<span id="cb127-4"><a href="statistics-in-hydrology-15-pts.html#cb127-4" tabindex="-1"></a>sample_of_water <span class="ot">&lt;-</span> <span class="fu">sample</span>(all_the_water<span class="sc">$</span>value, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb127-5"><a href="statistics-in-hydrology-15-pts.html#cb127-5" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
-<span id="cb127-6"><a href="statistics-in-hydrology-15-pts.html#cb127-6" tabindex="-1"></a></span>
-<span id="cb127-7"><a href="statistics-in-hydrology-15-pts.html#cb127-7" tabindex="-1"></a>population_hist <span class="ot">&lt;-</span> all_the_water <span class="sc">%&gt;%</span></span>
-<span id="cb127-8"><a href="statistics-in-hydrology-15-pts.html#cb127-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
-<span id="cb127-9"><a href="statistics-in-hydrology-15-pts.html#cb127-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb127-10"><a href="statistics-in-hydrology-15-pts.html#cb127-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Population: </span><span class="sc">\n</span><span class="st"> All water in lake&quot;</span>)</span>
-<span id="cb127-11"><a href="statistics-in-hydrology-15-pts.html#cb127-11" tabindex="-1"></a></span>
-<span id="cb127-12"><a href="statistics-in-hydrology-15-pts.html#cb127-12" tabindex="-1"></a>sample_hist <span class="ot">&lt;-</span> sample_of_water <span class="sc">%&gt;%</span></span>
-<span id="cb127-13"><a href="statistics-in-hydrology-15-pts.html#cb127-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
-<span id="cb127-14"><a href="statistics-in-hydrology-15-pts.html#cb127-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb127-15"><a href="statistics-in-hydrology-15-pts.html#cb127-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Your sample </span><span class="sc">\n</span><span class="st"> of the lake&quot;</span>)</span>
-<span id="cb127-16"><a href="statistics-in-hydrology-15-pts.html#cb127-16" tabindex="-1"></a></span>
-<span id="cb127-17"><a href="statistics-in-hydrology-15-pts.html#cb127-17" tabindex="-1"></a>population_hist <span class="sc">+</span> sample_hist</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="statistics-in-hydrology-15-pts.html#cb128-1" tabindex="-1"></a><span class="co"># OR</span></span>
-<span id="cb128-2"><a href="statistics-in-hydrology-15-pts.html#cb128-2" tabindex="-1"></a></span>
-<span id="cb128-3"><a href="statistics-in-hydrology-15-pts.html#cb128-3" tabindex="-1"></a>sample_hist<span class="sc">/</span>population_hist</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-92-2.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="statistics-in-hydrology-15-pts.html#cb154-1" tabindex="-1"></a>all_the_water <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-2"><a href="statistics-in-hydrology-15-pts.html#cb154-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb154-3"><a href="statistics-in-hydrology-15-pts.html#cb154-3" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="statistics-in-hydrology-15-pts.html#cb154-4" tabindex="-1"></a>sample_of_water <span class="ot">&lt;-</span> <span class="fu">sample</span>(all_the_water<span class="sc">$</span>value, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-5"><a href="statistics-in-hydrology-15-pts.html#cb154-5" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb154-6"><a href="statistics-in-hydrology-15-pts.html#cb154-6" tabindex="-1"></a></span>
+<span id="cb154-7"><a href="statistics-in-hydrology-15-pts.html#cb154-7" tabindex="-1"></a>population_hist <span class="ot">&lt;-</span> all_the_water <span class="sc">%&gt;%</span></span>
+<span id="cb154-8"><a href="statistics-in-hydrology-15-pts.html#cb154-8" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb154-9"><a href="statistics-in-hydrology-15-pts.html#cb154-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb154-10"><a href="statistics-in-hydrology-15-pts.html#cb154-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Population: </span><span class="sc">\n</span><span class="st"> All water in lake&quot;</span>)</span>
+<span id="cb154-11"><a href="statistics-in-hydrology-15-pts.html#cb154-11" tabindex="-1"></a></span>
+<span id="cb154-12"><a href="statistics-in-hydrology-15-pts.html#cb154-12" tabindex="-1"></a>sample_hist <span class="ot">&lt;-</span> sample_of_water <span class="sc">%&gt;%</span></span>
+<span id="cb154-13"><a href="statistics-in-hydrology-15-pts.html#cb154-13" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb154-14"><a href="statistics-in-hydrology-15-pts.html#cb154-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb154-15"><a href="statistics-in-hydrology-15-pts.html#cb154-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Your sample </span><span class="sc">\n</span><span class="st"> of the lake&quot;</span>)</span>
+<span id="cb154-16"><a href="statistics-in-hydrology-15-pts.html#cb154-16" tabindex="-1"></a></span>
+<span id="cb154-17"><a href="statistics-in-hydrology-15-pts.html#cb154-17" tabindex="-1"></a>population_hist <span class="sc">+</span> sample_hist</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-91-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="statistics-in-hydrology-15-pts.html#cb156-1" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb156-2"><a href="statistics-in-hydrology-15-pts.html#cb156-2" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="statistics-in-hydrology-15-pts.html#cb156-3" tabindex="-1"></a>sample_hist<span class="sc">/</span>population_hist</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-91-2.png" alt="" width="672" /></p>
 </div>
 <div id="questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.-1" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Questions: disuss these with a partner and then we will discuss together as a group.<a href="statistics-in-hydrology-15-pts.html#questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -499,35 +496,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When we take a sample of a population, there are a few things we will want to measure about the distribution of values: where is the middle, how variable is it, and is it skewed to one side or another?</p>
 <p>The first of these, “where is the middle?” is addressed with measures of central tendency. We will discuss three possible ways to measure this. The mean, median, and weighted mean.</p>
 <p>To explain the importance of choosing between the mean and median, we will first import some discharge data. Read in the PINE discharge data.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="statistics-in-hydrology-15-pts.html#cb129-1" tabindex="-1"></a>pineQ <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_Jan-Mar_2010.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="statistics-in-hydrology-15-pts.html#cb158-1" tabindex="-1"></a>pineQ <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;PINE_Jan-Mar_2010.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 2160 Columns: 8
+## ── Column specification ─────────────
+## Delimiter: &quot;,&quot;
+## chr  (2): StationID, surrogate
+## dbl  (5): cfs, year, quarter, mon...
+## dttm (1): datetime
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>To find the mean (average), you just sum up all the values in your sample and divide by the number of values.</p>
 <p>To find the median, you put the values IN ORDER, and choose the middle value. The middle value is the one where there are the same number of values higher than that value as there are values lower than it.</p>
 <p>Because it uses the order of the values rather than just the values themselves, the median is resistant to skewed distributions. This means it is less effected by very large or very small values compared to most values in the sample data.</p>
 <p>Let’s look at our normal distribution from earlier (ExNorm) compared to the Pine watershed discharge (pineQ)</p>
 <p>Note that distributions like pineQ, that are positively skewed, are very common in environmental data.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="statistics-in-hydrology-15-pts.html#cb130-1" tabindex="-1"></a><span class="co"># Calculate mean and median for &quot;cfs&quot; in pineQ and &quot;values&quot; in ExNorm</span></span>
-<span id="cb130-2"><a href="statistics-in-hydrology-15-pts.html#cb130-2" tabindex="-1"></a>pineMean <span class="ot">&lt;-</span> <span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb130-3"><a href="statistics-in-hydrology-15-pts.html#cb130-3" tabindex="-1"></a>pineMedian <span class="ot">&lt;-</span> <span class="fu">median</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb130-4"><a href="statistics-in-hydrology-15-pts.html#cb130-4" tabindex="-1"></a></span>
-<span id="cb130-5"><a href="statistics-in-hydrology-15-pts.html#cb130-5" tabindex="-1"></a>xmean <span class="ot">&lt;-</span> <span class="fu">mean</span>(ExNorm<span class="sc">$</span>value)</span>
-<span id="cb130-6"><a href="statistics-in-hydrology-15-pts.html#cb130-6" tabindex="-1"></a>xmedian <span class="ot">&lt;-</span> <span class="fu">median</span>(ExNorm<span class="sc">$</span>value)</span>
-<span id="cb130-7"><a href="statistics-in-hydrology-15-pts.html#cb130-7" tabindex="-1"></a></span>
-<span id="cb130-8"><a href="statistics-in-hydrology-15-pts.html#cb130-8" tabindex="-1"></a><span class="co"># plot mean and median on the ExNorm distribution</span></span>
-<span id="cb130-9"><a href="statistics-in-hydrology-15-pts.html#cb130-9" tabindex="-1"></a>Ex <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
-<span id="cb130-10"><a href="statistics-in-hydrology-15-pts.html#cb130-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb130-11"><a href="statistics-in-hydrology-15-pts.html#cb130-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb130-12"><a href="statistics-in-hydrology-15-pts.html#cb130-12" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb130-13"><a href="statistics-in-hydrology-15-pts.html#cb130-13" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb130-14"><a href="statistics-in-hydrology-15-pts.html#cb130-14" tabindex="-1"></a></span>
-<span id="cb130-15"><a href="statistics-in-hydrology-15-pts.html#cb130-15" tabindex="-1"></a><span class="co">#plot mean and median on the pineQ discharge histogram</span></span>
-<span id="cb130-16"><a href="statistics-in-hydrology-15-pts.html#cb130-16" tabindex="-1"></a>PineP <span class="ot">&lt;-</span> pineQ <span class="sc">%&gt;%</span> </span>
-<span id="cb130-17"><a href="statistics-in-hydrology-15-pts.html#cb130-17" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cfs)) <span class="sc">+</span></span>
-<span id="cb130-18"><a href="statistics-in-hydrology-15-pts.html#cb130-18" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
-<span id="cb130-19"><a href="statistics-in-hydrology-15-pts.html#cb130-19" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb130-20"><a href="statistics-in-hydrology-15-pts.html#cb130-20" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb130-21"><a href="statistics-in-hydrology-15-pts.html#cb130-21" tabindex="-1"></a></span>
-<span id="cb130-22"><a href="statistics-in-hydrology-15-pts.html#cb130-22" tabindex="-1"></a>Ex <span class="sc">/</span> PineP  </span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="statistics-in-hydrology-15-pts.html#cb160-1" tabindex="-1"></a><span class="co"># Calculate mean and median for &quot;cfs&quot; in pineQ and &quot;values&quot; in ExNorm</span></span>
+<span id="cb160-2"><a href="statistics-in-hydrology-15-pts.html#cb160-2" tabindex="-1"></a>pineMean <span class="ot">&lt;-</span> <span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb160-3"><a href="statistics-in-hydrology-15-pts.html#cb160-3" tabindex="-1"></a>pineMedian <span class="ot">&lt;-</span> <span class="fu">median</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb160-4"><a href="statistics-in-hydrology-15-pts.html#cb160-4" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="statistics-in-hydrology-15-pts.html#cb160-5" tabindex="-1"></a>xmean <span class="ot">&lt;-</span> <span class="fu">mean</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb160-6"><a href="statistics-in-hydrology-15-pts.html#cb160-6" tabindex="-1"></a>xmedian <span class="ot">&lt;-</span> <span class="fu">median</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb160-7"><a href="statistics-in-hydrology-15-pts.html#cb160-7" tabindex="-1"></a></span>
+<span id="cb160-8"><a href="statistics-in-hydrology-15-pts.html#cb160-8" tabindex="-1"></a><span class="co"># plot mean and median on the ExNorm distribution</span></span>
+<span id="cb160-9"><a href="statistics-in-hydrology-15-pts.html#cb160-9" tabindex="-1"></a>Ex <span class="ot">&lt;-</span> ExNorm <span class="sc">%&gt;%</span> </span>
+<span id="cb160-10"><a href="statistics-in-hydrology-15-pts.html#cb160-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb160-11"><a href="statistics-in-hydrology-15-pts.html#cb160-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb160-12"><a href="statistics-in-hydrology-15-pts.html#cb160-12" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb160-13"><a href="statistics-in-hydrology-15-pts.html#cb160-13" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> xmedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb160-14"><a href="statistics-in-hydrology-15-pts.html#cb160-14" tabindex="-1"></a></span>
+<span id="cb160-15"><a href="statistics-in-hydrology-15-pts.html#cb160-15" tabindex="-1"></a><span class="co">#plot mean and median on the pineQ discharge histogram</span></span>
+<span id="cb160-16"><a href="statistics-in-hydrology-15-pts.html#cb160-16" tabindex="-1"></a>PineP <span class="ot">&lt;-</span> pineQ <span class="sc">%&gt;%</span> </span>
+<span id="cb160-17"><a href="statistics-in-hydrology-15-pts.html#cb160-17" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cfs)) <span class="sc">+</span></span>
+<span id="cb160-18"><a href="statistics-in-hydrology-15-pts.html#cb160-18" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()<span class="sc">+</span></span>
+<span id="cb160-19"><a href="statistics-in-hydrology-15-pts.html#cb160-19" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb160-20"><a href="statistics-in-hydrology-15-pts.html#cb160-20" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pineMedian, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb160-21"><a href="statistics-in-hydrology-15-pts.html#cb160-21" tabindex="-1"></a></span>
+<span id="cb160-22"><a href="statistics-in-hydrology-15-pts.html#cb160-22" tabindex="-1"></a>Ex <span class="sc">/</span> PineP  </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick
+## better value `binwidth`.</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-93-1.png" alt="" width="672" /></p>
 </div>
 <div id="so-whats-a-weighted-average" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> So what’s a weighted average?<a href="statistics-in-hydrology-15-pts.html#so-whats-a-weighted-average" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -564,12 +574,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you ask R for the QUANTILES of your sample data, it will give you the values at which 0%, 25%, 50%, 75%, and 100% of the data are below. These are the 1,2,3,4, and 5th quantiles. Therefore, the IQR is the difference between the 4th and 2nd quantile.</p>
 <p>Okay, code time.</p>
 <p>First, let’s explore how changing the variability of a distribution changes the shape of it’s distribution. Create a plot a random normal distribution using rnorm() and set sd to different numbers. Make the mean of the distribution 0, the sample size 300, and the standard deviation 1 to start. Then increase the standard deviation incrementally to 10 and see what happens. Make the limits of the x axis on the plot -30 to 30.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="statistics-in-hydrology-15-pts.html#cb131-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb131-2"><a href="statistics-in-hydrology-15-pts.html#cb131-2" tabindex="-1"></a>  as_tibble <span class="sc">%&gt;%</span></span>
-<span id="cb131-3"><a href="statistics-in-hydrology-15-pts.html#cb131-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
-<span id="cb131-4"><a href="statistics-in-hydrology-15-pts.html#cb131-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
-<span id="cb131-5"><a href="statistics-in-hydrology-15-pts.html#cb131-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">30</span>,<span class="dv">30</span>))</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="statistics-in-hydrology-15-pts.html#cb162-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-2"><a href="statistics-in-hydrology-15-pts.html#cb162-2" tabindex="-1"></a>  as_tibble <span class="sc">%&gt;%</span></span>
+<span id="cb162-3"><a href="statistics-in-hydrology-15-pts.html#cb162-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value))<span class="sc">+</span></span>
+<span id="cb162-4"><a href="statistics-in-hydrology-15-pts.html#cb162-4" tabindex="-1"></a>  <span class="fu">stat_density</span>()<span class="sc">+</span></span>
+<span id="cb162-5"><a href="statistics-in-hydrology-15-pts.html#cb162-5" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">30</span>,<span class="dv">30</span>))</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-95-1.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.-2" class="section level2 hasAnchor" number="7.8">
@@ -579,34 +589,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If you were to plot the pdf of two hydrographs, one that is flashy, one that isn’t - predict what those distributions would look like.</li>
 </ul>
 <p>Now let’s calculate the standard deviation, variance, coefficient of variation, and IQR of the Pine discharge data.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="statistics-in-hydrology-15-pts.html#cb132-1" tabindex="-1"></a><span class="co"># standard deviation</span></span>
-<span id="cb132-2"><a href="statistics-in-hydrology-15-pts.html#cb132-2" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb132-3"><a href="statistics-in-hydrology-15-pts.html#cb132-3" tabindex="-1"></a></span>
-<span id="cb132-4"><a href="statistics-in-hydrology-15-pts.html#cb132-4" tabindex="-1"></a><span class="co"># variance</span></span>
-<span id="cb132-5"><a href="statistics-in-hydrology-15-pts.html#cb132-5" tabindex="-1"></a><span class="fu">var</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb132-6"><a href="statistics-in-hydrology-15-pts.html#cb132-6" tabindex="-1"></a></span>
-<span id="cb132-7"><a href="statistics-in-hydrology-15-pts.html#cb132-7" tabindex="-1"></a><span class="co"># coefficient of variation</span></span>
-<span id="cb132-8"><a href="statistics-in-hydrology-15-pts.html#cb132-8" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)<span class="sc">/</span><span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb132-9"><a href="statistics-in-hydrology-15-pts.html#cb132-9" tabindex="-1"></a></span>
-<span id="cb132-10"><a href="statistics-in-hydrology-15-pts.html#cb132-10" tabindex="-1"></a><span class="co"># IQR using the IQR funciton</span></span>
-<span id="cb132-11"><a href="statistics-in-hydrology-15-pts.html#cb132-11" tabindex="-1"></a><span class="fu">IQR</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb132-12"><a href="statistics-in-hydrology-15-pts.html#cb132-12" tabindex="-1"></a></span>
-<span id="cb132-13"><a href="statistics-in-hydrology-15-pts.html#cb132-13" tabindex="-1"></a><span class="co"># IQR using the quantile function</span></span>
-<span id="cb132-14"><a href="statistics-in-hydrology-15-pts.html#cb132-14" tabindex="-1"></a>quants <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb132-15"><a href="statistics-in-hydrology-15-pts.html#cb132-15" tabindex="-1"></a>quants[<span class="dv">4</span>] <span class="sc">-</span> quants[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="statistics-in-hydrology-15-pts.html#cb163-1" tabindex="-1"></a><span class="co"># standard deviation</span></span>
+<span id="cb163-2"><a href="statistics-in-hydrology-15-pts.html#cb163-2" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 84.47625</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="statistics-in-hydrology-15-pts.html#cb165-1" tabindex="-1"></a><span class="co"># variance</span></span>
+<span id="cb165-2"><a href="statistics-in-hydrology-15-pts.html#cb165-2" tabindex="-1"></a><span class="fu">var</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 7136.237</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="statistics-in-hydrology-15-pts.html#cb167-1" tabindex="-1"></a><span class="co"># coefficient of variation</span></span>
+<span id="cb167-2"><a href="statistics-in-hydrology-15-pts.html#cb167-2" tabindex="-1"></a><span class="fu">sd</span>(pineQ<span class="sc">$</span>cfs)<span class="sc">/</span><span class="fu">mean</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 2.800221</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="statistics-in-hydrology-15-pts.html#cb169-1" tabindex="-1"></a><span class="co"># IQR using the IQR funciton</span></span>
+<span id="cb169-2"><a href="statistics-in-hydrology-15-pts.html#cb169-2" tabindex="-1"></a><span class="fu">IQR</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## [1] 8.1325</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="statistics-in-hydrology-15-pts.html#cb171-1" tabindex="-1"></a><span class="co"># IQR using the quantile function</span></span>
+<span id="cb171-2"><a href="statistics-in-hydrology-15-pts.html#cb171-2" tabindex="-1"></a>quants <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb171-3"><a href="statistics-in-hydrology-15-pts.html#cb171-3" tabindex="-1"></a>quants[<span class="dv">4</span>] <span class="sc">-</span> quants[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##    75% 
+## 8.1325</code></pre>
 <div id="what-about-how-lopsided-the-distribution-is" class="section level4 hasAnchor" number="7.8.0.1">
 <h4><span class="header-section-number">7.8.0.1</span> What about how lopsided the distribution is?<a href="statistics-in-hydrology-15-pts.html#what-about-how-lopsided-the-distribution-is" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>There are several ways to measure this as well, but we are just going to look at one: The Quartile skew. The quartile skew is the difference between the upper quartiles (50th-75th) and the lower quartiles (25th-50th) divided by the IQR (75th-25th).</p>
 <p><img src="images/Screen%20Shot%202021-01-25%20at%2011.27.14%20AM.png" alt="Quartile skew from USGS Stats Book linked above" /> source: <a href="https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf" class="uri">https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf</a></p>
 <p>Let’s look at the quartile skew of the two distributions we’ve been measuring. Calculate it for the pineQ discharge data and the random normal distribution we generated.</p>
 <p>Which one is more skewed?</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="statistics-in-hydrology-15-pts.html#cb133-1" tabindex="-1"></a>quantsP <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb133-2"><a href="statistics-in-hydrology-15-pts.html#cb133-2" tabindex="-1"></a></span>
-<span id="cb133-3"><a href="statistics-in-hydrology-15-pts.html#cb133-3" tabindex="-1"></a>((quantsP[<span class="dv">3</span>]<span class="sc">-</span>quantsP[<span class="dv">2</span>]) <span class="sc">-</span> (quantsP[<span class="dv">2</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>])) <span class="sc">/</span> quantsP[<span class="dv">3</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>]</span>
-<span id="cb133-4"><a href="statistics-in-hydrology-15-pts.html#cb133-4" tabindex="-1"></a></span>
-<span id="cb133-5"><a href="statistics-in-hydrology-15-pts.html#cb133-5" tabindex="-1"></a>quantsX <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ExNorm<span class="sc">$</span>value)</span>
-<span id="cb133-6"><a href="statistics-in-hydrology-15-pts.html#cb133-6" tabindex="-1"></a></span>
-<span id="cb133-7"><a href="statistics-in-hydrology-15-pts.html#cb133-7" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="statistics-in-hydrology-15-pts.html#cb173-1" tabindex="-1"></a>quantsP <span class="ot">&lt;-</span> <span class="fu">quantile</span>(pineQ<span class="sc">$</span>cfs)</span>
+<span id="cb173-2"><a href="statistics-in-hydrology-15-pts.html#cb173-2" tabindex="-1"></a></span>
+<span id="cb173-3"><a href="statistics-in-hydrology-15-pts.html#cb173-3" tabindex="-1"></a>((quantsP[<span class="dv">3</span>]<span class="sc">-</span>quantsP[<span class="dv">2</span>]) <span class="sc">-</span> (quantsP[<span class="dv">2</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>])) <span class="sc">/</span> quantsP[<span class="dv">3</span>] <span class="sc">-</span> quantsP[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##       50% 
+## -4.837233</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="statistics-in-hydrology-15-pts.html#cb175-1" tabindex="-1"></a>quantsX <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ExNorm<span class="sc">$</span>value)</span>
+<span id="cb175-2"><a href="statistics-in-hydrology-15-pts.html#cb175-2" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="statistics-in-hydrology-15-pts.html#cb175-3" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##       50% 
+## -2.227159</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="7.9">
@@ -623,17 +638,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R to the rescue! There is a built in test for normality called shapiro.test(), which performs the Shapiro-Wilk test of normality. The hypothesis this test tests is “The distribution is normal.” So if this function returns a p-value less than 0.05, you reject that hypothesis and your distribution is NOT normal.</p>
 <p>You can also make a quantile-quantile plot. A straight line on this plot indicates a normal distribution, a non-straight line indicates it is not normal.</p>
 <p>Let’s test Pine discharge data for normality with the Shapiro test and the Q-Q test.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="statistics-in-hydrology-15-pts.html#cb134-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(pineQ<span class="sc">$</span>cfs)</span>
-<span id="cb134-2"><a href="statistics-in-hydrology-15-pts.html#cb134-2" tabindex="-1"></a></span>
-<span id="cb134-3"><a href="statistics-in-hydrology-15-pts.html#cb134-3" tabindex="-1"></a><span class="fu">qqnorm</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="statistics-in-hydrology-15-pts.html#cb177-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  pineQ$cfs
+## W = 0.27155, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="statistics-in-hydrology-15-pts.html#cb179-1" tabindex="-1"></a><span class="fu">qqnorm</span>(pineQ<span class="sc">$</span>cfs)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-98-1.png" alt="" width="672" /></p>
 <p>Let’s also look at the Q-Q plot with some synthetic data. 
 Create a normal data set and play with the number of values (n, samples). Investigate how changing the number of samples influences the linearity of the Q-Q plot. Also run this code multiple times with the same n and see if/how the results change.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="statistics-in-hydrology-15-pts.html#cb135-1" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb135-2"><a href="statistics-in-hydrology-15-pts.html#cb135-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
-<span id="cb135-3"><a href="statistics-in-hydrology-15-pts.html#cb135-3" tabindex="-1"></a></span>
-<span id="cb135-4"><a href="statistics-in-hydrology-15-pts.html#cb135-4" tabindex="-1"></a><span class="fu">qqnorm</span>(norm<span class="sc">$</span>value)</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="statistics-in-hydrology-15-pts.html#cb180-1" tabindex="-1"></a>norm <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb180-2"><a href="statistics-in-hydrology-15-pts.html#cb180-2" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb180-3"><a href="statistics-in-hydrology-15-pts.html#cb180-3" tabindex="-1"></a></span>
+<span id="cb180-4"><a href="statistics-in-hydrology-15-pts.html#cb180-4" tabindex="-1"></a><span class="fu">qqnorm</span>(norm<span class="sc">$</span>value)</span></code></pre></div>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-99-1.png" alt="" width="672" /></p>
 </div>
 <div id="questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.-3" class="section level2 hasAnchor" number="7.10">
 <h2><span class="header-section-number">7.10</span> Questions: disuss these with a partner and then we will discuss together as a group.<a href="statistics-in-hydrology-15-pts.html#questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -646,18 +665,27 @@ Create a normal data set and play with the number of values (n, samples). Invest
 <p>Test your all_the_water, ExNorm, and sample_of_water data frames for normality using shapiro test and qqnorm.</p>
 <p><strong>Note</strong>: <em>The shapiro.test will only accept 5000 values so the all_the_water data frame is too large. The reason for this is that in many fields (e.g., social science) an n of 5000 would be VERY large and would result in a normal distribution. In hydrology and the earth and environmental sciences in genreal we routinely have data sets that are MUCH larger than n = 5000 and the are STILL non-normal. To manage this situation we can use a different test, the Kolmogorov-Smirnov normality test which is in the “nortest” package and the test is called lillie.test. Lillie is short for Lilliefors test which is based on the Koolmogorv-Smirnov test. See below</em></p>
 <p><a href="https://cran.r-project.org/web/packages/nortest/nortest.pdf" target="_blank"><strong>See here for documentation of tests contained in the nortest package</strong></a></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="statistics-in-hydrology-15-pts.html#cb136-1" tabindex="-1"></a><span class="co"># shapiro.test(all_the_water$value) # won&#39;t work. n is too big. </span></span>
-<span id="cb136-2"><a href="statistics-in-hydrology-15-pts.html#cb136-2" tabindex="-1"></a></span>
-<span id="cb136-3"><a href="statistics-in-hydrology-15-pts.html#cb136-3" tabindex="-1"></a><span class="co"># but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.</span></span>
-<span id="cb136-4"><a href="statistics-in-hydrology-15-pts.html#cb136-4" tabindex="-1"></a><span class="co">#install.packages(&quot;nortest&quot;)</span></span>
-<span id="cb136-5"><a href="statistics-in-hydrology-15-pts.html#cb136-5" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
-<span id="cb136-6"><a href="statistics-in-hydrology-15-pts.html#cb136-6" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span>
-<span id="cb136-7"><a href="statistics-in-hydrology-15-pts.html#cb136-7" tabindex="-1"></a></span>
-<span id="cb136-8"><a href="statistics-in-hydrology-15-pts.html#cb136-8" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
-<span id="cb136-9"><a href="statistics-in-hydrology-15-pts.html#cb136-9" tabindex="-1"></a></span>
-<span id="cb136-10"><a href="statistics-in-hydrology-15-pts.html#cb136-10" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span>
-<span id="cb136-11"><a href="statistics-in-hydrology-15-pts.html#cb136-11" tabindex="-1"></a></span>
-<span id="cb136-12"><a href="statistics-in-hydrology-15-pts.html#cb136-12" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="statistics-in-hydrology-15-pts.html#cb181-1" tabindex="-1"></a><span class="co"># shapiro.test(all_the_water$value) # won&#39;t work. n is too big. </span></span>
+<span id="cb181-2"><a href="statistics-in-hydrology-15-pts.html#cb181-2" tabindex="-1"></a></span>
+<span id="cb181-3"><a href="statistics-in-hydrology-15-pts.html#cb181-3" tabindex="-1"></a><span class="co"># but we can use a test that CAN take large sample sizes. Here we use the Lilliefors test.</span></span>
+<span id="cb181-4"><a href="statistics-in-hydrology-15-pts.html#cb181-4" tabindex="-1"></a><span class="co">#install.packages(&quot;nortest&quot;)</span></span>
+<span id="cb181-5"><a href="statistics-in-hydrology-15-pts.html#cb181-5" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb181-6"><a href="statistics-in-hydrology-15-pts.html#cb181-6" tabindex="-1"></a><span class="fu">lillie.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Lilliefors (Kolmogorov-Smirnov)
+##  normality test
+## 
+## data:  all_the_water$value
+## D = 0.0098604, p-value = 0.02905</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="statistics-in-hydrology-15-pts.html#cb183-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
+<span id="cb183-2"><a href="statistics-in-hydrology-15-pts.html#cb183-2" tabindex="-1"></a></span>
+<span id="cb183-3"><a href="statistics-in-hydrology-15-pts.html#cb183-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  all_the_water$value
+## A = 0.639, p-value = 0.09565</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="statistics-in-hydrology-15-pts.html#cb185-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 </div>
 <div id="question-discuss-with-partner.-we-will-report-as-group." class="section level2 hasAnchor" number="7.12">
 <h2><span class="header-section-number">7.12</span> Question: Discuss with partner. We will report as group.<a href="statistics-in-hydrology-15-pts.html#question-discuss-with-partner.-we-will-report-as-group." class="anchor-section" aria-label="Anchor link to header"></a></h2>

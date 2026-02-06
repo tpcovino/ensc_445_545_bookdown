@@ -60,7 +60,7 @@ Those variables are: year, day of yeat, day length in seconds, precip in mm/day,
 ```{r}
 
 df <- df %>% 
-  mutate(date = as.Date(paste(year, yday, sep = "-"), "%Y-%j"))
+  mutate(date = as_date(paste(year, yday, sep = "-"), "%Y-%j"))
 
 df %>%
   filter(measurement == "tmax..deg.c.") %>%

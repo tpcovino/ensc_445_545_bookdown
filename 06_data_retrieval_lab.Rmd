@@ -7,13 +7,6 @@
 
 In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria. 
 
-### This is knitr settings. Knitr is a package that will turn this Rmd to an html. 
-```{r}
-
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, results = FALSE)
-
-```
-
 
 ### Load the necessary packages. 
 ```{r}

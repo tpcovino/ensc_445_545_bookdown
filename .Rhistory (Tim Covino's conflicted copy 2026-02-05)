@@ -1,0 +1,512 @@
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation"~(W/m^2), x = "")
+df %>%
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation"~(W/m^2), x = "")
+srad_plot <- df %>%
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation"~(W/m^2), x = "")
+srad_plot / temp_plot
+srad_plot <- df %>%
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation", x = "")
+srad_plot / temp_plot
+library(patchwork)
+srad_plot / temp_plot
+srad_plot <- df %>%
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation"~(W/m^2), x = "")
+srad_plot / temp_plot
+temp_plot <- df %>%
+filter(measurement == "tmax..deg.c.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Max T (\u00b0/C)", x = "")
+srad_plot / temp_plot
+temp_plot <- df %>%
+filter(measurement == "tmax..deg.c.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Max T (\u00b0C)", x = "")
+srad_plot <- df %>%
+filter(measurement == "srad..W.m.2.") %>%
+ggplot(aes(x = date, y = value)) +
+geom_line(color = "red") +
+theme_linedraw() +
+labs(y = "Solar radiation"~(W/m^2), x = "")
+srad_plot / temp_plot
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+hello
+bookdown::render_book("index.Rmd”)
+library(bookdown)
+installed.packages()
+bookdown::render_book("index.Rmd")
+bookdown::preview_chapter("index.Rmd")
+browseURL("docs/index.html")
+bookdown::preview_chapter("index.Rmd")
+browseURL("docs/index.html")
+bookdown::preview_chapter("index.Rmd")
+bookdown::preview_chapter("index.Rmd")
+browseURL("docs/index.html")
+install.packages("tidyverse")
+install.packages("dplyr")
+library(tidyverse)
+bookdown::preview_chapter("index.Rmd")
+bookdown::preview_chapter("index.Rmd")
+labs
+labs <- 12 + 20 + 10 + 20 + 6 + 20 + 12 + 15 + 15 + 5 + 15
+temr <- 5 +5 + 15 + 10 + 25
+term/labs
+term <- 5 +5 + 15 + 10 + 25
+term/labs
+labs <- 12 + 20 + 10 + 20 + 6 + 20 + 25 + 20 + 20 + 5 + 15
+term/labs
+labs <- 12 + 20 + 10 + 20 + 10 + 20 + 25 + 20 + 20 + 5 + 15
+term/labs
+labs <- 12 + 20 + 15 + 20 + 10 + 20 + 25 + 20 + 20 + 5 + 15
+term <- 5 +5 + 15 + 10 + 25
+term/labs
+labs <- 12 + 20 + 15 + 20 + 15 + 20 + 25 + 20 + 20 + 5 + 15
+term <- 5 +5 + 15 + 10 + 25
+term/labs
+labs <- 12 + 20 + 15 + 20 + 15 + 20 + 25 + 25 + 20 + 5 + 15
+term <- 5 +5 + 15 + 10 + 25
+term/labs
+labs <- 12 + 20 + 15 + 20 + 15 + 20 + 25 + 25 + 25 + 5 + 15
+labs <- 12 + 20 + 15 + 20 + 15 + 20 + 25 + 25 + 25 + 5 + 20
+term <- 5 +5 + 15 + 10 + 25
+term/labs
+term <- 5 +5 + 10 + 10 + 25
+term/labs
+25/labs
+50/labs
+40/labs
+45/labs
+term <- 5 + 5 + 5 + 5 + 25
+term/labs
+labs <- 12 + 20 + 15 + 20 + 15 + 25 + 15 + 25 + 25 + 5 + 20
+term <- 5 + 5 + 5 + 10 + 25
+term/labs
+bookdown::preview_chapter("index.Rmd")
+bookdown::preview_chapter("index.Rmd")
+bookdown::preview_chapter("index.Rmd")
+git add --all
+git add --all
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+install.packages(c("abind", "arrow", "askpass", "backports", "bit", "bit64", "bitops", "biwavelet", "bookdown", "boot", "brew", "brio", "broom", "bslib", "cachem", "callr", "caret", "CFtime", "class", "classInt", "cli", "clock", "cluster", "codetools", "colorspace", "cols4all", "commonmark", "cpp11", "crayon", "credentials", "crul", "curl", "data.table", "dataRetrieval", "DBI", "dbplyr", "desc", "digest", "dotCall64", "downlit", "e1071", "evaluate", "farver", "fastmap", "fields", "fontawesome", "foreign", "fs", "fstcore", "future", "future.apply", "gargle", "gert", "ggmap", "ggnewscale", "ggplot2", "gh", "gifski", "glue", "googledrive", "googlesheets4", "gower", "gtable", "hardhat", "haven", "highr", "hoardr", "httr2", "ipred", "jsonlite", "KernSmooth", "knitr", "later", "lattice", "lava", "leafgl", "leaflegend", "leaflet.extras", "lubridate", "magick", "maps", "markdown", "ncdf4", "nhdplusTools", "nlme", "nnet", "openssl", "parallelly", "pastecs", "patchwork", "pbapply", "pillar", "pkgbuild", "pkgdown", "pkgload", "plyr", "prettymapr", "processx", "prodlim", "profvis", "progressr", "promises", "ps", "purrr", "R.oo", "R.utils", "ragg", "randomForest", "RANN", "raster", "rayimage", "rayrender", "rayvertex", "Rcpp", "RcppArmadillo", "RcppThread", "RCurl", "readr", "readxl", "recipes", "rematch", "remotes", "reprex", "reticulate", "rgl", "RgoogleMaps", "rjson", "rlang", "rmarkdown", "rosm", "roxygen2", "rpart", "rprojroot", "rstudioapi", "s2", "servr", "sessioninfo", "sf", "shiny", "snotelr", "sp", "spacefillr", "spacesXYZ", "spam", "spatial", "stars", "stringdist", "stringi", "survival", "sys", "systemfonts", "terra", "testthat", "textshaping", "tictoc", "tidyterra", "timechange", "timeDate", "tinytex", "tmap", "tmaptools", "usethis", "uuid", "viridis", "vroom", "waldo", "withr", "wk", "xfun", "XML", "xopen", "yaml", "zip"))
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::preview_chapter("08_stats_lab.Rmd")
+bookdown::preview_chapter("08_stats_lab.Rmd")
+browseURL("docs/lab-3-statistics-in-hydrology-25-pts.html")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+bookdown::preview_chapter("16_dem_download_delineation.Rmd")
+browseURL("docs/lab-7-downloading-dems-and-delineating-watersheds-5-pts.html")
+bookdown::preview_chapter('index.Rmd')
+browseURL("docs/index.html")
+bookdown::preview_chapter("index.Rmd")
+browseURL("docs/index.html")
+library(tidyverse)
+library(rnoaa) # for downloading data from GHCN
+site <- "USC00241044"
+vars <- c("prcp", "tmax", "tmin")
+end <- as_date("2023-09-30")
+met_data <- meteo_pull_monitors(
+monitors = site,
+keep_flags = FALSE,
+date_min = NULL,
+date_max = end,
+var = vars
+)
+View(met_data)
+View(met_data)
+View(met_data_adj)
+libary(snotelr)
+library(snotelr)
+dat <- as_tibble(snotel_download(site_id = c(384, 587), internal = TRUE)) %>%
+# this converts the date string into a date object
+mutate(date = ymd(date)) %>%
+# filter for 1981 - 2023 WY
+filter(date > as_date("1980-10-01") & date < as_date("2023-09-30")) %>%
+# this adds a column that contains the water year
+mutate(wtr_yr = if_else(lubridate::month(date) > 9, lubridate::year(date) + 1, lubridate::year(date))) %>%
+select(description, site_id, date, wtr_yr, swe = snow_water_equivalent, p = precipitation, p_cum = precipitation_cumulative, temp_max = temperature_max, temp_min = temperature_min, temp_mean = temperature_mean)
+View(dat)
+install.packages("remotes")
+install.packages("remotes")
+install.github("https://stackoverflow.com/questions/49383436/rnoaa-r-package-data-access")
+install_github("https://github.com/ropensci/rnoaa")
+install.packages("install_github")
+station_data <- ghcnd_stations()
+library(rnoaa)
+station_data <- ghcnd_stations()
+View(station_data)
+mt_stations <- station_data %>%
+filter(state == "MT")
+#install.packages("snotelr")
+library(tidyverse)
+mt_stations <- station_data %>%
+filter(state == "MT")
+View(mt_stations)
+bookdown::preview_chapter("08_stats_lab.Rmd")
+browseURL("docs/lab-3-statistics-in-hydrology-25-pts.html")
+bookdown::preview_chapter("11_flow_duration_curves.Rmd")
+browseURL("docs/flow-duration-curves-6-pts-peer-grading.html")
+bookdown::preview_chapter("14_climate_trends_lab.Rmd")
+bookdown::preview_chapter("14_climate_trends_lab.Rmd")
+install.packages("remotes")
+bookdown::preview_chapter("14_climate_trends_lab.Rmd")
+bookdown::preview_chapter("14")
+bookdown::preview_chapter("14_climate_trends_lab.Rmd")
+browseURl("docs/lab-6-climate-trends-analysis-25-pts.html")
+bookdown::browseURL("docs/lab-6-climate-trends-analysis-25-pts.html")
+bookdown::browseURL("docs/lab-6-climate-trends-analysis-25-pts.html")
+bookdown::preview_chapter("11+flow_duration_curves.Rmd")
+bookdown::preview_chapter("11_flow_duration_curves.Rmd")
+bookdown::browseURL("docs/flow-duration-curves-6-pts-peer-grading.html")
+bookdown::browseURL("docs/flow-duration-curves-6-pts-peer-grading.html")
+browseURL("docs/flow-duration-curves-6-pts-peer-grading.html")
+bookdown::preview_chapter("14_climate_trends_lab.Rmd")
+browseURL("docs/lab-6-climate-trend-analysis-25-pts.html")
+library(tidyverse)
+library(rnoaa) # for downloading data from GHCN
+#install.packages("remotes")
+#remotes::install_github("ropensci/rnoaa")
+#install.packages("trend")
+library(trend) # for Mann-Kendall trend analysis and Sen's slope
+site <- "USC00241044"
+vars <- c("prcp", "tmax", "tmin")
+end <- as_date("2023-09-30")
+met_data <- meteo_pull_monitors(
+monitors = site,
+keep_flags = FALSE,
+date_min = NULL,
+date_max = end,
+var = vars
+)
+met_data_adj <- met_data %>%
+mutate(prcp = prcp/10,
+tmin = tmin/10,
+tmax = tmax/10,
+tavg = ((tmin + tmax)/2))
+met_data_adj <- met_data_adj %>%
+filter(date > "1900-09-30") %>%
+mutate(wtr_yr = if_else(month(date) > 9,
+year(date) + 1,
+year(date))) %>%
+select(id, date, wtr_yr, everything())
+met_data_an <- met_data_adj %>%
+group_by(wtr_yr) %>%
+reframe(tot_p = sum(prcp, na.rm = TRUE), # Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize.
+min_min_t = min(tmin, na.rm = TRUE),
+max_min_t = max(tmin, na.rm = TRUE),
+min_max_t = min(tmax, na.rm = TRUE),
+max_max_t = max(tmax, na.rm = TRUE),
+av_t = mean(tavg, na.rm = TRUE))
+met_test_data <- met_data_an %>%
+filter(wtr_yr > 1989 & wtr_yr < 2021) %>%
+select(-wtr_yr)
+test <- apply(X = met_test_data,    # The data frame you want to apply to
+FUN = sens.slope,           # The function you want to run
+MARGIN = 2)                 # Margin (axis) to apply over 1 = rows, 2 = columns
+test_map <- met_test_data %>%
+map(sens.slope)
+#Extract values from the list using map. This part does the p-values.
+p_vals <- test_map[1:6] %>%
+map(3) %>%
+flatten_dfc() %>%
+pivot_longer(names_to = "parameter",
+values_to = "p_value",
+cols = everything())
+#Same as above but for Sens's slopes.
+sens <- test_map[1:6] %>%
+map(1) %>%
+flatten_dfc() %>%
+pivot_longer(values_to = "sens_slope",
+cols = everything()) %>%
+select(-name)
+#Last, we bind the two data frames together so we have the p-values and the Sen's slopes both in one df.
+sens_p <- cbind(p_vals, sens)
+View(sens_p)
+View(test)
+bookdown::preview_chapter("11_flow_duration_curves.Rmd")
+browseURL("docs/flow-duration-curves-6-pts-peer-grading.html")
+bookdown::preview_chapter("index.Rmd")
+browseURL("docs/index.html")
+readNWISsite()
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = "00045","0060",
+service="dv")
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","0060"),
+service="dv")
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv")
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv"
+start = "2022-10-01",
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+start = "2022-10-01",
+end = "2023-09-30")
+?readNWISdata
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30")
+View(dataTemp)
+tail(dataTemp)
+dataTemp <- dataTemp %>%
+renameNWISColumns()
+View(dataTemp)
+library(tidyvers)
+library(tidyverse)
+library(dataRetrieval)
+rm(Qdat)
+siteINFO <- readNWISsite(siteNo)
+siteINFO <- readNWISsite(siteno)
+View(siteINFO)
+siteINFO <- whatNWISdata(siteno)
+?whatNWISdat
+?whatNWISdata
+siteINFO <- whatNWISdata(siteno = siteno)
+siteINFO <- whatNWISdata(siteno = siteno, service = "dv")
+siteINFO <- whatNWISdata(siteno = siteNo, service = "dv")
+siteno <- "09153270"
+siteINFO <- whatNWISdata(siteno = siteno, service = "dv")
+uvData <- whatNWISdata(siteNumber = "05114000",
+service = "uv")
+siteINFO <- whatNWISdata(siteNumber = siteno, service = "dv")
+View(siteINFO)
+?readNWISsite
+siteINFO <- readNWISsite(siteno)
+statCd = c("00060", "00010"
+dailyDataAvailable <- whatNWISdata(
+dailyDataAvailable <- whatNWISdata(
+siteNumber = siteNo,
+service = "dv",
+statCd = c("00060", "00010")
+)
+dailyDataAvailable <- whatNWISdata(
+siteNumber = siteno,
+service = "dv",
+statCd = c("00060", "00010")
+)
+View(dailyDataAvailable)
+dailyDataAvailable <- whatNWISdata(
+siteNumber = siteno,
+service = "dv"
+)
+View(dailyDataAvailable)
+View(dataTemp)
+head(dataTemp)
+str(dataTemp)
+dataTemp <- dataTemp %>%
+select(date = dateTime, p_sum = Precip_Sum, flow = Flow)
+dataTemp <- dataTemp %>%
+select(dateTime = date, Precip_Sum = p_sum, Flow = flow)
+?select
+dplyr::select?
+dplyr::select?
+?dplyr::select
+dataTemp <- dataTemp %>%
+select(dateTime, Precip_Sum, Flow)
+View(dataTemp)
+View(dataTemp)
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30")
+View(dataTemp)
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30",
+renameNWISColumns())
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30",
+renameNWISColumns())
+dataTemp <- dataTemp %>%
+renameNWISColumns()
+View(dataTemp)
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00045","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30",
+renameNWISColumns())
+dataTemp <- dataTemp %>%
+renameNWISColumns() %>%
+select(dateTime, Precip_Sum, Flow)
+df <- dataTemp %>%
+renameNWISColumns() %>%
+select(dateTime, Precip_Sum, Flow)
+View(df)
+df <- dataTemp %>%
+renameNWISColumns() %>%
+select(date = dateTime, p_sum = Precip_Sum, q =Flow)
+View(df)
+df %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_bar(stat_identity())
+df %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_bar(stat_identity())
+df %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_bar()
+df %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_point()
+View(dataTemp)
+df <- dataTemp %>%
+renameNWISColumns() %>%
+select(date = dateTime, p_sum = Precip_Sum, q =Flow) %>%
+as_tibble()
+max(df$date)
+df %>%
+filter(date > "2023-07-01" & date < "2023-08-01") %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_point()
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00010","00060"),
+service="dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30")
+df %>%
+filter(date > "2023-07-01" & date < "2023-07-08") %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_point()
+df <- dataTemp %>%
+renameNWISColumns() %>%
+select(date = dateTime, p_sum = Precip_Sum, q =Flow) %>%
+mutate(day = day(date)) %>%
+group_by(day) %>%
+reframe(p_sum = cumsum(p_sum)) %>%
+as_tibble()
+df %>%
+filter(date > "2023-07-01" & date < "2023-07-08") %>%
+ggplot(aes(x = date, y = p_sum)) +
+geom_point()
+View(df)
+View(dataTemp)
+View(dataTemp)
+test <- dataTemp %>%
+filter(date > "2023-07-01" & date < "2023-07-08")
+View(dataTemp)
+test <- dataTemp %>%
+filter(dateTime > "2023-07-01" & dateTime < "2023-07-08")
+View(test)
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00060"),
+service = "dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30")
+dataTemp <- readNWISdata(stateCd = "CO",
+parameterCd = c("00060"),
+service = "dv",
+startDate = "2023-06-01",
+endDate = "2023-09-30")
+readNWISdata
+?readNWISdata
+dataTemp <- readNWISdata(site = siteno,
+parameterCd = c("00060"),
+service = "dv",
+startDate = "2023-06-01",
+endDate = "2023-09-30")
+dataTemp <- readNWISdata(sites = siteno,
+parameterCd = c("00045", "00060"),
+service = "dv",
+startDate = "2023-06-01",
+endDate = "2023-09-30")
+View(dataTemp)
+dataTemp <- readNWISdata(sites = siteno,
+parameterCd = c("00045", "00060"),
+service = "dv",
+startDate = "2023-06-01",
+endDate = "2023-09-30") %>%
+renameNWISColumns()
+View(dataTemp)
+dataTemp <- readNWISdata(sites = siteno,
+parameterCd = c("00045", "00060"),
+service = "dv",
+startDate = "2022-10-01",
+endDate = "2023-09-30") %>%
+renameNWISColumns()
+3180 * 2
+6360 * 0.25
+library(tidyverse)
+pineQ <- read_csv("PINE_Jan-Mar_2010.csv")
+View(pineQ)
+shapiro.test(pineQ$cfs)
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+browseURL("docs/index.html")
+bookdown::render_book('index.Rmd')
+browseURL("docs/index.html")
+bookdown::render_book("index.Rmd")
+?as_date
+library(tidyverse)
+bookdown::render_book("index.Rmd")
+#install.packages("dataRetrieval")
+#install.packages("leaflet")
+install.packages("tidyverse")
+install.packages("tidyverse")
+install.packages("tidyverse")
+install.packages("tidyverse")
+bookdown::render_book("index.Rmd")
+bookdown::render_book("index.Rmd")

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545</title>
   <meta name="description" content="Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
@@ -51,28 +51,29 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 <link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
 <script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -229,9 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#this-is-knitr-settings.-knitr-is-a-package-that-will-turn-this-rmd-to-an-html."><i class="fa fa-check"></i><b>6.1.1</b> This is knitr settings. Knitr is a package that will turn this Rmd to an html.</a></li>
-<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.2</b> Load the necessary packages.</a></li>
-<li class="chapter" data-level="6.1.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.3</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.1</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#summary-14-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (14 pts)</a></li>
 <li class="chapter" data-level="6.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-6-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (6 pts)</a></li>
@@ -341,21 +341,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.2.1" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#identifying-the-question"><i class="fa fa-check"></i><b>17.2.1</b> Identifying the question</a></li>
 <li class="chapter" data-level="17.2.2" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#modeling-approaches"><i class="fa fa-check"></i><b>17.2.2</b> Modeling approaches</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-1-3-pts"><i class="fa fa-check"></i><b>17.3</b> Question 1 (3 pts)</a></li>
-<li class="chapter" data-level="17.4" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-flow-data"><i class="fa fa-check"></i><b>17.4</b> Download and explore flow data</a></li>
-<li class="chapter" data-level="17.5" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-flow-values"><i class="fa fa-check"></i><b>17.5</b> Extract peak flow values</a></li>
-<li class="chapter" data-level="17.6" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#choose-snotel-sites"><i class="fa fa-check"></i><b>17.6</b> Choose Snotel Sites</a></li>
-<li class="chapter" data-level="17.7" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#working-with-spatial-data"><i class="fa fa-check"></i><b>17.7</b> Working with spatial data</a></li>
-<li class="chapter" data-level="17.8" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#download-and-explore-snotel"><i class="fa fa-check"></i><b>17.8</b> Download and explore Snotel</a></li>
-<li class="chapter" data-level="17.9" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-3-points"><i class="fa fa-check"></i><b>17.9</b> Question 2 (3 points)</a></li>
-<li class="chapter" data-level="17.10" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#extract-peak-swe-values"><i class="fa fa-check"></i><b>17.10</b> Extract peak SWE values</a></li>
-<li class="chapter" data-level="17.11" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#peak-swe-and-q"><i class="fa fa-check"></i><b>17.11</b> Peak SWE and Q</a></li>
-<li class="chapter" data-level="17.12" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-2-points"><i class="fa fa-check"></i><b>17.12</b> Question (2 points)</a></li>
-<li class="chapter" data-level="17.13" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#model-inputs"><i class="fa fa-check"></i><b>17.13</b> Model inputs</a></li>
-<li class="chapter" data-level="17.14" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#run-model"><i class="fa fa-check"></i><b>17.14</b> Run model</a></li>
-<li class="chapter" data-level="17.15" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-4-2-points"><i class="fa fa-check"></i><b>17.15</b> Question 4 (2 points)</a></li>
-<li class="chapter" data-level="17.16" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-5-3-points"><i class="fa fa-check"></i><b>17.16</b> Question 5 (3 points)</a></li>
-<li class="chapter" data-level="17.17" data-path="modeling-in-hydrology-16-pts.html"><a href="modeling-in-hydrology-16-pts.html#question-6-3-point"><i class="fa fa-check"></i><b>17.17</b> Question 6 (3 point)</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="flow-duration-curves-6-pts.html"><a href="flow-duration-curves-6-pts.html"><i class="fa fa-check"></i><b>18</b> Flow Duration Curves (6 pts)</a>
 <ul>
@@ -397,59 +382,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here we are going to learn how to write a for loop to download some data and name files. We will do two sites for simplicity, but this can be fed as many sites as you wish!</p>
 <div id="libraries" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Libraries<a href="for-loops.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="for-loops.html#cb144-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb144-2"><a href="for-loops.html#cb144-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="for-loops.html#cb194-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb194-2"><a href="for-loops.html#cb194-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
 </div>
 <div id="defining-parameters" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> Defining parameters<a href="for-loops.html#defining-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You could type out the sites and names or you could pull it from some whatNWISsites call.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="for-loops.html#cb145-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;06037500&quot;</span>, <span class="st">&quot;12363000&quot;</span>)</span>
-<span id="cb145-2"><a href="for-loops.html#cb145-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;flathead&quot;</span>)</span>
-<span id="cb145-3"><a href="for-loops.html#cb145-3" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;00060&quot;</span>, <span class="st">&quot;00010&quot;</span>) <span class="co"># This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. </span></span>
-<span id="cb145-4"><a href="for-loops.html#cb145-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1900-10-01&quot;</span>) <span class="co"># Just a nice round number for start time. </span></span>
-<span id="cb145-5"><a href="for-loops.html#cb145-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>) <span class="co">#End of last water year. </span></span>
-<span id="cb145-6"><a href="for-loops.html#cb145-6" tabindex="-1"></a>service <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># Daily values</span></span>
-<span id="cb145-7"><a href="for-loops.html#cb145-7" tabindex="-1"></a></span>
-<span id="cb145-8"><a href="for-loops.html#cb145-8" tabindex="-1"></a><span class="co"># Removed those sites for testing</span></span>
-<span id="cb145-9"><a href="for-loops.html#cb145-9" tabindex="-1"></a><span class="co"># &quot;12363000&quot;, &quot;13296000&quot;, &quot;12344000&quot;, &quot;12447200&quot;, &quot;13331500&quot;, &quot;06191500&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="for-loops.html#cb195-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;06037500&quot;</span>, <span class="st">&quot;12363000&quot;</span>)</span>
+<span id="cb195-2"><a href="for-loops.html#cb195-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;flathead&quot;</span>)</span>
+<span id="cb195-3"><a href="for-loops.html#cb195-3" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;00060&quot;</span>, <span class="st">&quot;00010&quot;</span>) <span class="co"># This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. </span></span>
+<span id="cb195-4"><a href="for-loops.html#cb195-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1900-10-01&quot;</span>) <span class="co"># Just a nice round number for start time. </span></span>
+<span id="cb195-5"><a href="for-loops.html#cb195-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>) <span class="co">#End of last water year. </span></span>
+<span id="cb195-6"><a href="for-loops.html#cb195-6" tabindex="-1"></a>service <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># Daily values</span></span>
+<span id="cb195-7"><a href="for-loops.html#cb195-7" tabindex="-1"></a></span>
+<span id="cb195-8"><a href="for-loops.html#cb195-8" tabindex="-1"></a><span class="co"># Removed those sites for testing</span></span>
+<span id="cb195-9"><a href="for-loops.html#cb195-9" tabindex="-1"></a><span class="co"># &quot;12363000&quot;, &quot;13296000&quot;, &quot;12344000&quot;, &quot;12447200&quot;, &quot;13331500&quot;, &quot;06191500&quot;</span></span></code></pre></div>
 </div>
 <div id="writing-the-for-loop" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Writing the for loop<a href="for-loops.html#writing-the-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Instead of writing a function, we use for(i in sites). So this will run through the list of sites and download the data and do whatever else you tell it. Then we create a filename that is data_, i. So it will write out data_06037500.csv for the first, data_12363000.csv for the second, so on. Then I just read the .csv in to check and make sure it worked.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="for-loops.html#cb146-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb146-2"><a href="for-loops.html#cb146-2" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb146-3"><a href="for-loops.html#cb146-3" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb146-4"><a href="for-loops.html#cb146-4" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, i, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb146-5"><a href="for-loops.html#cb146-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb146-6"><a href="for-loops.html#cb146-6" tabindex="-1"></a>}</span>
-<span id="cb146-7"><a href="for-loops.html#cb146-7" tabindex="-1"></a></span>
-<span id="cb146-8"><a href="for-loops.html#cb146-8" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_06037500.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="for-loops.html#cb196-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb196-2"><a href="for-loops.html#cb196-2" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb196-3"><a href="for-loops.html#cb196-3" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb196-4"><a href="for-loops.html#cb196-4" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, i, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb196-5"><a href="for-loops.html#cb196-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb196-6"><a href="for-loops.html#cb196-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="for-loops.html#cb201-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_06037500.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 35500 Columns: 12</code></pre>
+<pre><code>## ── Column specification ─────────────
+## Delimiter: &quot;,&quot;
+## chr  (7): agency_cd, site_no, Wte...
+## dbl  (4): Wtemp_Max, Wtemp_Min, W...
+## dttm (1): dateTime
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="adding-second-for" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Adding second for<a href="for-loops.html#adding-second-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here, I’ve added a second for. For i in sites and for j in names. So when we get to the naming we look to the j for the name to put that in the title of the .csv</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="for-loops.html#cb147-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb147-2"><a href="for-loops.html#cb147-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
-<span id="cb147-3"><a href="for-loops.html#cb147-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb147-4"><a href="for-loops.html#cb147-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb147-5"><a href="for-loops.html#cb147-5" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb147-6"><a href="for-loops.html#cb147-6" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb147-7"><a href="for-loops.html#cb147-7" tabindex="-1"></a>  }</span>
-<span id="cb147-8"><a href="for-loops.html#cb147-8" tabindex="-1"></a>}</span>
-<span id="cb147-9"><a href="for-loops.html#cb147-9" tabindex="-1"></a></span>
-<span id="cb147-10"><a href="for-loops.html#cb147-10" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_salmon.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="for-loops.html#cb204-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb204-2"><a href="for-loops.html#cb204-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
+<span id="cb204-3"><a href="for-loops.html#cb204-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb204-4"><a href="for-loops.html#cb204-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb204-5"><a href="for-loops.html#cb204-5" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb204-6"><a href="for-loops.html#cb204-6" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
+<span id="cb204-7"><a href="for-loops.html#cb204-7" tabindex="-1"></a>  }</span>
+<span id="cb204-8"><a href="for-loops.html#cb204-8" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="for-loops.html#cb213-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_salmon.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 34963 Columns: 12</code></pre>
+<pre><code>## ── Column specification ─────────────
+## Delimiter: &quot;,&quot;
+## chr  (6): agency_cd, Wtemp_Max_cd...
+## dbl  (5): site_no, Wtemp_Max, Wte...
+## dttm (1): dateTime
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="removing-the-tmp-file" class="section level2 hasAnchor" number="12.5">
 <h2><span class="header-section-number">12.5</span> Removing the tmp file<a href="for-loops.html#removing-the-tmp-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This does the same thing, just removes the tmp file at the end to clean up the global environment.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="for-loops.html#cb148-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb148-2"><a href="for-loops.html#cb148-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
-<span id="cb148-3"><a href="for-loops.html#cb148-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb148-4"><a href="for-loops.html#cb148-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb148-5"><a href="for-loops.html#cb148-5" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), tmp)</span>
-<span id="cb148-6"><a href="for-loops.html#cb148-6" tabindex="-1"></a>  <span class="fu">rm</span>(tmp) </span>
-<span id="cb148-7"><a href="for-loops.html#cb148-7" tabindex="-1"></a>  }</span>
-<span id="cb148-8"><a href="for-loops.html#cb148-8" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="for-loops.html#cb216-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
+<span id="cb216-2"><a href="for-loops.html#cb216-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
+<span id="cb216-3"><a href="for-loops.html#cb216-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb216-4"><a href="for-loops.html#cb216-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
+<span id="cb216-5"><a href="for-loops.html#cb216-5" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), tmp)</span>
+<span id="cb216-6"><a href="for-loops.html#cb216-6" tabindex="-1"></a>  <span class="fu">rm</span>(tmp) </span>
+<span id="cb216-7"><a href="for-loops.html#cb216-7" tabindex="-1"></a>  }</span>
+<span id="cb216-8"><a href="for-loops.html#cb216-8" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i,
+## parameterCd = params, service =
+## service, : NWIS servers are slated
+## for decommission. Please begin to
+## migrate to read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
 
 </div>
 </div>

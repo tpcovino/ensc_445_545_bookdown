@@ -25,7 +25,7 @@ We will use the tidyverse a lot this semester. It is a suite of packages that ha
 You only have to install the library once. You have to load it using the library() function each time you start an R session.
 
 ```{r}
-options(knitr.duplicate.label = "allow")
+
 #install.packages("tidyverse")
 library(tidyverse)
 

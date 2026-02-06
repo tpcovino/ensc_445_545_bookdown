@@ -69,9 +69,6 @@ plot_fun(x, y)
 
 ```
 
-
-
-
 ```{r}
 met_data_adj <- met_data %>% 
    mutate(prcp = prcp/10, 

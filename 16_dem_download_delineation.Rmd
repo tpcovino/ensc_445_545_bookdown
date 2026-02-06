@@ -203,7 +203,7 @@ But let's clip that hillshade to the delineated watershed.
 ```{r}
 
 # clip_dem <- ws * output_tiles
-# clip_dem_df <- as.data.frame(clip_dem, xy = TRUE)
+# clip_dem_df <- as_data.frame(clip_dem, xy = TRUE)
 # colnames(clip_dem_df)[3] <- "elevation"
 
 # remove rows of data frame with one or more NA's,using complete.cases
