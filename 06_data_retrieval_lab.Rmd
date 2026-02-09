@@ -19,7 +19,7 @@ library(patchwork)
 
 ### Workflow
 
-Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to 10/1/2022.
+Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to the end of the previous water year (change dates below).
 ```{r}
 # Load the stream gauge data
 # Configs that could be changed ...
@@ -78,6 +78,13 @@ flows <- readNWISdata(sites = sites, parameterCd = param_cd, service = service_c
 #   monitoring_location_id = sites_v2,
 #   parameter_code = param_cd
 # )
+
+# OR
+
+# mt_test <- read_waterdata_monitoring_location(state_name = "Montana") %>% 
+  # filter(site_type == "Stream")
+
+# And then thin for sites in Park county. 
 
 #write_csv(flows, "flows.csv")
 #flows <- read_csv("flows.csv")
