@@ -70,7 +70,7 @@ sites <- stream_gauges$site_no
 
 flows <- readNWISdata(sites = sites, parameterCd = param_cd, service = service_cd, startDate = start, endDate = end) %>% renameNWISColumns()
 
-# The code below is for the new function of dataRetrieval
+# The code below is for the new function of dataRetrieval (i.e., read_waterdata_daily)
 
 #sites_v2 <- paste("USGS-", stream_gauges$site_no, sep = "") 
 
