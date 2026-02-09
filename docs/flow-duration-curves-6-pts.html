@@ -412,10 +412,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb289-5"><a href="flow-duration-curves-6-pts.html#cb289-5" tabindex="-1"></a></span>
 <span id="cb289-6"><a href="flow-duration-curves-6-pts.html#cb289-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(siteno, parameter, startDate, endDate) <span class="sc">%&gt;%</span> </span>
 <span id="cb289-7"><a href="flow-duration-curves-6-pts.html#cb289-7" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
-<pre><code>## Warning in readNWISdv(siteno,
-## parameter, startDate, endDate): NWIS
-## servers are slated for decommission.
-## Please begin to migrate to
+<pre><code>## Warning in readNWISdv(siteno, parameter,
+## startDate, endDate): NWIS servers are slated
+## for decommission. Please begin to migrate to
 ## read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?site=02138500&amp;format=waterml%2C1.1&amp;ParameterCd=00060&amp;StatCd=00003&amp;startDT=1960-01-01&amp;endDT=2020-01-01</code></pre>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="flow-duration-curves-6-pts.html#cb292-1" tabindex="-1"></a><span class="co">#Look at the data</span></span>

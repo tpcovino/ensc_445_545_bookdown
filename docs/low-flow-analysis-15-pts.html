@@ -421,11 +421,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb261-7"><a href="low-flow-analysis-15-pts.html#cb261-7" tabindex="-1"></a>  <span class="fu">addWaterYear</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb261-8"><a href="low-flow-analysis-15-pts.html#cb261-8" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb261-9"><a href="low-flow-analysis-15-pts.html#cb261-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agency_cd)</span></code></pre></div>
-<pre><code>## Warning in readNWISdv(site =
-## site_no, parameterCd = parameter,
-## startDate = startDate, : NWIS
-## servers are slated for decommission.
-## Please begin to migrate to
+<pre><code>## Warning in readNWISdv(site = site_no,
+## parameterCd = parameter, startDate =
+## startDate, : NWIS servers are slated for
+## decommission. Please begin to migrate to
 ## read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?site=06043500&amp;format=waterml%2C1.1&amp;ParameterCd=00060&amp;StatCd=00003&amp;startDT=1990-10-01&amp;endDT=2022-10-01</code></pre>
 </div>

@@ -1,7 +1,7 @@
 
 # dataRetrieval and area normalized flows (20 pts)
 
-[**Repo here**](https://github.com/tpcovino/lab_3){target="_blank"}
+[**Repo here**](https://github.com/tpcovino/06_data_retrieval_lab){target="_blank"}
 
 ## Intro
 
@@ -69,6 +69,15 @@ Download the Q data for the gauges and create a df called "flows".
 sites <- stream_gauges$site_no
 
 flows <- readNWISdata(sites = sites, parameterCd = param_cd, service = service_cd, startDate = start, endDate = end) %>% renameNWISColumns()
+
+# The code below is for the new function of dataRetrieval
+
+#sites_v2 <- paste("USGS-", stream_gauges$site_no, sep = "") 
+
+# flows_v2 <- read_waterdata_daily(
+#   monitoring_location_id = sites_v2,
+#   parameter_code = param_cd
+# )
 
 #write_csv(flows, "flows.csv")
 #flows <- read_csv("flows.csv")

@@ -427,9 +427,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb243-8"><a href="climate-trend-analysis-18-pts.html#cb243-8" tabindex="-1"></a>}</span>
 <span id="cb243-9"><a href="climate-trend-analysis-18-pts.html#cb243-9" tabindex="-1"></a></span>
 <span id="cb243-10"><a href="climate-trend-analysis-18-pts.html#cb243-10" tabindex="-1"></a><span class="fu">plot_fun</span>(x, y)</span></code></pre></div>
-<pre><code>## Warning: Removed 93 rows containing missing
-## values or values outside the scale
-## range (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 93 rows containing missing values or
+## values outside the scale range
+## (`geom_point()`).</code></pre>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-127-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="climate-trend-analysis-18-pts.html#cb245-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data <span class="sc">%&gt;%</span> </span>
 <span id="cb245-2"><a href="climate-trend-analysis-18-pts.html#cb245-2" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">prcp =</span> prcp<span class="sc">/</span><span class="dv">10</span>, </span>
@@ -495,8 +495,7 @@ do_stuff()
 <span id="cb249-5"><a href="climate-trend-analysis-18-pts.html#cb249-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
 <span id="cb249-6"><a href="climate-trend-analysis-18-pts.html#cb249-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Total annual P (mm)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Water year&quot;</span>) <span class="sc">+</span></span>
 <span id="cb249-7"><a href="climate-trend-analysis-18-pts.html#cb249-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~
-## x&#39;</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-131-2.png" alt="" width="672" /></p>
 </div>
 <div id="trend-analysis-and-creating-table-1" class="section level2 hasAnchor" number="14.6">
