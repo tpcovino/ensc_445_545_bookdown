@@ -57,8 +57,8 @@ dataretrieval-and-area-normalized-flows-20-pts
 intro
 load-the-necessary-packages.
 workflow
-summary-14-pts
-deliverable-6-pts
+summary-8-pts
+deliverable-4-pts
 statistics-in-hydrology-15-pts
 learning-objectives-2
 questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.

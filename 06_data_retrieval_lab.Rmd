@@ -5,7 +5,12 @@
 
 ## Intro
 
-In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some EDA. You will then do some data analysis on a subset of gauges that meet certain criteria. 
+In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some exploratory data analysis (EDA). You will then do some data analysis on a subset of gauges that meet certain criteria. 
+
+Learning objectives: At the end of this lab students will <br>
+1. Be able to download data using dataRetrieval <br>
+2. Understand volumetric and area normalized flow and their utility <br>
+3. Assess flow generation from different landscapes and propose an explanation for any differences. 
 
 
 ### Load the necessary packages. 
@@ -53,6 +58,20 @@ stream_gauges_info <- whatNWISdata(parameterCd = param_cd, service = service_cd,
 
 ```
 
+The section below is the new function that will replace "whatNWISsites"
+```{r}
+#out_sf <- 
+ # dataRetrieval::read_waterdata_monitoring_location(
+  #  state_name = "Montana", 
+   # site_type = "Stream",
+  #  )
+
+#ggplot(data = out_sf) +
+ # geom_sf()
+
+```
+
+
 Map the gauges. If leaflet isn't working for you, don't worry. This isn't critical, just useful to visualize where the gauges are. 
 ```{r}
 park_map <- leaflet() %>% 
@@ -90,7 +109,7 @@ flows <- readNWISdata(sites = sites, parameterCd = param_cd, service = service_c
 #flows <- read_csv("flows.csv")
 ```
 
-Make a facet wrap to look at the flows for each gauge. Facet by "site_no". 
+Make a facet wrap to look at the volumetric flows for each gauge. Facet by "site_no". What do you observe? 
 ```{r}
 
 ```
@@ -101,7 +120,7 @@ Filter the "flows" df to only include gauges that have data that extends back to
 
 ```
 
-Make another facet wrap of flow at those 4 gauges. Again, filter by "site_no".
+Make another facet wrap of volumetric flow at those 4 gauges. Again, filter by "site_no". What differences in volumetric flow do you observe among the gauges? 
 ```{r}
 
 ```
@@ -144,13 +163,13 @@ Next, you will need to do another join to get the flow data and the drainage are
 
 ```
 
-Now that you have flow at each site in mm/day, make a facet wrap of flow for each gauge in mm/day. This area normalize flow gives us a sense of how much flow a watershed produces per unit area. It also allows us to compare across watersheds of different sizes. Obviously a larger watershed will produce more volumetric flow but will it produce more flow per unit area? Think about it like an hourly wage. You might make more at work because you work more hours, but your friend might make a higher hourly wage. So volumetric is like how much you made this pay period, and area normalized is like how much you made divided by the number of hours you worked. So wet watersheds that produce a lot of flow per unit area, have a high hourly wage, so to speak. 
+Now that you have flow at each site in mm/day, make a facet wrap of flow for each gauge in mm/day. This area normalized flow gives us a sense of how much flow a watershed produces per unit area. It also allows us to compare across watersheds of different sizes. Obviously a larger watershed will produce more volumetric flow but will it produce more flow per unit area? Think about it like an hourly wage. You might make more at work because you work more hours, but your friend might make a higher hourly wage. So volumetric is like how much you made this pay period, and area normalized is like how much you made divided by the number of hours you worked. So wet watersheds that produce a lot of flow per unit area, have a high hourly wage, so to speak. 
 
 ```{r}
 
 ```
 
-Compute and plot total annual flow for each gauge. You will need group_by(site_no, station_nm, year), and reframe. We did this is the first few weeks. Remember to add in na.rm = TRUE in case there are any NA values.  
+Compute and plot total annual flow (in mm/yr) for each gauge. You will need group_by(site_no, station_nm, year), and reframe. We did this is the first few weeks. Remember to add in na.rm = TRUE in case there are any NA values.  
 
 ```{r}
 
@@ -168,23 +187,24 @@ Make a map of the gauges included in this plot of total annual flow to aid in in
 
 ```
 
-## Summary (14 pts)
+## Summary (8 pts)
 
 Using mm/year allows us to compare across gauges with very different volumetric (e.g., cfs or cms) flow rates. Remember that gauges that produce more water per unit area have a higher hourly wage. So from a watershed hydrology perspective, what types of watersheds would produce more water per unit area? Think about the watershed and climate characteristics that might lead to more or less production of water per unit area (aka, area normalized flow). 
 
-Use your plots of mm/year to comment on:\
-1. Does one gauge produce consistently less flow year to year? (2 pts)\
+Use your plots of volumetric and area normalized flow mm/year to comment on:\
 
-2. Does one gauge produce consistently more flow year to year? (2 pts)\
+1. Across the 4 gauges - compare both the volumetric and normalized flows. What do you observe? Are volumetric and area normalized relationships between the gauges the same or different? (2 pts)
 
-3. Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be. (5 pts)\
+2. Does one gauge produce consistently less flow year to year? Does one gauge produce consistently more flow year to year? (2 pts)\
 
-4. For any gauges that seem different than the others, provide a plausible explanation for why that might be. (5 pts) 
+3. Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be. (2 pts)\
+
+4. For any gauge(s) that seem different than the others in terms of area normalized flow, provide an explanation from a climate perspective for why that might be. (2 pts) 
 
 
-## Deliverable (6 pts)
+## Deliverable (4 pts)
 
-Knit this .Rmd to .html and upload both on Canvas. If you can't get to knit, just upload .Rmd. 
+Knit this .Rmd to .html and upload both on D2L. If you can't get to knit, just upload .Rmd. 
 
 Points for clarity and commenting of .Rmd and clarity of figures. 
 
