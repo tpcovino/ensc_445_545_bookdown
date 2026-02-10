@@ -53,7 +53,7 @@ first-lets-map-these-sites.
 joins
 join-practice-example
 now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata.
-dataretrieval-and-area-normalized-flows-20-pts
+dataretrieval-and-area-normalized-flows-12-pts
 intro
 load-the-necessary-packages.
 workflow

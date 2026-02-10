@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 6 dataRetrieval and area normalized flows (12 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 6 dataRetrieval and area normalized flows (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 6 dataRetrieval and area normalized flows (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 For loops | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 6 dataRetrieval and area normalized flows (12 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="functions.html"/>
-<link rel="next" href="daymetr.html"/>
+<link rel="prev" href="dataretrieval.html"/>
+<link rel="next" href="statistics-in-hydrology-15-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -377,140 +377,189 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="for-loops" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> For loops<a href="for-loops.html#for-loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Here we are going to learn how to write a for loop to download some data and name files. We will do two sites for simplicity, but this can be fed as many sites as you wish!</p>
-<div id="libraries" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Libraries<a href="for-loops.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="for-loops.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb202-2"><a href="for-loops.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span></code></pre></div>
+<div id="dataretrieval-and-area-normalized-flows-12-pts" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> dataRetrieval and area normalized flows (12 pts)<a href="dataretrieval-and-area-normalized-flows-12-pts.html#dataretrieval-and-area-normalized-flows-12-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><a href="https://github.com/tpcovino/06_data_retrieval_lab" target="_blank"><strong>Repo here</strong></a></p>
+<div id="intro" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Intro<a href="dataretrieval-and-area-normalized-flows-12-pts.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab we are going to use dataRetrieval and other packages (e.g., tidyverse, patchwork, leaflet) to download and analyze flow data. You are going to download streamflow data for gauges in Park County Montana. You will start by exploring how many gauges there are in the county and mapping them to see where they are. Next you will download the data from the gauges and do some exploratory data analysis (EDA). You will then do some data analysis on a subset of gauges that meet certain criteria.</p>
+<p>Learning objectives: At the end of this lab students will <br>
+1. Be able to download data using dataRetrieval <br>
+2. Understand volumetric and area normalized flow and their utility <br>
+3. Assess flow generation from different landscapes and propose an explanation for any differences.</p>
+<div id="load-the-necessary-packages." class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Load the necessary packages.<a href="dataretrieval-and-area-normalized-flows-12-pts.html#load-the-necessary-packages." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb123-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb123-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-3" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb123-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
 </div>
-<div id="defining-parameters" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Defining parameters<a href="for-loops.html#defining-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You could type out the sites and names or you could pull it from some whatNWISsites call.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="for-loops.html#cb203-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;06037500&quot;</span>, <span class="st">&quot;12363000&quot;</span>)</span>
-<span id="cb203-2"><a href="for-loops.html#cb203-2" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;flathead&quot;</span>)</span>
-<span id="cb203-3"><a href="for-loops.html#cb203-3" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;00060&quot;</span>, <span class="st">&quot;00010&quot;</span>) <span class="co"># This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. </span></span>
-<span id="cb203-4"><a href="for-loops.html#cb203-4" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1900-10-01&quot;</span>) <span class="co"># Just a nice round number for start time. </span></span>
-<span id="cb203-5"><a href="for-loops.html#cb203-5" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>) <span class="co">#End of last water year. </span></span>
-<span id="cb203-6"><a href="for-loops.html#cb203-6" tabindex="-1"></a>service <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># Daily values</span></span>
-<span id="cb203-7"><a href="for-loops.html#cb203-7" tabindex="-1"></a></span>
-<span id="cb203-8"><a href="for-loops.html#cb203-8" tabindex="-1"></a><span class="co"># Removed those sites for testing</span></span>
-<span id="cb203-9"><a href="for-loops.html#cb203-9" tabindex="-1"></a><span class="co"># &quot;12363000&quot;, &quot;13296000&quot;, &quot;12344000&quot;, &quot;12447200&quot;, &quot;13331500&quot;, &quot;06191500&quot;</span></span></code></pre></div>
+<div id="workflow" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Workflow<a href="dataretrieval-and-area-normalized-flows-12-pts.html#workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use dataRetrieval to see how many USGS streamflow gauges there are in Park County that have data from 10/1/1990 to the end of the previous water year (change dates below).</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-1" tabindex="-1"></a><span class="co"># Load the stream gauge data</span></span>
+<span id="cb124-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-2" tabindex="-1"></a><span class="co"># Configs that could be changed ...</span></span>
+<span id="cb124-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-3" tabindex="-1"></a>param_cd <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span> <span class="co"># Parameter code for streamflow . See `dataRetrieval::parameterCdFile` for more.</span></span>
+<span id="cb124-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-4" tabindex="-1"></a>service_cd <span class="ot">&lt;-</span> <span class="st">&quot;dv&quot;</span> <span class="co"># means &quot;daily value&quot;. See `https://waterservices.usgs.gov/rest/` for more info.</span></span>
+<span id="cb124-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-5" tabindex="-1"></a><span class="co"># State code</span></span>
+<span id="cb124-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-6" tabindex="-1"></a>state_cd <span class="ot">&lt;-</span> <span class="st">&quot;MT&quot;</span></span>
+<span id="cb124-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-7" tabindex="-1"></a><span class="co"># County code</span></span>
+<span id="cb124-8"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-8" tabindex="-1"></a>county_cd <span class="ot">&lt;-</span> <span class="st">&quot;Park County&quot;</span></span>
+<span id="cb124-9"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-9" tabindex="-1"></a><span class="co"># set start and end dates for streamflow time series</span></span>
+<span id="cb124-10"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-10" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
+<span id="cb124-11"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-11" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
+<span id="cb124-12"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-12" tabindex="-1"></a>huc_cd <span class="ot">&lt;-</span> <span class="st">&quot;10070003&quot;</span></span>
+<span id="cb124-13"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-13" tabindex="-1"></a></span>
+<span id="cb124-14"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-14" tabindex="-1"></a><span class="co"># Use whatNWISsites to identify what gauges exist that meet the above conditions. However, the whatNWISsites doesn&#39;t always screen out sites that don&#39;t have the exact dates we want. </span></span>
+<span id="cb124-15"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-15" tabindex="-1"></a></span>
+<span id="cb124-16"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb124-16" tabindex="-1"></a>stream_gauges <span class="ot">&lt;-</span> <span class="fu">whatNWISsites</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va)</span></code></pre></div>
+<pre><code>## Warning in whatNWISsites(parameterCd =
+## param_cd, service = service_cd, stateCd =
+## state_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to
+## read_waterdata_monitoring_location</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
+## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/counties?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
+## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/site/?parameterCd=00060&amp;countyCd=30067&amp;startDT=1990-10-01&amp;endDT=2022-10-01&amp;hasDataTypeCd=dv&amp;format=mapper</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb130-1" tabindex="-1"></a><span class="co"># Since whatNWISsites doesn&#39;t always work for the dates we can also run whatNWISdata to filter for the dates and gain some info on the gauges. Both of them are useful to run.  </span></span>
+<span id="cb130-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb130-2" tabindex="-1"></a></span>
+<span id="cb130-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb130-3" tabindex="-1"></a>stream_gauges_info <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
+<span id="cb130-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb130-4" tabindex="-1"></a>  <span class="fu">filter</span>(begin_date <span class="sc">&lt;</span> start, end_date <span class="sc">&gt;</span> end) </span></code></pre></div>
+<pre><code>## Warning in whatNWISdata(parameterCd =
+## param_cd, service = service_cd, stateCd =
+## state_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to
+## read_waterdata_ts_meta</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/counties?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
+## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/site/?seriesCatalogOutput=true&amp;countyCd=30067&amp;startDT=1990-10-01&amp;endDT=2022-10-01</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-1" tabindex="-1"></a><span class="co"># Uncomment the code below to write the csv to save the data locally. This means you don&#39;t have to re-download everytime you work with this. </span></span>
+<span id="cb137-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-2" tabindex="-1"></a><span class="co">#write_csv(stream_gauges, &quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb137-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-3" tabindex="-1"></a><span class="co">#write_csv(stream_gauges_info, &quot;steam_gauges_info.csv&quot;)</span></span>
+<span id="cb137-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-4" tabindex="-1"></a></span>
+<span id="cb137-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-5" tabindex="-1"></a><span class="co"># In the future uncomment the code below to load the csv. </span></span>
+<span id="cb137-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-6" tabindex="-1"></a><span class="co">#stream_gauges &lt;- read_csv(&quot;stream_gauges.csv&quot;)</span></span>
+<span id="cb137-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-7" tabindex="-1"></a><span class="co">#stream_gauges_info &lt;- read_csv(&quot;stream_gauges_info.csv&quot;)</span></span></code></pre></div>
+<p>The section below is the new function that will replace “whatNWISsites”</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-1" tabindex="-1"></a><span class="co">#out_sf &lt;- </span></span>
+<span id="cb138-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-2" tabindex="-1"></a> <span class="co"># dataRetrieval::read_waterdata_monitoring_location(</span></span>
+<span id="cb138-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-3" tabindex="-1"></a>  <span class="co">#  state_name = &quot;Montana&quot;, </span></span>
+<span id="cb138-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-4" tabindex="-1"></a>   <span class="co"># site_type = &quot;Stream&quot;,</span></span>
+<span id="cb138-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-5" tabindex="-1"></a>  <span class="co">#  )</span></span>
+<span id="cb138-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-6" tabindex="-1"></a></span>
+<span id="cb138-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-7" tabindex="-1"></a><span class="co">#ggplot(data = out_sf) +</span></span>
+<span id="cb138-8"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb138-8" tabindex="-1"></a> <span class="co"># geom_sf()</span></span></code></pre></div>
+<p>Map the gauges. If leaflet isn’t working for you, don’t worry. This isn’t critical, just useful to visualize where the gauges are.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-1" tabindex="-1"></a>park_map <span class="ot">&lt;-</span> <span class="fu">leaflet</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb139-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-2" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb139-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-3" tabindex="-1"></a>  <span class="fu">addAwesomeMarkers</span>(<span class="at">data =</span> stream_gauges, <span class="at">lat =</span> <span class="sc">~</span>dec_lat_va, <span class="at">lng =</span> <span class="sc">~</span>dec_long_va, <span class="at">label =</span> <span class="sc">~</span>station_nm, </span>
+<span id="cb139-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-4" tabindex="-1"></a>                    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">&quot;Site&quot;</span>, site_no)) </span>
+<span id="cb139-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-5" tabindex="-1"></a>  </span>
+<span id="cb139-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb139-6" tabindex="-1"></a>park_map</span></code></pre></div>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-5f202f44b422e60caeb5" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5f202f44b422e60caeb5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[45.1121194,44.9923444,45.5972111,46.1671611,45.7383611,45.00283056],[-110.7936667,-110.690975,-110.5664972,-110.5542861,-110.4794694,-110.0018722],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Site 06191500","Site 06191000","Site 06192500","Site 06192980","Site 06195600","Site 06187915"],null,null,null,["Yellowstone River at Corwin Springs MT","Gardner River near Mammoth, YNP","Yellowstone River near Livingston, MT","Shields River ab Smith Cr, nr Wilsall, MT","Shields River nr Livingston MT","Soda Butte Cr at Park Bndry at Silver Gate"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[44.9923444,46.1671611],"lng":[-110.7936667,-110.0018722]}},"evals":[],"jsHooks":[]}</script>
+<p>Download the Q data for the gauges and create a df called “flows”.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb140-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> stream_gauges<span class="sc">$</span>site_no</span>
+<span id="cb140-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb140-2" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb140-3" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> sites, <span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
+<pre><code>## Warning in readNWISdata(sites = sites,
+## parameterCd = param_cd, service =
+## service_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to
+## read_waterdata_daily.</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06191500%2C06191000%2C06192500%2C06192980%2C06195600%2C06187915&amp;parameterCd=00060&amp;startDT=1990-10-01&amp;endDT=2022-10-01&amp;format=waterml%2C1.1</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-1" tabindex="-1"></a><span class="co"># The code below is for the new function of dataRetrieval (i.e., read_waterdata_daily)</span></span>
+<span id="cb143-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-2" tabindex="-1"></a></span>
+<span id="cb143-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-3" tabindex="-1"></a><span class="co">#sites_v2 &lt;- paste(&quot;USGS-&quot;, stream_gauges$site_no, sep = &quot;&quot;) </span></span>
+<span id="cb143-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-4" tabindex="-1"></a></span>
+<span id="cb143-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-5" tabindex="-1"></a><span class="co"># flows_v2 &lt;- read_waterdata_daily(</span></span>
+<span id="cb143-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-6" tabindex="-1"></a><span class="co">#   monitoring_location_id = sites_v2,</span></span>
+<span id="cb143-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-7" tabindex="-1"></a><span class="co">#   parameter_code = param_cd</span></span>
+<span id="cb143-8"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-8" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb143-9"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-9" tabindex="-1"></a></span>
+<span id="cb143-10"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-10" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb143-11"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-11" tabindex="-1"></a></span>
+<span id="cb143-12"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-12" tabindex="-1"></a><span class="co"># mt_test &lt;- read_waterdata_monitoring_location(state_name = &quot;Montana&quot;) %&gt;% </span></span>
+<span id="cb143-13"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-13" tabindex="-1"></a>  <span class="co"># filter(site_type == &quot;Stream&quot;)</span></span>
+<span id="cb143-14"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-14" tabindex="-1"></a></span>
+<span id="cb143-15"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-15" tabindex="-1"></a><span class="co"># And then thin for sites in Park county. </span></span>
+<span id="cb143-16"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-16" tabindex="-1"></a></span>
+<span id="cb143-17"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-17" tabindex="-1"></a><span class="co">#write_csv(flows, &quot;flows.csv&quot;)</span></span>
+<span id="cb143-18"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-18" tabindex="-1"></a><span class="co">#flows &lt;- read_csv(&quot;flows.csv&quot;)</span></span></code></pre></div>
+<p>Make a facet wrap to look at the volumetric flows for each gauge. Facet by “site_no”. What do you observe?</p>
+<p>Filter the “flows” df to only include gauges that have data that extends back to 1990. Hint: you should have 4 gauges. Call this new df “flows_filt”.</p>
+<p>Make another facet wrap of volumetric flow at those 4 gauges. Again, filter by “site_no”. What differences in volumetric flow do you observe among the gauges?</p>
+<p>For the 4 gauges you have kept, convert flow to mm/day.</p>
+<p>This is a unit of depth per time, which we generally refer to as an area normalized flow. To get area normalized flow you divide the volumetric flow (e.g., cubic meters per second, m3/s) by the area of the watershed (e.g., cubic meters, m2). In this example, that division would yield meters per second (m/s). From there you would do some conversion to get to mm/day.</p>
+<p>To do this, you obviously need to know the area of each watershed, which you can get from readNWISsite.</p>
+<p>Also, remember that your Q data are currently in cfs so there are multiple conversions you will need to do.</p>
+<p>You can find this online but the areas given from NWIS are in square miles. I’d recommend converting the area from square miles to square meters. And converting cubic feet per second to cubic meters per second. From there, the instructions above should get you where you want to go.</p>
+<p>You can use whatNWISdata, readNWISsite, and a join (e.g., left_join) to get the names of the sites and the drainage areas in the same df.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb144-1" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) </span></code></pre></div>
+<pre><code>## Warning in whatNWISdata(parameterCd =
+## param_cd, service = service_cd, stateCd =
+## state_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to
+## read_waterdata_ts_meta</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
+## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/counties?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
+## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/site/?seriesCatalogOutput=true&amp;countyCd=30067&amp;startDT=1990-10-01&amp;endDT=2022-10-01</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-1" tabindex="-1"></a><span class="co">#write_csv(site_info_a, &quot;site_info_a.csv&quot;)</span></span>
+<span id="cb150-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-2" tabindex="-1"></a><span class="co">#site_info_a &lt;- read_csv(&quot;site_info_a.csv&quot;)</span></span>
+<span id="cb150-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-3" tabindex="-1"></a></span>
+<span id="cb150-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-4" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> site_info_a <span class="sc">%&gt;%</span> </span>
+<span id="cb150-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-5" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va, alt_va, begin_date, end_date, count_nu)</span>
+<span id="cb150-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-6" tabindex="-1"></a></span>
+<span id="cb150-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb150-7" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(stream_gauges<span class="sc">$</span>site_no)</span></code></pre></div>
+<pre><code>## Warning in
+## readNWISsite(stream_gauges$site_no): NWIS
+## servers are slated for decommission. Please
+## begin to migrate to
+## read_waterdata_monitoring_location</code></pre>
+<pre><code>## GET: https://waterservices.usgs.gov/nwis/site/?siteOutput=Expanded&amp;format=rdb&amp;site=06191500,06191000,06192500,06192980,06195600,06187915</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-1" tabindex="-1"></a><span class="co">#write_csv(site_info_b, &quot;site_info_b.csv&quot;)</span></span>
+<span id="cb153-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-2" tabindex="-1"></a><span class="co">#site_info_b &lt;- read_csv(&quot;site_info_b.csv&quot;)</span></span>
+<span id="cb153-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-3" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-4" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> site_info_b <span class="sc">%&gt;%</span> </span>
+<span id="cb153-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-5" tabindex="-1"></a>  <span class="fu">select</span>(site_no, drain_area_va)</span>
+<span id="cb153-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-6" tabindex="-1"></a></span>
+<span id="cb153-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-7" tabindex="-1"></a>site_info <span class="ot">&lt;-</span> <span class="fu">left_join</span>(site_info_a, site_info_b, <span class="at">by =</span> <span class="st">&quot;site_no&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-8"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb153-8" tabindex="-1"></a>  <span class="fu">filter</span>(site_no <span class="sc">!=</span> <span class="st">&quot;06192980&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187915&quot;</span>, site_no <span class="sc">!=</span> <span class="st">&quot;06187910&quot;</span>) </span></code></pre></div>
+<p>Next, you will need to do another join to get the flow data and the drainage area in the same df. Once you have them in the same df all you need to do is the conversions outlined above.</p>
+<p>Now that you have flow at each site in mm/day, make a facet wrap of flow for each gauge in mm/day. This area normalized flow gives us a sense of how much flow a watershed produces per unit area. It also allows us to compare across watersheds of different sizes. Obviously a larger watershed will produce more volumetric flow but will it produce more flow per unit area? Think about it like an hourly wage. You might make more at work because you work more hours, but your friend might make a higher hourly wage. So volumetric is like how much you made this pay period, and area normalized is like how much you made divided by the number of hours you worked. So wet watersheds that produce a lot of flow per unit area, have a high hourly wage, so to speak.</p>
+<p>Compute and plot total annual flow (in mm/yr) for each gauge. You will need group_by(site_no, station_nm, year), and reframe. We did this is the first few weeks. Remember to add in na.rm = TRUE in case there are any NA values.</p>
+<p>Plot total annual flow from each gauge in mm/year all on the same graph, and color by gauge name.</p>
+<p>Make a map of the gauges included in this plot of total annual flow to aid in interpretation.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb154-1" tabindex="-1"></a><span class="co"># </span></span></code></pre></div>
 </div>
-<div id="writing-the-for-loop" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Writing the for loop<a href="for-loops.html#writing-the-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Instead of writing a function, we use for(i in sites). So this will run through the list of sites and download the data and do whatever else you tell it. Then we create a filename that is data_, i. So it will write out data_06037500.csv for the first, data_12363000.csv for the second, so on. Then I just read the .csv in to check and make sure it worked.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="for-loops.html#cb204-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb204-2"><a href="for-loops.html#cb204-2" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-3"><a href="for-loops.html#cb204-3" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb204-4"><a href="for-loops.html#cb204-4" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, i, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb204-5"><a href="for-loops.html#cb204-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb204-6"><a href="for-loops.html#cb204-6" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="for-loops.html#cb209-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_06037500.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Rows: 35500 Columns: 12</code></pre>
-<pre><code>## ── Column specification ─────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (7): agency_cd, site_no, Wtemp_Max_c...
-## dbl  (4): Wtemp_Max, Wtemp_Min, Wtemp, Flow
-## dttm (1): dateTime
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div id="adding-second-for" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> Adding second for<a href="for-loops.html#adding-second-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here, I’ve added a second for. For i in sites and for j in names. So when we get to the naming we look to the j for the name to put that in the title of the .csv</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="for-loops.html#cb212-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb212-2"><a href="for-loops.html#cb212-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
-<span id="cb212-3"><a href="for-loops.html#cb212-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb212-4"><a href="for-loops.html#cb212-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb212-5"><a href="for-loops.html#cb212-5" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb212-6"><a href="for-loops.html#cb212-6" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
-<span id="cb212-7"><a href="for-loops.html#cb212-7" tabindex="-1"></a>  }</span>
-<span id="cb212-8"><a href="for-loops.html#cb212-8" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="for-loops.html#cb221-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_salmon.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Rows: 34963 Columns: 12</code></pre>
-<pre><code>## ── Column specification ─────────────────────
-## Delimiter: &quot;,&quot;
-## chr  (6): agency_cd, Wtemp_Max_cd, Wtemp_...
-## dbl  (5): site_no, Wtemp_Max, Wtemp_Min, ...
-## dttm (1): dateTime
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="summary-8-pts" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Summary (8 pts)<a href="dataretrieval-and-area-normalized-flows-12-pts.html#summary-8-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using mm/year allows us to compare across gauges with very different volumetric (e.g., cfs or cms) flow rates. Remember that gauges that produce more water per unit area have a higher hourly wage. So from a watershed hydrology perspective, what types of watersheds would produce more water per unit area? Think about the watershed and climate characteristics that might lead to more or less production of water per unit area (aka, area normalized flow).</p>
+<p>Use your plots of volumetric and area normalized flow mm/year to comment on:<br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Across the 4 gauges - compare both the volumetric and normalized flows. What do you observe? Are volumetric and area normalized relationships between the gauges the same or different? (2 pts)</p></li>
+<li><p>Does one gauge produce consistently less flow year to year? Does one gauge produce consistently more flow year to year? (2 pts)<br />
+</p></li>
+<li><p>Which gauges show similar patterns in annual water yield? Provide a plausible explanation for why that might be. (2 pts)<br />
+</p></li>
+<li><p>For any gauge(s) that seem different than the others in terms of area normalized flow, provide an explanation from a climate perspective for why that might be. (2 pts)</p></li>
+</ol>
 </div>
-<div id="removing-the-tmp-file" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Removing the tmp file<a href="for-loops.html#removing-the-tmp-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This does the same thing, just removes the tmp file at the end to clean up the global environment.</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="for-loops.html#cb224-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> sites) {</span>
-<span id="cb224-2"><a href="for-loops.html#cb224-2" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> names) {</span>
-<span id="cb224-3"><a href="for-loops.html#cb224-3" tabindex="-1"></a>  tmp <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> i, <span class="at">parameterCd =</span> params, <span class="at">service =</span> service, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
-<span id="cb224-4"><a href="for-loops.html#cb224-4" tabindex="-1"></a>    <span class="fu">renameNWISColumns</span>()</span>
-<span id="cb224-5"><a href="for-loops.html#cb224-5" tabindex="-1"></a>  <span class="fu">assign</span>(<span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, j, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), tmp)</span>
-<span id="cb224-6"><a href="for-loops.html#cb224-6" tabindex="-1"></a>  <span class="fu">rm</span>(tmp) </span>
-<span id="cb224-7"><a href="for-loops.html#cb224-7" tabindex="-1"></a>  }</span>
-<span id="cb224-8"><a href="for-loops.html#cb224-8" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
-<pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
+<div id="deliverable-4-pts" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Deliverable (4 pts)<a href="dataretrieval-and-area-normalized-flows-12-pts.html#deliverable-4-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Knit this .Rmd to .html and upload both on D2L. If you can’t get to knit, just upload .Rmd.</p>
+<p>Points for clarity and commenting of .Rmd and clarity of figures.</p>
 
 </div>
 </div>
@@ -519,8 +568,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="daymetr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dataretrieval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistics-in-hydrology-15-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -551,7 +600,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/12_for_loop.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/06_data_retrieval_lab.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -559,7 +608,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/12_for_loop.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/06_data_retrieval_lab.Rmd",
     "text": null
   },
   "download": null,

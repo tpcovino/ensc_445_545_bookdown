@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dataretrieval-and-area-normalized-flows-20-pts.html"/>
+<link rel="prev" href="dataretrieval-and-area-normalized-flows-12-pts.html"/>
 <link rel="next" href="statistics-in-hydrology-25-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -226,15 +226,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="dataretrieval.html"><a href="dataretrieval.html#join-practice-example"><i class="fa fa-check"></i><b>5.5</b> Join practice example</a></li>
 <li class="chapter" data-level="5.6" data-path="dataretrieval.html"><a href="dataretrieval.html#now-we-know-what-is-available-so-lets-download-some-data-from-the-gallatin-site-using-readnwisdata."><i class="fa fa-check"></i><b>5.6</b> Now we know what is available so let’s download some data from the Gallatin site using “readNWISdata”.</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html"><i class="fa fa-check"></i><b>6</b> dataRetrieval and area normalized flows (20 pts)</a>
+<li class="chapter" data-level="6" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html"><i class="fa fa-check"></i><b>6</b> dataRetrieval and area normalized flows (12 pts)</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
+<li class="chapter" data-level="6.1" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#intro"><i class="fa fa-check"></i><b>6.1</b> Intro</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.1</b> Load the necessary packages.</a></li>
-<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
+<li class="chapter" data-level="6.1.1" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#load-the-necessary-packages."><i class="fa fa-check"></i><b>6.1.1</b> Load the necessary packages.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#workflow"><i class="fa fa-check"></i><b>6.1.2</b> Workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#summary-8-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (8 pts)</a></li>
-<li class="chapter" data-level="6.3" data-path="dataretrieval-and-area-normalized-flows-20-pts.html"><a href="dataretrieval-and-area-normalized-flows-20-pts.html#deliverable-4-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (4 pts)</a></li>
+<li class="chapter" data-level="6.2" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#summary-8-pts"><i class="fa fa-check"></i><b>6.2</b> Summary (8 pts)</a></li>
+<li class="chapter" data-level="6.3" data-path="dataretrieval-and-area-normalized-flows-12-pts.html"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#deliverable-4-pts"><i class="fa fa-check"></i><b>6.3</b> Deliverable (4 pts)</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistics-in-hydrology-15-pts.html"><a href="statistics-in-hydrology-15-pts.html"><i class="fa fa-check"></i><b>7</b> Statistics in hydrology (15 pts)</a>
 <ul>
@@ -621,7 +621,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb183-2"><a href="statistics-in-hydrology-15-pts.html#cb183-2" tabindex="-1"></a></span>
 <span id="cb183-3"><a href="statistics-in-hydrology-15-pts.html#cb183-3" tabindex="-1"></a>((quantsX[<span class="dv">3</span>]<span class="sc">-</span>quantsX[<span class="dv">2</span>]) <span class="sc">-</span> (quantsX[<span class="dv">2</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>])) <span class="sc">/</span> quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##       50% 
-## -2.144705</code></pre>
+## -2.485324</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="7.9">
@@ -676,7 +676,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0061448, p-value = 0.4781</code></pre>
+## D = 0.0045428, p-value = 0.886</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="statistics-in-hydrology-15-pts.html#cb191-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb191-2"><a href="statistics-in-hydrology-15-pts.html#cb191-2" tabindex="-1"></a></span>
 <span id="cb191-3"><a href="statistics-in-hydrology-15-pts.html#cb191-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -684,7 +684,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.39474, p-value = 0.3728</code></pre>
+## A = 0.12501, p-value = 0.9863</code></pre>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistics-in-hydrology-15-pts.html#cb193-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 </div>
 <div id="question-discuss-with-partner.-we-will-report-as-group." class="section level2 hasAnchor" number="7.12">
@@ -700,7 +700,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
           </div>
         </div>
       </div>
-<a href="dataretrieval-and-area-normalized-flows-20-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dataretrieval-and-area-normalized-flows-12-pts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="statistics-in-hydrology-25-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
