@@ -544,6 +544,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When you compute a standard mean or median, you are giving equal weight to each measurement. Adding up all the values in a sample and dividing by the number of samples is the same as multiplying each value by 1/# of samples. For instance if you had ten samples, to calculate the mean you would add them up and divide by 10. This is the same as multiplying each value by 1/10 and then adding them up. Each value is equally weighted at 1/10.</p>
 <p>There are certain situations in which this is not the ideal way to calculate an average. A common one in hydrology is that you have samples that are supposed to represent different portions of an area. One sample may be taken to measure a forest type that takes up 100 ha of a watershed while another sample represents a forest type that only takes up 4 ha. You may not want to simply average those values!</p>
 <p>Another example is precipitation gages. In the image below, you see there are 5 rain gages. To get a precipitation number for the watershed, we could just average them, or we could assume they represent an area of the watershed and then weight their values by the area they represent. One method of designating the areas is by using Theissen polygons (the middle watershed). Another method of weighting is isohyetal contours, but we won’t worry about that for now!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YjuOfu_1rhs?si=-PfiucdqrExHxPr2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p>{target=“_blank”}</p>
 <p>In the weighted situation, we find the average by multiplying each precipitation values by the proportion of the watershed it represents, shown by the Thiessen polygons, and then add them all together. Let’s do an example.</p>
 <p><img src="images/theissen.png" title="Different types of area averaging" alt="Different types of area averaging" />source: <a href="https://edx.hydrolearn.org/assets/courseware/v1/e5dc65098f1e8c5faacae0e171e28ccf/asset-v1:HydroLearn+HydroLearn401+2019_S2+type@asset+block/l2_image004.png" class="uri">https://edx.hydrolearn.org/assets/courseware/v1/e5dc65098f1e8c5faacae0e171e28ccf/asset-v1:HydroLearn+HydroLearn401+2019_S2+type@asset+block/l2_image004.png</a></p>
 <p>The precip values for the watershed above are 4.5, 5.5, 5.8, 4.7, and 3.0</p>
@@ -621,7 +624,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb183-2"><a href="statistics-in-hydrology.html#cb183-2" tabindex="-1"></a></span>
 <span id="cb183-3"><a href="statistics-in-hydrology.html#cb183-3" tabindex="-1"></a>((quantsX[<span class="dv">4</span>]<span class="sc">-</span>quantsX[<span class="dv">3</span>]) <span class="sc">-</span> (quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">2</span>])) <span class="sc">/</span> quantsX[<span class="dv">4</span>] <span class="sc">-</span> quantsX[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##       75% 
-## -4.413409</code></pre>
+## -4.342332</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="7.9">
@@ -676,7 +679,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0067829, p-value = 0.3216</code></pre>
+## D = 0.0071799, p-value = 0.2419</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="statistics-in-hydrology.html#cb191-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb191-2"><a href="statistics-in-hydrology.html#cb191-2" tabindex="-1"></a></span>
 <span id="cb191-3"><a href="statistics-in-hydrology.html#cb191-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -684,7 +687,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.28042, p-value = 0.6431</code></pre>
+## A = 0.41347, p-value = 0.337</code></pre>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistics-in-hydrology.html#cb193-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 </div>
 <div id="question-discuss-with-partner.-we-will-report-as-group." class="section level2 hasAnchor" number="7.12">
