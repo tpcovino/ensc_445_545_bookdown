@@ -59,7 +59,7 @@ load-the-necessary-packages.
 workflow
 summary-8-pts
 deliverable-4-pts
-statistics-in-hydrology-15-pts
+statistics-in-hydrology
 learning-objectives-2
 questions-disuss-these-with-a-partner-and-then-we-will-discuss-together-as-a-group.
 what-is-the-difference-between-a-sample-and-a-population

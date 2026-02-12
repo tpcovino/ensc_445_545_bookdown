@@ -1,7 +1,7 @@
 
-# Statistics in hydrology (15 pts)
+# Statistics in hydrology
 
-You can find the repo for this activity [here](https://github.com/tpcovino/unit_3_stats){target="_blank"}
+You can find the repo for this activity [here](https://github.com/tpcovino/07_hydro_stats#){target="_blank"}
 
 ## Learning objectives
 
@@ -14,7 +14,7 @@ Reading for this section
 
 [Statistical Methods in Water Resources: Chapter 1](https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf){target="_blank"}
 
-Today will use a new package called patchwork that is an extension to ggplot. See [here](https://exts.ggplot2.tidyverse.org/gallery/){target="_blank"} for ggplot extensions including patchwork. 
+Today will use a package called patchwork that is an extension to ggplot. See [here](https://exts.ggplot2.tidyverse.org/gallery/){target="_blank"} for ggplot extensions including patchwork. And the nortest package to test for normality. 
 
 ```{r}
 
@@ -269,11 +269,11 @@ Which one is more skewed?
 ```{r}
 quantsP <- quantile(pineQ$cfs)
 
-((quantsP[3]-quantsP[2]) - (quantsP[2] - quantsP[1])) / quantsP[3] - quantsP[1]
+((quantsP[4]-quantsP[3]) - (quantsP[3] - quantsP[2])) / quantsP[4] - quantsP[2]
 
 quantsX <- quantile(ExNorm$value)
 
-((quantsX[3]-quantsX[2]) - (quantsX[2] - quantsX[1])) / quantsX[3] - quantsX[1]
+((quantsX[4]-quantsX[3]) - (quantsX[3] - quantsX[2])) / quantsX[4] - quantsX[2]
 ```
 
 ## What is a normal distribution and how can we determine if we have one?
@@ -314,6 +314,7 @@ qqnorm(norm$value)
 ```
 
 ## Questions: disuss these with a partner and then we will discuss together as a group. 
+
 - Do the results change more from run to run when the n is high or low and why?
 
 ## Questions: disuss these with a partner and then we will discuss together as a group. 
