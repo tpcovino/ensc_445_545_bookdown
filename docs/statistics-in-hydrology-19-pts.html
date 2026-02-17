@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 daymetr | Watershed Analysis: ENSC 445/LRES 545</title>
-  <meta name="description" content="Chapter 13 daymetr | Watershed Analysis: ENSC 445/LRES 545" />
+  <title>Chapter 8 Statistics in hydrology (19 pts) | Watershed Analysis: ENSC 445/LRES 545</title>
+  <meta name="description" content="Chapter 8 Statistics in hydrology (19 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 daymetr | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta property="og:title" content="Chapter 8 Statistics in hydrology (19 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 daymetr | Watershed Analysis: ENSC 445/LRES 545" />
+  <meta name="twitter:title" content="Chapter 8 Statistics in hydrology (19 pts) | Watershed Analysis: ENSC 445/LRES 545" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="for-loops.html"/>
-<link rel="next" href="climate-trend-analysis-18-pts.html"/>
+<link rel="prev" href="statistics-in-hydrology.html"/>
+<link rel="next" href="hydrographs-and-rating-curves.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -377,109 +377,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="daymetr" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapter 13</span> daymetr<a href="daymetr.html#daymetr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The daymetr package can be used to download daymet climate data.</p>
-<p><a href="https://cran.r-project.org/web/packages/daymetr/vignettes/daymetr-vignette.html" target="_blank">See here</a></p>
-<p><a href="https://tmieno2.github.io/R-as-GIS-for-Economists/daymet-with-daymetr-and-feddata.html" target="_blank">And here</a></p>
-<p>For some daymetr tutorials.</p>
-<div id="install-packages" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Install Packages<a href="daymetr.html#install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="daymetr.html#cb233-1" tabindex="-1"></a><span class="co"># Install and load required packages</span></span>
-<span id="cb233-2"><a href="daymetr.html#cb233-2" tabindex="-1"></a><span class="co"># install.packages(&quot;daymetr&quot;) #uncomment here to install the package. </span></span>
-<span id="cb233-3"><a href="daymetr.html#cb233-3" tabindex="-1"></a><span class="fu">library</span>(daymetr)</span>
-<span id="cb233-4"><a href="daymetr.html#cb233-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div id="statistics-in-hydrology-19-pts" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Statistics in hydrology (19 pts)<a href="statistics-in-hydrology-19-pts.html#statistics-in-hydrology-19-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Reading for this lab:</p>
+<p><a href="https://www.epa.gov/sites/default/files/2015-06/documents/twri4a3-new.pdf" target="_blank">Statistical Methods in Water Resources: Chapter 1</a></p>
+<p>Questions from the reading (3 pts):</p>
+<ol style="list-style-type: decimal">
+<li><p>Describe the difference between a histogram, pdf, and cdf.</p></li>
+<li><p>Why is the median more useful than the mean value in hydrology?</p></li>
+<li><p>What is the Weibull plotting and what do we use it for?</p></li>
+</ol>
+<p>Repo for this lab:</p>
+<p><a href="https://github.com/tpcovino/stats_lab" target="_blank"><strong>The repo for this lab can be found here</strong></a></p>
+<p>Address each of the questions in the code chunk below and/or by typing outside the chunk (for written answers).</p>
+<div id="problem-1-3-pts" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Problem 1 (3 pts)<a href="statistics-in-hydrology-19-pts.html#problem-1-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load the tidyverse and patchwork libraries and read in the flashy and pine_nfdr datasets.</p>
+<p>Using the flashy dataset, generate two new dataframes. One for the “WestMnts” and one for the “NorthEast” AGGECOREGION. Name these flashy_west and flashy_ne. Next make pdfs of the average basin rainfall (PPTAVG_BASIN) for the WestMnts (flashy_west) and NorthEast (flashy_ne) agricultural ecoregions. On each pdf add vertical lines showing the mean and median. Label the x axis “Average precipitation (mm)” and the y “Density”. Set the x scale limits to 0 - 500 using xlim(c(0, 500)). Save each ggplot as an object and stack them on top of each other. Provide a caption below the figure that states which is on top, which is on bottom, and which color is the mean and which is the median.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="statistics-in-hydrology-19-pts.html#cb194-1" tabindex="-1"></a><span class="co"># Make the ggplot for the NE</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="statistics-in-hydrology-19-pts.html#cb195-1" tabindex="-1"></a><span class="co"># Make the ggplot for the Mountain West</span></span></code></pre></div>
+<p>Use patchwork to stack the NE and West ggplots.</p>
 </div>
-<div id="download-daymet-for-a-specific-location." class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Download daymet for a specific location.<a href="daymetr.html#download-daymet-for-a-specific-location." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="daymetr.html#cb234-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">download_daymet</span>(</span>
-<span id="cb234-2"><a href="daymetr.html#cb234-2" tabindex="-1"></a>  <span class="at">site =</span> <span class="st">&quot;Oak Ridge National Laboratories&quot;</span>,</span>
-<span id="cb234-3"><a href="daymetr.html#cb234-3" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">36.0133</span>,</span>
-<span id="cb234-4"><a href="daymetr.html#cb234-4" tabindex="-1"></a>  <span class="at">lon =</span> <span class="sc">-</span><span class="fl">84.2625</span>,</span>
-<span id="cb234-5"><a href="daymetr.html#cb234-5" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2000</span>,</span>
-<span id="cb234-6"><a href="daymetr.html#cb234-6" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
-<span id="cb234-7"><a href="daymetr.html#cb234-7" tabindex="-1"></a>  <span class="at">internal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb234-8"><a href="daymetr.html#cb234-8" tabindex="-1"></a>  <span class="at">simplify =</span> <span class="cn">TRUE</span> <span class="co"># return tidy data !!</span></span>
-<span id="cb234-9"><a href="daymetr.html#cb234-9" tabindex="-1"></a>  ) </span></code></pre></div>
-<pre><code>## Downloading DAYMET data for: Oak Ridge National Laboratories at 36.0133/-84.2625 latitude/longitude !</code></pre>
-<pre><code>## Done !</code></pre>
+<div id="problem-2-3-pts" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Problem 2 (3 pts)<a href="statistics-in-hydrology-19-pts.html#problem-2-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Calculate the SD and IQR for precipitation for the MtnsWest and Northeast ag-ecoregions. Using the SD, IQR and density plots from above, comment on the distributions of precipitation for the MtnsWest and Northeast ag-ecoregions. Which has a larger spread?</p>
 </div>
-<div id="here-are-the-daymet-variables" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">13.3</span> Here are the daymet variables:<a href="daymetr.html#here-are-the-daymet-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>..$ year</p>
-<p>..$ yday</p>
-<p>..$ dayl..s.</p>
-<p>..$ prcp..mm.day.</p>
-<p>..$ srad..W.m.2.</p>
-<p>..$ swe..kg.m.2.</p>
-<p>..$ tmax..deg.c.</p>
-<p>..$ tmin..deg.c.</p>
-<p>..$ vp..Pa.</p>
-<p>Those variables are: year, day of yeat, day length in seconds, precip in mm/day, solar radiation in w/m2, swe in kg/m2, tmax in C, tmin in C, and vapor pressure in Pascals.</p>
+<div id="problem-3-2-pts-1" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Problem 3 (2 pts)<a href="statistics-in-hydrology-19-pts.html#problem-3-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Next, make Q-Q plots and perform a Shapiro-Wilk test for normality on the precipitation data sets for the MtnsWest and Northeast ag-ecoregions. Using the results from these tests discuss whether or not the distributions are normal. Also if you based your decision as to whether the data sets were normal on the pdfs you developed in problem 1, the Q-Q test, and Shapiro-Wilk test would each lead you to same conclusion? Please comment.</p>
 </div>
-<div id="make-a-date-column-and-plot-max-temperature." class="section level2 hasAnchor" number="13.4">
-<h2><span class="header-section-number">13.4</span> Make a date column and plot max temperature.<a href="daymetr.html#make-a-date-column-and-plot-max-temperature." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="daymetr.html#cb237-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb237-2"><a href="daymetr.html#cb237-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">paste</span>(year, yday, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>), <span class="st">&quot;%Y-%j&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning: There were 2 warnings in `mutate()`.
-## The first warning was:
-## ℹ In argument: `date = as_date(paste(year,
-##   yday, sep = &quot;-&quot;), &quot;%Y-%j&quot;)`.
-## Caused by warning:
-## ! `tz` argument is ignored by `as_date()`
-## ℹ Run `dplyr::last_dplyr_warnings()` to see
-##   the 1 remaining warning.</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="daymetr.html#cb239-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb239-2"><a href="daymetr.html#cb239-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb239-3"><a href="daymetr.html#cb239-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb239-4"><a href="daymetr.html#cb239-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb239-5"><a href="daymetr.html#cb239-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb239-6"><a href="daymetr.html#cb239-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values
-## or values outside the scale range
-## (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-122-1.png" alt="" width="672" /></p>
+<div id="problem-4-2-pts-1" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Problem 4 (2 pts)<a href="statistics-in-hydrology-19-pts.html#problem-4-2-pts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Make a plot that shows the distribution of the data from the PINE watershed and the NFDR watershed (two pdfs on the same plot). Log the x axis, label the x axis “Flow (cfs)” and the y axis “Density”.</p>
 </div>
-<div id="do-the-same-for-radiation." class="section level2 hasAnchor" number="13.5">
-<h2><span class="header-section-number">13.5</span> Do the same for radiation.<a href="daymetr.html#do-the-same-for-radiation." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="daymetr.html#cb241-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb241-2"><a href="daymetr.html#cb241-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb241-3"><a href="daymetr.html#cb241-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb241-4"><a href="daymetr.html#cb241-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb241-5"><a href="daymetr.html#cb241-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb241-6"><a href="daymetr.html#cb241-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values
-## or values outside the scale range
-## (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-123-1.png" alt="" width="672" /></p>
+<div id="problem-5-3-pts" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Problem 5 (3 pts)<a href="statistics-in-hydrology-19-pts.html#problem-5-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You want to compare how variable the discharge is in each of the watersheds in question 4. Which measure of spread would you use and why? If you wanted to measure the central tendency which measure would you use and why?</p>
 </div>
-<div id="stack-2-variables-with-patchwork." class="section level2 hasAnchor" number="13.6">
-<h2><span class="header-section-number">13.6</span> Stack 2 variables with patchwork.<a href="daymetr.html#stack-2-variables-with-patchwork." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><a href="https://www.casualinferences.com/posts/adding-special-characters-ggplot-labels/" target="_blank">Here is a refernce for special characters in ggplot axes labels</a></p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="daymetr.html#cb243-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb243-2"><a href="daymetr.html#cb243-2" tabindex="-1"></a></span>
-<span id="cb243-3"><a href="daymetr.html#cb243-3" tabindex="-1"></a>temp_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb243-4"><a href="daymetr.html#cb243-4" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb243-5"><a href="daymetr.html#cb243-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb243-6"><a href="daymetr.html#cb243-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb243-7"><a href="daymetr.html#cb243-7" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb243-8"><a href="daymetr.html#cb243-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb243-9"><a href="daymetr.html#cb243-9" tabindex="-1"></a></span>
-<span id="cb243-10"><a href="daymetr.html#cb243-10" tabindex="-1"></a>srad_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb243-11"><a href="daymetr.html#cb243-11" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb243-12"><a href="daymetr.html#cb243-12" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb243-13"><a href="daymetr.html#cb243-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb243-14"><a href="daymetr.html#cb243-14" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb243-15"><a href="daymetr.html#cb243-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb243-16"><a href="daymetr.html#cb243-16" tabindex="-1"></a></span>
-<span id="cb243-17"><a href="daymetr.html#cb243-17" tabindex="-1"></a>srad_plot <span class="sc">/</span> temp_plot</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values
-## or values outside the scale range
-## (`geom_line()`).
-## Removed 3413 rows containing missing values
-## or values outside the scale range
-## (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" /></p>
+<div id="problem-6-3-pts" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Problem 6 (3 pts)<a href="statistics-in-hydrology-19-pts.html#problem-6-3-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Compute 3 measures of spread and 2 measures of central tendency for the PINE and NFDR watershed. (hint: use group_by() and summarize()) Be sure your code outputs the result. Which watershed has higher flow? Which one has more variable flow? How do you know?</p>
+</div>
+<div id="deliverable" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Deliverable<a href="statistics-in-hydrology-19-pts.html#deliverable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please knit this .Rmd as .html and submit both on Canvas.</p>
 
 </div>
 </div>
@@ -488,8 +429,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="for-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="climate-trend-analysis-18-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="statistics-in-hydrology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hydrographs-and-rating-curves.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -520,7 +461,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/13_daymetr.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/edit/master/08_stats_lab.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -528,7 +469,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/13_daymetr.Rmd",
+    "link": "https://github.com/tpcovino/ensc_445_545_bookdown/blob/master/08_stats_lab.Rmd",
     "text": null
   },
   "download": null,
