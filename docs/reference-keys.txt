@@ -94,8 +94,8 @@ rain-versus-snow-dominated-systems
 field-measurements-of-area-velocity
 making-stage-measurements
 applications-of-streamflow-and-stream-gage
-optional-activity-to-gain-deeper-understanding-of-rating-curve
-summary-questions-work-through-these-with-a-partner-and-we-will-discuss-together-as-a-class.
+activity-to-gain-deeper-understanding-of-rating-curve
+summary-questions
 flood-analysis-lab-10-pts
 functions
 reading-on-functions-from-rds-by-hadley-wickham

@@ -56,8 +56,6 @@ Stage, or water depth, measurements can be continuously collected with either an
 
 **Montana DNRC Videos:**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bxHagMo6nm0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ytaC23ZCD30?si=OtxSMJP1Eof7yO2S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ### Applications of streamflow and stream gage 
@@ -66,7 +64,7 @@ Stage and streamflow are important for a variety of applications. Check out this
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9H-0A3nJabM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1"></iframe>
 
-## Optional activity to gain deeper understanding of rating curve
+## Activity to gain deeper understanding of rating curve
 
 Similar to a stage-discharge relationship you would make in a stream, you can make a volume-depth relationship with any cup or bowl at your house. 
 
@@ -86,8 +84,7 @@ f.	Plot your results for each water vessel separately. Put the depth of water on
 g.	Reflect: What are the differences between your two plots? What is the primary factor controlling the difference between the two volume-stage relationships you developed in the hands on activity?
 
 
-## Summary questions: work through these with a partner and we will discuss together as a class.  
-
+## Summary questions:   
 
 1. You have a rating curve that has good coverage between 1 and 7 ft depth.
 
