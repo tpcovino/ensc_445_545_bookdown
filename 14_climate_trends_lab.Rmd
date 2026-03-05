@@ -1,13 +1,17 @@
 
 # Climate trend analysis (18 pts)
 
+[See here for Repo](https://github.com/tpcovino/climate_trends){target="_blank"}
 
-In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope. Need to add something. 
+
+In this lab you are going to work with weather / climate data from the MSU weather station that has data from about 1900 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens's slope.
+
+We will evaluate trends over different time frames. 100+ years and the climate normal period (1991 - 2020). As you work on this lab think about what might be an appropriate time frame for various questions. Longer (at least 30 y) is generally better. A few years really wouldn't cut it. But think critically about why you would use different timescales. As an example, dendro-hydrology might use thousands of years to evaluate longer-term climate trends. 
 
 ## Summary questions and deliverable
 
 
-For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures. 
+For this lab you will answer the following questions and submit your lab on Canvas as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures. 
 
 1. Describe what the Mann-Kendall (MK) test does and what the Sen's slope is and why they are appropriate for climate data. (2 pts)
 
@@ -16,77 +20,99 @@ For this lab you will answer the following questions and submit your lab on D2L 
 
 3. For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data "stat_smooth(method = "lm")" (2 pt). 
 
-4. Provide a table (Table 2) of MK p-values and Sen's slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)
+4. Provide a table (Table 2) of MK p-values and Sen's slopes over the climate normal period 1991 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)
 
-5. In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen's slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (5 pts)
+5. In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 100+ years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen's slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). Last, comment on what drives differences in these trends over 100 y vs 30 y. What is/are the mechanisms behind what you are seeing? (5 pts)
 
 
 ## New packages
 
 We will use the packages below. You will need to install the rnoaa package for downloading NOAA data, and the trend package for doing Mann-Kendall trend tests and computing the Sen's slope.
 
+rnooa is deprecated, but still works. The new NOAA package is still in development and doesn't really work yet. Hence, we will install rnoaa as a remote from GitHub. 
+
 ```{r}
-library(tidyverse)
-library(plotly)
-library(rnoaa) # for downloading data from GHCN
-#install.packages("remotes")
-#remotes::install_github("ropensci/rnoaa")
-#install.packages("trend")
-library(trend) # for Mann-Kendall trend analysis and Sen's slope
+# library(tidyverse)
+# library(plotly)
+# library(rnoaa) # for downloading data from GHCN
+# #install.packages("remotes")
+# #remotes::install_github("ropensci/rnoaa")
+# #install.packages("trend")
+# library(trend) # for Mann-Kendall trend analysis and Sen's slope
 
 ```
 
 ```{r}
-site <- "USC00241044"
-vars <- c("prcp", "tmax", "tmin")
-end <- as_date("2023-09-30")
+# site <- "USC00241044" # the MSU weather station
+# vars <- c("prcp", "tmax", "tmin") # params
+# end <- as_date("2023-09-30") # can change to more recent, may or may not work since package is deprecated. 
 ```
 
 ## Data download, exploration and cleaning 
 ```{r}
-met_data <- meteo_pull_monitors(
-  monitors = site,
-  keep_flags = FALSE,
-  date_min = NULL,
-  date_max = end,
-  var = vars
-)
+# met_data <- meteo_pull_monitors(
+#   monitors = site,
+#   keep_flags = FALSE,
+#   date_min = NULL,
+#   date_max = end,
+#   var = vars
+# )
 
 ```
 
-```{r}
-x <- met_data$date
-y <- met_data$tmax
+Now that you have downloaded. Plot your data. Date vs. prcp. Date vs. tmax. Date vs. tmin. What do you notice? What are the units? Does everything seem ok or not? Does an internet seach of NOAA data and/or rnoaa help you understand what these units are? 
 
-plot_fun <- function(...){
-  met_data %>% 
-  ggplot(aes(x = x, y = y)) +
-  geom_point()
+Use this as a practice for rattling off ggplots. 
+
+```{r}
+
+```
+
+
+Now that you had some batting practice with ggplot. There is another option. Writing a function. 
+
+I haven't shown you functions yet, but here is a very simple function you can use for EDA and making quick plots. 
+
+Use functions when you do something over and over again. Functions work like this. 
+
+my_function <- function(x) {
+do_stuff()
 }
 
-plot_fun(x, y)
+OR, more generally:
+
+my_function <- function(...) {
+do_stuff()
+}
+
+then you would call the function. More on functions in coming weeks. 
+```{r}
+# x <- met_data$date
+# y <- met_data$tmax
+# 
+# plot_fun <- function(...){
+#   met_data %>% 
+#   ggplot(aes(x = x, y = y)) +
+#   geom_point()
+# }
+# 
+# plot_fun(x, y)
 
 
 ```
 
+
+Now you need to adjust the data. What do you need to do? 
 ```{r}
-met_data_adj <- met_data %>% 
-   mutate(prcp = prcp/10, 
-          tmin = tmin/10, 
-          tmax = tmax/10, 
-          tavg = ((tmin + tmax)/2))
+
+
 
 # The units of these data are prcp = tenths of mm, snow = mm (we aren't using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data.   
 ```
 
-Add a water year and filter the data to start on 10/1/1900.
+Add a water year and filter the data to start on 10/1/1900. Use logic and think like a computer to reason through how to add a water year column. Chat with neighbors. 
 ```{r}
-met_data_adj <- met_data_adj %>% 
-  filter(date > "1900-09-30") %>% 
-  mutate(wtr_yr = if_else(month(date) > 9,   
-                          year(date) + 1, 
-                          year(date))) %>% 
-  select(id, date, wtr_yr, everything())
+
 
 ```
 
@@ -100,22 +126,19 @@ The first step is to create a data frame that has annual values called met_data_
 
 - total annual prcp
 - the min of the minimum temperatures
-- the max of the minimum teperatures
+- the median of the minimum temperatures
+- the max of the minimum temperatures
 - the min of the maximum temperatures
+- the median of the maximum temperatures
 - the max of the maximum temperatures
-- the mean of the average temperatures
+- the median of the average temperatures
+
+* note if you are cruising you can do the means as well and compare. We will start getting into iteration soon, which would be helpful. But we will save for later. 
 
 
 ```{r}
 
-met_data_an <- met_data_adj %>% 
-  group_by(wtr_yr) %>% 
-  reframe(tot_p = sum(prcp, na.rm = TRUE), # Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. 
-            min_min_t = min(tmin, na.rm = TRUE),
-            max_min_t = max(tmin, na.rm = TRUE),
-            min_max_t = min(tmax, na.rm = TRUE),
-            max_max_t = max(tmax, na.rm = TRUE),
-            av_t = mean(tavg, na.rm = TRUE))
+
 ```
 
 ## Exploratory data analysis (EDA) of annual values 
@@ -135,23 +158,8 @@ do_stuff()
 }
 
 ```{r}
-met_data_an %>% 
-  ggplot(aes(x = wtr_yr)) +
-  geom_line(aes(y = min_min_t), color = "blue") +
-  geom_line(aes(y = max_min_t), color = "cyan") +
-  geom_line(aes(y = min_max_t), color = "pink") +
-  geom_line(aes(y = max_max_t), color = "red") +
-  geom_line(aes(y = av_t), color = "green") +
-  labs(x = "", y = "Temp (C)")
 
 
-met_data_an %>% 
-  ggplot(aes(x = wtr_yr, y = tot_p)) +
-  geom_line(linetype = "dashed", color = "grey") +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(y = "Total annual P (mm)", x = "Water year") +
-  theme_bw()
 
 ```
 
@@ -159,78 +167,51 @@ met_data_an %>%
 
 Next, you will fill in a table. The table will have columns for: 
 
-* See the word doc handout for an example of the table that you will fill in. 
 
 - total annual prcp
 - the min of the minimum temperatures
+- the median of the minimum temperatures
 - the max of the minimum temperatures
 - the min of the maximum temperatures
+- the median of the maximum temperatures
 - the max of the maximum temperatures
-- the mean of the average temperatures
+- the median of the average temperatures
 
 And values for:
 
-- the p-value for the Mann-Kendall test. We will use p < 0.05 as an indicator of a significant trend.
+- the p-value for the Mann-Kendall test. We will use p < 0.05 as an indicator of a significant trend and the Sen's slope.
 
 - the slope of the trend as given by the Sen's slope. 
 ```{r}
 
-t_sens_tot_p <- sens.slope(met_data_an$tot_p) # this is how you would get the MK p-value and Sen's slope for one of the variables (av_t) in the data frame. Can you use apply or map to do this for all the variables in the data frame?  
+# t_sens_tot_p <- sens.slope(met_data_an$tot_p) # this is how you would get the MK p-value and Sen's slope for one of the variables (tot_p) in the data frame. Can you use apply or map to do this for all the variables in the data frame? (we haven't seen apply and/or map yet, but give it a shot and see) 
 
-t_sens_tot_p[3]
+# sens.slope stores the infomation in a list. Have a look. Try to understand how the data / info are stored and how you access things. 
+
+# this is indexing to get p-value from that list. 
+# t_sens_tot_p[3]
+
+# how would you use indexing to pull the Sen's slope from that list? 
 
 
 ```
 
-Both apply and map return a list. "A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable."
+Rather than pulling each p-value and slope individually (which you will likely do today) you could use either apply or map to automate the process. Both apply and map return a list. "A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable."
 
 Here is a link with information about lists and how to access elements within the list <https://data-flair.training/blogs/r-list-tutorial/>
 
 Chapters 19 & 21 in RDS are both very useful resources for functions and iteration (e.g., apply, map). 
 
-In the next class I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.  
+Moving forward I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.  
 ```{r}
-met_test_data <- met_data_an %>% 
-  filter(wtr_yr > 1989 & wtr_yr < 2021) %>% 
-  select(-wtr_yr)
 
-test <- apply(X = met_test_data,    # The data frame you want to apply to
-      FUN = sens.slope,           # The function you want to run
-      MARGIN = 2)                 # Margin (axis) to apply over 1 = rows, 2 = columns
-
-test[[c(1,1)]]
-
-test_map <- met_test_data %>% 
-  map(sens.slope)
-
-#Extract values from the list manually. 
-
-test_map[[c(1,3)]]
-
-#Extract values from the list using map. This part does the p-values. 
-p_vals <- test_map[1:6] %>% 
-  map(3) %>%
-  flatten_dfc() %>% 
-  pivot_longer(names_to = "parameter", 
-               values_to = "p_value",
-               cols = everything())
-
-#Same as above but for Sens's slopes. 
-sens <- test_map[1:6] %>% 
-  map(1) %>%
-  flatten_dfc() %>% 
-  pivot_longer(values_to = "sens_slope",
-               cols = everything()) %>% 
-  select(-name)
-  
-  
-#Last, we bind the two data frames together so we have the p-values and the Sen's slopes both in one df. 
-sens_p <- cbind(p_vals, sens)
 
 ```
 
 
 ## See summary section at top for questions to answer and deliverable. 
+
+You will need to make a table. You can do that manually in word or do it here using kable. There are other ways to make tables, but kable is a good one. 
 
 
 

@@ -379,72 +379,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="climate-trend-analysis-18-pts" class="section level1 hasAnchor" number="14">
 <h1><span class="header-section-number">Chapter 14</span> Climate trend analysis (18 pts)<a href="climate-trend-analysis-18-pts.html#climate-trend-analysis-18-pts" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this lab you are going to work with weather / climate data from the MSU weather station that has data from 1892 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens’s slope. Need to add something.</p>
+<p><a href="https://github.com/tpcovino/climate_trends" target="_blank">See here for Repo</a></p>
+<p>In this lab you are going to work with weather / climate data from the MSU weather station that has data from about 1900 - now. You will use the Mann-Kendall test to determine if there are significant trends in various climate data and will also calculate the slope of any trend using the Sens’s slope.</p>
+<p>We will evaluate trends over different time frames. 100+ years and the climate normal period (1991 - 2020). As you work on this lab think about what might be an appropriate time frame for various questions. Longer (at least 30 y) is generally better. A few years really wouldn’t cut it. But think critically about why you would use different timescales. As an example, dendro-hydrology might use thousands of years to evaluate longer-term climate trends.</p>
 <div id="summary-questions-and-deliverable" class="section level2 hasAnchor" number="14.1">
 <h2><span class="header-section-number">14.1</span> Summary questions and deliverable<a href="climate-trend-analysis-18-pts.html#summary-questions-and-deliverable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For this lab you will answer the following questions and submit your lab on D2L as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures.</p>
+<p>For this lab you will answer the following questions and submit your lab on Canvas as a word doc. Insert tables and figures into your word doc as appropriate. Always provide a caption for any tables and figures.</p>
 <ol style="list-style-type: decimal">
 <li><p>Describe what the Mann-Kendall (MK) test does and what the Sen’s slope is and why they are appropriate for climate data. (2 pts)</p></li>
 <li><p>Provide a table (Table 1) of MK p-values and Sen’s slopes over the entire period (1900 – current). (4 pts)</p></li>
 <li><p>For the average temperature provide a figure that has time on the x and average T on the y. Fit a stat_smooth to this data “stat_smooth(method =”lm”)” (2 pt).</p></li>
-<li><p>Provide a table (Table 2) of MK p-values and Sen’s slopes over the climate normal period 1990 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)</p></li>
-<li><p>In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 122 years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen’s slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). (5 pts)</p></li>
+<li><p>Provide a table (Table 2) of MK p-values and Sen’s slopes over the climate normal period 1991 – 2020. Compare and contrast this to what you found (p-value and Sen’s slope) over the entire period from table 1. (5 pts)</p></li>
+<li><p>In this lab we have evaluated significance (i.e., MK p-values) in trends in climate data. For the data in Table 1, communicate: A) What this tells you about climate at the MSU weather station over the past 100+ years. B) Describe any similarities and/or differences in the statistics (MK p-value and Sen’s slope) for the entire record (1900 - current) vs. the normal period (1990 - 2020). Last, comment on what drives differences in these trends over 100 y vs 30 y. What is/are the mechanisms behind what you are seeing? (5 pts)</p></li>
 </ol>
 </div>
 <div id="new-packages" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> New packages<a href="climate-trend-analysis-18-pts.html#new-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will use the packages below. You will need to install the rnoaa package for downloading NOAA data, and the trend package for doing Mann-Kendall trend tests and computing the Sen’s slope.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="climate-trend-analysis-18-pts.html#cb238-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb238-2"><a href="climate-trend-analysis-18-pts.html#cb238-2" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb238-3"><a href="climate-trend-analysis-18-pts.html#cb238-3" tabindex="-1"></a><span class="fu">library</span>(rnoaa) <span class="co"># for downloading data from GHCN</span></span>
-<span id="cb238-4"><a href="climate-trend-analysis-18-pts.html#cb238-4" tabindex="-1"></a><span class="co">#install.packages(&quot;remotes&quot;)</span></span>
-<span id="cb238-5"><a href="climate-trend-analysis-18-pts.html#cb238-5" tabindex="-1"></a><span class="co">#remotes::install_github(&quot;ropensci/rnoaa&quot;)</span></span>
-<span id="cb238-6"><a href="climate-trend-analysis-18-pts.html#cb238-6" tabindex="-1"></a><span class="co">#install.packages(&quot;trend&quot;)</span></span>
-<span id="cb238-7"><a href="climate-trend-analysis-18-pts.html#cb238-7" tabindex="-1"></a><span class="fu">library</span>(trend) <span class="co"># for Mann-Kendall trend analysis and Sen&#39;s slope</span></span></code></pre></div>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="climate-trend-analysis-18-pts.html#cb239-1" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="st">&quot;USC00241044&quot;</span></span>
-<span id="cb239-2"><a href="climate-trend-analysis-18-pts.html#cb239-2" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;prcp&quot;</span>, <span class="st">&quot;tmax&quot;</span>, <span class="st">&quot;tmin&quot;</span>)</span>
-<span id="cb239-3"><a href="climate-trend-analysis-18-pts.html#cb239-3" tabindex="-1"></a>end <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2023-09-30&quot;</span>)</span></code></pre></div>
+<p>rnooa is deprecated, but still works. The new NOAA package is still in development and doesn’t really work yet. Hence, we will install rnoaa as a remote from GitHub.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="climate-trend-analysis-18-pts.html#cb238-1" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
+<span id="cb238-2"><a href="climate-trend-analysis-18-pts.html#cb238-2" tabindex="-1"></a><span class="co"># library(plotly)</span></span>
+<span id="cb238-3"><a href="climate-trend-analysis-18-pts.html#cb238-3" tabindex="-1"></a><span class="co"># library(rnoaa) # for downloading data from GHCN</span></span>
+<span id="cb238-4"><a href="climate-trend-analysis-18-pts.html#cb238-4" tabindex="-1"></a><span class="co"># #install.packages(&quot;remotes&quot;)</span></span>
+<span id="cb238-5"><a href="climate-trend-analysis-18-pts.html#cb238-5" tabindex="-1"></a><span class="co"># #remotes::install_github(&quot;ropensci/rnoaa&quot;)</span></span>
+<span id="cb238-6"><a href="climate-trend-analysis-18-pts.html#cb238-6" tabindex="-1"></a><span class="co"># #install.packages(&quot;trend&quot;)</span></span>
+<span id="cb238-7"><a href="climate-trend-analysis-18-pts.html#cb238-7" tabindex="-1"></a><span class="co"># library(trend) # for Mann-Kendall trend analysis and Sen&#39;s slope</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="climate-trend-analysis-18-pts.html#cb239-1" tabindex="-1"></a><span class="co"># site &lt;- &quot;USC00241044&quot; # the MSU weather station</span></span>
+<span id="cb239-2"><a href="climate-trend-analysis-18-pts.html#cb239-2" tabindex="-1"></a><span class="co"># vars &lt;- c(&quot;prcp&quot;, &quot;tmax&quot;, &quot;tmin&quot;) # params</span></span>
+<span id="cb239-3"><a href="climate-trend-analysis-18-pts.html#cb239-3" tabindex="-1"></a><span class="co"># end &lt;- as_date(&quot;2023-09-30&quot;) # can change to more recent, may or may not work since package is deprecated. </span></span></code></pre></div>
 </div>
 <div id="data-download-exploration-and-cleaning" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> Data download, exploration and cleaning<a href="climate-trend-analysis-18-pts.html#data-download-exploration-and-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="climate-trend-analysis-18-pts.html#cb240-1" tabindex="-1"></a>met_data <span class="ot">&lt;-</span> <span class="fu">meteo_pull_monitors</span>(</span>
-<span id="cb240-2"><a href="climate-trend-analysis-18-pts.html#cb240-2" tabindex="-1"></a>  <span class="at">monitors =</span> site,</span>
-<span id="cb240-3"><a href="climate-trend-analysis-18-pts.html#cb240-3" tabindex="-1"></a>  <span class="at">keep_flags =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb240-4"><a href="climate-trend-analysis-18-pts.html#cb240-4" tabindex="-1"></a>  <span class="at">date_min =</span> <span class="cn">NULL</span>,</span>
-<span id="cb240-5"><a href="climate-trend-analysis-18-pts.html#cb240-5" tabindex="-1"></a>  <span class="at">date_max =</span> end,</span>
-<span id="cb240-6"><a href="climate-trend-analysis-18-pts.html#cb240-6" tabindex="-1"></a>  <span class="at">var =</span> vars</span>
-<span id="cb240-7"><a href="climate-trend-analysis-18-pts.html#cb240-7" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## using cached file: /Users/timothycovino/Library/Caches/org.R-project.R/R/rnoaa/noaa_ghcnd/USC00241044.dly</code></pre>
-<pre><code>## date created (size, mb): 2026-02-05 20:39:18.781374 (4.672)</code></pre>
-<pre><code>## file min/max dates: 1892-04-01 / 2026-02-28</code></pre>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="climate-trend-analysis-18-pts.html#cb244-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> met_data<span class="sc">$</span>date</span>
-<span id="cb244-2"><a href="climate-trend-analysis-18-pts.html#cb244-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> met_data<span class="sc">$</span>tmax</span>
-<span id="cb244-3"><a href="climate-trend-analysis-18-pts.html#cb244-3" tabindex="-1"></a></span>
-<span id="cb244-4"><a href="climate-trend-analysis-18-pts.html#cb244-4" tabindex="-1"></a>plot_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(...){</span>
-<span id="cb244-5"><a href="climate-trend-analysis-18-pts.html#cb244-5" tabindex="-1"></a>  met_data <span class="sc">%&gt;%</span> </span>
-<span id="cb244-6"><a href="climate-trend-analysis-18-pts.html#cb244-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb244-7"><a href="climate-trend-analysis-18-pts.html#cb244-7" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb244-8"><a href="climate-trend-analysis-18-pts.html#cb244-8" tabindex="-1"></a>}</span>
-<span id="cb244-9"><a href="climate-trend-analysis-18-pts.html#cb244-9" tabindex="-1"></a></span>
-<span id="cb244-10"><a href="climate-trend-analysis-18-pts.html#cb244-10" tabindex="-1"></a><span class="fu">plot_fun</span>(x, y)</span></code></pre></div>
-<pre><code>## Warning: Removed 93 rows containing missing values
-## or values outside the scale range
-## (`geom_point()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-128-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="climate-trend-analysis-18-pts.html#cb246-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data <span class="sc">%&gt;%</span> </span>
-<span id="cb246-2"><a href="climate-trend-analysis-18-pts.html#cb246-2" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">prcp =</span> prcp<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb246-3"><a href="climate-trend-analysis-18-pts.html#cb246-3" tabindex="-1"></a>          <span class="at">tmin =</span> tmin<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb246-4"><a href="climate-trend-analysis-18-pts.html#cb246-4" tabindex="-1"></a>          <span class="at">tmax =</span> tmax<span class="sc">/</span><span class="dv">10</span>, </span>
-<span id="cb246-5"><a href="climate-trend-analysis-18-pts.html#cb246-5" tabindex="-1"></a>          <span class="at">tavg =</span> ((tmin <span class="sc">+</span> tmax)<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb246-6"><a href="climate-trend-analysis-18-pts.html#cb246-6" tabindex="-1"></a></span>
-<span id="cb246-7"><a href="climate-trend-analysis-18-pts.html#cb246-7" tabindex="-1"></a><span class="co"># The units of these data are prcp = tenths of mm, snow = mm (we aren&#39;t using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data.   </span></span></code></pre></div>
-<p>Add a water year and filter the data to start on 10/1/1900.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="climate-trend-analysis-18-pts.html#cb247-1" tabindex="-1"></a>met_data_adj <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
-<span id="cb247-2"><a href="climate-trend-analysis-18-pts.html#cb247-2" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">&quot;1900-09-30&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb247-3"><a href="climate-trend-analysis-18-pts.html#cb247-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">wtr_yr =</span> <span class="fu">if_else</span>(<span class="fu">month</span>(date) <span class="sc">&gt;</span> <span class="dv">9</span>,   </span>
-<span id="cb247-4"><a href="climate-trend-analysis-18-pts.html#cb247-4" tabindex="-1"></a>                          <span class="fu">year</span>(date) <span class="sc">+</span> <span class="dv">1</span>, </span>
-<span id="cb247-5"><a href="climate-trend-analysis-18-pts.html#cb247-5" tabindex="-1"></a>                          <span class="fu">year</span>(date))) <span class="sc">%&gt;%</span> </span>
-<span id="cb247-6"><a href="climate-trend-analysis-18-pts.html#cb247-6" tabindex="-1"></a>  <span class="fu">select</span>(id, date, wtr_yr, <span class="fu">everything</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="climate-trend-analysis-18-pts.html#cb240-1" tabindex="-1"></a><span class="co"># met_data &lt;- meteo_pull_monitors(</span></span>
+<span id="cb240-2"><a href="climate-trend-analysis-18-pts.html#cb240-2" tabindex="-1"></a><span class="co">#   monitors = site,</span></span>
+<span id="cb240-3"><a href="climate-trend-analysis-18-pts.html#cb240-3" tabindex="-1"></a><span class="co">#   keep_flags = FALSE,</span></span>
+<span id="cb240-4"><a href="climate-trend-analysis-18-pts.html#cb240-4" tabindex="-1"></a><span class="co">#   date_min = NULL,</span></span>
+<span id="cb240-5"><a href="climate-trend-analysis-18-pts.html#cb240-5" tabindex="-1"></a><span class="co">#   date_max = end,</span></span>
+<span id="cb240-6"><a href="climate-trend-analysis-18-pts.html#cb240-6" tabindex="-1"></a><span class="co">#   var = vars</span></span>
+<span id="cb240-7"><a href="climate-trend-analysis-18-pts.html#cb240-7" tabindex="-1"></a><span class="co"># )</span></span></code></pre></div>
+<p>Now that you have downloaded. Plot your data. Date vs. prcp. Date vs. tmax. Date vs. tmin. What do you notice? What are the units? Does everything seem ok or not? Does an internet seach of NOAA data and/or rnoaa help you understand what these units are?</p>
+<p>Use this as a practice for rattling off ggplots.</p>
+<p>Now that you had some batting practice with ggplot. There is another option. Writing a function.</p>
+<p>I haven’t shown you functions yet, but here is a very simple function you can use for EDA and making quick plots.</p>
+<p>Use functions when you do something over and over again. Functions work like this.</p>
+<p>my_function &lt;- function(x) {
+do_stuff()
+}</p>
+<p>OR, more generally:</p>
+<p>my_function &lt;- function(…) {
+do_stuff()
+}</p>
+<p>then you would call the function. More on functions in coming weeks.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="climate-trend-analysis-18-pts.html#cb241-1" tabindex="-1"></a><span class="co"># x &lt;- met_data$date</span></span>
+<span id="cb241-2"><a href="climate-trend-analysis-18-pts.html#cb241-2" tabindex="-1"></a><span class="co"># y &lt;- met_data$tmax</span></span>
+<span id="cb241-3"><a href="climate-trend-analysis-18-pts.html#cb241-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb241-4"><a href="climate-trend-analysis-18-pts.html#cb241-4" tabindex="-1"></a><span class="co"># plot_fun &lt;- function(...){</span></span>
+<span id="cb241-5"><a href="climate-trend-analysis-18-pts.html#cb241-5" tabindex="-1"></a><span class="co">#   met_data %&gt;% </span></span>
+<span id="cb241-6"><a href="climate-trend-analysis-18-pts.html#cb241-6" tabindex="-1"></a><span class="co">#   ggplot(aes(x = x, y = y)) +</span></span>
+<span id="cb241-7"><a href="climate-trend-analysis-18-pts.html#cb241-7" tabindex="-1"></a><span class="co">#   geom_point()</span></span>
+<span id="cb241-8"><a href="climate-trend-analysis-18-pts.html#cb241-8" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb241-9"><a href="climate-trend-analysis-18-pts.html#cb241-9" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb241-10"><a href="climate-trend-analysis-18-pts.html#cb241-10" tabindex="-1"></a><span class="co"># plot_fun(x, y)</span></span></code></pre></div>
+<p>Now you need to adjust the data. What do you need to do?</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="climate-trend-analysis-18-pts.html#cb242-1" tabindex="-1"></a><span class="co"># The units of these data are prcp = tenths of mm, snow = mm (we aren&#39;t using snow data today but just fyi), tmin = tenths of C, tmax = tenths of C. So we need to convert the prcp, tmin, and tmax data.   </span></span></code></pre></div>
+<p>Add a water year and filter the data to start on 10/1/1900. Use logic and think like a computer to reason through how to add a water year column. Chat with neighbors.</p>
 </div>
 <div id="computing-annual-values" class="section level2 hasAnchor" number="14.4">
 <h2><span class="header-section-number">14.4</span> Computing annual values<a href="climate-trend-analysis-18-pts.html#computing-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -454,19 +452,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>there are many others we could do, like the mean of the mins and the maxes, but we will just do the ones listed here for this project.</p></li>
 <li><p>total annual prcp</p></li>
 <li><p>the min of the minimum temperatures</p></li>
-<li><p>the max of the minimum teperatures</p></li>
+<li><p>the median of the minimum temperatures</p></li>
+<li><p>the max of the minimum temperatures</p></li>
 <li><p>the min of the maximum temperatures</p></li>
+<li><p>the median of the maximum temperatures</p></li>
 <li><p>the max of the maximum temperatures</p></li>
-<li><p>the mean of the average temperatures</p></li>
+<li><p>the median of the average temperatures</p></li>
+<li><p>note if you are cruising you can do the means as well and compare. We will start getting into iteration soon, which would be helpful. But we will save for later.</p></li>
 </ul>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="climate-trend-analysis-18-pts.html#cb248-1" tabindex="-1"></a>met_data_an <span class="ot">&lt;-</span> met_data_adj <span class="sc">%&gt;%</span> </span>
-<span id="cb248-2"><a href="climate-trend-analysis-18-pts.html#cb248-2" tabindex="-1"></a>  <span class="fu">group_by</span>(wtr_yr) <span class="sc">%&gt;%</span> </span>
-<span id="cb248-3"><a href="climate-trend-analysis-18-pts.html#cb248-3" tabindex="-1"></a>  <span class="fu">reframe</span>(<span class="at">tot_p =</span> <span class="fu">sum</span>(prcp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># Can also use reframe here instead of summarize. Reframe is a more generalizable form of summarize. </span></span>
-<span id="cb248-4"><a href="climate-trend-analysis-18-pts.html#cb248-4" tabindex="-1"></a>            <span class="at">min_min_t =</span> <span class="fu">min</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb248-5"><a href="climate-trend-analysis-18-pts.html#cb248-5" tabindex="-1"></a>            <span class="at">max_min_t =</span> <span class="fu">max</span>(tmin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb248-6"><a href="climate-trend-analysis-18-pts.html#cb248-6" tabindex="-1"></a>            <span class="at">min_max_t =</span> <span class="fu">min</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb248-7"><a href="climate-trend-analysis-18-pts.html#cb248-7" tabindex="-1"></a>            <span class="at">max_max_t =</span> <span class="fu">max</span>(tmax, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb248-8"><a href="climate-trend-analysis-18-pts.html#cb248-8" tabindex="-1"></a>            <span class="at">av_t =</span> <span class="fu">mean</span>(tavg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 </div>
 <div id="exploratory-data-analysis-eda-of-annual-values" class="section level2 hasAnchor" number="14.5">
 <h2><span class="header-section-number">14.5</span> Exploratory data analysis (EDA) of annual values<a href="climate-trend-analysis-18-pts.html#exploratory-data-analysis-eda-of-annual-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -479,96 +472,41 @@ do_stuff()
 <p>my_fun &lt;- function(…){
 do_stuff()
 }</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="climate-trend-analysis-18-pts.html#cb249-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb249-2"><a href="climate-trend-analysis-18-pts.html#cb249-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr)) <span class="sc">+</span></span>
-<span id="cb249-3"><a href="climate-trend-analysis-18-pts.html#cb249-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_min_t), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-4"><a href="climate-trend-analysis-18-pts.html#cb249-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_min_t), <span class="at">color =</span> <span class="st">&quot;cyan&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-5"><a href="climate-trend-analysis-18-pts.html#cb249-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> min_max_t), <span class="at">color =</span> <span class="st">&quot;pink&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-6"><a href="climate-trend-analysis-18-pts.html#cb249-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> max_max_t), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-7"><a href="climate-trend-analysis-18-pts.html#cb249-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> av_t), <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb249-8"><a href="climate-trend-analysis-18-pts.html#cb249-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Temp (C)&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-132-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="climate-trend-analysis-18-pts.html#cb250-1" tabindex="-1"></a>met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb250-2"><a href="climate-trend-analysis-18-pts.html#cb250-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> wtr_yr, <span class="at">y =</span> tot_p)) <span class="sc">+</span></span>
-<span id="cb250-3"><a href="climate-trend-analysis-18-pts.html#cb250-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb250-4"><a href="climate-trend-analysis-18-pts.html#cb250-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb250-5"><a href="climate-trend-analysis-18-pts.html#cb250-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span></span>
-<span id="cb250-6"><a href="climate-trend-analysis-18-pts.html#cb250-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Total annual P (mm)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Water year&quot;</span>) <span class="sc">+</span></span>
-<span id="cb250-7"><a href="climate-trend-analysis-18-pts.html#cb250-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-132-2.png" alt="" width="672" /></p>
 </div>
 <div id="trend-analysis-and-creating-table-1" class="section level2 hasAnchor" number="14.6">
 <h2><span class="header-section-number">14.6</span> Trend analysis and creating Table 1<a href="climate-trend-analysis-18-pts.html#trend-analysis-and-creating-table-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next, you will fill in a table. The table will have columns for:</p>
 <ul>
-<li><p>See the word doc handout for an example of the table that you will fill in.</p></li>
-<li><p>total annual prcp</p></li>
-<li><p>the min of the minimum temperatures</p></li>
-<li><p>the max of the minimum temperatures</p></li>
-<li><p>the min of the maximum temperatures</p></li>
-<li><p>the max of the maximum temperatures</p></li>
-<li><p>the mean of the average temperatures</p></li>
+<li>total annual prcp</li>
+<li>the min of the minimum temperatures</li>
+<li>the median of the minimum temperatures</li>
+<li>the max of the minimum temperatures</li>
+<li>the min of the maximum temperatures</li>
+<li>the median of the maximum temperatures</li>
+<li>the max of the maximum temperatures</li>
+<li>the median of the average temperatures</li>
 </ul>
 <p>And values for:</p>
 <ul>
-<li><p>the p-value for the Mann-Kendall test. We will use p &lt; 0.05 as an indicator of a significant trend.</p></li>
+<li><p>the p-value for the Mann-Kendall test. We will use p &lt; 0.05 as an indicator of a significant trend and the Sen’s slope.</p></li>
 <li><p>the slope of the trend as given by the Sen’s slope.</p></li>
 </ul>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="climate-trend-analysis-18-pts.html#cb252-1" tabindex="-1"></a>t_sens_tot_p <span class="ot">&lt;-</span> <span class="fu">sens.slope</span>(met_data_an<span class="sc">$</span>tot_p) <span class="co"># this is how you would get the MK p-value and Sen&#39;s slope for one of the variables (av_t) in the data frame. Can you use apply or map to do this for all the variables in the data frame?  </span></span>
-<span id="cb252-2"><a href="climate-trend-analysis-18-pts.html#cb252-2" tabindex="-1"></a></span>
-<span id="cb252-3"><a href="climate-trend-analysis-18-pts.html#cb252-3" tabindex="-1"></a>t_sens_tot_p[<span class="dv">3</span>]</span></code></pre></div>
-<pre><code>## $p.value
-## [1] 0.006983135</code></pre>
-<p>Both apply and map return a list. “A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.”</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="climate-trend-analysis-18-pts.html#cb243-1" tabindex="-1"></a><span class="co"># t_sens_tot_p &lt;- sens.slope(met_data_an$tot_p) # this is how you would get the MK p-value and Sen&#39;s slope for one of the variables (tot_p) in the data frame. Can you use apply or map to do this for all the variables in the data frame? (we haven&#39;t seen apply and/or map yet, but give it a shot and see) </span></span>
+<span id="cb243-2"><a href="climate-trend-analysis-18-pts.html#cb243-2" tabindex="-1"></a></span>
+<span id="cb243-3"><a href="climate-trend-analysis-18-pts.html#cb243-3" tabindex="-1"></a><span class="co"># sens.slope stores the infomation in a list. Have a look. Try to understand how the data / info are stored and how you access things. </span></span>
+<span id="cb243-4"><a href="climate-trend-analysis-18-pts.html#cb243-4" tabindex="-1"></a></span>
+<span id="cb243-5"><a href="climate-trend-analysis-18-pts.html#cb243-5" tabindex="-1"></a><span class="co"># this is indexing to get p-value from that list. </span></span>
+<span id="cb243-6"><a href="climate-trend-analysis-18-pts.html#cb243-6" tabindex="-1"></a><span class="co"># t_sens_tot_p[3]</span></span>
+<span id="cb243-7"><a href="climate-trend-analysis-18-pts.html#cb243-7" tabindex="-1"></a></span>
+<span id="cb243-8"><a href="climate-trend-analysis-18-pts.html#cb243-8" tabindex="-1"></a><span class="co"># how would you use indexing to pull the Sen&#39;s slope from that list? </span></span></code></pre></div>
+<p>Rather than pulling each p-value and slope individually (which you will likely do today) you could use either apply or map to automate the process. Both apply and map return a list. “A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.”</p>
 <p>Here is a link with information about lists and how to access elements within the list <a href="https://data-flair.training/blogs/r-list-tutorial/" class="uri">https://data-flair.training/blogs/r-list-tutorial/</a></p>
 <p>Chapters 19 &amp; 21 in RDS are both very useful resources for functions and iteration (e.g., apply, map).</p>
-<p>In the next class I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="climate-trend-analysis-18-pts.html#cb254-1" tabindex="-1"></a>met_test_data <span class="ot">&lt;-</span> met_data_an <span class="sc">%&gt;%</span> </span>
-<span id="cb254-2"><a href="climate-trend-analysis-18-pts.html#cb254-2" tabindex="-1"></a>  <span class="fu">filter</span>(wtr_yr <span class="sc">&gt;</span> <span class="dv">1989</span> <span class="sc">&amp;</span> wtr_yr <span class="sc">&lt;</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb254-3"><a href="climate-trend-analysis-18-pts.html#cb254-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>wtr_yr)</span>
-<span id="cb254-4"><a href="climate-trend-analysis-18-pts.html#cb254-4" tabindex="-1"></a></span>
-<span id="cb254-5"><a href="climate-trend-analysis-18-pts.html#cb254-5" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="at">X =</span> met_test_data,    <span class="co"># The data frame you want to apply to</span></span>
-<span id="cb254-6"><a href="climate-trend-analysis-18-pts.html#cb254-6" tabindex="-1"></a>      <span class="at">FUN =</span> sens.slope,           <span class="co"># The function you want to run</span></span>
-<span id="cb254-7"><a href="climate-trend-analysis-18-pts.html#cb254-7" tabindex="-1"></a>      <span class="at">MARGIN =</span> <span class="dv">2</span>)                 <span class="co"># Margin (axis) to apply over 1 = rows, 2 = columns</span></span>
-<span id="cb254-8"><a href="climate-trend-analysis-18-pts.html#cb254-8" tabindex="-1"></a></span>
-<span id="cb254-9"><a href="climate-trend-analysis-18-pts.html#cb254-9" tabindex="-1"></a>test[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)]]</span></code></pre></div>
-<pre><code>## Sen&#39;s slope 
-##    1.683333</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="climate-trend-analysis-18-pts.html#cb256-1" tabindex="-1"></a>test_map <span class="ot">&lt;-</span> met_test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb256-2"><a href="climate-trend-analysis-18-pts.html#cb256-2" tabindex="-1"></a>  <span class="fu">map</span>(sens.slope)</span>
-<span id="cb256-3"><a href="climate-trend-analysis-18-pts.html#cb256-3" tabindex="-1"></a></span>
-<span id="cb256-4"><a href="climate-trend-analysis-18-pts.html#cb256-4" tabindex="-1"></a><span class="co">#Extract values from the list manually. </span></span>
-<span id="cb256-5"><a href="climate-trend-analysis-18-pts.html#cb256-5" tabindex="-1"></a></span>
-<span id="cb256-6"><a href="climate-trend-analysis-18-pts.html#cb256-6" tabindex="-1"></a>test_map[[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]]</span></code></pre></div>
-<pre><code>## [1] 0.5406231</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="climate-trend-analysis-18-pts.html#cb258-1" tabindex="-1"></a><span class="co">#Extract values from the list using map. This part does the p-values. </span></span>
-<span id="cb258-2"><a href="climate-trend-analysis-18-pts.html#cb258-2" tabindex="-1"></a>p_vals <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
-<span id="cb258-3"><a href="climate-trend-analysis-18-pts.html#cb258-3" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb258-4"><a href="climate-trend-analysis-18-pts.html#cb258-4" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb258-5"><a href="climate-trend-analysis-18-pts.html#cb258-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&quot;parameter&quot;</span>, </span>
-<span id="cb258-6"><a href="climate-trend-analysis-18-pts.html#cb258-6" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;p_value&quot;</span>,</span>
-<span id="cb258-7"><a href="climate-trend-analysis-18-pts.html#cb258-7" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>())</span>
-<span id="cb258-8"><a href="climate-trend-analysis-18-pts.html#cb258-8" tabindex="-1"></a></span>
-<span id="cb258-9"><a href="climate-trend-analysis-18-pts.html#cb258-9" tabindex="-1"></a><span class="co">#Same as above but for Sens&#39;s slopes. </span></span>
-<span id="cb258-10"><a href="climate-trend-analysis-18-pts.html#cb258-10" tabindex="-1"></a>sens <span class="ot">&lt;-</span> test_map[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="sc">%&gt;%</span> </span>
-<span id="cb258-11"><a href="climate-trend-analysis-18-pts.html#cb258-11" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb258-12"><a href="climate-trend-analysis-18-pts.html#cb258-12" tabindex="-1"></a>  <span class="fu">flatten_dfc</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb258-13"><a href="climate-trend-analysis-18-pts.html#cb258-13" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">values_to =</span> <span class="st">&quot;sens_slope&quot;</span>,</span>
-<span id="cb258-14"><a href="climate-trend-analysis-18-pts.html#cb258-14" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb258-15"><a href="climate-trend-analysis-18-pts.html#cb258-15" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>name)</span></code></pre></div>
-<pre><code>## New names:
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...1`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...2`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...3`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...4`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...5`
-## • `Sen&#39;s slope` -&gt; `Sen&#39;s slope...6`</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="climate-trend-analysis-18-pts.html#cb260-1" tabindex="-1"></a><span class="co">#Last, we bind the two data frames together so we have the p-values and the Sen&#39;s slopes both in one df. </span></span>
-<span id="cb260-2"><a href="climate-trend-analysis-18-pts.html#cb260-2" tabindex="-1"></a>sens_p <span class="ot">&lt;-</span> <span class="fu">cbind</span>(p_vals, sens)</span></code></pre></div>
+<p>Moving forward I will show a tutorial on apply, map and pulling information from lists. But you should work with a partner to test them out and see what they do.</p>
 </div>
 <div id="see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="section level2 hasAnchor" number="14.7">
 <h2><span class="header-section-number">14.7</span> See summary section at top for questions to answer and deliverable.<a href="climate-trend-analysis-18-pts.html#see-summary-section-at-top-for-questions-to-answer-and-deliverable." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You will need to make a table. You can do that manually in word or do it here using kable. There are other ways to make tables, but kable is a good one.</p>
 
 </div>
 </div>

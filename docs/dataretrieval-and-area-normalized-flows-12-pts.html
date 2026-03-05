@@ -413,9 +413,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb117-14"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb117-14" tabindex="-1"></a><span class="co"># Use whatNWISsites to identify what gauges exist that meet the above conditions. However, the whatNWISsites doesn&#39;t always screen out sites that don&#39;t have the exact dates we want. </span></span>
 <span id="cb117-15"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb117-15" tabindex="-1"></a></span>
 <span id="cb117-16"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb117-16" tabindex="-1"></a>stream_gauges <span class="ot">&lt;-</span> <span class="fu">whatNWISsites</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va)</span></code></pre></div>
-<pre><code>## Warning in whatNWISsites(parameterCd =
-## param_cd, service = service_cd, stateCd =
-## state_cd, : NWIS servers are slated for
+<pre><code>## Warning in whatNWISsites(parameterCd = param_cd, service =
+## service_cd, stateCd = state_cd, : NWIS servers are slated for
 ## decommission. Please begin to migrate to
 ## read_waterdata_monitoring_location</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
@@ -428,11 +427,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb123-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-2" tabindex="-1"></a></span>
 <span id="cb123-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-3" tabindex="-1"></a>stream_gauges_info <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> </span>
 <span id="cb123-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb123-4" tabindex="-1"></a>  <span class="fu">filter</span>(begin_date <span class="sc">&lt;</span> start, end_date <span class="sc">&gt;</span> end) </span></code></pre></div>
-<pre><code>## Warning in whatNWISdata(parameterCd =
-## param_cd, service = service_cd, stateCd =
-## state_cd, : NWIS servers are slated for
-## decommission. Please begin to migrate to
-## read_waterdata_ts_meta</code></pre>
+<pre><code>## Warning in whatNWISdata(parameterCd = param_cd, service =
+## service_cd, stateCd = state_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to read_waterdata_ts_meta</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/counties?mimeType=application%2Fjson</code></pre>
@@ -462,17 +459,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb132-4"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb132-4" tabindex="-1"></a>                    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">&quot;Site&quot;</span>, site_no)) </span>
 <span id="cb132-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb132-5" tabindex="-1"></a>  </span>
 <span id="cb132-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb132-6" tabindex="-1"></a>park_map</span></code></pre></div>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-f265394af7b301c34f92" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-f265394af7b301c34f92">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[45.1121194,44.9923444,45.5972111,46.1671611,45.7383611,45.00283056],[-110.7936667,-110.690975,-110.5664972,-110.5542861,-110.4794694,-110.0018722],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Site 06191500","Site 06191000","Site 06192500","Site 06192980","Site 06195600","Site 06187915"],null,null,null,["Yellowstone River at Corwin Springs MT","Gardner River near Mammoth, YNP","Yellowstone River near Livingston, MT","Shields River ab Smith Cr, nr Wilsall, MT","Shields River nr Livingston MT","Soda Butte Cr at Park Bndry at Silver Gate"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[44.9923444,46.1671611],"lng":[-110.7936667,-110.0018722]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-91650e20be5c588c0421" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-91650e20be5c588c0421">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[45.1121194,44.9923444,45.5972111,46.1671611,45.7383611,45.00283056],[-110.7936667,-110.690975,-110.5664972,-110.5542861,-110.4794694,-110.0018722],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Site 06191500","Site 06191000","Site 06192500","Site 06192980","Site 06195600","Site 06187915"],null,null,null,["Yellowstone River at Corwin Springs MT","Gardner River near Mammoth, YNP","Yellowstone River near Livingston, MT","Shields River ab Smith Cr, nr Wilsall, MT","Shields River nr Livingston MT","Soda Butte Cr at Park Bndry at Silver Gate"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[44.9923444,46.1671611],"lng":[-110.7936667,-110.0018722]}},"evals":[],"jsHooks":[]}</script>
 <p>Download the Q data for the gauges and create a df called “flows”.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb133-1" tabindex="-1"></a>sites <span class="ot">&lt;-</span> stream_gauges<span class="sc">$</span>site_no</span>
 <span id="cb133-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb133-2" tabindex="-1"></a></span>
 <span id="cb133-3"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb133-3" tabindex="-1"></a>flows <span class="ot">&lt;-</span> <span class="fu">readNWISdata</span>(<span class="at">sites =</span> sites, <span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) <span class="sc">%&gt;%</span> <span class="fu">renameNWISColumns</span>()</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = sites,
-## parameterCd = param_cd, service =
-## service_cd, : NWIS servers are slated for
-## decommission. Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = sites, parameterCd = param_cd,
+## service = service_cd, : NWIS servers are slated for decommission.
+## Please begin to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06191500%2C06191000%2C06192500%2C06192980%2C06195600%2C06187915&amp;parameterCd=00060&amp;startDT=1990-10-01&amp;endDT=2022-10-01&amp;format=waterml%2C1.1</code></pre>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb136-1" tabindex="-1"></a><span class="co"># The code below is for the new function of dataRetrieval (i.e., read_waterdata_daily)</span></span>
 <span id="cb136-2"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb136-2" tabindex="-1"></a></span>
@@ -502,11 +497,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can find this online but the areas given from NWIS are in square miles. I’d recommend converting the area from square miles to square meters. And converting cubic feet per second to cubic meters per second. From there, the instructions above should get you where you want to go.</p>
 <p>You can use whatNWISdata, readNWISsite, and a join (e.g., left_join) to get the names of the sites and the drainage areas in the same df.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb137-1" tabindex="-1"></a>site_info_a <span class="ot">&lt;-</span> <span class="fu">whatNWISdata</span>(<span class="at">parameterCd =</span> param_cd, <span class="at">service =</span> service_cd, <span class="at">stateCd =</span> state_cd, <span class="at">countyCd =</span> county_cd, <span class="at">startDate =</span> start, <span class="at">endDate =</span> end) </span></code></pre></div>
-<pre><code>## Warning in whatNWISdata(parameterCd =
-## param_cd, service = service_cd, stateCd =
-## state_cd, : NWIS servers are slated for
-## decommission. Please begin to migrate to
-## read_waterdata_ts_meta</code></pre>
+<pre><code>## Warning in whatNWISdata(parameterCd = param_cd, service =
+## service_cd, stateCd = state_cd, : NWIS servers are slated for
+## decommission. Please begin to migrate to read_waterdata_ts_meta</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson
 ## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/states?mimeType=application%2Fjson</code></pre>
 <pre><code>## GET: https://api.waterdata.usgs.gov/samples-data/codeservice/counties?mimeType=application%2Fjson</code></pre>
@@ -520,10 +513,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb143-5"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-5" tabindex="-1"></a>  <span class="fu">select</span>(site_no, station_nm, dec_lat_va, dec_long_va, alt_va, begin_date, end_date, count_nu)</span>
 <span id="cb143-6"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-6" tabindex="-1"></a></span>
 <span id="cb143-7"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb143-7" tabindex="-1"></a>site_info_b <span class="ot">&lt;-</span> <span class="fu">readNWISsite</span>(stream_gauges<span class="sc">$</span>site_no)</span></code></pre></div>
-<pre><code>## Warning in
-## readNWISsite(stream_gauges$site_no): NWIS
-## servers are slated for decommission. Please
-## begin to migrate to
+<pre><code>## Warning in readNWISsite(stream_gauges$site_no): NWIS servers are
+## slated for decommission. Please begin to migrate to
 ## read_waterdata_monitoring_location</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/site/?siteOutput=Expanded&amp;format=rdb&amp;site=06191500,06191000,06192500,06192980,06195600,06187915</code></pre>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dataretrieval-and-area-normalized-flows-12-pts.html#cb146-1" tabindex="-1"></a><span class="co">#write_csv(site_info_b, &quot;site_info_b.csv&quot;)</span></span>

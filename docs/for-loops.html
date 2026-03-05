@@ -407,23 +407,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb197-4"><a href="for-loops.html#cb197-4" tabindex="-1"></a>  filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;data_&quot;</span>, i, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb197-5"><a href="for-loops.html#cb197-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
 <span id="cb197-6"><a href="for-loops.html#cb197-6" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="for-loops.html#cb202-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_06037500.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 35500 Columns: 12</code></pre>
-<pre><code>## ── Column specification ────────────────────
+<pre><code>## ── Column specification ────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr  (7): agency_cd, site_no, Wtemp_Max_...
+## chr  (7): agency_cd, site_no, Wtemp_Max_cd, Wtemp_Min_cd, Wtemp_...
 ## dbl  (4): Wtemp_Max, Wtemp_Min, Wtemp, Flow
 ## dttm (1): dateTime
 ## 
@@ -441,36 +437,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb205-6"><a href="for-loops.html#cb205-6" tabindex="-1"></a>  <span class="fu">write_csv</span>(tmp, <span class="at">file =</span> <span class="fu">paste</span>(filename, <span class="st">&quot;.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span>
 <span id="cb205-7"><a href="for-loops.html#cb205-7" tabindex="-1"></a>  }</span>
 <span id="cb205-8"><a href="for-loops.html#cb205-8" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="for-loops.html#cb214-1" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data_salmon.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 34963 Columns: 12</code></pre>
-<pre><code>## ── Column specification ────────────────────
+<pre><code>## ── Column specification ────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr  (6): agency_cd, Wtemp_Max_cd, Wtemp...
-## dbl  (5): site_no, Wtemp_Max, Wtemp_Min,...
+## chr  (6): agency_cd, Wtemp_Max_cd, Wtemp_Min_cd, Wtemp_cd, Flow_...
+## dbl  (5): site_no, Wtemp_Max, Wtemp_Min, Wtemp, Flow
 ## dttm (1): dateTime
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
@@ -487,29 +475,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-6"><a href="for-loops.html#cb217-6" tabindex="-1"></a>  <span class="fu">rm</span>(tmp) </span>
 <span id="cb217-7"><a href="for-loops.html#cb217-7" tabindex="-1"></a>  }</span>
 <span id="cb217-8"><a href="for-loops.html#cb217-8" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=06037500&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
-<pre><code>## Warning in readNWISdata(sites = i,
-## parameterCd = params, service = service, :
-## NWIS servers are slated for decommission.
-## Please begin to migrate to
-## read_waterdata_daily.</code></pre>
+<pre><code>## Warning in readNWISdata(sites = i, parameterCd = params, service =
+## service, : NWIS servers are slated for decommission. Please begin
+## to migrate to read_waterdata_daily.</code></pre>
 <pre><code>## GET: https://waterservices.usgs.gov/nwis/dv/?sites=12363000&amp;parameterCd=00060%2C00010&amp;startDT=1900-10-01&amp;endDT=2023-09-30&amp;format=waterml%2C1.1</code></pre>
 
 </div>
