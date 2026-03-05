@@ -384,13 +384,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Reading:</strong>
 <a href="https://www.epa.gov/ceam/definition-and-characteristics-low-flows" target="_blank">Definitions and characteristics of low flows</a> in EPA Environmental Modeling Community of Practice</p>
 <p><em>Load packages for analysis. zoo will allow us to easily perform rolling means, and moments will allow easy calculation of skewness.</em></p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="low-flow-analysis-15-pts.html#cb244-1" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb244-2"><a href="low-flow-analysis-15-pts.html#cb244-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb244-3"><a href="low-flow-analysis-15-pts.html#cb244-3" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
-<span id="cb244-4"><a href="low-flow-analysis-15-pts.html#cb244-4" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
-<span id="cb244-5"><a href="low-flow-analysis-15-pts.html#cb244-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb244-6"><a href="low-flow-analysis-15-pts.html#cb244-6" tabindex="-1"></a></span>
-<span id="cb244-7"><a href="low-flow-analysis-15-pts.html#cb244-7" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="low-flow-analysis-15-pts.html#cb251-1" tabindex="-1"></a><span class="fu">library</span>(zoo)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="low-flow-analysis-15-pts.html#cb254-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb254-2"><a href="low-flow-analysis-15-pts.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(dataRetrieval)</span>
+<span id="cb254-3"><a href="low-flow-analysis-15-pts.html#cb254-3" tabindex="-1"></a><span class="fu">library</span>(moments)</span>
+<span id="cb254-4"><a href="low-flow-analysis-15-pts.html#cb254-4" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb254-5"><a href="low-flow-analysis-15-pts.html#cb254-5" tabindex="-1"></a></span>
+<span id="cb254-6"><a href="low-flow-analysis-15-pts.html#cb254-6" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_linedraw</span>())</span></code></pre></div>
 <div id="what-are-low-flow-statistics" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> What are low flow statistics?<a href="low-flow-analysis-15-pts.html#what-are-low-flow-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Low flow design flows can be specified based on hydrological or biological data. Biological methods look more at water quality standards relevant to biota. The hydrologic method just looks at the statistical distribution of low flows over a period of time.</p>
@@ -412,15 +417,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">15.2</span> Get data<a href="low-flow-analysis-15-pts.html#get-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will calculate the 7Q10 low flow statistic for the Gallatin Gateway USGS gage (06043500) using daily discharge data from 1990-2022. (parameter = 00060)</p>
 <p>In the code below you will see that I have added a line of code to add a water year (addWaterYear). This allows us to start doing our analyes on the water year (Oct - Oct) as opposed to calendar year like we have in the past.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="low-flow-analysis-15-pts.html#cb245-1" tabindex="-1"></a>site_no <span class="ot">&lt;-</span> <span class="st">&quot;06043500&quot;</span></span>
-<span id="cb245-2"><a href="low-flow-analysis-15-pts.html#cb245-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
-<span id="cb245-3"><a href="low-flow-analysis-15-pts.html#cb245-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
-<span id="cb245-4"><a href="low-flow-analysis-15-pts.html#cb245-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
-<span id="cb245-5"><a href="low-flow-analysis-15-pts.html#cb245-5" tabindex="-1"></a></span>
-<span id="cb245-6"><a href="low-flow-analysis-15-pts.html#cb245-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(<span class="at">site =</span> site_no, <span class="at">parameterCd =</span> parameter, <span class="at">startDate =</span> startDate, <span class="at">endDate =</span> endDate) <span class="sc">%&gt;%</span></span>
-<span id="cb245-7"><a href="low-flow-analysis-15-pts.html#cb245-7" tabindex="-1"></a>  <span class="fu">addWaterYear</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb245-8"><a href="low-flow-analysis-15-pts.html#cb245-8" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb245-9"><a href="low-flow-analysis-15-pts.html#cb245-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agency_cd)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="low-flow-analysis-15-pts.html#cb255-1" tabindex="-1"></a>site_no <span class="ot">&lt;-</span> <span class="st">&quot;06043500&quot;</span></span>
+<span id="cb255-2"><a href="low-flow-analysis-15-pts.html#cb255-2" tabindex="-1"></a>startDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;1990-10-01&quot;</span>)</span>
+<span id="cb255-3"><a href="low-flow-analysis-15-pts.html#cb255-3" tabindex="-1"></a>endDate <span class="ot">&lt;-</span> <span class="fu">as_date</span>(<span class="st">&quot;2022-10-01&quot;</span>)</span>
+<span id="cb255-4"><a href="low-flow-analysis-15-pts.html#cb255-4" tabindex="-1"></a>parameter <span class="ot">&lt;-</span> <span class="st">&quot;00060&quot;</span></span>
+<span id="cb255-5"><a href="low-flow-analysis-15-pts.html#cb255-5" tabindex="-1"></a></span>
+<span id="cb255-6"><a href="low-flow-analysis-15-pts.html#cb255-6" tabindex="-1"></a>Qdat <span class="ot">&lt;-</span> <span class="fu">readNWISdv</span>(<span class="at">site =</span> site_no, <span class="at">parameterCd =</span> parameter, <span class="at">startDate =</span> startDate, <span class="at">endDate =</span> endDate) <span class="sc">%&gt;%</span></span>
+<span id="cb255-7"><a href="low-flow-analysis-15-pts.html#cb255-7" tabindex="-1"></a>  <span class="fu">addWaterYear</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb255-8"><a href="low-flow-analysis-15-pts.html#cb255-8" tabindex="-1"></a>  <span class="fu">renameNWISColumns</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb255-9"><a href="low-flow-analysis-15-pts.html#cb255-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>agency_cd)</span></code></pre></div>
 <pre><code>## Warning in readNWISdv(site = site_no, parameterCd = parameter,
 ## startDate = startDate, : NWIS servers are slated for decommission.
 ## Please begin to migrate to read_waterdata_daily.</code></pre>
@@ -450,12 +455,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We could certainly set up some code to calculate this, but there is a nice and fast function in the zoo package for calculating rolling means. It is called rollmean().</p>
 <p>As we write the code to do this analysis, we are going to keep in mind that we may want to calculate a different type of low flow, like a 1Q10, so we are going to store the x and y of the xQy low flow statistic as objects rather than including them several places in the code. That way we can just change them in one place and run the analysis to compute a different statistic.</p>
 <p>Use rollmean() to create a column called xdaymean that is the 7-day rolling average.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="low-flow-analysis-15-pts.html#cb248-1" tabindex="-1"></a><span class="co">#set x and y for xQy design flow</span></span>
-<span id="cb248-2"><a href="low-flow-analysis-15-pts.html#cb248-2" tabindex="-1"></a>Xday <span class="ot">&lt;-</span> <span class="dv">7</span></span>
-<span id="cb248-3"><a href="low-flow-analysis-15-pts.html#cb248-3" tabindex="-1"></a>YrecInt <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb248-4"><a href="low-flow-analysis-15-pts.html#cb248-4" tabindex="-1"></a></span>
-<span id="cb248-5"><a href="low-flow-analysis-15-pts.html#cb248-5" tabindex="-1"></a><span class="co">#X day rolling mean, don&#39;t fill the ends of the timeseries,</span></span>
-<span id="cb248-6"><a href="low-flow-analysis-15-pts.html#cb248-6" tabindex="-1"></a><span class="co">#don&#39;t ignore NAs, use a backward-looking window (right align)</span></span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="low-flow-analysis-15-pts.html#cb258-1" tabindex="-1"></a><span class="co">#set x and y for xQy design flow</span></span>
+<span id="cb258-2"><a href="low-flow-analysis-15-pts.html#cb258-2" tabindex="-1"></a>Xday <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb258-3"><a href="low-flow-analysis-15-pts.html#cb258-3" tabindex="-1"></a>YrecInt <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb258-4"><a href="low-flow-analysis-15-pts.html#cb258-4" tabindex="-1"></a></span>
+<span id="cb258-5"><a href="low-flow-analysis-15-pts.html#cb258-5" tabindex="-1"></a><span class="co">#X day rolling mean, don&#39;t fill the ends of the timeseries,</span></span>
+<span id="cb258-6"><a href="low-flow-analysis-15-pts.html#cb258-6" tabindex="-1"></a><span class="co">#don&#39;t ignore NAs, use a backward-looking window (right align)</span></span></code></pre></div>
 </div>
 <div id="look-at-what-a-rolling-mean-does." class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Look at what a rolling mean does.<a href="low-flow-analysis-15-pts.html#look-at-what-a-rolling-mean-does." class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -488,12 +493,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>We can then transform that to an exceedence probability as</p>
 <p><span class="math inline">\(Exceedence Probability = 1 / Return Interval\)</span></p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="low-flow-analysis-15-pts.html#cb249-1" tabindex="-1"></a><span class="co"># add rank column and return interval column (uncomment the code below)</span></span>
-<span id="cb249-2"><a href="low-flow-analysis-15-pts.html#cb249-2" tabindex="-1"></a></span>
-<span id="cb249-3"><a href="low-flow-analysis-15-pts.html#cb249-3" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
-<span id="cb249-4"><a href="low-flow-analysis-15-pts.html#cb249-4" tabindex="-1"></a><span class="co">#                 mutate(rank = rank(minQ, ties.method = &quot;first&quot;)) %&gt;%</span></span>
-<span id="cb249-5"><a href="low-flow-analysis-15-pts.html#cb249-5" tabindex="-1"></a><span class="co">#                 mutate(ReturnInterval = (length(rank) + 1)/rank) %&gt;%</span></span>
-<span id="cb249-6"><a href="low-flow-analysis-15-pts.html#cb249-6" tabindex="-1"></a><span class="co">#                 mutate(ExceedProb = 1 / ReturnInterval)</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="low-flow-analysis-15-pts.html#cb259-1" tabindex="-1"></a><span class="co"># add rank column and return interval column (uncomment the code below)</span></span>
+<span id="cb259-2"><a href="low-flow-analysis-15-pts.html#cb259-2" tabindex="-1"></a></span>
+<span id="cb259-3"><a href="low-flow-analysis-15-pts.html#cb259-3" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
+<span id="cb259-4"><a href="low-flow-analysis-15-pts.html#cb259-4" tabindex="-1"></a><span class="co">#                 mutate(rank = rank(minQ, ties.method = &quot;first&quot;)) %&gt;%</span></span>
+<span id="cb259-5"><a href="low-flow-analysis-15-pts.html#cb259-5" tabindex="-1"></a><span class="co">#                 mutate(ReturnInterval = (length(rank) + 1)/rank) %&gt;%</span></span>
+<span id="cb259-6"><a href="low-flow-analysis-15-pts.html#cb259-6" tabindex="-1"></a><span class="co">#                 mutate(ExceedProb = 1 / ReturnInterval)</span></span></code></pre></div>
 <ul>
 <li>use patchwork to create a figure with minQ on the y and return on the x and another with minQ on the y and exceedence probability on the x.</li>
 </ul>
@@ -511,13 +516,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Now you could plot that fitted, synthetic distribution as an ECDF and read the plot to determine, say, 10% of students (0.1 probability) are at or above what height?</li>
 </ul>
 <p>Assume the average height from your data was 65 inches and the standard deviation was 6 inches (this is 100% made up), let’s look at it.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="low-flow-analysis-15-pts.html#cb250-1" tabindex="-1"></a><span class="co"># fitteddistribution &lt;- rnorm(1000, mean = 65, sd = 6) %&gt;%</span></span>
-<span id="cb250-2"><a href="low-flow-analysis-15-pts.html#cb250-2" tabindex="-1"></a><span class="co">#   as_tibble()</span></span>
-<span id="cb250-3"><a href="low-flow-analysis-15-pts.html#cb250-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb250-4"><a href="low-flow-analysis-15-pts.html#cb250-4" tabindex="-1"></a><span class="co"># ggplot(fitteddistribution, aes(x = value))+</span></span>
-<span id="cb250-5"><a href="low-flow-analysis-15-pts.html#cb250-5" tabindex="-1"></a><span class="co">#   stat_ecdf()+</span></span>
-<span id="cb250-6"><a href="low-flow-analysis-15-pts.html#cb250-6" tabindex="-1"></a><span class="co">#   xlab(&quot;height (in)&quot;)+</span></span>
-<span id="cb250-7"><a href="low-flow-analysis-15-pts.html#cb250-7" tabindex="-1"></a><span class="co">#   ylab(&quot;probability&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="low-flow-analysis-15-pts.html#cb260-1" tabindex="-1"></a><span class="co"># fitteddistribution &lt;- rnorm(1000, mean = 65, sd = 6) %&gt;%</span></span>
+<span id="cb260-2"><a href="low-flow-analysis-15-pts.html#cb260-2" tabindex="-1"></a><span class="co">#   as_tibble()</span></span>
+<span id="cb260-3"><a href="low-flow-analysis-15-pts.html#cb260-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb260-4"><a href="low-flow-analysis-15-pts.html#cb260-4" tabindex="-1"></a><span class="co"># ggplot(fitteddistribution, aes(x = value))+</span></span>
+<span id="cb260-5"><a href="low-flow-analysis-15-pts.html#cb260-5" tabindex="-1"></a><span class="co">#   stat_ecdf()+</span></span>
+<span id="cb260-6"><a href="low-flow-analysis-15-pts.html#cb260-6" tabindex="-1"></a><span class="co">#   xlab(&quot;height (in)&quot;)+</span></span>
+<span id="cb260-7"><a href="low-flow-analysis-15-pts.html#cb260-7" tabindex="-1"></a><span class="co">#   ylab(&quot;probability&quot;)</span></span></code></pre></div>
 <p>To get our 10 year return period (0.1 exceedence probability) we are going to do the same thing, except we know the distribution of the data isn’t normal, so we have to use a different distribution.</p>
 <p>There are a bunch of “extreme value” distributions used in these types of analyses. When we talk about floods we will use the Gumbel distribution, for example. For this type of analysis, it is common to use the Pearson Type III distribution.</p>
 <p>When we used the normal distribution example, we let R produce the distribution that fit our data. In this case we will use the equation that describes the Person Type III distribution. To predict flow at a given recurrence interval we will need the mean of the logged discharges (Xbar), the frequency factor (K), the standard deviation of the log discharges (S), skewness (g), and the standard normal variate (z). We will first compute this for all of the values in our dataset to see how the fitted values fit our calculated values.</p>
@@ -534,33 +539,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Standard normal variate</strong></p>
 <p><span class="math inline">\(z = 4.91 * ((1 / y) ^ {0.14} - (1 - (1 / y)) ^ {0.14})\)</span></p>
 <p>y = recurrence interval</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="low-flow-analysis-15-pts.html#cb251-1" tabindex="-1"></a><span class="co">#Measures of the distribution</span></span>
-<span id="cb251-2"><a href="low-flow-analysis-15-pts.html#cb251-2" tabindex="-1"></a><span class="co"># Xbar &lt;- mean(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb251-3"><a href="low-flow-analysis-15-pts.html#cb251-3" tabindex="-1"></a><span class="co"># S    &lt;- sd(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb251-4"><a href="low-flow-analysis-15-pts.html#cb251-4" tabindex="-1"></a><span class="co"># g    &lt;- skewness(log(Q_yearly_mins$minQ))</span></span>
-<span id="cb251-5"><a href="low-flow-analysis-15-pts.html#cb251-5" tabindex="-1"></a> </span>
-<span id="cb251-6"><a href="low-flow-analysis-15-pts.html#cb251-6" tabindex="-1"></a><span class="co">#calculate z, K, to plot the fitted Pearson Type III (uncomment the code below)</span></span>
-<span id="cb251-7"><a href="low-flow-analysis-15-pts.html#cb251-7" tabindex="-1"></a></span>
-<span id="cb251-8"><a href="low-flow-analysis-15-pts.html#cb251-8" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
-<span id="cb251-9"><a href="low-flow-analysis-15-pts.html#cb251-9" tabindex="-1"></a><span class="co">#   mutate(z = 4.91 * ((1 / ReturnInterval) ^ 0.14 - (1 - 1 / ReturnInterval) ^ 0.14)) %&gt;%</span></span>
-<span id="cb251-10"><a href="low-flow-analysis-15-pts.html#cb251-10" tabindex="-1"></a><span class="co">#   mutate(K = (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) ) %&gt;%</span></span>
-<span id="cb251-11"><a href="low-flow-analysis-15-pts.html#cb251-11" tabindex="-1"></a><span class="co">#   mutate(Qfit = exp(Xbar + K * S))</span></span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="low-flow-analysis-15-pts.html#cb261-1" tabindex="-1"></a><span class="co">#Measures of the distribution</span></span>
+<span id="cb261-2"><a href="low-flow-analysis-15-pts.html#cb261-2" tabindex="-1"></a><span class="co"># Xbar &lt;- mean(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb261-3"><a href="low-flow-analysis-15-pts.html#cb261-3" tabindex="-1"></a><span class="co"># S    &lt;- sd(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb261-4"><a href="low-flow-analysis-15-pts.html#cb261-4" tabindex="-1"></a><span class="co"># g    &lt;- skewness(log(Q_yearly_mins$minQ))</span></span>
+<span id="cb261-5"><a href="low-flow-analysis-15-pts.html#cb261-5" tabindex="-1"></a> </span>
+<span id="cb261-6"><a href="low-flow-analysis-15-pts.html#cb261-6" tabindex="-1"></a><span class="co">#calculate z, K, to plot the fitted Pearson Type III (uncomment the code below)</span></span>
+<span id="cb261-7"><a href="low-flow-analysis-15-pts.html#cb261-7" tabindex="-1"></a></span>
+<span id="cb261-8"><a href="low-flow-analysis-15-pts.html#cb261-8" tabindex="-1"></a><span class="co"># Q_yearly_mins &lt;- Q_yearly_mins %&gt;%</span></span>
+<span id="cb261-9"><a href="low-flow-analysis-15-pts.html#cb261-9" tabindex="-1"></a><span class="co">#   mutate(z = 4.91 * ((1 / ReturnInterval) ^ 0.14 - (1 - 1 / ReturnInterval) ^ 0.14)) %&gt;%</span></span>
+<span id="cb261-10"><a href="low-flow-analysis-15-pts.html#cb261-10" tabindex="-1"></a><span class="co">#   mutate(K = (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) ) %&gt;%</span></span>
+<span id="cb261-11"><a href="low-flow-analysis-15-pts.html#cb261-11" tabindex="-1"></a><span class="co">#   mutate(Qfit = exp(Xbar + K * S))</span></span></code></pre></div>
 <p>Let’s look our results and see how they fit. Plot the return interval on the x axis and flow on the y. Plot minQ, the minimum Q data, and Qfit, the “data” from the the model fit.</p>
 <p>Above we calculated z, K and the flow for each return interval in our data record to see how the distribution fit our data. We can see it fits quite well.</p>
 <p>We can use the same calculations as we used on the entire record to calculate a specific return period of interest. In our case, the 10 year return period for the 7Q10.</p>
 <p>We will set y equal to YrecInt, which we set above. This way we can just change it at the top of the code to run whatever xQy metric we want.</p>
 <p>Here I am giving you the code, for fitting these models but look at the code above where we fit the distribution to all the data and the code below where we are specfically calculating the 7Q10 and be sure you understand what the code is doing. If you don’t, reach out to me so we can step through it.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="low-flow-analysis-15-pts.html#cb252-1" tabindex="-1"></a><span class="co">#xQy ei: 7Q10</span></span>
-<span id="cb252-2"><a href="low-flow-analysis-15-pts.html#cb252-2" tabindex="-1"></a><span class="co"># y = YrecInt</span></span>
-<span id="cb252-3"><a href="low-flow-analysis-15-pts.html#cb252-3" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb252-4"><a href="low-flow-analysis-15-pts.html#cb252-4" tabindex="-1"></a><span class="co"># #Find these values based on established relationships</span></span>
-<span id="cb252-5"><a href="low-flow-analysis-15-pts.html#cb252-5" tabindex="-1"></a><span class="co"># z    &lt;- 4.91 * ((1 / y) ^ 0.14 - (1 - 1 / y) ^ 0.14)</span></span>
-<span id="cb252-6"><a href="low-flow-analysis-15-pts.html#cb252-6" tabindex="-1"></a><span class="co"># K    &lt;- (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) </span></span>
-<span id="cb252-7"><a href="low-flow-analysis-15-pts.html#cb252-7" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb252-8"><a href="low-flow-analysis-15-pts.html#cb252-8" tabindex="-1"></a><span class="co"># PearsonxQy &lt;- exp(Xbar + K * S)</span></span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="low-flow-analysis-15-pts.html#cb262-1" tabindex="-1"></a><span class="co">#xQy ei: 7Q10</span></span>
+<span id="cb262-2"><a href="low-flow-analysis-15-pts.html#cb262-2" tabindex="-1"></a><span class="co"># y = YrecInt</span></span>
+<span id="cb262-3"><a href="low-flow-analysis-15-pts.html#cb262-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb262-4"><a href="low-flow-analysis-15-pts.html#cb262-4" tabindex="-1"></a><span class="co"># #Find these values based on established relationships</span></span>
+<span id="cb262-5"><a href="low-flow-analysis-15-pts.html#cb262-5" tabindex="-1"></a><span class="co"># z    &lt;- 4.91 * ((1 / y) ^ 0.14 - (1 - 1 / y) ^ 0.14)</span></span>
+<span id="cb262-6"><a href="low-flow-analysis-15-pts.html#cb262-6" tabindex="-1"></a><span class="co"># K    &lt;- (2 / g) * (((1 + (g * z) / 6 - (g ^ 2) / 36) ^ 3) - 1) </span></span>
+<span id="cb262-7"><a href="low-flow-analysis-15-pts.html#cb262-7" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb262-8"><a href="low-flow-analysis-15-pts.html#cb262-8" tabindex="-1"></a><span class="co"># PearsonxQy &lt;- exp(Xbar + K * S)</span></span></code></pre></div>
 <p>So, our 7Q10 flow in cfs for this gage is….</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="low-flow-analysis-15-pts.html#cb253-1" tabindex="-1"></a><span class="co">#Low flow stat (7Q10 in this case)</span></span>
-<span id="cb253-2"><a href="low-flow-analysis-15-pts.html#cb253-2" tabindex="-1"></a><span class="co">#PearsonxQy</span></span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="low-flow-analysis-15-pts.html#cb263-1" tabindex="-1"></a><span class="co">#Low flow stat (7Q10 in this case)</span></span>
+<span id="cb263-2"><a href="low-flow-analysis-15-pts.html#cb263-2" tabindex="-1"></a><span class="co">#PearsonxQy</span></span></code></pre></div>
 </div>
 <div id="deliverable---summary-questions-15-pts" class="section level2 hasAnchor" number="15.8">
 <h2><span class="header-section-number">15.8</span> Deliverable - Summary questions (15 pts)<a href="low-flow-analysis-15-pts.html#deliverable---summary-questions-15-pts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
