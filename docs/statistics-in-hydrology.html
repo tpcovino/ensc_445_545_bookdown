@@ -614,8 +614,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="statistics-in-hydrology.html#cb183-1" tabindex="-1"></a>quantsX <span class="ot">&lt;-</span> <span class="fu">quantile</span>(ExNorm<span class="sc">$</span>value)</span>
 <span id="cb183-2"><a href="statistics-in-hydrology.html#cb183-2" tabindex="-1"></a></span>
 <span id="cb183-3"><a href="statistics-in-hydrology.html#cb183-3" tabindex="-1"></a>((quantsX[<span class="dv">4</span>]<span class="sc">-</span>quantsX[<span class="dv">3</span>]) <span class="sc">-</span> (quantsX[<span class="dv">3</span>] <span class="sc">-</span> quantsX[<span class="dv">2</span>])) <span class="sc">/</span> quantsX[<span class="dv">4</span>] <span class="sc">-</span> quantsX[<span class="dv">2</span>]</span></code></pre></div>
-<pre><code>##       75% 
-## -4.245496</code></pre>
+<pre><code>##      75% 
+## -4.33917</code></pre>
 </div>
 </div>
 <div id="what-is-a-normal-distribution-and-how-can-we-determine-if-we-have-one" class="section level2 hasAnchor" number="7.9">
@@ -669,7 +669,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Lilliefors (Kolmogorov-Smirnov) normality test
 ## 
 ## data:  all_the_water$value
-## D = 0.0065906, p-value = 0.3655</code></pre>
+## D = 0.0059937, p-value = 0.5188</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="statistics-in-hydrology.html#cb191-1" tabindex="-1"></a><span class="co"># and here we can use another normality test from the &quot;nortest&quot; package called the Anderson-Darling test. </span></span>
 <span id="cb191-2"><a href="statistics-in-hydrology.html#cb191-2" tabindex="-1"></a></span>
 <span id="cb191-3"><a href="statistics-in-hydrology.html#cb191-3" tabindex="-1"></a><span class="fu">ad.test</span>(all_the_water<span class="sc">$</span>value)</span></code></pre></div>
@@ -677,7 +677,7 @@ Create a normal data set and play with the number of values (n, samples). Invest
 ##  Anderson-Darling normality test
 ## 
 ## data:  all_the_water$value
-## A = 0.33942, p-value = 0.5021</code></pre>
+## A = 0.32083, p-value = 0.531</code></pre>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="statistics-in-hydrology.html#cb193-1" tabindex="-1"></a><span class="co"># Point being, there are a number of tests for normality that we can apply. </span></span></code></pre></div>
 </div>
 <div id="question-discuss-with-partner.-we-will-report-as-group." class="section level2 hasAnchor" number="7.12">

@@ -8,6 +8,8 @@ In this lab you are going to work with weather / climate data from the MSU weath
 
 We will evaluate trends over different time frames. 100+ years and the climate normal period (1991 - 2020). As you work on this lab think about what might be an appropriate time frame for various questions. Longer (at least 30 y) is generally better. A few years really wouldn't cut it. But think critically about why you would use different timescales. As an example, dendro-hydrology might use thousands of years to evaluate longer-term climate trends. 
 
+We will also start to discuss functions and iteration. 
+
 ## Summary questions and deliverable
 
 
