@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="for-loops.html"/>
+<link rel="prev" href="for-loops-and-other-skills.html"/>
 <link rel="next" href="climate-trend-analysis-18-pts.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -282,13 +282,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.1" data-path="functions.html"><a href="functions.html#reading-on-functions-from-rds-by-hadley-wickham"><i class="fa fa-check"></i><b>11.1</b> Reading on functions from RDS by Hadley Wickham</a></li>
 <li class="chapter" data-level="11.2" data-path="functions.html"><a href="functions.html#tutorial"><i class="fa fa-check"></i><b>11.2</b> Tutorial</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="for-loops.html"><a href="for-loops.html"><i class="fa fa-check"></i><b>12</b> For loops</a>
+<li class="chapter" data-level="12" data-path="for-loops-and-other-skills.html"><a href="for-loops-and-other-skills.html"><i class="fa fa-check"></i><b>12</b> For loops (and other skills)</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="for-loops.html"><a href="for-loops.html#libraries"><i class="fa fa-check"></i><b>12.1</b> Libraries</a></li>
-<li class="chapter" data-level="12.2" data-path="for-loops.html"><a href="for-loops.html#defining-parameters"><i class="fa fa-check"></i><b>12.2</b> Defining parameters</a></li>
-<li class="chapter" data-level="12.3" data-path="for-loops.html"><a href="for-loops.html#writing-the-for-loop"><i class="fa fa-check"></i><b>12.3</b> Writing the for loop</a></li>
-<li class="chapter" data-level="12.4" data-path="for-loops.html"><a href="for-loops.html#adding-second-for"><i class="fa fa-check"></i><b>12.4</b> Adding second for</a></li>
-<li class="chapter" data-level="12.5" data-path="for-loops.html"><a href="for-loops.html#removing-the-tmp-file"><i class="fa fa-check"></i><b>12.5</b> Removing the tmp file</a></li>
+<li class="chapter" data-level="12.1" data-path="for-loops-and-other-skills.html"><a href="for-loops-and-other-skills.html#libraries"><i class="fa fa-check"></i><b>12.1</b> Libraries</a></li>
+<li class="chapter" data-level="12.2" data-path="for-loops-and-other-skills.html"><a href="for-loops-and-other-skills.html#defining-parameters"><i class="fa fa-check"></i><b>12.2</b> Defining parameters</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="daymetr.html"><a href="daymetr.html"><i class="fa fa-check"></i><b>13</b> daymetr</a>
 <ul>
@@ -385,22 +382,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For some daymetr tutorials.</p>
 <div id="install-packages" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Install Packages<a href="daymetr.html#install-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="daymetr.html#cb226-1" tabindex="-1"></a><span class="co"># Install and load required packages</span></span>
-<span id="cb226-2"><a href="daymetr.html#cb226-2" tabindex="-1"></a><span class="co"># install.packages(&quot;daymetr&quot;) #uncomment here to install the package. </span></span>
-<span id="cb226-3"><a href="daymetr.html#cb226-3" tabindex="-1"></a><span class="fu">library</span>(daymetr)</span>
-<span id="cb226-4"><a href="daymetr.html#cb226-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="daymetr.html#cb201-1" tabindex="-1"></a><span class="co"># Install and load required packages</span></span>
+<span id="cb201-2"><a href="daymetr.html#cb201-2" tabindex="-1"></a><span class="co"># install.packages(&quot;daymetr&quot;) #uncomment here to install the package. </span></span>
+<span id="cb201-3"><a href="daymetr.html#cb201-3" tabindex="-1"></a><span class="fu">library</span>(daymetr)</span>
+<span id="cb201-4"><a href="daymetr.html#cb201-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="download-daymet-for-a-specific-location." class="section level2 hasAnchor" number="13.2">
 <h2><span class="header-section-number">13.2</span> Download daymet for a specific location.<a href="daymetr.html#download-daymet-for-a-specific-location." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="daymetr.html#cb227-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">download_daymet</span>(</span>
-<span id="cb227-2"><a href="daymetr.html#cb227-2" tabindex="-1"></a>  <span class="at">site =</span> <span class="st">&quot;Oak Ridge National Laboratories&quot;</span>,</span>
-<span id="cb227-3"><a href="daymetr.html#cb227-3" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">36.0133</span>,</span>
-<span id="cb227-4"><a href="daymetr.html#cb227-4" tabindex="-1"></a>  <span class="at">lon =</span> <span class="sc">-</span><span class="fl">84.2625</span>,</span>
-<span id="cb227-5"><a href="daymetr.html#cb227-5" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2000</span>,</span>
-<span id="cb227-6"><a href="daymetr.html#cb227-6" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
-<span id="cb227-7"><a href="daymetr.html#cb227-7" tabindex="-1"></a>  <span class="at">internal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb227-8"><a href="daymetr.html#cb227-8" tabindex="-1"></a>  <span class="at">simplify =</span> <span class="cn">TRUE</span> <span class="co"># return tidy data !!</span></span>
-<span id="cb227-9"><a href="daymetr.html#cb227-9" tabindex="-1"></a>  ) </span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="daymetr.html#cb202-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">download_daymet</span>(</span>
+<span id="cb202-2"><a href="daymetr.html#cb202-2" tabindex="-1"></a>  <span class="at">site =</span> <span class="st">&quot;Oak Ridge National Laboratories&quot;</span>,</span>
+<span id="cb202-3"><a href="daymetr.html#cb202-3" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">36.0133</span>,</span>
+<span id="cb202-4"><a href="daymetr.html#cb202-4" tabindex="-1"></a>  <span class="at">lon =</span> <span class="sc">-</span><span class="fl">84.2625</span>,</span>
+<span id="cb202-5"><a href="daymetr.html#cb202-5" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2000</span>,</span>
+<span id="cb202-6"><a href="daymetr.html#cb202-6" tabindex="-1"></a>  <span class="at">end =</span> <span class="dv">2010</span>,</span>
+<span id="cb202-7"><a href="daymetr.html#cb202-7" tabindex="-1"></a>  <span class="at">internal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb202-8"><a href="daymetr.html#cb202-8" tabindex="-1"></a>  <span class="at">simplify =</span> <span class="cn">TRUE</span> <span class="co"># return tidy data !!</span></span>
+<span id="cb202-9"><a href="daymetr.html#cb202-9" tabindex="-1"></a>  ) </span></code></pre></div>
 <pre><code>## Downloading DAYMET data for: Oak Ridge National Laboratories at 36.0133/-84.2625 latitude/longitude !</code></pre>
 <pre><code>## Done !</code></pre>
 </div>
@@ -419,63 +416,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="make-a-date-column-and-plot-max-temperature." class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Make a date column and plot max temperature.<a href="daymetr.html#make-a-date-column-and-plot-max-temperature." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="daymetr.html#cb230-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb230-2"><a href="daymetr.html#cb230-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">paste</span>(year, yday, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>), <span class="st">&quot;%Y-%j&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="daymetr.html#cb205-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb205-2"><a href="daymetr.html#cb205-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as_date</span>(<span class="fu">paste</span>(year, yday, <span class="at">sep =</span> <span class="st">&quot;-&quot;</span>), <span class="st">&quot;%Y-%j&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: There were 2 warnings in `mutate()`.
 ## The first warning was:
-## ℹ In argument: `date = as_date(paste(year, yday, sep = &quot;-&quot;),
-##   &quot;%Y-%j&quot;)`.
+## ℹ In argument: `date = as_date(paste(year,
+##   yday, sep = &quot;-&quot;), &quot;%Y-%j&quot;)`.
 ## Caused by warning:
 ## ! `tz` argument is ignored by `as_date()`
-## ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining
-##   warning.</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="daymetr.html#cb232-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb232-2"><a href="daymetr.html#cb232-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb232-3"><a href="daymetr.html#cb232-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb232-4"><a href="daymetr.html#cb232-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb232-5"><a href="daymetr.html#cb232-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb232-6"><a href="daymetr.html#cb232-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values or values outside the
-## scale range (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-122-1.png" alt="" width="672" /></p>
+## ℹ Run `dplyr::last_dplyr_warnings()` to see the
+##   1 remaining warning.</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="daymetr.html#cb207-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb207-2"><a href="daymetr.html#cb207-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb207-3"><a href="daymetr.html#cb207-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb207-4"><a href="daymetr.html#cb207-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb207-5"><a href="daymetr.html#cb207-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb207-6"><a href="daymetr.html#cb207-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 3413 rows containing missing values or
+## values outside the scale range (`geom_line()`).</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-123-1.png" alt="" width="672" /></p>
 </div>
 <div id="do-the-same-for-radiation." class="section level2 hasAnchor" number="13.5">
 <h2><span class="header-section-number">13.5</span> Do the same for radiation.<a href="daymetr.html#do-the-same-for-radiation." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="daymetr.html#cb234-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb234-2"><a href="daymetr.html#cb234-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb234-3"><a href="daymetr.html#cb234-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb234-4"><a href="daymetr.html#cb234-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb234-5"><a href="daymetr.html#cb234-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb234-6"><a href="daymetr.html#cb234-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values or values outside the
-## scale range (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-123-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="daymetr.html#cb209-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb209-2"><a href="daymetr.html#cb209-2" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb209-3"><a href="daymetr.html#cb209-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb209-4"><a href="daymetr.html#cb209-4" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb209-5"><a href="daymetr.html#cb209-5" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb209-6"><a href="daymetr.html#cb209-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Removed 3413 rows containing missing values or
+## values outside the scale range (`geom_line()`).</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" /></p>
 </div>
 <div id="stack-2-variables-with-patchwork." class="section level2 hasAnchor" number="13.6">
 <h2><span class="header-section-number">13.6</span> Stack 2 variables with patchwork.<a href="daymetr.html#stack-2-variables-with-patchwork." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://www.casualinferences.com/posts/adding-special-characters-ggplot-labels/" target="_blank">Here is a refernce for special characters in ggplot axes labels</a></p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="daymetr.html#cb236-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb236-2"><a href="daymetr.html#cb236-2" tabindex="-1"></a></span>
-<span id="cb236-3"><a href="daymetr.html#cb236-3" tabindex="-1"></a>temp_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb236-4"><a href="daymetr.html#cb236-4" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb236-5"><a href="daymetr.html#cb236-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb236-6"><a href="daymetr.html#cb236-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb236-7"><a href="daymetr.html#cb236-7" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb236-8"><a href="daymetr.html#cb236-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb236-9"><a href="daymetr.html#cb236-9" tabindex="-1"></a></span>
-<span id="cb236-10"><a href="daymetr.html#cb236-10" tabindex="-1"></a>srad_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb236-11"><a href="daymetr.html#cb236-11" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb236-12"><a href="daymetr.html#cb236-12" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
-<span id="cb236-13"><a href="daymetr.html#cb236-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
-<span id="cb236-14"><a href="daymetr.html#cb236-14" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
-<span id="cb236-15"><a href="daymetr.html#cb236-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb236-16"><a href="daymetr.html#cb236-16" tabindex="-1"></a></span>
-<span id="cb236-17"><a href="daymetr.html#cb236-17" tabindex="-1"></a>srad_plot <span class="sc">/</span> temp_plot</span></code></pre></div>
-<pre><code>## Warning: Removed 3413 rows containing missing values or values outside the
-## scale range (`geom_line()`).
-## Removed 3413 rows containing missing values or values outside the
-## scale range (`geom_line()`).</code></pre>
-<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="daymetr.html#cb211-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb211-2"><a href="daymetr.html#cb211-2" tabindex="-1"></a></span>
+<span id="cb211-3"><a href="daymetr.html#cb211-3" tabindex="-1"></a>temp_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb211-4"><a href="daymetr.html#cb211-4" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;tmax..deg.c.&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb211-5"><a href="daymetr.html#cb211-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb211-6"><a href="daymetr.html#cb211-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb211-7"><a href="daymetr.html#cb211-7" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb211-8"><a href="daymetr.html#cb211-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Max T (\u00b0C)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb211-9"><a href="daymetr.html#cb211-9" tabindex="-1"></a></span>
+<span id="cb211-10"><a href="daymetr.html#cb211-10" tabindex="-1"></a>srad_plot <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb211-11"><a href="daymetr.html#cb211-11" tabindex="-1"></a>  <span class="fu">filter</span>(measurement <span class="sc">==</span> <span class="st">&quot;srad..W.m.2.&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb211-12"><a href="daymetr.html#cb211-12" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb211-13"><a href="daymetr.html#cb211-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb211-14"><a href="daymetr.html#cb211-14" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>() <span class="sc">+</span></span>
+<span id="cb211-15"><a href="daymetr.html#cb211-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Solar radiation&quot;</span><span class="sc">~</span>(W<span class="sc">/</span>m<span class="sc">^</span><span class="dv">2</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb211-16"><a href="daymetr.html#cb211-16" tabindex="-1"></a></span>
+<span id="cb211-17"><a href="daymetr.html#cb211-17" tabindex="-1"></a>srad_plot <span class="sc">/</span> temp_plot</span></code></pre></div>
+<pre><code>## Warning: Removed 3413 rows containing missing values or
+## values outside the scale range (`geom_line()`).
+## Removed 3413 rows containing missing values or
+## values outside the scale range (`geom_line()`).</code></pre>
+<p><img src="bookdown.Rprog_files/figure-html/unnamed-chunk-125-1.png" alt="" width="672" /></p>
 
 </div>
 </div>
@@ -484,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="for-loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="for-loops-and-other-skills.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="climate-trend-analysis-18-pts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

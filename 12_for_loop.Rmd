@@ -1,5 +1,6 @@
-# For loops
+# For loops (and other skills)
 
+[Link to repo](https://github.com/tpcovino/skills){target="_blank"}
 
 Here we are going to learn how to write a for loop to download some data and name files. We will do two sites for simplicity, but this can be fed as many sites as you wish!
 
@@ -13,12 +14,13 @@ library(dataRetrieval)
 ## Defining parameters 
 
 You could type out the sites and names or you could pull it from some whatNWISsites call. 
+
 ```{r}
 sites <- c("06037500", "12363000")
 names <- c("salmon", "flathead")
 params <- c("00060", "00010") # This is temperature and Q. You can obviously change and then also change the readNWISdata to something else and the parameters, etc. 
-start <- as_date("1900-10-01") # Just a nice round number for start time. 
-end <- as_date("2023-09-30") #End of last water year. 
+start <- as_date("2020-10-01") # Just a nice round number for start time. 
+end <- as_date("2021-09-30") #End of water year. 
 service <- "dv" # Daily values
 
 # Removed those sites for testing
@@ -26,49 +28,65 @@ service <- "dv" # Daily values
 
 ```
 
-## Writing the for loop 
-
 Instead of writing a function, we use for(i in sites). So this will run through the list of sites and download the data and do whatever else you tell it. Then we create a filename that is data_, i. So it will write out data_06037500.csv for the first, data_12363000.csv for the second, so on. Then I just read the .csv in to check and make sure it worked.
 
 ```{r}
-for (i in sites) {
-  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
-    renameNWISColumns()
-  filename <- paste("data_", i, sep="")
-  write_csv(tmp, file = paste(filename, ".csv", sep=""))
-}
+# for (i in sites) {
+#   tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
+#     renameNWISColumns()
+#   filename <- paste("data_", i, sep="")
+#   write_csv(tmp, file = paste("data/", filename, ".csv", sep=""))
+# }
 
-test_df <- read_csv("data_06037500.csv")
+# test_df <- read_csv("data/data_06037500.csv")
 ```
 
-
-## Adding second for
-
-Here, I've added a second for. For i in sites and for j in names. So when we get to the naming we look to the j for the name to put that in the title of the .csv
-```{r}
-for (i in sites) {
-  for (j in names) {
-  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
-    renameNWISColumns()
-  filename <- paste("data_", j, sep="")
-  write_csv(tmp, file = paste(filename, ".csv", sep=""))
-  }
-}
-
-test_df <- read_csv("data_salmon.csv")
-```
-
-## Removing the tmp file
-
-This does the same thing, just removes the tmp file at the end to clean up the global environment.
+Now we can add what is referred to as a "zipper" or "zippering" where we would name each file not by site but by name. See here: 
 
 ```{r}
-for (i in sites) {
-  for (j in names) {
-  tmp <- readNWISdata(sites = i, parameterCd = params, service = service, startDate = start, endDate = end) %>% 
-    renameNWISColumns()
-  assign(paste("data_", j, sep=""), tmp)
-  rm(tmp) 
-  }
-}
+# for (k in seq_along(sites)) {
+#   tmp <- readNWISdata(
+#   sites = sites[k],
+#   parameterCd = params,
+#   service = service,
+#   startDate = start,
+#   endDate = end
+#   ) %>%
+#   renameNWISColumns()
+# 
+# filename <- paste0(names[k], ".csv")
+# 
+# write_csv(tmp, file = paste0("data/", filename))
+# rm(tmp)
+# }
+
+# You can also tell R to load (read_csv) all data files in your folder (e.g., "data/bunch_of_files.csv"). If interested try to get that to work before seeing the end of this Rmd. 
 ```
+
+We could also do this directly to the global environment. 
+
+```{r}
+# for (k in seq_along(sites)) {
+#   tmp <- readNWISdata(
+#   sites = sites[k],
+#   parameterCd = params,
+#   service = service,
+#   startDate = start,
+#   endDate = end
+#   ) %>%
+#   renameNWISColumns()
+#   
+# assign(paste0(names[k]), tmp)
+# rm(tmp)
+# }
+```
+
+Loading a list of files
+```{r}
+# list_of_files <- list.files(recursive = TRUE,
+#                             pattern = "\\.csv$",
+#                             full.names = FALSE)
+# 
+# df <- readr::read_csv(list_of_files, id = "file_name")
+```
+

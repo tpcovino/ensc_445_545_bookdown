@@ -100,12 +100,9 @@ flood-analysis-lab-10-pts
 functions
 reading-on-functions-from-rds-by-hadley-wickham
 tutorial
-for-loops
+for-loops-and-other-skills
 libraries
 defining-parameters
-writing-the-for-loop
-adding-second-for
-removing-the-tmp-file
 daymetr
 install-packages
 download-daymet-for-a-specific-location.
